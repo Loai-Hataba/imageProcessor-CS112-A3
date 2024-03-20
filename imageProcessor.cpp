@@ -15,6 +15,7 @@ using namespace std;
 void menu(Image image);
 void save(Image image);
 void choose_filter(string ans, Image image);
+
 void grayscale(Image image);
 void black_white(Image image);
 void inverted(Image image);
