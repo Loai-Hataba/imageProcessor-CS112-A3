@@ -11,6 +11,7 @@ Authors: Loai Hataba, ID: 20230553, Section: S24, Email: Loaiwleed2005@gmail.com
 #include <iostream>
 #include "Image_Class.h"
 using namespace std;
+
 //prototypes
 void menu(Image image);
 void save(Image image);
@@ -33,7 +34,7 @@ int main()
 {
     while (true)
     {
-        cout << "\n      Welcome to Baby Photoshop!\n\n";
+        cout << "\n      Welcome to Photoshop on a budget!\n\n";
         string file_name;
         cout << "Please enter the image name (with the extension included): ";
         cin >> file_name;
@@ -43,29 +44,6 @@ int main()
 
 //        display menu
         menu(image);
-
-//        rerun program
-        string ans;
-        cout << "Would you like to Filter a new image? (y/n) ";
-        cin >> ans;
-        if (ans == "n")
-        {
-//            exit
-            return 0;
-        }
-        else if (ans != "y")
-        {
-            while (ans != "y") {
-                cout << "please enter a valid option\n";
-                cout << "Would you like to Filter a new image? (y/n) ";
-                cin >> ans;
-                if (ans == "n")
-                {
-//                  exit
-                    return 0;
-                }
-            }
-        }
 
     }
     return 0;
@@ -156,7 +134,9 @@ void save(Image image)
     string file_name;
     cout << "Choose the name of the new image(include extension):";
     cin >> file_name;
+    cout << file_name << endl;
     image.saveImage(file_name);
+    cout << file_name << " Saved succesfully.\n";
 }
 
 
@@ -172,10 +152,23 @@ void black_white(Image image) //Abdallah
 
 }
 
-void inverted(Image image) //Loai
+void inverted(Image image) //Loai (done)
 {
-    cout << "inverted\n";
+    for (int i = 0; i < image.width; i++)
+    {
+        for (int j = 0; j < image.height; j++)
+        {
+            unsigned int red = image(i, j, 0);
+            unsigned int green = image(i, j, 1);
+            unsigned int blue = image(i, j, 2);
 
+            image(i, j, 0) = 255 - red;
+            image(i, j, 1) = 255 - green;
+            image(i, j, 2) = 255 - blue;
+        }
+    }
+
+    save(image);
 }
 
 void merge(Image image) //Hossam
@@ -192,7 +185,24 @@ void flip(Image image) //Abdallah
 
 void rotate(Image image) //Loai
 {
-    cout << "rotate\n";
+    int angle;
+    cout << "How much rotation angle would you like? (90, 180, 270)\n"
+            "Choice: ";
+    cin >> angle;
+
+//    if 90 angle
+    if (angle == 90)
+    {
+
+    }
+    else if (angle == 180)
+    {
+
+    }
+    else if (angle == 270)
+    {
+
+    }
 
 }
 
