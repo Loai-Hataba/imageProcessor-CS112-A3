@@ -4,6 +4,7 @@ project(imageProcessor_CS112_A3)
 set(CMAKE_CXX_STANDARD 23)
 
 add_executable(imageProcessor-CS112-A3
-                imageProcessor.cpp)
-
+                imageProcessor.cpp
+#        ImageProcessingDemo.cpp)
+)
 
