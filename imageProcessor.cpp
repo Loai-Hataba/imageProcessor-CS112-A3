@@ -186,24 +186,43 @@ void flip(Image image) //Abdallah
 
 void rotate(Image image) //Loai
 {
+    Image rotated_image;
+    rotated_image.width = image.height;
+    rotated_image.height = image.width;
     int angle;
     cout << "How much rotation angle would you like? (90, 180, 270)\n"
             "Choice: ";
     cin >> angle;
-
+// ******************* error handle!!!!!
 //    if 90 angle
     if (angle == 90)
     {
-
+        cout << "1 \n";
+        for (int i = 0; i < rotated_image.width; i++)
+        {
+            cout << "2 \n";
+            for (int j = 0; j < rotated_image.height; j++)
+            {
+                cout << "3 \n";
+                for (int k = 0; k < 3; k++)
+                {
+                    cout << "4 \n";
+                    rotated_image(j, rotated_image.width - i - 1, k) = image(i, j, k);
+                }
+            }
+        }
     }
-    else if (angle == 180)
-    {
-
-    }
-    else if (angle == 270)
-    {
-
-    }
+    save(rotated_image);
+//    if 180 angle
+//    else if (angle == 180)
+//    {
+//
+//    }
+////    if 270 angle
+//    else if (angle == 270)
+//    {
+//
+//    }
 
 }
 
