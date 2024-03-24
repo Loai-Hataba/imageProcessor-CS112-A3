@@ -198,38 +198,22 @@ void merge(Image image) //Hossam
 
 }
 
-void flip(Image image2) //Abdallah
-{
-    for (int i = image2.width/2; i < image2.width ; ++i) {
-        for (int j = 0; j < image2.height ; ++j) {
-            int k = 0 ;
-            int arr[i][j][k] ;
-            for (; k < 3 ; ++k) {
-                arr[i][j][k] =image2(i-image2.width/2,j,k);
-
+void flip(Image image) {
+    // we will flip the image vertically
+    Image flipped_image(image.width, image.height);     // store the  flipped image in a new one
+    for (int i = 0; i < image.width; ++i) {
+        for (int j = image.height - 1; j >= 0; --j) { //  to reach each column of the image in reverse order
+            for (int k = 0; k < 3; ++k) {
+                flipped_image(i, image.height - 1 - j, k) = image(i, j, k);
             }
         }
-
     }
 
-    for (int i = 0 ; i < image2.width /2 ; ++i) {
-        for (int j = 0; j < image2.height ; ++j) {
-            int k = 0 ;
-            int arr2[i][j][k] ;
-            for (; k < 3 ; ++k) {
-                arr2[i][j][k] =image2(i-image2.width/2,j,k);
-            }
-        }
-
-    }
-
-
-
-
-
-
-    save(image2);
+    // Save the flipped image
+    save(flipped_image);
 }
+
+
 
 void rotate(Image image) //Loai
 {
