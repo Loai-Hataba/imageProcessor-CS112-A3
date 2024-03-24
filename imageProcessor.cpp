@@ -135,7 +135,8 @@ void save(Image image)
     string file_name;
     cout << "Choose the name of the new image(include extension):";
     cin >> file_name;
-    cout << file_name << endl;
+    // Clear input buffer
+    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     image.saveImage(file_name);
     cout << file_name << " Saved succesfully.\n";
 }
@@ -184,52 +185,103 @@ void flip(Image image) //Abdallah
 
 }
 
-void rotate(Image image) //Loai
+
+void rotate(Image image)
 {
-    Image rotated_image;
-    rotated_image.width = image.height;
-    rotated_image.height = image.width;
     int angle;
     cout << "How much rotation angle would you like? (90, 180, 270)\n"
             "Choice: ";
     cin >> angle;
-// ******************* error handle!!!!!
-//    if 90 angle
-    if (angle == 90)
+    Image final;
+    // Perform rotation based on angle
+    for (int rotation = 0; rotation < angle / 90; ++rotation)
     {
-        cout << "1 \n";
-        for (int i = 0; i < rotated_image.width; i++)
+
+//        // Create a new rotated image for each rotation
+        Image rotated_image = Image(image.height, image.width); // Initialize rotated image with correct dimensions
+
+        for (int i = 0; i < rotated_image.height; ++i)
         {
-            cout << "2 \n";
-            for (int j = 0; j < rotated_image.height; j++)
+            for (int j = 0; j < rotated_image.width; ++j)
             {
-                cout << "3 \n";
-                for (int k = 0; k < 3; k++)
+                for (int k = 0; k < 3; ++k)
                 {
-                    cout << "4 \n";
-                    rotated_image(j, rotated_image.width - i - 1, k) = image(i, j, k);
+                    if (rotation == 0) // 90-degree rotation
+                    {
+//                        // Rotate pixel (i, j) to (j, image.height - i - 1)
+                        rotated_image(rotated_image.width - j - 1, i, k) = image(i, j, k);
+//                        rotated_image(j, rotated_image.height - i - 1, k) = image(i, j, k);
+                    }
+//                    else if (rotation == 1) // 180-degree rotation
+//                    {
+//                        // Rotate pixel (i, j) to (image.width - j - 1, image.height - i - 1)
+//                        rotated_image(image.width - j - 1, image.height - i - 1, k) = image(i, j, k);
+//                    }
+//                    else if (rotation == 2) // 270-degree rotation
+//                    {
+//                        // Rotate pixel (i, j) to (image.width - j - 1, i)
+//                        rotated_image(image.width - j - 1, i, k) = image(i, j, k);
+//                    cout << angle;
                 }
             }
         }
+        final = rotated_image;
+
+//        // Assign rotated image to original image for next iteration (if any)
+//        image = rotated_image;
+        save(rotated_image);
     }
-    save(rotated_image);
-//    if 180 angle
-//    else if (angle == 180)
-//    {
-//
-//    }
-////    if 270 angle
-//    else if (angle == 270)
-//    {
-//
-//    }
 
 }
 
+
+
+//void rotate(Image image)
+//{
+//    int angle;
+//    cout << "How much rotation angle would you like? (90, 180, 270)\n"
+//            "Choice: ";
+//    cin >> angle;
+//
+//    Image rotated_image(image.height, image.width); // Initialize rotated image with correct dimensions
+//
+//    if (angle == 90)
+//    {
+//        for (int i = 0; i < rotated_image.height; ++i)
+//        {
+//            for (int j = 0; j < rotated_image.width; ++j)
+//            {
+//                for (int k = 0; k < 3; ++k)
+//                {
+//                    // Rotate pixel (i, j) to (j, rotated_image.height - i - 1)
+//                    rotated_image(rotated_image.width - j - 1, i, k) = image(i, j, k);
+//                }
+//            }
+//        }
+//    }
+//    else if (angle == 180)
+//    {
+//        // Implement rotation by 180 degrees (similar logic)
+//    }
+//    else if (angle == 270)
+//    {
+//        // Implement rotation by 270 degrees (similar logic)
+//    }
+//    else
+//    {
+//        cout << "Invalid angle choice." << endl;
+//        return; // Exit function if angle is invalid
+//    }
+//
+//    save(rotated_image);
+//}
+
+
+
+
+
 void darken_lighten(Image image) //Hossam
 {
-    cout << "darken_lighten\n";
-
 }
 
 void crop(Image image) //Abdallah
@@ -256,9 +308,50 @@ void resize(Image image) //Abdallah
 
 }
 
+
+
 void blur(Image image) //Loai
 {
     cout << "blur\n";
 
 }
 
+
+
+
+//
+//        void rotate(Image image) //Loai
+//        {
+//            Image rotated_image;
+//            rotated_image.width = image.height;
+//            rotated_image.height = image.width;
+//            int angle;
+//            cout << "How much rotation angle would you like? (90, 180, 270)\n"
+//                    "Choice: ";
+//            cin >> angle;
+//// ******************* error handle!!!!!
+////    if 90 angle
+//            if (angle == 90)
+//            {
+//                for (int i = 0; i < rotated_image.width; i++)
+//                {
+//                    cout << "2 \n";
+//                    for (int j = 0; j < rotated_image.height; j++)
+//                    {
+//                        cout << "3 \n";
+//                        for (int k = 0; k < 3; k++)
+//                        {
+//                            cout << "4 \n";
+//                            rotated_image(j, rotated_image.width - i - 1, k) = image(i, j, k);
+//                            cout << "5 \n";
+//                        }
+//                    }
+//                    cout << "6 \n";
+//                }
+//                cout << "7 \n";
+//
+//            }
+//            save(rotated_image);
+//            cout << "darken_lighten\n";
+//
+//        }
