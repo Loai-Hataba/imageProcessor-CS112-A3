@@ -143,13 +143,33 @@ void save(Image image)
 
 //  ********************** Filters ****************************
 void grayscale(Image image) //Hossam
-{
- cout << "grayscale\n";
+{  cout << "hoss \n" ;
+    save(image);
 }
 
 void black_white(Image image) //Abdallah
 {
-    cout << "black_white\n";
+    for (int i = 0; i < image.width; i++) {
+        for (int j = 0; j < image.height; j++) {
+            for (int k = 0; k < 3; ++k) {
+                // getting the avg for all channels  for every pixel
+
+                unsigned int average = (image(i, j, 0) + image(i, j, 1) + image(i, j, 2)) / 3;
+
+                // the avg for the colors black and white is (255+0)/ 2 = 127.5
+
+                if (average <= 127.5) { // means that the brightness level is low
+                    image(i, j, k) = 0; }
+                else { // means that the brightness level is high
+                    image(i, j, k) = 255; }
+            }
+        }
+    }
+
+
+
+
+    save(image);
 
 }
 
@@ -178,10 +198,37 @@ void merge(Image image) //Hossam
 
 }
 
-void flip(Image image) //Abdallah
+void flip(Image image2) //Abdallah
 {
-    cout << "flip\n";
+    for (int i = image2.width/2; i < image2.width ; ++i) {
+        for (int j = 0; j < image2.height ; ++j) {
+            int k = 0 ;
+            int arr[i][j][k] ;
+            for (; k < 3 ; ++k) {
+                arr[i][j][k] =image2(i-image2.width/2,j,k);
 
+            }
+        }
+
+    }
+
+    for (int i = 0 ; i < image2.width /2 ; ++i) {
+        for (int j = 0; j < image2.height ; ++j) {
+            int k = 0 ;
+            int arr2[i][j][k] ;
+            for (; k < 3 ; ++k) {
+                arr2[i][j][k] =image2(i-image2.width/2,j,k);
+            }
+        }
+
+    }
+
+
+
+
+
+
+    save(image2);
 }
 
 void rotate(Image image) //Loai
@@ -234,7 +281,7 @@ void darken_lighten(Image image) //Hossam
 
 void crop(Image image) //Abdallah
 {
-    cout << "crop\n";
+    cout  << "crop\n";
 
 }
 
@@ -262,3 +309,20 @@ void blur(Image image) //Loai
 
 }
 
+/*void grayscale(Image image) //Hossam
+{  for (int i = 0; i < image.width; i++)
+    {
+        for (int j = 0; j < image.height; j++)
+        { unsigned  int avg = 0 ;
+            for (int k = 0; k < 3 ; ++k) {
+                avg += image(i, j, k) ;
+            }
+            avg = avg / 3 ;
+            for (int k = 0; k < 3; ++k) {
+                image(i,j,k) = avg ;
+            }
+        }
+    }
+
+    save(image);
+}*/
