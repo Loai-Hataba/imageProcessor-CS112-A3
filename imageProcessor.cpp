@@ -144,13 +144,33 @@ void save(Image image)
 
 //  ********************** Filters ****************************
 void grayscale(Image image) //Hossam
-{
- cout << "grayscale\n";
+{  cout << "hoss \n" ;
+    save(image);
 }
 
 void black_white(Image image) //Abdallah
 {
-    cout << "black_white\n";
+    for (int i = 0; i < image.width; i++) {
+        for (int j = 0; j < image.height; j++) {
+            for (int k = 0; k < 3; ++k) {
+                // getting the avg for all channels  for every pixel
+
+                unsigned int average = (image(i, j, 0) + image(i, j, 1) + image(i, j, 2)) / 3;
+
+                // the avg for the colors black and white is (255+0)/ 2 = 127.5
+
+                if (average <= 127.5) { // means that the brightness level is low
+                    image(i, j, k) = 0; }
+                else { // means that the brightness level is high
+                    image(i, j, k) = 255; }
+            }
+        }
+    }
+
+
+
+
+    save(image);
 
 }
 
@@ -179,15 +199,25 @@ void merge(Image image) //Hossam
 
 }
 
-void flip(Image image) //Abdallah
-{
-    cout << "flip\n";
+void flip(Image image) {
+    // we will flip the image vertically
+    Image flipped_image(image.width, image.height);     // store the  flipped image in a new one
+    for (int i = 0; i < image.width; ++i) {
+        for (int j = image.height - 1; j >= 0; --j) { //  to reach each column of the image in reverse order
+            for (int k = 0; k < 3; ++k) {
+                flipped_image(i, image.height - 1 - j, k) = image(i, j, k);
+            }
+        }
+    }
 
 }
 
 
 void rotate(Image image)
 {
+    Image rotated_image;
+    rotated_image.width = image.height;
+    rotated_image.height = image.width;
     int angle;
     cout << "How much rotation angle would you like? (90, 180, 270)\n"
             "Choice: ";
@@ -263,6 +293,7 @@ void rotate(Image image)
 //    {
 //        // Implement rotation by 180 degrees (similar logic)
 //    }
+////    if 270 angle
 //    else if (angle == 270)
 //    {
 //        // Implement rotation by 270 degrees (similar logic)
@@ -282,11 +313,13 @@ void rotate(Image image)
 
 void darken_lighten(Image image) //Hossam
 {
+    cout << "darken_lighten\n";
+
 }
 
 void crop(Image image) //Abdallah
 {
-    cout << "crop\n";
+    cout  << "crop\n";
 
 }
 
@@ -308,50 +341,23 @@ void resize(Image image) //Abdallah
 
 }
 
-
-
 void blur(Image image) //Loai
 {
     cout << "blur\n";
 
 }
 
-
-
-
-//
-//        void rotate(Image image) //Loai
-//        {
-//            Image rotated_image;
-//            rotated_image.width = image.height;
-//            rotated_image.height = image.width;
-//            int angle;
-//            cout << "How much rotation angle would you like? (90, 180, 270)\n"
-//                    "Choice: ";
-//            cin >> angle;
-//// ******************* error handle!!!!!
-////    if 90 angle
-//            if (angle == 90)
-//            {
-//                for (int i = 0; i < rotated_image.width; i++)
-//                {
-//                    cout << "2 \n";
-//                    for (int j = 0; j < rotated_image.height; j++)
-//                    {
-//                        cout << "3 \n";
-//                        for (int k = 0; k < 3; k++)
-//                        {
-//                            cout << "4 \n";
-//                            rotated_image(j, rotated_image.width - i - 1, k) = image(i, j, k);
-//                            cout << "5 \n";
-//                        }
-//                    }
-//                    cout << "6 \n";
-//                }
-//                cout << "7 \n";
-//
-//            }
-//            save(rotated_image);
-//            cout << "darken_lighten\n";
-//
-//        }
+/*void grayscale(Image image) //Hossam
+{  for (int i = 0; i < image.width; i++)
+    {
+        for (int j = 0; j < image.height; j++)
+        { unsigned  int avg = 0 ;
+            for (int k = 0; k < 3 ; ++k) {
+                avg += image(i, j, k) ;
+            }
+            avg = avg / 3 ;
+            for (int k = 0; k < 3; ++k) {
+                image(i,j,k) = avg ;
+            }
+        }
+    }
