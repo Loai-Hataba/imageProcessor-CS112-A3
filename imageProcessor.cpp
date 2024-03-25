@@ -143,12 +143,24 @@ void save(Image image)
 
 
 //  ********************** Filters ****************************
-void grayscale(Image image) //Hossam
-{  cout << "hoss \n" ;
+void grayscale(Image image) //Hossam (Done)
+{
+    for (int i = 0; i < image.width; i++) {
+        for (int j = 0; j < image.height; j++) {
+            unsigned int avg = 0;
+            for (int k = 0; k < 3; ++k) {
+                avg += image(i, j, k);
+            }
+            avg = avg / 3;
+            for (int k = 0; k < 3; ++k) {
+                image(i, j, k) = avg;
+            }
+        }
+    }
     save(image);
 }
 
-void black_white(Image image) //Abdallah
+void black_white(Image image) //Abdallah (Done)
 {
     for (int i = 0; i < image.width; i++) {
         for (int j = 0; j < image.height; j++) {
@@ -199,7 +211,8 @@ void merge(Image image) //Hossam
 
 }
 
-void flip(Image image) {
+void flip(Image image) //Abdallah (Done)
+{
     // we will flip the image vertically
     Image flipped_image(image.width, image.height);     // store the  flipped image in a new one
     for (int i = 0; i < image.width; ++i) {
@@ -209,107 +222,65 @@ void flip(Image image) {
             }
         }
     }
+    save(flipped_image);
 
 }
 
-
-void rotate(Image image)
+void rotate(Image image) //Loai (Done)
 {
-    Image rotated_image;
-    rotated_image.width = image.height;
-    rotated_image.height = image.width;
     int angle;
     cout << "How much rotation angle would you like? (90, 180, 270)\n"
             "Choice: ";
     cin >> angle;
     Image final;
     // Perform rotation based on angle
-    for (int rotation = 0; rotation < angle / 90; ++rotation)
+    if (angle == 90 || angle == 270)
     {
-
-//        // Create a new rotated image for each rotation
-        Image rotated_image = Image(image.height, image.width); // Initialize rotated image with correct dimensions
-
+        // For 90 or 270 degrees, transpose and flip the image
+        Image rotated_image = Image(image.height, image.width);
         for (int i = 0; i < rotated_image.height; ++i)
         {
             for (int j = 0; j < rotated_image.width; ++j)
             {
                 for (int k = 0; k < 3; ++k)
                 {
-                    if (rotation == 0) // 90-degree rotation
+                    if (angle == 90) // 90-degree rotation
                     {
-//                        // Rotate pixel (i, j) to (j, image.height - i - 1)
                         rotated_image(rotated_image.width - j - 1, i, k) = image(i, j, k);
-//                        rotated_image(j, rotated_image.height - i - 1, k) = image(i, j, k);
                     }
-//                    else if (rotation == 1) // 180-degree rotation
-//                    {
-//                        // Rotate pixel (i, j) to (image.width - j - 1, image.height - i - 1)
-//                        rotated_image(image.width - j - 1, image.height - i - 1, k) = image(i, j, k);
-//                    }
-//                    else if (rotation == 2) // 270-degree rotation
-//                    {
-//                        // Rotate pixel (i, j) to (image.width - j - 1, i)
-//                        rotated_image(image.width - j - 1, i, k) = image(i, j, k);
-//                    cout << angle;
+                    else if (angle == 270) // 270-degree rotation
+                    {
+                        rotated_image(j, rotated_image.height - i - 1, k) = image(i, j, k);
+                    }
                 }
             }
         }
-        final = rotated_image;
-
-//        // Assign rotated image to original image for next iteration (if any)
-//        image = rotated_image;
         save(rotated_image);
     }
+//    180 Rotation
+    else if (angle == 180)
+    {
+        // For 180 degrees, flip the image horizontally and vertically
+        Image rotated_image = Image(image.width, image.height);
 
+        for (int i = 0; i < rotated_image.width; ++i)
+        {
+            for (int j = 0; j < rotated_image.height; ++j)
+            {
+                for (int k = 0; k < 3; ++k)
+                {
+                    // Flip horizontally and vertically
+                    rotated_image(i, j, k) = image(image.width - i - 1, image.height - j - 1, k);
+                }
+            }
+        }
+        save(rotated_image);
+    }
+    else
+    {
+        cout << "Invalid angle. Please choose 90, 180, or 270." << endl;
+    }
 }
-
-
-
-//void rotate(Image image)
-//{
-//    int angle;
-//    cout << "How much rotation angle would you like? (90, 180, 270)\n"
-//            "Choice: ";
-//    cin >> angle;
-//
-//    Image rotated_image(image.height, image.width); // Initialize rotated image with correct dimensions
-//
-//    if (angle == 90)
-//    {
-//        for (int i = 0; i < rotated_image.height; ++i)
-//        {
-//            for (int j = 0; j < rotated_image.width; ++j)
-//            {
-//                for (int k = 0; k < 3; ++k)
-//                {
-//                    // Rotate pixel (i, j) to (j, rotated_image.height - i - 1)
-//                    rotated_image(rotated_image.width - j - 1, i, k) = image(i, j, k);
-//                }
-//            }
-//        }
-//    }
-//    else if (angle == 180)
-//    {
-//        // Implement rotation by 180 degrees (similar logic)
-//    }
-////    if 270 angle
-//    else if (angle == 270)
-//    {
-//        // Implement rotation by 270 degrees (similar logic)
-//    }
-//    else
-//    {
-//        cout << "Invalid angle choice." << endl;
-//        return; // Exit function if angle is invalid
-//    }
-//
-//    save(rotated_image);
-//}
-
-
-
-
 
 void darken_lighten(Image image) //Hossam
 {
@@ -347,18 +318,3 @@ void blur(Image image) //Loai
 
 }
 
-/*void grayscale(Image image) //Hossam
-{  for (int i = 0; i < image.width; i++)
-    {
-        for (int j = 0; j < image.height; j++)
-        { unsigned  int avg = 0 ;
-            for (int k = 0; k < 3 ; ++k) {
-                avg += image(i, j, k) ;
-            }
-            avg = avg / 3 ;
-            for (int k = 0; k < 3; ++k) {
-                image(i,j,k) = avg ;
-            }
-        }
-    }
-*/
