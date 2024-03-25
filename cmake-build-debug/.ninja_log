@@ -1,17 +1,6 @@
 # ninja log v5
-2	1204	7329432532713755	CMakeFiles/imageProcessor-CS112-A3.dir/imageProcessor.cpp.obj	5aae268db5381277
-1205	1312	7329432533776964	imageProcessor-CS112-A3.exe	be576d857d188bba
-1	109	7326701159506636	build.ninja	f6f01bbf047d25a
-1	1175	7326696792253541	CMakeFiles/imageProcessor-CS112-A3.dir/ImageProcessingDemo.cpp.obj	af8ad0f624553c67
-2	1191	7329433364606288	CMakeFiles/imageProcessor-CS112-A3.dir/imageProcessor.cpp.obj	5aae268db5381277
-1191	1293	7329433365604878	imageProcessor-CS112-A3.exe	be576d857d188bba
-2	1171	7329433978253982	CMakeFiles/imageProcessor-CS112-A3.dir/imageProcessor.cpp.obj	5aae268db5381277
-1171	1273	7329433979254929	imageProcessor-CS112-A3.exe	be576d857d188bba
-2	1188	7329434581759126	CMakeFiles/imageProcessor-CS112-A3.dir/imageProcessor.cpp.obj	5aae268db5381277
-1193	1297	7329434582831878	imageProcessor-CS112-A3.exe	be576d857d188bba
-3	1192	7329439585629214	CMakeFiles/imageProcessor-CS112-A3.dir/imageProcessor.cpp.obj	5aae268db5381277
-1192	1293	7329439586625978	imageProcessor-CS112-A3.exe	be576d857d188bba
-2	1170	7329439833248997	CMakeFiles/imageProcessor-CS112-A3.dir/imageProcessor.cpp.obj	5aae268db5381277
-1171	1271	7329439834225912	imageProcessor-CS112-A3.exe	be576d857d188bba
 2	1204	7329440725872459	CMakeFiles/imageProcessor-CS112-A3.dir/imageProcessor.cpp.obj	5aae268db5381277
 1204	1304	7329440726848157	imageProcessor-CS112-A3.exe	be576d857d188bba
+1	109	7330659757345001	build.ninja	f6f01bbf047d25a
+3	1206	7330660063502502	CMakeFiles/imageProcessor-CS112-A3.dir/imageProcessor.cpp.obj	5aae268db5381277
+1207	1320	7330660064615838	imageProcessor-CS112-A3.exe	be576d857d188bba

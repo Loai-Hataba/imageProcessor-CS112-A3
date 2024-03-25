@@ -361,3 +361,4 @@ void blur(Image image) //Loai
             }
         }
     }
+*/
