@@ -1,11 +1,11 @@
 /*
 Program: Image Processor (baby photoshop)
+Description: A program that applies several filters and modifications to a photo.
 Version: 1.0
 Date: 20/3/2024
-Authors: Loai Hataba, ID: 20230553, Section: S24, Email: Loaiwleed2005@gmail.com
-         Abdallah mohammed, ID: 20230231, Section: S24, Email: abdallamohammmed649@gmail.com
-         Hossam Abdelaziz, ID: 20230121, Section: S24, Email: saulgoodman2005@gmail.com
-
+Authors: Loai Hataba,       ID: 20230553, Section: S24, Email: Loaiwleed2005@gmail.com,       Filters: 3, 6, 9, 12
+         Abdallah mohammed, ID: 20230231, Section: S24, Email: abdallamohammmed649@gmail.com, Filters: 2, 5, 8, 11
+         Hossam Abdelaziz,  ID: 20230121, Section: S24, Email: saulgoodman2005@gmail.com,     Filters: 1, 4, 7, 10
 */
 
 #include <iostream>
@@ -16,7 +16,7 @@ using namespace std;
 void menu(Image image);
 void save(Image image);
 void choose_filter(string ans, Image image);
-
+/*--------------------------------------------*/
 void grayscale(Image image);
 void black_white(Image image);
 void inverted(Image image);
@@ -58,15 +58,15 @@ void menu(Image image)
             "1)  Grayscale\n"
             "2)  Black & White\n"
             "3)  Inverted\n"
-            "4)  Merge\n"
+            "4)  Merge (in Progress...)\n"
             "5)  Flip\n"
             "6)  Rotate\n"
-            "7)  Darken/Lighten\n"
-            "8)  Crop\n"
-            "9)  Add Frame\n"
-            "10) Edges\n"
-            "11) Resize\n"
-            "12) Blur\n"
+            "7)  Darken/Lighten (in Progress...)\n"
+            "8)  Crop (in Progress...)\n"
+            "9)  Add Frame (in Progress...)\n"
+            "10) Edges (in Progress...)\n"
+            "11) Resize (in Progress...)\n"
+            "12) Blur (in Progress...)\n"
             "Choice: ";
     cin >> ans;
     choose_filter(ans, image);
@@ -128,7 +128,6 @@ void choose_filter(string ans, Image image)
     }
 }
 
-
 //name and save the new file
 void save(Image image)
 {
@@ -140,7 +139,6 @@ void save(Image image)
     image.saveImage(file_name);
     cout << file_name << " Saved succesfully.\n";
 }
-
 
 //  ********************** Filters ****************************
 void grayscale(Image image) //Hossam (Done)
@@ -192,10 +190,12 @@ void inverted(Image image) //Loai (done)
     {
         for (int j = 0; j < image.height; j++)
         {
+//            color values
             unsigned int red = image(i, j, 0);
             unsigned int green = image(i, j, 1);
             unsigned int blue = image(i, j, 2);
 
+//            invert colors
             image(i, j, 0) = 255 - red;
             image(i, j, 1) = 255 - green;
             image(i, j, 2) = 255 - blue;
