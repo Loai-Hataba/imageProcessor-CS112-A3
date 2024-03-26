@@ -58,15 +58,15 @@ void menu(Image image)
             "1)  Grayscale\n"
             "2)  Black & White\n"
             "3)  Inverted\n"
-            "4)  Merge (in Progress...)\n"
+            "4)  Merge (Under Construction...)\n"
             "5)  Flip\n"
             "6)  Rotate\n"
-            "7)  Darken/Lighten (in Progress...)\n"
-            "8)  Crop (in Progress...)\n"
-            "9)  Add Frame (in Progress...)\n"
-            "10) Edges (in Progress...)\n"
-            "11) Resize (in Progress...)\n"
-            "12) Blur (in Progress...)\n"
+            "7)  Darken/Lighten (Under Construction...)\n"
+            "8)  Crop (Under Construction...)\n"
+            "9)  Add Frame (Under Construction...)\n"
+            "10) Edges (Under Construction...)\n"
+            "11) Resize (Under Construction...)\n"
+            "12) Blur\n"
             "Choice: ";
     cin >> ans;
     choose_filter(ans, image);
@@ -128,6 +128,8 @@ void choose_filter(string ans, Image image)
     }
 }
 
+
+//add automatic naming .jpg!!!!!!
 //name and save the new file
 void save(Image image)
 {
@@ -138,6 +140,7 @@ void save(Image image)
     cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     image.saveImage(file_name);
     cout << file_name << " Saved succesfully.\n";
+
 }
 
 //  ********************** Filters ****************************
@@ -176,12 +179,7 @@ void black_white(Image image) //Abdallah (Done)
             }
         }
     }
-
-
-
-
     save(image);
-
 }
 
 void inverted(Image image) //Loai (done)
@@ -314,7 +312,52 @@ void resize(Image image) //Abdallah
 
 void blur(Image image) //Loai
 {
-    cout << "blur\n";
+    int blur_size;
+    cout << "Choose Blur size (1-15)\n"
+            "1-->\"Less Blur, more efficient, Time: 5 Sec\"\n"
+            "15-->\"More Blur,less efficient, Time: 3 Min\"\n"
+            "Choice: ";
+    cin >> blur_size;
+    while (blur_size < 1 || blur_size > 15)
+    {
+        cout << "Range (1-15)!!!\n";
+        cout << "Choose Blur size (1-10) (Less Blur,efficient--More Blur,less efficient): ";
+        cin >> blur_size;
+    }
+    int height = image.height;
+    int width = image.width;
 
+    Image blurred_image(image.width, image.height);
+    cout << "Blurring Image...\n";
+    // Iterate over each pixel in the image
+    for (int i = 0; i < height; ++i) {
+        for (int j = 0; j < width; ++j) {
+            int sumR = 0, sumG = 0, sumB = 0;
+            int count = 0;
+
+            // Iterate over the surrounding pixels within the blur size
+            for (int dy = -blur_size; dy <= blur_size; ++dy) {
+                for (int dx = -blur_size; dx <= blur_size; ++dx) {
+                    int nx = j + dx;
+                    int ny = i + dy;
+
+                    // Check if the pixel is within the image bounds
+                    if (nx >= 0 && nx < width && ny >= 0 && ny < height) {
+                        sumR += image(nx, ny, 0);
+                        sumG += image(nx, ny, 1);
+                        sumB += image(nx, ny, 2);
+                        count++;
+                    }
+                }
+            }
+
+            // Calculate the average value and assign it to the blurred image
+            blurred_image(j, i, 0) = sumR / count;
+            blurred_image(j, i, 1) = sumG / count;
+            blurred_image(j, i, 2) = sumB / count;
+        }
+    }
+    // Copy the blurred image back to the original image
+    save(blurred_image);
 }
 
