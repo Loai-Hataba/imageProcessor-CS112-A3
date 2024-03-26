@@ -55,7 +55,7 @@ int main() {
         cin >> file_name;
 
 //    construct image object
-        string path = "cmake-build-debug\\Samples\\" + file_name;
+        string path = file_name;
         Image image(path);
 
 //        display menu
