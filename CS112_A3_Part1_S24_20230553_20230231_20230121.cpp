@@ -9,39 +9,54 @@ Authors: Loai Hataba,       ID: 20230553, Section: S24, Email: Loaiwleed2005@gma
 */
 
 #include <iostream>
+#include <cmath>
 #include "Image_Class.h"
+
 using namespace std;
 
 //prototypes
 void menu(Image image);
+
 void save(Image image);
+
 void choose_filter(string ans, Image image);
+
 /*--------------------------------------------*/
 void grayscale(Image image);
+
 void black_white(Image image);
+
 void inverted(Image image);
+
 void merge(Image image);
+
 void flip(Image image);
+
 void rotate(Image image);
+
 void darken_lighten(Image image);
+
 void crop(Image image);
+
 void frame(Image image);
+
 void edges(Image image);
+
 void resize(Image image);
+
 void blur(Image image);
 
 
-int main()
-{
-    while (true)
-    {
+int main() {
+    while (true) {
         cout << "\n      Welcome to Photoshop on a budget!\n\n";
         string file_name;
         cout << "Please enter the image name (with the extension included): ";
         cin >> file_name;
 
 //    construct image object
-        Image image(file_name);
+        string path = "cmake-build-debug\\Samples\\" + file_name;
+        Image image(path);
 
 //        display menu
         menu(image);
@@ -51,20 +66,19 @@ int main()
 }
 
 //display menu
-void menu(Image image)
-{
+void menu(Image image) {
     string ans;
     cout << "\n\nChoose which filter you would like to apply\n"
             "1)  Grayscale\n"
             "2)  Black & White\n"
             "3)  Inverted\n"
-            "4)  Merge (Under Construction...)\n"
+            "4)  Merge\n"
             "5)  Flip\n"
             "6)  Rotate\n"
-            "7)  Darken/Lighten (Under Construction...)\n"
+            "7)  Darken/Lighten\n"
             "8)  Crop (Under Construction...)\n"
             "9)  Add Frame (Under Construction...)\n"
-            "10) Edges (Under Construction...)\n"
+            "10) Edges\n"
             "11) Resize (Under Construction...)\n"
             "12) Blur\n"
             "Choice: ";
@@ -73,57 +87,32 @@ void menu(Image image)
 }
 
 //call filter
-void choose_filter(string ans, Image image)
-{
-    if (ans == "1")
-    {
+void choose_filter(string ans, Image image) {
+    if (ans == "1") {
         grayscale(image);
-    }
-    else if (ans == "2")
-    {
+    } else if (ans == "2") {
         black_white(image);
-    }
-    else if (ans == "3")
-    {
+    } else if (ans == "3") {
         inverted(image);
-    }
-    else if (ans == "4")
-    {
+    } else if (ans == "4") {
         merge(image);
-    }
-    else if (ans == "5")
-    {
+    } else if (ans == "5") {
         flip(image);
-    }
-    else if (ans == "6")
-    {
+    } else if (ans == "6") {
         rotate(image);
-    }
-    else if (ans == "7")
-    {
+    } else if (ans == "7") {
         darken_lighten(image);
-    }
-    else if (ans == "8")
-    {
+    } else if (ans == "8") {
         crop(image);
-    }
-    else if (ans == "9")
-    {
+    } else if (ans == "9") {
         frame(image);
-    }
-    else if (ans == "10")
-    {
+    } else if (ans == "10") {
         edges(image);
-    }
-    else if (ans == "11")
-    {
+    } else if (ans == "11") {
         resize(image);
-    }
-    else if (ans == "12")
-    {
+    } else if (ans == "12") {
         blur(image);
-    }
-    else{
+    } else {
         cout << "Invalid choice!\n";
     }
 }
@@ -131,13 +120,18 @@ void choose_filter(string ans, Image image)
 
 //add automatic naming .jpg!!!!!!
 //name and save the new file
-void save(Image image)
-{
+void save(Image image) {
     string file_name;
-    cout << "Choose the name of the new image(include extension):";
+    cout << "Choose the name of the new image(include extension <default is jpg>):";
     cin >> file_name;
-    // Clear input buffer
     cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+    bool def = true;
+    for (int i = 0; i < file_name.size(); ++i) {
+        if (file_name[i] == '.')def = false;
+    }
+    if (def)file_name += ".jpg";
+    // Clear input buffer
     image.saveImage(file_name);
     cout << file_name << " Saved succesfully.\n";
 
@@ -173,9 +167,10 @@ void black_white(Image image) //Abdallah (Done)
                 // the avg for the colors black and white is (255+0)/ 2 = 127.5
 
                 if (average <= 127.5) { // means that the brightness level is low
-                    image(i, j, k) = 0; }
-                else { // means that the brightness level is high
-                    image(i, j, k) = 255; }
+                    image(i, j, k) = 0;
+                } else { // means that the brightness level is high
+                    image(i, j, k) = 255;
+                }
             }
         }
     }
@@ -184,10 +179,8 @@ void black_white(Image image) //Abdallah (Done)
 
 void inverted(Image image) //Loai (done)
 {
-    for (int i = 0; i < image.width; i++)
-    {
-        for (int j = 0; j < image.height; j++)
-        {
+    for (int i = 0; i < image.width; i++) {
+        for (int j = 0; j < image.height; j++) {
 //            color values
             unsigned int red = image(i, j, 0);
             unsigned int green = image(i, j, 1);
@@ -203,9 +196,24 @@ void inverted(Image image) //Loai (done)
     save(image);
 }
 
-void merge(Image image) //Hossam
+void merge(Image image1) //Hossam
 {
-    cout << "merge\n";
+    string file_name;  //2nd image input yo
+    cout << "Please enter 2nd image name (with the extension included): ";
+    cin >> file_name;
+    string path = "cmake-build-debug\\Samples\\" + file_name;
+    Image image(path);
+    //making another image that have them both merged and setting its dimensions to the smaller image
+    Image image3(min(image1.width, image.width), min(image1.height, image.height));
+    for (int i = 0; i < image3.width; ++i) {
+        for (int j = 0; j < image3.height; ++j) {
+            for (int k = 0; k < 3; ++k) {
+                //merging them by adding the colors of evey pixel from both images to output image and dividing by 2
+                image3(i, j, k) = (image(i, j, k) + image1(i, j, k)) / 2;
+            }
+        }
+    }
+    save(image3);
 
 }
 
@@ -232,21 +240,16 @@ void rotate(Image image) //Loai (Done)
     cin >> angle;
     Image final;
     // Perform rotation based on angle
-    if (angle == 90 || angle == 270)
-    {
+    if (angle == 90 || angle == 270) {
         // For 90 or 270 degrees, transpose and flip the image
         Image rotated_image = Image(image.height, image.width);
-        for (int i = 0; i < rotated_image.height; ++i)
-        {
-            for (int j = 0; j < rotated_image.width; ++j)
-            {
-                for (int k = 0; k < 3; ++k)
-                {
+        for (int i = 0; i < rotated_image.height; ++i) {
+            for (int j = 0; j < rotated_image.width; ++j) {
+                for (int k = 0; k < 3; ++k) {
                     if (angle == 90) // 90-degree rotation
                     {
                         rotated_image(rotated_image.width - j - 1, i, k) = image(i, j, k);
-                    }
-                    else if (angle == 270) // 270-degree rotation
+                    } else if (angle == 270) // 270-degree rotation
                     {
                         rotated_image(j, rotated_image.height - i - 1, k) = image(i, j, k);
                     }
@@ -256,39 +259,55 @@ void rotate(Image image) //Loai (Done)
         save(rotated_image);
     }
 //    180 Rotation
-    else if (angle == 180)
-    {
+    else if (angle == 180) {
         // For 180 degrees, flip the image horizontally and vertically
         Image rotated_image = Image(image.width, image.height);
 
-        for (int i = 0; i < rotated_image.width; ++i)
-        {
-            for (int j = 0; j < rotated_image.height; ++j)
-            {
-                for (int k = 0; k < 3; ++k)
-                {
+        for (int i = 0; i < rotated_image.width; ++i) {
+            for (int j = 0; j < rotated_image.height; ++j) {
+                for (int k = 0; k < 3; ++k) {
                     // Flip horizontally and vertically
                     rotated_image(i, j, k) = image(image.width - i - 1, image.height - j - 1, k);
                 }
             }
         }
         save(rotated_image);
-    }
-    else
-    {
+    } else {
         cout << "Invalid angle. Please choose 90, 180, or 270." << endl;
     }
 }
 
 void darken_lighten(Image image) //Hossam
 {
-    cout << "darken_lighten\n";
-
+    cout << "1) darken   2)lighten" << endl;
+    int choice;
+    cin >> choice;              //choice whether you want to darken your image or lighten it
+    for (int i = 0; i < image.width; i++) {
+        for (int j = 0; j < image.height; j++) {
+            //getting color values
+            int red = image(i, j, 0);
+            int green = image(i, j, 1);
+            int blue = image(i, j, 2);
+            if (choice == 1) { //darkening
+                red = red - red / 2;                //take the original value of the color and subtracting it from its half value thus darkening it
+                green =green - green / 2;
+                blue =blue - blue / 2;
+            } else {
+                red = min(red + red / 2, 255);      // same as darkening but adding its half instead and taking the minimum of it and the color white in case the addition exceeds 255
+                green = min(green + green / 2, 255);
+                blue = min(blue + blue / 2, 255);
+            }
+            image(i, j, 2) = blue;
+            image(i, j, 1) = green;
+            image(i, j, 0) = red;
+        }
+    }
+    save(image);
 }
 
 void crop(Image image) //Abdallah
 {
-    cout  << "crop\n";
+    cout << "crop\n";
 
 }
 
@@ -300,7 +319,35 @@ void frame(Image image) //Loai
 
 void edges(Image image) //Hossam
 {
-    cout << "edges\n";
+    for (int i = 0; i < image.width; i++) {     //just grey scaling the image before __edging__ it to make it easier
+        for (int j = 0; j < image.height; j++) {
+            unsigned int avg = 0;
+            for (int k = 0; k < 3; ++k) {
+                avg += image(i, j, k);
+            }
+            avg = avg / 3;
+            for (int k = 0; k < 3; ++k) {
+                image(i, j, k) = avg;
+            }
+        }
+    }
+    //setting the sensitivity of the diff between each color of the pixels in comparison so that if it exceeds the limit we edge(make it black) that pixel else we whiten it
+    int sens = 25;
+    //end with less height and width by one because we only check the right and bottom side pixels since they are all we need to check and if we iterate at last pixel of row or column we dont get out of image limits
+    for (int i = 0; i < image.width - 1; i++) {
+        for (int j = 0; j < image.height - 1; j++) { //here since we grey scaled the image before the values of each color gonna be the same so we just roll with red
+            if (abs(image(i, j, 0) - image(i, j + 1, 0) >= sens || abs(image(i, j, 0) - image(i + 1, j, 0)) >= sens)) {
+                for (int k = 0; k < 3; ++k) {
+                    image(i, j, k) = 0;
+                }
+            } else {
+                for (int k = 0; k < 3; ++k) {
+                    image(i, j, k) = 255;
+                }
+            }
+        }
+    }
+    save(image);
 
 }
 
@@ -318,8 +365,7 @@ void blur(Image image) //Loai
             "15-->\"More Blur,less efficient, Time: 3 Min\"\n"
             "Choice: ";
     cin >> blur_size;
-    while (blur_size < 1 || blur_size > 15)
-    {
+    while (blur_size < 1 || blur_size > 15) {
         cout << "Range (1-15)!!!\n";
         cout << "Choose Blur size (1-10) (Less Blur,efficient--More Blur,less efficient): ";
         cin >> blur_size;
