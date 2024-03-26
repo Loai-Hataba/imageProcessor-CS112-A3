@@ -305,11 +305,35 @@ void darken_lighten(Image image) //Hossam
     save(image);
 }
 
-void crop(Image image) //Abdallah
-{
-    cout << "crop\n";
+void crop(Image image) {
+    int x, y; // the starting points
+    int w, h; //  the width and the height of the cropped image
+    cout << "Please enter the starting point (x, y): ";
+    cin >> x >> y;
+    cout << "Please enter the dimensions  of the area to crop: ";
+    cin >> w >> h;
+    // check validation of user inputs
+    if (x < 0 || y < 0){
+        cout << "Invalid , please enter a valid starting points \n"  ;
+        return;}
+    else if (w <= 0 || h <= 0)
+    { cout << "Invalid , please enter a valid dimensions \n ";
+        return ;}
+    else if (x + w > image.width || y + h > image.height){
+        cout << "Out of boundaries , please enter a valid dimensions \n " ;
+        return;}
+    Image cropped_Img(w, h); //create a new image to store the cropped one
+    for (int i =   0  ; i < w ; ++i) {
+        for (int j =  0  ; j < h; ++j) {
+            for (int k = 0; k < 3; ++k) {
+                cropped_Img(i, j, k) = image(i  , j  , k);
+            }
+        }
+    }
 
+    save(cropped_Img);
 }
+
 
 void frame(Image image) //Loai
 {
@@ -352,9 +376,27 @@ void edges(Image image) //Hossam
 }
 
 void resize(Image image) //Abdallah
-{
-    cout << "resize\n";
+{   int w, h;
+    cout <<"Please enter the new dimensions : " ;
+    cin >> w >> h ; // getting the values of new dimensions
 
+    Image resized_Img (w,h) ; //create a new image to store the resized one
+     float  s ; // the ratio between the width of the original img and the new width
+     float  r ; //the ratio between the height of the original img and the new height
+
+    s = static_cast<float>(image.width) / w  ;
+    r = static_cast<float>(image.height) / h  ;
+    for (int i = 0; i < w ; ++i) {
+        for (int j = 0; j <  h; ++j) {
+            for (int k = 0; k < 3  ; ++k) {
+                int new1 = round(s*i) ;
+                int new2 = round(r*j);
+                resized_Img (i ,j ,k) = image (new1, new2  , k) ;
+
+            }
+        }
+    }
+ save(resized_Img) ;
 }
 
 void blur(Image image) //Loai
