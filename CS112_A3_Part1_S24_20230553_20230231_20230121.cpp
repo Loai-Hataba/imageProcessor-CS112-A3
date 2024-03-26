@@ -118,23 +118,20 @@ void choose_filter(string ans, Image image) {
 }
 
 
-//add automatic naming .jpg!!!!!!
 //name and save the new file
 void save(Image image) {
     string file_name;
     cout << "Choose the name of the new image(include extension <default is jpg>):";
     cin >> file_name;
+    // Clear input buffer
     cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
     bool def = true;
     for (int i = 0; i < file_name.size(); ++i) {
         if (file_name[i] == '.')def = false;
     }
     if (def)file_name += ".jpg";
-    // Clear input buffer
     image.saveImage(file_name);
-    cout << file_name << " Saved succesfully.\n";
-
+    cout << file_name << " has been saved successfully.\n";
 }
 
 //  ********************** Filters ****************************
