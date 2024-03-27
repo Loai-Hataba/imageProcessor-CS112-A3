@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "D:/git_hub_projects/imageProcessor-CS112-A3/CS112_A3_Part1_S24_20230553_20230231_20230121.cpp" "CMakeFiles/imageProcessor-CS112-A3.dir/CS112_A3_Part1_S24_20230553_20230231_20230121.cpp.obj" "gcc" "CMakeFiles/imageProcessor-CS112-A3.dir/CS112_A3_Part1_S24_20230553_20230231_20230121.cpp.obj.d"
+  "C:/Users/Lenovo/Desktop/om el assignment/imageProcessor-CS112-A3/CS112_A3_Part1_S24_20230553_20230231_20230121.cpp" "CMakeFiles/imageProcessor-CS112-A3.dir/CS112_A3_Part1_S24_20230553_20230231_20230121.cpp.obj" "gcc" "CMakeFiles/imageProcessor-CS112-A3.dir/CS112_A3_Part1_S24_20230553_20230231_20230121.cpp.obj.d"
   )
 
 # Targets to which this target links which contain Fortran sources.
