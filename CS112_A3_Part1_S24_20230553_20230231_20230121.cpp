@@ -39,7 +39,7 @@ void darken_lighten(Image image);
 
 void crop(Image image);
 
-void frame(Image& image);
+void frame(Image image);
 
 void edges(Image image);
 
@@ -48,7 +48,7 @@ void resize(Image image);
 void blur(Image image);
 /*------------------------------------------*/
 void Magenta(Image image) ;
-
+//void applyInfraredFilter(Image image);
 
 int main() {
     bool flag = true ;
@@ -81,7 +81,7 @@ void menu(Image image) {
             "5)  Flip \n"
             "6)  Rotate\n"
             "7)  Darken/Lighten\n"
-            "8)  Crop (Under Construction...)\n"
+            "8)  Crop \n"
             "9)  Add Frame (Under Construction...)\n"
             "10) Edges\n"
             "11) Resize \n"
@@ -124,6 +124,12 @@ void choose_filter(string ans, Image image) {
         cout << "Goodbye!!";
         return;
     }
+    else if (ans == "14") {
+        Magenta(image);
+    }
+  /*  else if (ans == "15") {
+        applyInfraredFilter(image);
+    }*/
     else {
         cout << "Invalid choice!\n";
     }
@@ -352,7 +358,7 @@ void darken_lighten(Image image) //Hossam (Done)
     save(image);
 }
 
-void crop(Image image) //Abdallah
+void crop(Image image) //Abdallah (done)
 {
     int x, y; // the starting points
     int w, h; //  the width and the height of the cropped image
@@ -374,7 +380,7 @@ void crop(Image image) //Abdallah
     for (int i  =  0  ; i < w  ; ++i) {
         for (int j =   0  ; j < h  ; ++j) {
             for (int k = 0; k < 3; ++k) {
-                cropped_Img(i, j, k) = image(i +300 + x  , j  +300+ y  , k);
+                cropped_Img(i, j, k) = image(i + x  , j  + y  , k);
             }
         }
     }
@@ -562,9 +568,19 @@ void blur(Image image) //Loai (Done)
 
 //  ********************** Bonus ****************************
 void Magenta(Image image) {
+    for (int i = 0; i < image.width; i++) {
+        for (int j = 0; j < image.height; j++) {
+            unsigned int red = image(i, j, 0);
+            unsigned int blue = image(i, j, 2);
 
-}
 
+//            invert colors
+            image(i, j, 0) = red ;
+            image(i, j, 1) = 0;
+            image(i, j, 2) = blue;
+    }}
+    save(image);
+    continuePhotshop () ;}
 
 
 
