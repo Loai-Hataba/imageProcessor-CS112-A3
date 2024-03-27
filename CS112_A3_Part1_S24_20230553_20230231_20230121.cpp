@@ -10,6 +10,7 @@ Authors: Loai Hataba,       ID: 20230553, Section: S24, Email: Loaiwleed2005@gma
 
 #include <iostream>
 #include <cmath>
+#include <vector>
 #include "Image_Class.h"
 
 using namespace std;
@@ -38,7 +39,7 @@ void darken_lighten(Image image);
 
 void crop(Image image);
 
-void frame(Image image);
+void frame(Image& image);
 
 void edges(Image image);
 
@@ -116,7 +117,6 @@ void choose_filter(string ans, Image image) {
         cout << "Invalid choice!\n";
     }
 }
-
 
 //name and save the new file
 void save(Image image) {
@@ -308,11 +308,37 @@ void crop(Image image) //Abdallah
 
 }
 
-void frame(Image image) //Loai
+void frame(Image& image) //Loai
 {
-    cout << "frame\n";
-
+    int frame_size = 2;
+    int count = 0; // Initialize count
+    vector<int> frameColor = {255, 0, 0};
+    // Adding frame to top and bottom
+    for (int i = 0; i < frame_size; ++i) {
+        for (int j = 0; j < image.width; ++j) { // Use image.height
+            for (int channel = 0; channel < 3; ++channel) {
+                image.setPixel(i, j, channel, frameColor[channel]); // Top frame
+                image.setPixel(image.height - 1 - i, j, channel, frameColor[channel]); // Bottom frame
+                count++;
+                cout << "Count: " << count << endl;
+            }
+        }
+    }
+    // Adding frame to left and right
+    for (int i = 0; i < image.height; ++i) {
+        for (int j = 0; j < frame_size; ++j) {
+            for (int channel = 0; channel < 3; ++channel) {
+                image.setPixel(i, j, channel, frameColor[channel]); // Left frame
+                image.setPixel(i, image.width - 1 - j, channel, frameColor[channel]); // Right frame
+                count++;
+                cout << "Count: " << count << endl;
+            }
+        }
+    }
+    save(image);
 }
+
+
 
 void edges(Image image) //Hossam
 {
