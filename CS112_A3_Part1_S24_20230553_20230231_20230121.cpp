@@ -74,7 +74,7 @@ void menu(Image image) {
             "2)  Black & White\n"
             "3)  Inverted\n"
             "4)  Merge\n"
-            "5)  Flip\n"
+            "5)  Flip (Under Construction)\n"
             "6)  Rotate\n"
             "7)  Darken/Lighten\n"
             "8)  Crop (Under Construction...)\n"
@@ -195,10 +195,10 @@ void inverted(Image image) //Loai (done)
 
 void merge(Image image1) //Hossam
 {
-    string file_name;  //2nd image input yo
+    string file_name;  //2nd image input
     cout << "Please enter 2nd image name (with the extension included): ";
     cin >> file_name;
-    string path = "cmake-build-debug\\Samples\\" + file_name;
+    string path = file_name;
     Image image(path);
     //making another image that have them both merged and setting its dimensions to the smaller image
     Image image3(min(image1.width, image.width), min(image1.height, image.height));
@@ -276,7 +276,8 @@ void rotate(Image image) //Loai (Done)
 
 void darken_lighten(Image image) //Hossam
 {
-    cout << "1) darken   2)lighten" << endl;
+    cout << "1) darken   2)lighten\n"
+            "Choice: ";
     int choice;
     cin >> choice;              //choice whether you want to darken your image or lighten it
     for (int i = 0; i < image.width; i++) {
@@ -360,8 +361,6 @@ void frame(Image& image) //Loai
     save(image);
 }
 
-
-
 void edges(Image image) //Hossam
 {
     for (int i = 0; i < image.width; i++) {     //just grey scaling the image before __edging__ it to make it easier
@@ -398,7 +397,7 @@ void edges(Image image) //Hossam
 
 void resize(Image image) //Abdallah
 {   int w, h;
-    cout <<"Please enter the new dimensions : " ;
+    cout <<"Please enter the new dimensions (Usage: w h): " ;
     cin >> w >> h ; // getting the values of new dimensions
 
     Image resized_Img (w,h) ; //create a new image to store the resized one
