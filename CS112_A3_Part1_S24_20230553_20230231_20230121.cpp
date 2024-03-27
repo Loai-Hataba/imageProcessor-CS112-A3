@@ -40,7 +40,7 @@ void blur(Image image);
 3- Handle current image save and Load
 4- add automatic naming for file name in main menu
 5- add usage instructions
-6-
+6- safeguard all int input with chars
 */
 
 
@@ -338,45 +338,64 @@ void frame(Image image) //Loai
     int frame_size;
     cout << "Choose Frame size (Best: 3% of image): ";
     cin >> frame_size;
-    unsigned int Rcolor, Gcolor, Bcolor;
-    cout << "Enter Color values (Usage: R G B): ";
-    cin >> Rcolor >> Gcolor >> Bcolor;
-    while (Rcolor > 255 || Rcolor < 0 || Gcolor > 255 || Gcolor < 0 || Bcolor > 255 || Bcolor > 255) {
-        cout << "Color Values should between 0 and 255\n";
+    char ans;
+    cout << "1) Simple Frame\n"
+            "2) Textured Frame\n"
+            "3) Gradient Frame\n"
+            "Choice: ";
+    cin >> ans;
+    if (ans == '1')
+    {
+        unsigned int Rcolor, Gcolor, Bcolor;
         cout << "Enter Color values (Usage: R G B): ";
         cin >> Rcolor >> Gcolor >> Bcolor;
-    }
-//    Horizontal Frame
-    for (int i = 0; i < image.width; i++)
-    {
-        for (int j = 0; j < frame_size; j++)
-        {
-//            upper
-            image(i, j, 0) = Rcolor;
-            image(i, j, 1) = Gcolor;
-            image(i, j, 2) = Bcolor;
-//            lower
-            image(i, image.height - 1 - j, 0) = Rcolor;
-            image(i, image.height - 1 - j, 1) = Gcolor;
-            image(i, image.height - 1 - j, 2) = Bcolor;
-        }
-    }
-//    Vertical Frame
-    for (int j = 0; j < image.height; j++)
-    {
-        for (int i = 0; i < frame_size; i++)
-        {
-//            left
-            image(i, j, 0) = Rcolor;
-            image(i, j, 1) = Gcolor;
-            image(i, j, 2) = Bcolor;
-//            right
-            image(image.width - 1 - i, j, 0) = Rcolor;
-            image(image.width - 1 - i, j, 1) = Gcolor;
-            image(image.width - 1 - i, j, 2) = Bcolor;
+//        valid color values
+        while (Rcolor > 255 || Rcolor < 0 || Gcolor > 255 || Gcolor < 0 || Bcolor > 255 || Bcolor > 255) {
+            cout << "Color Values should between 0 and 255\n";
+            cout << "Enter Color values (Usage: R G B): ";
+            cin >> Rcolor >> Gcolor >> Bcolor;
         }
 
+//    Horizontal Frame
+        for (int i = 0; i < image.width; i++)
+        {
+            for (int j = 0; j < frame_size; j++)
+            {
+//            upper
+                image(i, j, 0) = Rcolor;
+                image(i, j, 1) = Gcolor;
+                image(i, j, 2) = Bcolor;
+//            lower
+                image(i, image.height - 1 - j, 0) = Rcolor;
+                image(i, image.height - 1 - j, 1) = Gcolor;
+                image(i, image.height - 1 - j, 2) = Bcolor;
+            }
+        }
+//    Vertical Frame
+        for (int j = 0; j < image.height; j++)
+        {
+            for (int i = 0; i < frame_size; i++)
+            {
+//            left
+                image(i, j, 0) = Rcolor;
+                image(i, j, 1) = Gcolor;
+                image(i, j, 2) = Bcolor;
+//            right
+                image(image.width - 1 - i, j, 0) = Rcolor;
+                image(image.width - 1 - i, j, 1) = Gcolor;
+                image(image.width - 1 - i, j, 2) = Bcolor;
+            }
+
+        }
     }
+    else if (ans == '2')
+    {
+        float frequency = 0.1; // Adjust this for texture frequency
+        unsigned int Rtexture = 100; // Color of the texture (adjustable)
+        unsigned int Gtexture = 150;
+        unsigned int Btexture = 255;
+    }
+
     save(image);
 }
 
