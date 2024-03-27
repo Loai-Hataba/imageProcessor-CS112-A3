@@ -323,7 +323,7 @@ void crop(Image image) {
     for (int i  = 0 ; i < w + x  ; ++i) {
         for (int j =  0  ; j < h + y ; ++j) {
             for (int k = 0; k < 3; ++k) {
-                cropped_Img(i, j, k) = image(i + x  , j  + y , k);
+                cropped_Img(i, j, k) = image(i + x  , j   , k);
             }
         }
     }
