@@ -446,7 +446,8 @@ void frame(Image image) //Loai
     }
 
     save(image);
-}}
+    continuePhotshop() ;
+}
 
 void edges(Image image) //Hossam (Done)
 {
