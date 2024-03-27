@@ -320,10 +320,10 @@ void crop(Image image) {
         cout << "Out of boundaries , please enter a valid dimensions \n " ;
         return;}
     Image cropped_Img(w, h); //create a new image to store the cropped one
-    for (int i =   0  ; i < w ; ++i) {
-        for (int j =  0  ; j < h; ++j) {
+    for (int i  = 0 ; i < w + x  ; ++i) {
+        for (int j =  0  ; j < h + y ; ++j) {
             for (int k = 0; k < 3; ++k) {
-                cropped_Img(i, j, k) = image(i  , j  , k);
+                cropped_Img(i, j, k) = image(i + x  , j  + y , k);
             }
         }
     }
