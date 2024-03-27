@@ -47,6 +47,9 @@ void resize(Image image);
 
 void blur(Image image);
 /*------------------------------------------*/
+void Magenta(Image image) ;
+
+
 int main() {
     bool flag = true ;
     while (flag) {
@@ -520,4 +523,26 @@ void blur(Image image) //Loai (Done)
     save(blurred_image);
     continuePhotshop () ;
 }
+
+//  ********************** Bonus ****************************
+void Magenta(Image image) {
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
