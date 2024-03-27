@@ -12,41 +12,38 @@ Authors: Loai Hataba,       ID: 20230553, Section: S24, Email: Loaiwleed2005@gma
 #include <cmath>
 #include <vector>
 #include "Image_Class.h"
-
 using namespace std;
 
 //prototypes
 void menu(Image image);
-
 void save(Image image);
-
 void choose_filter(string ans, Image image);
 
 /*--------------------------------------------*/
 void grayscale(Image image);
-
 void black_white(Image image);
-
 void inverted(Image image);
-
 void merge(Image image);
-
 void flip(Image image);
-
 void rotate(Image image);
-
 void darken_lighten(Image image);
-
 void crop(Image image);
-
-void frame(Image& image);
-
+void frame(Image image);
 void edges(Image image);
-
 void resize(Image image);
-
 void blur(Image image);
 /*------------------------------------------*/
+
+/*To make:
+1- Endless program loop
+2- Safeguard unsigned colors
+3- Handle current image save and Load
+4- add automatic naming for file name in main menu
+5- add usage instructions
+6-
+*/
+
+
 int main() {
     while (true) {
         cout << "\n      Welcome to Photoshop on a budget! \n"
@@ -54,14 +51,11 @@ int main() {
         string file_name;
         cout << "Please enter the image name (with the extension included): ";
         cin >> file_name;
-
-//    construct image object
+//        construct image object
         string path = file_name;
         Image image(path);
-
 //        display menu
         menu(image);
-//        doesn't loop forever??!!!
     }
     return 0;
 }
@@ -339,32 +333,49 @@ void crop(Image image) //Abdallah
 
 }
 
-void frame(Image& image) //Loai
+void frame(Image image) //Loai
 {
-    int frame_size = 2;
-    int count = 0; // Initialize count
-    vector<int> frameColor = {255, 0, 0};
-    // Adding frame to top and bottom
-    for (int i = 0; i < frame_size; ++i) {
-        for (int j = 0; j < image.width; ++j) { // Use image.height
-            for (int channel = 0; channel < 3; ++channel) {
-                image.setPixel(i, j, channel, frameColor[channel]); // Top frame
-                image.setPixel(image.height - 1 - i, j, channel, frameColor[channel]); // Bottom frame
-                count++;
-                cout << "Count: " << count << endl;
-            }
+    int frame_size;
+    cout << "Choose Frame size (Best: 3% of image): ";
+    cin >> frame_size;
+    unsigned int Rcolor, Gcolor, Bcolor;
+    cout << "Enter Color values (Usage: R G B): ";
+    cin >> Rcolor >> Gcolor >> Bcolor;
+    while (Rcolor > 255 || Rcolor < 0 || Gcolor > 255 || Gcolor < 0 || Bcolor > 255 || Bcolor > 255) {
+        cout << "Color Values should between 0 and 255\n";
+        cout << "Enter Color values (Usage: R G B): ";
+        cin >> Rcolor >> Gcolor >> Bcolor;
+    }
+//    Horizontal Frame
+    for (int i = 0; i < image.width; i++)
+    {
+        for (int j = 0; j < frame_size; j++)
+        {
+//            upper
+            image(i, j, 0) = Rcolor;
+            image(i, j, 1) = Gcolor;
+            image(i, j, 2) = Bcolor;
+//            lower
+            image(i, image.height - 1 - j, 0) = Rcolor;
+            image(i, image.height - 1 - j, 1) = Gcolor;
+            image(i, image.height - 1 - j, 2) = Bcolor;
         }
     }
-    // Adding frame to left and right
-    for (int i = 0; i < image.height; ++i) {
-        for (int j = 0; j < frame_size; ++j) {
-            for (int channel = 0; channel < 3; ++channel) {
-                image.setPixel(i, j, channel, frameColor[channel]); // Left frame
-                image.setPixel(i, image.width - 1 - j, channel, frameColor[channel]); // Right frame
-                count++;
-                cout << "Count: " << count << endl;
-            }
+//    Vertical Frame
+    for (int j = 0; j < image.height; j++)
+    {
+        for (int i = 0; i < frame_size; i++)
+        {
+//            left
+            image(i, j, 0) = Rcolor;
+            image(i, j, 1) = Gcolor;
+            image(i, j, 2) = Bcolor;
+//            right
+            image(image.width - 1 - i, j, 0) = Rcolor;
+            image(image.width - 1 - i, j, 1) = Gcolor;
+            image(image.width - 1 - i, j, 2) = Bcolor;
         }
+
     }
     save(image);
 }
