@@ -46,11 +46,11 @@ void edges(Image image);
 void resize(Image image);
 
 void blur(Image image);
-
-
+/*------------------------------------------*/
 int main() {
     while (true) {
-        cout << "\n      Welcome to Photoshop on a budget!\n\n";
+        cout << "\n      Welcome to Photoshop on a budget! \n"
+                "       (Last updated to the A3 V6.0!!)\n\n";
         string file_name;
         cout << "Please enter the image name (with the extension included): ";
         cin >> file_name;
@@ -61,7 +61,7 @@ int main() {
 
 //        display menu
         menu(image);
-
+//        doesn't loop forever??!!!
     }
     return 0;
 }
@@ -82,6 +82,7 @@ void menu(Image image) {
             "10) Edges\n"
             "11) Resize \n"
             "12) Blur\n"
+            "13) Exit\n"
             "Choice: ";
     cin >> ans;
     choose_filter(ans, image);
@@ -113,7 +114,13 @@ void choose_filter(string ans, Image image) {
         resize(image);
     } else if (ans == "12") {
         blur(image);
-    } else {
+    }
+    else if (ans == "13")
+    {
+        cout << "Goodbye!!";
+        return;
+    }
+    else {
         cout << "Invalid choice!\n";
     }
 }
@@ -193,7 +200,7 @@ void inverted(Image image) //Loai (done)
     save(image);
 }
 
-void merge(Image image1) //Hossam
+void merge(Image image1) //Hossam (Done)
 {
     string file_name;  //2nd image input
     cout << "Please enter 2nd image name (with the extension included): ";
@@ -214,7 +221,7 @@ void merge(Image image1) //Hossam
 
 }
 
-void flip(Image image) //Abdallah (Done)
+void flip(Image image) //Abdallah
 {
     // we will flip the image vertically
     Image flipped_image(image.width, image.height);     // store the  flipped image in a new one
@@ -274,7 +281,7 @@ void rotate(Image image) //Loai (Done)
     }
 }
 
-void darken_lighten(Image image) //Hossam
+void darken_lighten(Image image) //Hossam (Done)
 {
     cout << "1) darken   2)lighten\n"
             "Choice: ";
@@ -303,7 +310,8 @@ void darken_lighten(Image image) //Hossam
     save(image);
 }
 
-void crop(Image image) {
+void crop(Image image) //Abdallah
+{
     int x, y; // the starting points
     int w, h; //  the width and the height of the cropped image
     cout << "Please enter the starting point (x, y): ";
@@ -361,7 +369,7 @@ void frame(Image& image) //Loai
     save(image);
 }
 
-void edges(Image image) //Hossam
+void edges(Image image) //Hossam (Done)
 {
     for (int i = 0; i < image.width; i++) {     //just grey scaling the image before __edging__ it to make it easier
         for (int j = 0; j < image.height; j++) {
@@ -395,7 +403,7 @@ void edges(Image image) //Hossam
 
 }
 
-void resize(Image image) //Abdallah
+void resize(Image image) //Abdallah (Done)
 {   int w, h;
     cout <<"Please enter the new dimensions (Usage: w h): " ;
     cin >> w >> h ; // getting the values of new dimensions
@@ -419,7 +427,7 @@ void resize(Image image) //Abdallah
  save(resized_Img) ;
 }
 
-void blur(Image image) //Loai
+void blur(Image image) //Loai (Done)
 {
     int blur_size;
     cout << "Choose Blur size (1-15)\n"
