@@ -46,7 +46,7 @@ void IR(Image image);
 6- safeguard all int input with chars
 7- add fancier frame (as in assignment sheet or better)
 */
-
+int   exit_choice = 0 ;
 
 int main() {
     bool flag = true ;
@@ -119,9 +119,22 @@ void choose_filter(string ans, Image image) {
         blur(image);
     }
     else if (ans == "16")
-    {
-        cout << "Goodbye!!";
-        return;
+
+    {   int x ;
+        if (  exit_choice == 1 ){
+            cout << "Do you want to save before exit \n1)Save\n2)Exit without saving\nyour choice :";
+             cin >>x;
+             if(x==1){
+                 save(image);
+             }
+             else if (x==2){
+                 cout << "Goodbye!!";
+                 return;
+             }}
+        else if (exit_choice == 0){
+            cout << "Goodbye!!";
+            return;
+        }
     }
     else if (ans == "13") {
       save(image);
@@ -159,7 +172,7 @@ void save(Image image) {
 void continuePhotshop () {
     int answer ;
     Image image ;
-    cout << "\nDo you want to continue on the current imager or load a new one   \n1) continue\n2)load a new one\nyour choice : " ;
+    cout << "\nDo you want to continue on the current image or load a new one   \n1) continue\n2)load a new one\nyour choice : " ;
     cin >>answer ;
     if (answer == 1)
     {
@@ -187,6 +200,7 @@ void grayscale(Image image) //Hossam (Done)
         }
     }
     continuePhotshop () ;
+    exit_choice = 1 ;
     menu(image) ;
 
 }
@@ -211,6 +225,7 @@ void black_white(Image image) //Abdallah (Done)
         }
     }
     continuePhotshop () ;
+    exit_choice = 1 ;
     menu(image);
 }
 
@@ -231,6 +246,7 @@ void inverted(Image image) //Loai (Done)
     }
 
     continuePhotshop () ;
+    exit_choice = 1 ;
     menu(image) ;
 }
 
@@ -252,6 +268,7 @@ void merge(Image image1) //Hossam (Done)
         }
     }
     continuePhotshop () ;
+    exit_choice = 1 ;
     menu(image3) ;
 
 }
@@ -284,6 +301,7 @@ void flip(Image image) //Abdallah (Done)
       }
   }
     continuePhotshop () ;
+    exit_choice = 1 ;
     menu(flipped_image);
 }
 
@@ -312,6 +330,7 @@ void rotate(Image image) //Loai (Done)
             }
         }
         continuePhotshop () ;
+        exit_choice = 1 ;
         menu(rotated_image) ;
     }
 //    180 Rotation
@@ -328,6 +347,7 @@ void rotate(Image image) //Loai (Done)
             }
         }
         continuePhotshop () ;
+        exit_choice = 1 ;
         menu(rotated_image) ;
     } else {
         cout << "Invalid angle. Please choose 90, 180, or 270." << endl;
@@ -361,6 +381,7 @@ void darken_lighten(Image image) //Hossam (Done)
         }
     }
     continuePhotshop () ;
+    exit_choice = 1 ;
     menu(image) ;
 }
 
@@ -391,6 +412,7 @@ void crop(Image image) //Abdallah (Done)
         }
     }
     continuePhotshop () ;
+    exit_choice = 1 ;
     menu(cropped_Img) ;
 }
 
@@ -514,6 +536,7 @@ void frame(Image image) //Loai (Done)
         }
     }
     continuePhotshop ();
+    exit_choice = 1 ;
     menu(image) ;
 }
 
@@ -548,6 +571,7 @@ void edges(Image image) //Hossam (Done)
         }
     }
     continuePhotshop () ;
+    exit_choice = 1 ;
     menu(image) ;
 
 }
@@ -574,6 +598,7 @@ void resize(Image image) //Abdallah (Done)
         }
     }
     continuePhotshop () ;
+    exit_choice = 1 ;
     menu(resized_Img) ;
 }
 
@@ -625,6 +650,7 @@ void blur(Image image) //Loai (Done)
     }
     // Copy the blurred image back to the original image
     continuePhotshop () ;
+    exit_choice = 1 ;
     menu(blurred_image) ;
 }
 
@@ -654,6 +680,7 @@ void Magenta(Image image) //Abdallah
     }}
 
     continuePhotshop () ;
+    exit_choice = 1 ;
     menu(image) ;}
 void IR(Image image) {
     for (int i = 0; i < image.width ; ++i) {
@@ -668,7 +695,6 @@ void IR(Image image) {
             if (newRed > 255) {
                 newRed = 255 ;
             }
-
             image(i, j, 0) =newRed ;
             image(i, j, 1) = newgreen ;
             image(i, j, 2) =  newblue    ;            }
@@ -678,6 +704,7 @@ void IR(Image image) {
 
 
     continuePhotshop () ;
+    exit_choice = 1 ;
     menu(image) ;
 }
 
