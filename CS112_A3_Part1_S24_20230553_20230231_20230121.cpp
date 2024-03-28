@@ -37,7 +37,9 @@ void blur(Image image);
 /*--------------------------------------------*/
 void Magenta(Image image) ;
 void IR(Image image);
-int exit_choice = 0 ;
+void tv(Image image);
+void oil(Image image);
+
 
 /*To make:
 1- Endless program loop (Done)
@@ -48,7 +50,10 @@ int exit_choice = 0 ;
 6- safeguard all int input with chars (Done)
 7- add color choosing and a fancier frame (as in assignment sheet or better)
 8- add save to !!!current image or load a new image
+9- not quit after 21) save image
+10- continue or load menu adjust
 */
+int exit_choice = 0 ;
 
 int main() {
     bool flag = true;
@@ -92,14 +97,15 @@ void menu(Image image) {
             "12) Blur\n"
             "13) Magenta\n"
             "14) IR\n"
-            "15) \n"
-            "16) \n"
+            "15) TV\n"
+            "16) Oil Painting\n"
             "17) \n"
             "18) \n"
             "19) \n"
             "20) \n"
             "21) Save Image\n"
-            "22) Exit\n"
+            "22) Load Image\n"
+            "23) Exit\n"
             "Choice: ";
     cin >> ans;
     choose_filter(ans, image);
@@ -136,9 +142,9 @@ void choose_filter(string ans, Image image) {
     } else if (ans == "14") {
         IR(image);
     } else if (ans == "15") {
-        cout << "Under Construction...\n";
+       tv(image);
     } else if (ans == "16") {
-        cout << "Under Construction...\n";
+        oil(image);
     } else if (ans == "17") {
         cout << "Under Construction...\n";
     } else if (ans == "18") {
@@ -152,8 +158,12 @@ void choose_filter(string ans, Image image) {
     else if (ans == "21") {
         save(image);
     }
-//    Exit
     else if (ans == "22")
+    {
+        main();
+    }
+//    Exit
+    else if (ans == "23")
     {
         int x ;
         if (  exit_choice == 1 ){
@@ -519,16 +529,78 @@ void frame(Image image) //Loai (Done)
     if (ans == '1')
     {
         unsigned int Rcolor, Gcolor, Bcolor;
-        cout << "Enter Color values (Usage: R G B): ";
-        cin >> Rcolor >> Gcolor >> Bcolor;
-//        valid color values
-        while (Rcolor > 255 || Rcolor < 0 || Gcolor > 255 || Gcolor < 0 || Bcolor > 255 || Bcolor > 255) {
-            cout << "Color Values should between 0 and 255\n";
-            cout << "Enter Color values (Usage: R G B): ";
-            cin >> Rcolor >> Gcolor >> Bcolor;
+        char col = '0';
+        while (col == '0') {
+            cout << "Frame color\n"
+                    "1) Colors\n"
+                    "2) Manual RGB values\n"
+                    "Choice: ";
+            cin >> col;
+            if (col == '1') {
+                char color_choice = '0';
+                while (color_choice == '0') {
+                    cout << "Colors:\n"
+                            "1) Red\n"
+                            "2) Blue\n"
+                            "3) Green\n"
+                            "4) Brown\n"
+                            "5) Yellow\n"
+                            "6) Turquoise\n"
+                            "Choice: ";
+                    cin >> color_choice;
+//                       Red
+                    if (color_choice == '1') {
+                        Rcolor = 255;
+                        Bcolor = 0;
+                        Gcolor = 0;
+                    }
+//                      Blue
+                    else if (color_choice == '2') {
+                        Rcolor = 0;
+                        Bcolor = 255;
+                        Gcolor = 0;
+                    }
+//                        Green
+                    else if (color_choice == '3') {
+                        Rcolor = 0;
+                        Bcolor = 0;
+                        Gcolor = 255;
+                    }
+//                        Brown
+                    else if (color_choice == '4') {
+                        Rcolor = 149;
+                        Bcolor = 23;
+                        Gcolor = 78;
+                    }
+//                        Yellow
+                    else if (color_choice == '5') {
+                        Rcolor = 225;
+                        Bcolor = 39;
+                        Gcolor = 206;
+                    }
+//                        Turquoise
+                    else if (color_choice == '6') {
+                        Rcolor = 51;
+                        Bcolor = 189;
+                        Gcolor = 230;
+                    } else {
+                        cout << "Please enter a valid option!\n";
+                    }
+                }
+            } else if (col == '2') {
+                cout << "Enter RGB values (Usage: R G B): ";
+                cin >> Rcolor >> Gcolor >> Bcolor;
+//                valid color values
+                while (Rcolor > 255 || Rcolor < 0 || Gcolor > 255 || Gcolor < 0 || Bcolor > 255 || Bcolor > 255) {
+                    cout << "Color Values should between 0 and 255\n";
+                    cout << "Enter Color values (Usage: R G B): ";
+                    cin >> Rcolor >> Gcolor >> Bcolor;
+                }
+            } else {
+                cout << "Please choose a valid option!\n";
+            }
         }
-
-//    Horizontal Frame
+            //    Horizontal Frame
         for (int i = 0; i < image.width; i++)
         {
             for (int j = 0; j < frame_size; j++)
@@ -563,12 +635,91 @@ void frame(Image image) //Loai (Done)
 //        Textured Frame
     else
     {
+        unsigned int Rtexture; // Color of the texture (adjustable)
+        unsigned int Gtexture;
+        unsigned int Btexture;
+        char col = '0';
+        while (col == '0')
+        {
+            cout << "Frame color\n"
+                    "1) Colors\n"
+                    "2) Manual RGB values\n"
+                    "Choice: ";
+            cin >> col;
+            if (col == '1')
+            {
+                char color_choice = '0';
+                while (color_choice == '0') {
+                    cout << "Colors:\n"
+                            "1) Red\n"
+                            "2) Blue\n"
+                            "3) Green\n"
+                            "4) Brown\n"
+                            "5) Yellow\n"
+                            "6) Turquoise\n"
+                            "Choice: ";
+                    cin >> color_choice;
+//                       Red
+                    if (color_choice == '1') {
+                        Rtexture = 255;
+                        Btexture = 0;
+                        Gtexture = 0;
+                    }
+//                      Blue
+                    else if (color_choice == '2') {
+                        Rtexture = 0;
+                        Btexture = 255;
+                        Gtexture = 0;
+                    }
+//                        Green
+                    else if (color_choice == '3') {
+                        Rtexture = 0;
+                        Btexture = 0;
+                        Gtexture = 255;
+                    }
+//                        Brown
+                    else if (color_choice == '4') {
+                        Rtexture = 149;
+                        Btexture = 23;
+                        Gtexture = 78;
+                    }
+//                        Yellow
+                    else if (color_choice == '5') {
+                        Rtexture = 225;
+                        Btexture = 39;
+                        Gtexture = 206;
+                    }
+//                        Turquoise
+                    else if (color_choice == '6') {
+                        Rtexture = 51;
+                        Btexture = 189;
+                        Gtexture = 230;
+                    }
+                    else {
+                        cout << "Please enter a valid option!\n";
+                    }
+                }
+            }
+            else if (col == '2')
+            {
+                cout << "Enter RGB values (Usage: R G B): ";
+                cin >> Rtexture >> Gtexture >> Btexture;
+                //                valid color values
+                while (Rtexture > 255 || Rtexture < 0 || Gtexture > 255 || Gtexture < 0 || Btexture > 255 || Btexture > 255) {
+                    cout << "Color Values should between 0 and 255\n";
+                    cout << "Enter Color values (Usage: R G B): ";
+                    cin >> Rtexture >> Gtexture >> Btexture;
+                }
+            }
+            else
+            {
+                cout << "Please choose a valid option!\n";
+            }
+        }
 //        best at 0.1
         float frequency = 0.1; // Adjust this for texture frequency
 //        best using one color
-        unsigned int Rtexture = 0; // Color of the texture (adjustable)
-        unsigned int Gtexture = 0;
-        unsigned int Btexture = 255;
+
 //        Horizontal Frame
         for (int i = 0; i < image.width; i++)
         {
@@ -807,6 +958,16 @@ void IR(Image image) //Abdallah
     continuePhotshop () ;
     exit_choice = 1 ;
     menu(image) ;
+}
+
+void tv(Image image) //Loai
+{
+
+}
+
+void oil(Image image) //Loai
+{
+
 }
 
 
