@@ -45,16 +45,15 @@ int exit_choice = 0 ;
 3- Handle current image save and Load (Done)
 4- add automatic naming for file name in main menu (Done)
 5- add usage instructions (Done)
-6- safeguard all int input with chars
+6- safeguard all int input with chars (Done)
 7- add color choosing and a fancier frame (as in assignment sheet or better)
-8- Handle wrong filename (Done)
-9- add save to current image or load a new image
+8- add save to !!!current image or load a new image
 */
 
 int main() {
     bool flag = true;
     while (flag) {
-        cout << "\n      Welcome to Photoshop on a budget! \n"
+        cout << "\n\n      Welcome to Photoshop on a budget! \n"
                 "       (Last updated to the A3 V6.0!!)\n\n";
         string file_name;
         cout << "Please enter the image name (Default is .jpg): ";
@@ -158,7 +157,7 @@ void choose_filter(string ans, Image image) {
     {
         int x ;
         if (  exit_choice == 1 ){
-            cout << "Do you want to save before exit \n1)Save\n2)Exit without saving\nyour choice :";
+            cout << "Do you want to save before exit? \n1) Save\n2) Exit without saving\nYour Choice:";
              cin >>x;
              if(x==1){
                  save(image);
@@ -335,7 +334,8 @@ void merge(Image image1) //Hossam (Done)
 }
 
 void flip(Image image) //Abdallah (Done)
-{ char choice ;
+{
+  char choice ;
   cout << "Which flip you want to do Vertical or  Horizontal (V/H):  " ;
   cin >> choice ;
   choice = toupper(choice) ;
@@ -368,9 +368,16 @@ void flip(Image image) //Abdallah (Done)
 void rotate(Image image) //Loai (Done)
 {
     int angle;
+    string ang;
     cout << "How much rotation angle would you like? (90, 180, 270)\n"
             "Choice: ";
-    cin >> angle;
+    cin >> ang;
+    while (ang != "90" && ang != "180" && ang != "270")
+    {
+        cout << "Please Enter a valid angle (90, 180, 270): ";
+        cin >> ang;
+    }
+    angle = stoi(ang);
     Image final;
     // Perform rotation based on angle
     if (angle == 90 || angle == 270) {
@@ -479,14 +486,29 @@ void crop(Image image) //Abdallah (Done)
 void frame(Image image) //Loai (Done)
 {
     int frame_size;
-    cout << "Choose Frame size in pixels (Best: 3% of image): ";
-    cin >> frame_size;
+    string temp;
+    bool test;
+    do
+    {
+        test = true;
+        cout << "Choose Frame size in pixels (Best: 3% of image): ";
+        cin >> temp;
+        for (auto digit: temp)
+        {
+            if (not isdigit(digit))
+            {
+                test = false;
+            }
+        }
+    }
+    while (not test);
+    frame_size = stoi(temp);
     char ans;
     cout << "1) Simple Frame\n"
             "2) Textured Frame\n"
             "Choice: ";
     cin >> ans;
-        while (ans != '1' && ans != '2') {
+    while (ans != '1' && ans != '2') {
             cout << "Please Enter a valid choice!\n\n";
             cout << "1) Simple Frame\n"
                     "2) Textured Frame\n"
@@ -594,9 +616,9 @@ void frame(Image image) //Loai (Done)
             }
         }
     }
-    continuePhotshop ();
-    exit_choice = 1 ;
-    menu(image) ;
+    continuePhotshop();
+    exit_choice = 1;
+    menu(image);
 }
 
 void edges(Image image) //Hossam (Done)
@@ -664,11 +686,26 @@ void resize(Image image) //Abdallah (Done)
 void blur(Image image) //Loai (Done)
 {
     int blur_size;
-    cout << "Choose Blur size (1-15)\n"
-            "1-->\"Less Blur, more efficient, Time: 5 Sec\"\n"
-            "15-->\"More Blur,less efficient, Time: 3 Min\"\n"
-            "Choice: ";
-    cin >> blur_size;
+    string temp;
+    bool test;
+    do
+    {
+        test = true;
+        cout << "Choose Blur size (1-15)\n"
+                "1-->\"Less Blur, more efficient, Time: 5 Sec\"\n"
+                "15-->\"More Blur,less efficient, Time: 3 Min\"\n"
+                "Choice: ";
+        cin >> temp;
+        for (auto digit: temp)
+        {
+            if (not isdigit(digit))
+            {
+                test = false;
+            }
+        }
+    }
+    while (not test);
+    blur_size = stoi(temp);
     while (blur_size < 1 || blur_size > 15) {
         cout << "Range (1-15)!!!\n";
         cout << "Choose Blur size (1-15)\n"
@@ -746,7 +783,8 @@ void Magenta(Image image) //Abdallah
     menu(image) ;
 }
 
-void IR(Image image) {
+void IR(Image image) //Abdallah
+{
     for (int i = 0; i < image.width ; ++i) {
         for (int j = 0; j < image.height; ++j) {
             unsigned int red = image(i, j, 0);
