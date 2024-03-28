@@ -17,6 +17,8 @@ using namespace std;
 //prototypes
 void menu(Image image);
 void save(Image image);
+void continuePhotshop () ;
+
 void choose_filter(string ans, Image image);
 
 /*--------------------------------------------*/
@@ -33,6 +35,8 @@ void edges(Image image);
 void resize(Image image);
 void blur(Image image);
 /*------------------------------------------*/
+void Magenta(Image image) ;
+//void applyInfraredFilter(Image image);
 
 /*To make:
 1- Endless program loop
@@ -46,13 +50,15 @@ void blur(Image image);
 
 
 int main() {
-    while (true) {
+    bool flag = true ;
+    while (flag) {
         cout << "\n      Welcome to Photoshop on a budget! \n"
                 "       (Last updated to the A3 V6.0!!)\n\n";
         string file_name;
         cout << "Please enter the image name (with the extension included): ";
         cin >> file_name;
-//        construct image object
+
+//    construct image object
         string path = file_name;
         Image image(path);
 //        display menu
@@ -69,10 +75,10 @@ void menu(Image image) {
             "2)  Black & White\n"
             "3)  Inverted\n"
             "4)  Merge\n"
-            "5)  Flip (Under Construction)\n"
+            "5)  Flip \n"
             "6)  Rotate\n"
             "7)  Darken/Lighten\n"
-            "8)  Crop (Under Construction...)\n"
+            "8)  Crop \n"
             "9)  Add Frame (Under Construction...)\n"
             "10) Edges\n"
             "11) Resize \n"
@@ -115,6 +121,12 @@ void choose_filter(string ans, Image image) {
         cout << "Goodbye!!";
         return;
     }
+    else if (ans == "14") {
+        Magenta(image);
+    }
+  /*  else if (ans == "15") {
+        applyInfraredFilter(image);
+    }*/
     else {
         cout << "Invalid choice!\n";
     }
@@ -136,6 +148,21 @@ void save(Image image) {
     cout << file_name << " has been saved successfully.\n";
 }
 
+void continuePhotshop () {
+    int answer ;
+    cout << "\nDo you want to continue in the program or exit  \n1) continue\n2)Exit\nyour choice : " ;
+    cin >>answer ;
+    if (answer == 1)
+    {
+        main();
+    }
+    else if (answer == 2){
+        cout << "Goodbye!!";
+        return;
+    }
+
+}
+
 //  ********************** Filters ****************************
 void grayscale(Image image) //Hossam (Done)
 {
@@ -152,6 +179,8 @@ void grayscale(Image image) //Hossam (Done)
         }
     }
     save(image);
+    continuePhotshop () ;
+
 }
 
 void black_white(Image image) //Abdallah (Done)
@@ -174,6 +203,7 @@ void black_white(Image image) //Abdallah (Done)
         }
     }
     save(image);
+    continuePhotshop ();
 }
 
 void inverted(Image image) //Loai (done)
@@ -193,6 +223,7 @@ void inverted(Image image) //Loai (done)
     }
 
     save(image);
+    continuePhotshop () ;
 }
 
 void merge(Image image1) //Hossam (Done)
@@ -213,22 +244,39 @@ void merge(Image image1) //Hossam (Done)
         }
     }
     save(image3);
+    continuePhotshop () ;
 
 }
 
-void flip(Image image) //Abdallah
-{
-    // we will flip the image vertically
-    Image flipped_image(image.width, image.height);     // store the  flipped image in a new one
-    for (int i = 0; i < image.width; ++i) {
-        for (int j = image.height - 1; j >= 0; --j) { //  to reach each column of the image in reverse order
-            for (int k = 0; k < 3; ++k) {
-                flipped_image(i, image.height - 1 - j, k) = image(i, j, k);
-            }
-        }
-    }
-    save(flipped_image);
+void flip(Image image) //Abdallah (done)
+{ char choice ;
+  cout << "Which flip you want to do Vertical or  Horizontal (V/H) :  " ;
+  cin >> choice ;
+  choice = toupper(choice) ;
+    Image flipped_image(image.width, image.height) ; // store the  flipped image in a new one
+  if (choice == 'V'){
+      // we will flip the image vertically
+      for (int i = 0; i < image.width; ++i) {
+          for (int j = image.height - 1; j >= 0; --j) { //  to reach each column of the image in reverse order
+              for (int k = 0; k < 3; ++k) {
+                  flipped_image(i, image.height - 1 - j, k) = image(i, j, k);
+              }
+          }
+      }
 
+  }
+  else if (choice == 'H') {
+      // we will flip the image horizontally
+      for (int i = image.width - 1; i >= 0 ; i--) {//  to reach each row of the image in reverse order
+          for (int j = 0; j < image.height ; ++j) {
+              for (int k = 0; k <  3; ++k) {
+                  flipped_image(image.width - 1 - i, j, k) = image(i, j, k);
+              }
+          }
+      }
+  }
+    save(flipped_image);
+    continuePhotshop ();
 }
 
 void rotate(Image image) //Loai (Done)
@@ -256,6 +304,7 @@ void rotate(Image image) //Loai (Done)
             }
         }
         save(rotated_image);
+        continuePhotshop () ;
     }
 //    180 Rotation
     else if (angle == 180) {
@@ -271,6 +320,7 @@ void rotate(Image image) //Loai (Done)
             }
         }
         save(rotated_image);
+        continuePhotshop () ;
     } else {
         cout << "Invalid angle. Please choose 90, 180, or 270." << endl;
     }
@@ -305,7 +355,7 @@ void darken_lighten(Image image) //Hossam (Done)
     save(image);
 }
 
-void crop(Image image) //Abdallah
+void crop(Image image) //Abdallah (done)
 {
     int x, y; // the starting points
     int w, h; //  the width and the height of the cropped image
@@ -324,14 +374,15 @@ void crop(Image image) //Abdallah
         cout << "Out of boundaries , please enter a valid dimensions \n " ;
         return;}
     Image cropped_Img(w, h); //create a new image to store the cropped one
-    for (int i  = 0 ; i < w + x  ; ++i) {
-        for (int j =  0  ; j < h + y ; ++j) {
+    for (int i  =  0  ; i < w  ; ++i) {
+        for (int j =   0  ; j < h  ; ++j) {
             for (int k = 0; k < 3; ++k) {
-                cropped_Img(i, j, k) = image(i + x  , j   , k);
+                cropped_Img(i, j, k) = image(i + x  , j  + y  , k);
             }
         }
     }
-
+    save(cropped_Img) ;
+    continuePhotshop () ;
 }
 
 void frame(Image image) //Loai (Done)
@@ -454,6 +505,7 @@ void frame(Image image) //Loai (Done)
         }
     }
     save(image);
+    continuePhotshop() ;
 }
 
 void edges(Image image) //Hossam (Done)
@@ -487,12 +539,13 @@ void edges(Image image) //Hossam (Done)
         }
     }
     save(image);
+    continuePhotshop () ;
 
 }
 
 void resize(Image image) //Abdallah (Done)
 {   int w, h;
-    cout <<"Please enter the new dimensions (Usage: w h): " ;
+    cout <<"Please enter the new dimensions (Width & Height): " ;
     cin >> w >> h ; // getting the values of new dimensions
 
     Image resized_Img (w,h) ; //create a new image to store the resized one
@@ -512,6 +565,7 @@ void resize(Image image) //Abdallah (Done)
         }
     }
  save(resized_Img) ;
+    continuePhotshop () ;
 }
 
 void blur(Image image) //Loai (Done)
@@ -562,5 +616,38 @@ void blur(Image image) //Loai (Done)
     }
     // Copy the blurred image back to the original image
     save(blurred_image);
+    continuePhotshop () ;
 }
+
+//  ********************** Bonus ****************************
+void Magenta(Image image) {
+    for (int i = 0; i < image.width; i++) {
+        for (int j = 0; j < image.height; j++) {
+            unsigned int red = image(i, j, 0);
+            unsigned int blue = image(i, j, 2);
+
+
+//            invert colors
+            image(i, j, 0) = red ;
+            image(i, j, 1) = 0;
+            image(i, j, 2) = blue;
+    }}
+    save(image);
+    continuePhotshop () ;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
