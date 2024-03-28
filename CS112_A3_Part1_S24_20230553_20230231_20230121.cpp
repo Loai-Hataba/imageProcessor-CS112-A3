@@ -41,6 +41,7 @@ void blur(Image image);
 4- add automatic naming for file name in main menu
 5- add usage instructions
 6- safeguard all int input with chars
+7- add fancier frame (as in assignment sheet or better)
 */
 
 
@@ -333,7 +334,7 @@ void crop(Image image) //Abdallah
 
 }
 
-void frame(Image image) //Loai
+void frame(Image image) //Loai (Done)
 {
     int frame_size;
     cout << "Choose Frame size (Best: 3% of image): ";
@@ -341,9 +342,17 @@ void frame(Image image) //Loai
     char ans;
     cout << "1) Simple Frame\n"
             "2) Textured Frame\n"
-            "3) Gradient Frame\n"
             "Choice: ";
     cin >> ans;
+    while (ans != '1' || ans != '2')
+    {
+        cout << "Please a valid choice!\n\n";
+        cout << "1) Simple Frame\n"
+                "2) Textured Frame\n"
+                "Choice: ";
+        cin >> ans;
+    }
+//        Simple frame
     if (ans == '1')
     {
         unsigned int Rcolor, Gcolor, Bcolor;
@@ -388,14 +397,62 @@ void frame(Image image) //Loai
 
         }
     }
-    else if (ans == '2')
+//        Textured Frame
+    else
     {
+//        best at 0.1
         float frequency = 0.1; // Adjust this for texture frequency
-        unsigned int Rtexture = 100; // Color of the texture (adjustable)
-        unsigned int Gtexture = 150;
+//        best using one color
+        unsigned int Rtexture = 0; // Color of the texture (adjustable)
+        unsigned int Gtexture = 0;
         unsigned int Btexture = 255;
-    }
+//        Horizontal Frame
+        for (int i = 0; i < image.width; i++)
+        {
+            for (int j = 0; j < frame_size; j++)
+            {
+                // Calculate the texture intensity based on the sine function
+                float texture_intensity = sin(frequency * i) * sin(frequency * j);
 
+                // Interpolate color based on texture intensity
+                unsigned int R = static_cast<unsigned int>(Rtexture * texture_intensity);
+                unsigned int G = static_cast<unsigned int>(Gtexture * texture_intensity);
+                unsigned int B = static_cast<unsigned int>(Btexture * texture_intensity);
+
+                image(i, j, 0) = R;
+                image(i, j, 1) = G;
+                image(i, j, 2) = B;
+
+                // Apply same texture to the bottom part
+                image(i, image.height - 1 - j, 0) = R;
+                image(i, image.height - 1 - j, 1) = G;
+                image(i, image.height - 1 - j, 2) = B;
+            }
+        }
+        // Vertical Textured Frame
+        for (int j = 0; j < image.height; j++)
+        {
+            for (int i = 0; i < frame_size; i++)
+            {
+                // Calculate the texture intensity based on the sine function
+                float texture_intensity = sin(frequency * i) * sin(frequency * j);
+
+                // Interpolate color based on texture intensity
+                unsigned int R = static_cast<unsigned int>(Rtexture * texture_intensity);
+                unsigned int G = static_cast<unsigned int>(Gtexture * texture_intensity);
+                unsigned int B = static_cast<unsigned int>(Btexture * texture_intensity);
+
+                image(i, j, 0) = R;
+                image(i, j, 1) = G;
+                image(i, j, 2) = B;
+
+                // Apply same texture to the right part
+                image(image.width - 1 - i, j, 0) = R;
+                image(image.width - 1 - i, j, 1) = G;
+                image(image.width - 1 - i, j, 2) = B;
+            }
+        }
+    }
     save(image);
 }
 
