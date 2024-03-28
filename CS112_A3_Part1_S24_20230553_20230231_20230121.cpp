@@ -38,13 +38,14 @@ void IR(Image image);
 int   exit_choice = 0 ;
 
 /*To make:
-1- Endless program loop
-2- Safeguard unsigned colors
-3- Handle current image save and Load
-4- add automatic naming for file name in main menu
+1- Endless program loop (Done)
+2- Safeguard unsigned colors (Done)
+3- Handle current image save and Load (Done)
+4- add automatic naming for file name in main menu (Done)
 5- add usage instructions
 6- safeguard all int input with chars
-7- add fancier frame (as in assignment sheet or better)
+7- add color choosing and a fancier frame (as in assignment sheet or better)
+8- Handle wrong filename
 */
 
 int main() {
@@ -53,8 +54,13 @@ int main() {
         cout << "\n      Welcome to Photoshop on a budget! \n"
                 "       (Last updated to the A3 V6.0!!)\n\n";
         string file_name;
-        cout << "Please enter the image name (with the extension included): ";
+        cout << "Please enter the image name (Default is .jpg): ";
         cin >> file_name;
+        bool def = true;
+        for (int i = 0; i < file_name.size(); ++i) {
+            if (file_name[i] == '.')def = false;
+        }
+        if (def)file_name += ".jpg";
 
 //    construct image object
         string path = file_name;
@@ -122,8 +128,29 @@ void choose_filter(string ans, Image image) {
         resize(image);
     } else if (ans == "12") {
         blur(image);
+    } else if (ans == "13") {
+        Magenta(image);
+    } else if (ans == "14") {
+        IR(image);
+    } else if (ans == "15") {
+        cout << "Under Construction...\n";
+    } else if (ans == "16") {
+        cout << "Under Construction...\n";
+    } else if (ans == "17") {
+        cout << "Under Construction...\n";
+    } else if (ans == "18") {
+        cout << "Under Construction...\n";
+    } else if (ans == "19") {
+        cout << "Under Construction...\n";
+    } else if (ans == "20") {
+        cout << "Under Construction...\n";
     }
-    else if (ans == "16")
+//    Save
+    else if (ans == "21") {
+        save(image);
+    }
+//    Exit
+    else if (ans == "22")
     {
         int x ;
         if (  exit_choice == 1 ){
@@ -141,15 +168,6 @@ void choose_filter(string ans, Image image) {
             return;
         }
     }
-    else if (ans == "13") {
-      save(image);
-    }
-    else if (ans == "14") {
-        Magenta(image);
-    }
-    else if (ans == "15") {
-        IR(image);
-    }
     else {
         cout << "Invalid choice!\n";
 
@@ -159,7 +177,7 @@ void choose_filter(string ans, Image image) {
 //name and save the new file
 void save(Image image) {
     string file_name;
-    cout << "Choose the name of the new image(include extension <default is jpg>):";
+    cout << "Choose the name of the new image (Default is .jpg):";
     cin >> file_name;
     // Clear input buffer
     cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -170,14 +188,14 @@ void save(Image image) {
     if (def)file_name += ".jpg";
     image.saveImage(file_name);
     cout << file_name << " has been saved successfully.\n";
-
 }
 
 // Restart Program
 void continuePhotshop () {
+    cout << "Filter has been applied!\n\n";
     int answer ;
     Image image ;
-    cout << "\nDo you want to continue on the current image or load a new one   \n1) continue\n2)load a new one\nyour choice : " ;
+    cout << "\nDo you want to continue on the current image or load a new one   \n1) Continue\n2) Load a new one\nYour Choice: " ;
     cin >>answer ;
     if (answer == 1)
     {
@@ -258,8 +276,13 @@ void inverted(Image image) //Loai (Done)
 void merge(Image image1) //Hossam (Done)
 {
     string file_name;  //2nd image input
-    cout << "Please enter 2nd image name (with the extension included): ";
+    cout << "Please enter 2nd image name (Default is .jpg): ";
     cin >> file_name;
+    bool def = true;
+    for (int i = 0; i < file_name.size(); ++i) {
+        if (file_name[i] == '.')def = false;
+    }
+    if (def)file_name += ".jpg";
     string path = file_name;
     Image image(path);
     //making another image that have them both merged and setting its dimensions to the smaller image
@@ -280,7 +303,7 @@ void merge(Image image1) //Hossam (Done)
 
 void flip(Image image) //Abdallah (Done)
 { char choice ;
-  cout << "Which flip you want to do Vertical or  Horizontal (V/H) :  " ;
+  cout << "Which flip you want to do Vertical or  Horizontal (V/H):  " ;
   cin >> choice ;
   choice = toupper(choice) ;
     Image flipped_image(image.width, image.height) ; // store the  flipped image in a new one
@@ -293,7 +316,6 @@ void flip(Image image) //Abdallah (Done)
               }
           }
       }
-
   }
   else if (choice == 'H') {
       // we will flip the image horizontally
@@ -396,7 +418,7 @@ void crop(Image image) //Abdallah (Done)
     int w, h; //  the width and the height of the cropped image
     cout << "Please enter the starting point (x, y): ";
     cin >> x >> y;
-    cout << "Please enter the dimensions  of the area to crop: ";
+    cout << "Please enter the dimensions  of the area to crop : ";
     cin >> w >> h;
     // check validation of user inputs
     if (x < 0 || y < 0){
@@ -424,21 +446,20 @@ void crop(Image image) //Abdallah (Done)
 void frame(Image image) //Loai (Done)
 {
     int frame_size;
-    cout << "Choose Frame size (Best: 3% of image): ";
+    cout << "Choose Frame size in pixels (Best: 3% of image): ";
     cin >> frame_size;
     char ans;
     cout << "1) Simple Frame\n"
             "2) Textured Frame\n"
             "Choice: ";
     cin >> ans;
-    while (ans != '1' || ans != '2')
-    {
-        cout << "Please a valid choice!\n\n";
-        cout << "1) Simple Frame\n"
-                "2) Textured Frame\n"
-                "Choice: ";
-        cin >> ans;
-    }
+        while (ans != '1' && ans != '2') {
+            cout << "Please Enter a valid choice!\n\n";
+            cout << "1) Simple Frame\n"
+                    "2) Textured Frame\n"
+                    "Choice: ";
+            cin >> ans;
+        }
 //        Simple frame
     if (ans == '1')
     {
@@ -617,7 +638,10 @@ void blur(Image image) //Loai (Done)
     cin >> blur_size;
     while (blur_size < 1 || blur_size > 15) {
         cout << "Range (1-15)!!!\n";
-        cout << "Choose Blur size (1-10) (Less Blur,efficient--More Blur,less efficient): ";
+        cout << "Choose Blur size (1-15)\n"
+                "1-->\"Less Blur, more efficient, Time: 5 Sec\"\n"
+                "15-->\"More Blur,less efficient, Time: 3 Min\"\n"
+                "Choice: ";
         cin >> blur_size;
     }
     int height = image.height;
