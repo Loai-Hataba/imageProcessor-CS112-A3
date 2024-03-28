@@ -1,7 +1,7 @@
 /*
 Program: Image Processor (baby photoshop)
 Description: A program that applies several filters and modifications to a photo.
-Version: 1.0
+Version: 3.0
 Date: 20/3/2024
 Authors: Loai Hataba,       ID: 20230553, Section: S24, Email: Loaiwleed2005@gmail.com,       Filters: 3, 6, 9, 12
          Abdallah mohammed, ID: 20230231, Section: S24, Email: abdallamohammmed649@gmail.com, Filters: 2, 5, 8, 11
@@ -19,7 +19,6 @@ void menu(Image image);
 void save(Image image);
 void continuePhotshop () ;
 void choose_filter(string ans, Image image);
-
 /*--------------------------------------------*/
 void grayscale(Image image);
 void black_white(Image image);
@@ -33,9 +32,10 @@ void frame(Image image);
 void edges(Image image);
 void resize(Image image);
 void blur(Image image);
-/*------------------------------------------*/
+/*--------------------------------------------*/
 void Magenta(Image image) ;
 void IR(Image image);
+int   exit_choice = 0 ;
 
 /*To make:
 1- Endless program loop
@@ -46,10 +46,9 @@ void IR(Image image);
 6- safeguard all int input with chars
 7- add fancier frame (as in assignment sheet or better)
 */
-int   exit_choice = 0 ;
 
 int main() {
-    bool flag = true ;
+    bool flag = true;
     while (flag) {
         cout << "\n      Welcome to Photoshop on a budget! \n"
                 "       (Last updated to the A3 V6.0!!)\n\n";
@@ -125,8 +124,8 @@ void choose_filter(string ans, Image image) {
         blur(image);
     }
     else if (ans == "16")
-
-    {   int x ;
+    {
+        int x ;
         if (  exit_choice == 1 ){
             cout << "Do you want to save before exit \n1)Save\n2)Exit without saving\nyour choice :";
              cin >>x;
@@ -687,7 +686,9 @@ void Magenta(Image image) //Abdallah
 
     continuePhotshop () ;
     exit_choice = 1 ;
-    menu(image) ;}
+    menu(image) ;
+}
+
 void IR(Image image) {
     for (int i = 0; i < image.width ; ++i) {
         for (int j = 0; j < image.height; ++j) {
@@ -697,18 +698,17 @@ void IR(Image image) {
             float newRed = static_cast<float > (red  + (red  /2 ) );
             float newgreen = static_cast<float > (green );
             float newblue = static_cast<float > (blue  );
-            newRed = newRed * 1.5  ;
-            if (newRed > 255) {
+            newRed = newRed * 1.5;
+            if (newRed > 255)
+            {
                 newRed = 255 ;
             }
-            image(i, j, 0) =newRed ;
-            image(i, j, 1) = newgreen ;
-            image(i, j, 2) =  newblue    ;            }
 
+            image(i, j, 0) =newRed;
+            image(i, j, 1) = newgreen;
+            image(i, j, 2) =  newblue;
+        }
     }
-
-
-
     continuePhotshop () ;
     exit_choice = 1 ;
     menu(image) ;
