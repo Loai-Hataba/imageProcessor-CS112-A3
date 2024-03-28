@@ -79,7 +79,7 @@ void menu(Image image) {
             "6)  Rotate\n"
             "7)  Darken/Lighten\n"
             "8)  Crop \n"
-            "9)  Add Frame (Under Construction...)\n"
+            "9)  Add Frame \n"
             "10) Edges\n"
             "11) Resize \n"
             "12) Blur\n"
