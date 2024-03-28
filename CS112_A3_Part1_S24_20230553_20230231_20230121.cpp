@@ -18,7 +18,6 @@ using namespace std;
 void menu(Image image);
 void save(Image image);
 void continuePhotshop () ;
-
 void choose_filter(string ans, Image image);
 
 /*--------------------------------------------*/
@@ -83,7 +82,10 @@ void menu(Image image) {
             "10) Edges\n"
             "11) Resize \n"
             "12) Blur\n"
-            "13) Exit\n"
+            "13) Save The Image\n"
+            "14) Magenta\n"
+            "15) IR\n"
+            "16)Exit\n"
             "Choice: ";
     cin >> ans;
     choose_filter(ans, image);
@@ -116,10 +118,13 @@ void choose_filter(string ans, Image image) {
     } else if (ans == "12") {
         blur(image);
     }
-    else if (ans == "13")
+    else if (ans == "16")
     {
         cout << "Goodbye!!";
         return;
+    }
+    else if (ans == "13") {
+      save(image);
     }
     else if (ans == "14") {
         Magenta(image);
@@ -147,20 +152,21 @@ void save(Image image) {
     if (def)file_name += ".jpg";
     image.saveImage(file_name);
     cout << file_name << " has been saved successfully.\n";
+
 }
 
 // Restart Program
 void continuePhotshop () {
     int answer ;
-    cout << "\nDo you want to continue in the program or exit  \n1) continue\n2)Exit\nyour choice : " ;
+    Image image ;
+    cout << "\nDo you want to continue on the current imager or load a new one   \n1) continue\n2)load a new one\nyour choice : " ;
     cin >>answer ;
     if (answer == 1)
     {
-        main();
+        return;
     }
     else if (answer == 2){
-        cout << "Goodbye!!";
-        return;
+        main();
     }
 
 }
@@ -180,7 +186,7 @@ void grayscale(Image image) //Hossam (Done)
             }
         }
     }
-    save(image);
+    continuePhotshop () ;
     menu(image) ;
 
 }
@@ -204,7 +210,7 @@ void black_white(Image image) //Abdallah (Done)
             }
         }
     }
-    save(image);
+    continuePhotshop () ;
     menu(image);
 }
 
@@ -224,7 +230,7 @@ void inverted(Image image) //Loai (Done)
         }
     }
 
-    save(image);
+    continuePhotshop () ;
     menu(image) ;
 }
 
@@ -245,7 +251,7 @@ void merge(Image image1) //Hossam (Done)
             }
         }
     }
-    save(image3);
+    continuePhotshop () ;
     menu(image3) ;
 
 }
@@ -277,7 +283,7 @@ void flip(Image image) //Abdallah (Done)
           }
       }
   }
-    save(flipped_image);
+    continuePhotshop () ;
     menu(flipped_image);
 }
 
@@ -305,7 +311,7 @@ void rotate(Image image) //Loai (Done)
                 }
             }
         }
-        save(rotated_image);
+        continuePhotshop () ;
         menu(rotated_image) ;
     }
 //    180 Rotation
@@ -321,7 +327,7 @@ void rotate(Image image) //Loai (Done)
                 }
             }
         }
-        save(rotated_image);
+        continuePhotshop () ;
         menu(rotated_image) ;
     } else {
         cout << "Invalid angle. Please choose 90, 180, or 270." << endl;
@@ -354,7 +360,7 @@ void darken_lighten(Image image) //Hossam (Done)
             image(i, j, 0) = red;
         }
     }
-    save(image);
+    continuePhotshop () ;
     menu(image) ;
 }
 
@@ -384,7 +390,7 @@ void crop(Image image) //Abdallah (Done)
             }
         }
     }
-    save(cropped_Img) ;
+    continuePhotshop () ;
     menu(cropped_Img) ;
 }
 
@@ -507,7 +513,7 @@ void frame(Image image) //Loai (Done)
             }
         }
     }
-    save(image);
+    continuePhotshop ();
     menu(image) ;
 }
 
@@ -541,7 +547,7 @@ void edges(Image image) //Hossam (Done)
             }
         }
     }
-    save(image);
+    continuePhotshop () ;
     menu(image) ;
 
 }
@@ -567,7 +573,7 @@ void resize(Image image) //Abdallah (Done)
             }
         }
     }
- save(resized_Img) ;
+    continuePhotshop () ;
     menu(resized_Img) ;
 }
 
@@ -618,7 +624,7 @@ void blur(Image image) //Loai (Done)
         }
     }
     // Copy the blurred image back to the original image
-    save(blurred_image);
+    continuePhotshop () ;
     menu(blurred_image) ;
 }
 
@@ -646,8 +652,9 @@ void Magenta(Image image) //Abdallah
             image(i, j, 1) = 0;
             image(i, j, 2) = newBlue;
     }}
-    save(image);
-    continuePhotshop () ;}
+
+    continuePhotshop () ;
+    menu(image) ;}
 void IR(Image image) {
     for (int i = 0; i < image.width ; ++i) {
         for (int j = 0; j < image.height; ++j) {
@@ -670,7 +677,7 @@ void IR(Image image) {
 
 
 
-    save(image);
+    continuePhotshop () ;
     menu(image) ;
 }
 
