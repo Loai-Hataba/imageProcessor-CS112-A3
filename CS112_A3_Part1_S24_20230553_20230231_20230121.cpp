@@ -148,6 +148,7 @@ void save(Image image) {
     cout << file_name << " has been saved successfully.\n";
 }
 
+// Restart Program
 void continuePhotshop () {
     int answer ;
     cout << "\nDo you want to continue in the program or exit  \n1) continue\n2)Exit\nyour choice : " ;
@@ -206,7 +207,7 @@ void black_white(Image image) //Abdallah (Done)
     continuePhotshop ();
 }
 
-void inverted(Image image) //Loai (done)
+void inverted(Image image) //Loai (Done)
 {
     for (int i = 0; i < image.width; i++) {
         for (int j = 0; j < image.height; j++) {
@@ -248,7 +249,7 @@ void merge(Image image1) //Hossam (Done)
 
 }
 
-void flip(Image image) //Abdallah (done)
+void flip(Image image) //Abdallah (Done)
 { char choice ;
   cout << "Which flip you want to do Vertical or  Horizontal (V/H) :  " ;
   cin >> choice ;
@@ -355,7 +356,7 @@ void darken_lighten(Image image) //Hossam (Done)
     save(image);
 }
 
-void crop(Image image) //Abdallah (done)
+void crop(Image image) //Abdallah (Done)
 {
     int x, y; // the starting points
     int w, h; //  the width and the height of the cropped image
@@ -620,7 +621,8 @@ void blur(Image image) //Loai (Done)
 }
 
 //  ********************** Bonus ****************************
-void Magenta(Image image) {
+void Magenta(Image image) //Abdallah
+{
     for (int i = 0; i < image.width; i++) {
         for (int j = 0; j < image.height; j++) {
             unsigned int red = image(i, j, 0);
