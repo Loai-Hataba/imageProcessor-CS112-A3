@@ -11,14 +11,16 @@ Authors: Loai Hataba,       ID: 20230553, Section: S24, Email: Loaiwleed2005@gma
 #include <iostream>
 #include <cmath>
 #include <vector>
+#include <fstream>
 #include "Image_Class.h"
 using namespace std;
 
 //prototypes
 void menu(Image image);
+void choose_filter(string ans, Image image);
 void save(Image image);
 void continuePhotshop () ;
-void choose_filter(string ans, Image image);
+string file_check(string file_name);
 /*--------------------------------------------*/
 void grayscale(Image image);
 void black_white(Image image);
@@ -35,17 +37,18 @@ void blur(Image image);
 /*--------------------------------------------*/
 void Magenta(Image image) ;
 void IR(Image image);
-int   exit_choice = 0 ;
+int exit_choice = 0 ;
 
 /*To make:
 1- Endless program loop (Done)
 2- Safeguard unsigned colors (Done)
 3- Handle current image save and Load (Done)
 4- add automatic naming for file name in main menu (Done)
-5- add usage instructions
+5- add usage instructions (Done)
 6- safeguard all int input with chars
 7- add color choosing and a fancier frame (as in assignment sheet or better)
-8- Handle wrong filename
+8- Handle wrong filename (Done)
+9- add save to current image or load a new image
 */
 
 int main() {
@@ -56,14 +59,15 @@ int main() {
         string file_name;
         cout << "Please enter the image name (Default is .jpg): ";
         cin >> file_name;
-        bool def = true;
-        for (int i = 0; i < file_name.size(); ++i) {
-            if (file_name[i] == '.')def = false;
+//        check file
+        string check = file_check(file_name);
+//        doesn't exist
+        if (check == "None")
+        {
+            continue;
         }
-        if (def)file_name += ".jpg";
-
 //    construct image object
-        string path = file_name;
+        string path = check;
         Image image(path);
 //        display menu
         menu(image);
@@ -207,6 +211,33 @@ void continuePhotshop () {
 
 }
 
+string file_check(string file_name)
+{
+//    auto name extension
+    bool def = true;
+    for (int i = 0; i < file_name.size(); ++i) {
+        if (file_name[i] == '.')def = false;
+    }
+//    default .jpg
+    if (def)file_name += ".jpg";
+//  check file exists
+    ifstream file;
+    file.open(file_name);
+//    exists
+    if (file)
+    {
+        file.close();
+        return file_name;
+    }
+//        doesn't exist
+    else
+    {
+        cout << "File Doesn't exist!\n";
+        return "None";
+    }
+
+}
+
 //  ********************** Filters ****************************
 void grayscale(Image image) //Hossam (Done)
 {
@@ -278,12 +309,14 @@ void merge(Image image1) //Hossam (Done)
     string file_name;  //2nd image input
     cout << "Please enter 2nd image name (Default is .jpg): ";
     cin >> file_name;
-    bool def = true;
-    for (int i = 0; i < file_name.size(); ++i) {
-        if (file_name[i] == '.')def = false;
+    string check = file_check(file_name);
+    while (check == "None")
+    {
+        cout << "Please enter 2nd image name (Default is .jpg): ";
+        cin >> file_name;
+        check = file_check(file_name);
     }
-    if (def)file_name += ".jpg";
-    string path = file_name;
+    string path = check;
     Image image(path);
     //making another image that have them both merged and setting its dimensions to the smaller image
     Image image3(min(image1.width, image.width), min(image1.height, image.height));
