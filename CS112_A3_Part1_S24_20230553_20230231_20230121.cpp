@@ -36,7 +36,7 @@ void resize(Image image);
 void blur(Image image);
 /*------------------------------------------*/
 void Magenta(Image image) ;
-//void applyInfraredFilter(Image image);
+void IR(Image image);
 
 /*To make:
 1- Endless program loop
@@ -124,11 +124,12 @@ void choose_filter(string ans, Image image) {
     else if (ans == "14") {
         Magenta(image);
     }
-  /*  else if (ans == "15") {
-        applyInfraredFilter(image);
-    }*/
+    else if (ans == "15") {
+        IR(image);
+    }
     else {
         cout << "Invalid choice!\n";
+
     }
 }
 
@@ -180,7 +181,7 @@ void grayscale(Image image) //Hossam (Done)
         }
     }
     save(image);
-    continuePhotshop () ;
+    menu(image) ;
 
 }
 
@@ -204,7 +205,7 @@ void black_white(Image image) //Abdallah (Done)
         }
     }
     save(image);
-    continuePhotshop ();
+    menu(image);
 }
 
 void inverted(Image image) //Loai (Done)
@@ -224,7 +225,7 @@ void inverted(Image image) //Loai (Done)
     }
 
     save(image);
-    continuePhotshop () ;
+    menu(image) ;
 }
 
 void merge(Image image1) //Hossam (Done)
@@ -245,7 +246,7 @@ void merge(Image image1) //Hossam (Done)
         }
     }
     save(image3);
-    continuePhotshop () ;
+    menu(image3) ;
 
 }
 
@@ -277,7 +278,7 @@ void flip(Image image) //Abdallah (Done)
       }
   }
     save(flipped_image);
-    continuePhotshop ();
+    menu(flipped_image);
 }
 
 void rotate(Image image) //Loai (Done)
@@ -305,7 +306,7 @@ void rotate(Image image) //Loai (Done)
             }
         }
         save(rotated_image);
-        continuePhotshop () ;
+        menu(rotated_image) ;
     }
 //    180 Rotation
     else if (angle == 180) {
@@ -321,7 +322,7 @@ void rotate(Image image) //Loai (Done)
             }
         }
         save(rotated_image);
-        continuePhotshop () ;
+        menu(rotated_image) ;
     } else {
         cout << "Invalid angle. Please choose 90, 180, or 270." << endl;
     }
@@ -354,6 +355,7 @@ void darken_lighten(Image image) //Hossam (Done)
         }
     }
     save(image);
+    menu(image) ;
 }
 
 void crop(Image image) //Abdallah (Done)
@@ -383,7 +385,7 @@ void crop(Image image) //Abdallah (Done)
         }
     }
     save(cropped_Img) ;
-    continuePhotshop () ;
+    menu(cropped_Img) ;
 }
 
 void frame(Image image) //Loai (Done)
@@ -506,7 +508,7 @@ void frame(Image image) //Loai (Done)
         }
     }
     save(image);
-    continuePhotshop() ;
+    menu(image) ;
 }
 
 void edges(Image image) //Hossam (Done)
@@ -540,7 +542,7 @@ void edges(Image image) //Hossam (Done)
         }
     }
     save(image);
-    continuePhotshop () ;
+    menu(image) ;
 
 }
 
@@ -566,7 +568,7 @@ void resize(Image image) //Abdallah (Done)
         }
     }
  save(resized_Img) ;
-    continuePhotshop () ;
+    menu(resized_Img) ;
 }
 
 void blur(Image image) //Loai (Done)
@@ -617,7 +619,7 @@ void blur(Image image) //Loai (Done)
     }
     // Copy the blurred image back to the original image
     save(blurred_image);
-    continuePhotshop () ;
+    menu(blurred_image) ;
 }
 
 //  ********************** Bonus ****************************
@@ -627,15 +629,50 @@ void Magenta(Image image) //Abdallah
         for (int j = 0; j < image.height; j++) {
             unsigned int red = image(i, j, 0);
             unsigned int blue = image(i, j, 2);
+             float newRed = static_cast<float > (red  + (red / 4 ) );
+             float newBlue =  static_cast<float > (blue + (blue / 4) ) ;
+             newRed = newRed * 0.75 ; // قلل شدة الأحمر بنسبة 25%
+             newBlue =newBlue *  0.75 ; // قلل شدة الأزرق بنسبة 25%
+
+            if (newRed > 255) {
+                newRed = 255 ;
+            }
+            if (newBlue > 255) {
+                newBlue = 255 ;
+            }
 
 
-//            invert colors
-            image(i, j, 0) = red ;
+            image(i, j, 0) = newRed;
             image(i, j, 1) = 0;
-            image(i, j, 2) = blue;
+            image(i, j, 2) = newBlue;
     }}
     save(image);
     continuePhotshop () ;}
+void IR(Image image) {
+    for (int i = 0; i < image.width ; ++i) {
+        for (int j = 0; j < image.height; ++j) {
+            unsigned int red = image(i, j, 0);
+            unsigned int green = image(i, j, 1);
+            unsigned int blue = image(i, j, 2);
+            float newRed = static_cast<float > (red  + (red  /2 ) );
+            float newgreen = static_cast<float > (green );
+            float newblue = static_cast<float > (blue  );
+            newRed = newRed * 1.5  ;
+            if (newRed > 255) {
+                newRed = 255 ;
+            }
+
+            image(i, j, 0) =newRed ;
+            image(i, j, 1) = newgreen ;
+            image(i, j, 2) =  newblue    ;            }
+
+    }
+
+
+
+    save(image);
+    menu(image) ;
+}
 
 
 
