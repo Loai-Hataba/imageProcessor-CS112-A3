@@ -12,6 +12,7 @@ Authors: Loai Hataba,       ID: 20230553, Section: S24, Email: Loaiwleed2005@gma
 #include <cmath>
 #include <vector>
 #include <fstream>
+#include <algorithm>
 #include "Image_Class.h"
 using namespace std;
 
@@ -19,7 +20,7 @@ using namespace std;
 void menu(Image image);
 void choose_filter(string ans, Image image);
 void save(Image image);
-void continuePhotshop () ;
+void continuePhotoshop () ;
 string file_check(string file_name);
 /*--------------------------------------------*/
 void grayscale(Image image);
@@ -204,7 +205,7 @@ void save(Image image) {
 }
 
 // Restart Program
-void continuePhotshop () {
+void continuePhotoshop () {
     cout << "Filter has been applied!\n\n";
     int answer ;
     Image image ;
@@ -262,7 +263,7 @@ void grayscale(Image image) //Hossam (Done)
             }
         }
     }
-    continuePhotshop () ;
+    continuePhotoshop() ;
     exit_choice = 1 ;
     menu(image) ;
 
@@ -287,7 +288,7 @@ void black_white(Image image) //Abdallah (Done)
             }
         }
     }
-    continuePhotshop () ;
+    continuePhotoshop() ;
     exit_choice = 1 ;
     menu(image);
 }
@@ -308,7 +309,7 @@ void inverted(Image image) //Loai (Done)
         }
     }
 
-    continuePhotshop () ;
+    continuePhotoshop() ;
     exit_choice = 1 ;
     menu(image) ;
 }
@@ -337,7 +338,7 @@ void merge(Image image1) //Hossam (Done)
             }
         }
     }
-    continuePhotshop () ;
+    continuePhotoshop() ;
     exit_choice = 1 ;
     menu(image3) ;
 
@@ -370,7 +371,7 @@ void flip(Image image) //Abdallah (Done)
           }
       }
   }
-    continuePhotshop () ;
+    continuePhotoshop() ;
     exit_choice = 1 ;
     menu(flipped_image);
 }
@@ -406,7 +407,7 @@ void rotate(Image image) //Loai (Done)
                 }
             }
         }
-        continuePhotshop () ;
+        continuePhotoshop() ;
         exit_choice = 1 ;
         menu(rotated_image) ;
     }
@@ -423,7 +424,7 @@ void rotate(Image image) //Loai (Done)
                 }
             }
         }
-        continuePhotshop () ;
+        continuePhotoshop() ;
         exit_choice = 1 ;
         menu(rotated_image) ;
     } else {
@@ -457,7 +458,7 @@ void darken_lighten(Image image) //Hossam (Done)
             image(i, j, 0) = red;
         }
     }
-    continuePhotshop () ;
+    continuePhotoshop() ;
     exit_choice = 1 ;
     menu(image) ;
 }
@@ -488,7 +489,7 @@ void crop(Image image) //Abdallah (Done)
             }
         }
     }
-    continuePhotshop () ;
+    continuePhotoshop() ;
     exit_choice = 1 ;
     menu(cropped_Img) ;
 }
@@ -767,7 +768,7 @@ void frame(Image image) //Loai (Done)
             }
         }
     }
-    continuePhotshop();
+    continuePhotoshop();
     exit_choice = 1;
     menu(image);
 }
@@ -802,7 +803,7 @@ void edges(Image image) //Hossam (Done)
             }
         }
     }
-    continuePhotshop () ;
+    continuePhotoshop() ;
     exit_choice = 1 ;
     menu(image) ;
 
@@ -829,7 +830,7 @@ void resize(Image image) //Abdallah (Done)
             }
         }
     }
-    continuePhotshop () ;
+    continuePhotoshop() ;
     exit_choice = 1 ;
     menu(resized_Img) ;
 }
@@ -899,7 +900,7 @@ void blur(Image image) //Loai (Done)
         }
     }
     // Copy the blurred image back to the original image
-    continuePhotshop () ;
+    continuePhotoshop() ;
     exit_choice = 1 ;
     menu(blurred_image) ;
 }
@@ -929,7 +930,7 @@ void Magenta(Image image) //Abdallah
             image(i, j, 2) = newBlue;
     }}
 
-    continuePhotshop () ;
+    continuePhotoshop() ;
     exit_choice = 1 ;
     menu(image) ;
 }
@@ -955,7 +956,7 @@ void IR(Image image) //Abdallah
             image(i, j, 2) =  newblue;
         }
     }
-    continuePhotshop () ;
+    continuePhotoshop() ;
     exit_choice = 1 ;
     menu(image) ;
 }
@@ -965,24 +966,98 @@ void tv(Image image) //Loai
 
 }
 
-void oil(Image image) //Loai
-{
 
+
+// Function to apply the oil painting effect
+void oil(Image image) {
+    unsigned int brushSize;
+    string temp;
+    bool test;
+    do
+    {
+        test = true;
+        cout << "Choose brush size (1-15) \"Recommended 15\": ";
+        cin >> temp;
+        for (auto digit: temp)
+        {
+            if (not isdigit(digit))
+            {
+                test = false;
+            }
+        }
+        if (stoi(temp) > 15 || stoi(temp) < 1)
+        {
+            cout << "Brush size (1-15)!!!\n";
+            test = false;
+        }
+    }
+    while (not test);
+    brushSize = stoi(temp);
+
+    int height = image.height;
+    int width = image.width;
+
+    Image oilPaintedImage(width, height);
+    cout << "Applying oil painting filter...\n";
+
+    const int nRadius = brushSize; // Equivalent to brush size in the provided algorithm
+    const float fIntensityLevels = 1.0f; // Adjust intensity level as needed
+
+    // Initialize arrays to store intensity count and sum of RGB values
+    int nIntensityCount[256] = {0};
+    int nSumR[256] = {0};
+    int nSumG[256] = {0};
+    int nSumB[256] = {0};
+
+    // Iterate over each pixel in the image
+    for (int y = nRadius; y < height - nRadius; ++y) {
+        for (int x = nRadius; x < width - nRadius; ++x) {
+            // Find intensities of nearest nRadius pixels in four directions
+            for (int nY_O = -nRadius; nY_O <= nRadius; ++nY_O) {
+                for (int nX_O = -nRadius; nX_O <= nRadius; ++nX_O) {
+                    // Get color of neighboring pixel
+                    unsigned int red = image(x + nX_O, y + nY_O, 0);
+                    unsigned int green = image(x + nX_O, y + nY_O, 1);
+                    unsigned int blue = image(x + nX_O, y + nY_O, 2);
+
+                    // Find intensity of RGB value and apply intensity level
+                    int nCurIntensity = ((red + green + blue) / 3.0) * fIntensityLevels;
+                    if (nCurIntensity > 255)
+                        nCurIntensity = 255;
+                    int i = nCurIntensity;
+                    nIntensityCount[i]++;
+
+                    nSumR[i] += red;
+                    nSumG[i] += green;
+                    nSumB[i] += blue;
+                }
+            }
+
+            // Find the intensity with the maximum count
+            int nCurMax = 0;
+            int nMaxIndex = 0;
+            for (int nI = 0; nI < 256; ++nI) {
+                if (nIntensityCount[nI] > nCurMax) {
+                    nCurMax = nIntensityCount[nI];
+                    nMaxIndex = nI;
+                }
+            }
+
+            // Assign the average color to the oil painted image
+            oilPaintedImage(x, y, 0) = nSumR[nMaxIndex] / nCurMax;
+            oilPaintedImage(x, y, 1) = nSumG[nMaxIndex] / nCurMax;
+            oilPaintedImage(x, y, 2) = nSumB[nMaxIndex] / nCurMax;
+
+            // Reset intensity count and sum arrays for the next pixel
+            fill_n(nIntensityCount, 256, 0);
+            fill_n(nSumR, 256, 0);
+            fill_n(nSumG, 256, 0);
+            fill_n(nSumB, 256, 0);
+        }
+    }
+
+    cout << "Oil painting filter applied successfully.\n";
+    continuePhotoshop(); // Assuming these are functions you've defined elsewhere.
+    exit_choice = 1;
+    menu(oilPaintedImage);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
