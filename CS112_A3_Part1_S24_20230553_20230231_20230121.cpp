@@ -24,6 +24,7 @@ void choose_filter(string ans, Image image);
 void save(Image image);
 void continuePhotoshop () ;
 string file_check(string file_name);
+
 /*--------------------------------------------*/
 void grayscale(Image image);
 void black_white(Image image);
@@ -38,7 +39,7 @@ void edges(Image image);
 void resize(Image image);
 void blur(Image image);
 /*--------------------------------------------*/
-void Magenta(Image image);
+void look_Purple(Image image);
 void IR(Image image);
 void tv(Image image);
 void oil(Image image);
@@ -100,8 +101,8 @@ void menu(Image image) {
             "10) Edges\n"
             "11) Resize \n"
             "12) Blur\n"
-            "13) Magenta\n"
-            "14) IR\n"
+            "13) Look Purple\n"
+            "14) Infrared Radiation (IR)\n"
             "15) TV\n"
             "16) Oil Painting\n"
             "17) Sepia\n"
@@ -143,7 +144,7 @@ void choose_filter(string ans, Image image) {
     } else if (ans == "12") {
         blur(image);
     } else if (ans == "13") {
-        Magenta(image);
+        look_Purple(image);
     } else if (ans == "14") {
         IR(image);
     } else if (ans == "15") {
@@ -161,8 +162,17 @@ void choose_filter(string ans, Image image) {
     }
 //    Save
     else if (ans == "21") {
+        int y ;
         save(image);
-    }
+        cout << "\nDo you want to continue or exit \n1)Continue\n2)Exit \nYour Choice:" ;
+        cin >>y;
+        if(y==1){
+            main();
+        }
+        else if (y==2){
+            cout << "Goodbye!!";
+            return;
+    }}
     else if (ans == "22")
     {
         main();
@@ -350,34 +360,38 @@ void merge(Image image1) //Hossam (Done)
 
 void flip(Image image) //Abdallah (Done)
 {
-  char choice ;
-  cout << "Which flip you want to do Vertical or  Horizontal (V/H):  " ;
-  cin >> choice ;
-  choice = toupper(choice) ;
-    Image flipped_image(image.width, image.height) ; // store the  flipped image in a new one
-  if (choice == 'V'){
-      // we will flip the image vertically
-      for (int i = 0; i < image.width; ++i) {
-          for (int j = image.height - 1; j >= 0; --j) { //  to reach each column of the image in reverse order
-              for (int k = 0; k < 3; ++k) {
-                  flipped_image(i, image.height - 1 - j, k) = image(i, j, k);
-              }
-          }
-      }
-  }
-  else if (choice == 'H') {
-      // we will flip the image horizontally
-      for (int i = image.width - 1; i >= 0 ; i--) {//  to reach each row of the image in reverse order
-          for (int j = 0; j < image.height ; ++j) {
-              for (int k = 0; k <  3; ++k) {
-                  flipped_image(image.width - 1 - i, j, k) = image(i, j, k);
-              }
-          }
-      }
-  }
-    continuePhotoshop() ;
-    exit_choice = 1 ;
-    menu(flipped_image);
+    char choice ;
+    cout << "Which flip you want to do Vertical or  Horizontal (V/H):  " ;
+    cin >> choice ;
+    if(isalpha(choice)){
+        choice = toupper(choice) ; // change the input to uppercase character
+        Image flipped_image(image.width, image.height) ; // store the  flipped image in a new one
+        if (choice == 'V'){
+            // we will flip the image vertically
+            for (int i = 0; i < image.width; ++i) {
+                for (int j = image.height - 1; j >= 0; --j) { //  to reach each column of the image in reverse order
+                    for (int k = 0; k < 3; ++k) {
+                        flipped_image(i, image.height - 1 - j, k) = image(i, j, k);
+                        //we start from the last index the last colum
+                    }}}}
+        else if (choice == 'H') {
+            // we will flip the image horizontally
+            for (int i = image.width - 1; i >= 0 ; i--) {//  to reach each row of the image in reverse order
+                for (int j = 0; j < image.height ; ++j) {
+                    for (int k = 0; k <  3; ++k) {
+                        flipped_image(image.width - 1 - i, j, k) = image(i, j, k);
+                    }}}}
+        else {
+            cout<<"Invalid Input ,please insert a correct character !  \n";
+            flip(image) ;
+        }
+        continuePhotoshop() ;
+        exit_choice = 1 ;
+        menu(flipped_image);}
+    else {
+        cout<<"\nInvalid Input ,please insert a correct character !  \n";
+        flip(image) ;
+    }
 }
 
 void rotate(Image image) //Loai (Done)
@@ -466,37 +480,60 @@ void darken_lighten(Image image) //Hossam (Done)
     exit_choice = 1 ;
     menu(image) ;
 }
-
 void crop(Image image) //Abdallah (Done)
 {
-    int x, y; // the starting points
-    int w, h; //  the width and the height of the cropped image
-    cout << "Please enter the starting point (x, y): ";
-    cin >> x >> y;
-    cout << "Please enter the dimensions  of the area to crop : ";
-    cin >> w >> h;
-    // check validation of user inputs
-    if (x < 0 || y < 0){
-        cout << "Invalid , please enter a valid starting points \n"  ;
-        return;}
-    else if (w <= 0 || h <= 0)
-    { cout << "Invalid , please enter a valid dimensions \n ";
-        return ;}
-    else if (x + w > image.width || y + h > image.height){
-        cout << "Out of boundaries , please enter a valid dimensions \n " ;
-        return;}
-    Image cropped_Img(w, h); //create a new image to store the cropped one
-    for (int i  =  0  ; i < w  ; ++i) {
-        for (int j =   0  ; j < h  ; ++j) {
-            for (int k = 0; k < 3; ++k) {
-                cropped_Img(i, j, k) = image(i + x  , j  + y  , k);
+    int x, y, w, h;
+    // x and y reference  to the starting  point
+    // w and h reference to the width and the height of the cropped image
+    cout << "The dimensions of the image are :  " << image.width << " * " << image.height << endl;
+    cout << "Please enter the starting point (x, y)" << endl;
+    cout << "The Staring point of X-axis :  ";
+    cin.ignore(1);
+    cin >> x;
+    cout << "The Staring point of Y-axis :  ";
+    cin.ignore(1);
+    cin >> y;
+    cout << "\n=============================================="<<endl ;
+    cout << "Please enter the dimensions of the cropped image \n" << endl;
+    cout << "The Width of the Cropped Image :  ";
+    cin.ignore(1);
+    cin >> w;
+    cout << "The Height of the Cropped Image :  ";
+    cin.ignore(1);
+    cin >> h;
+    cout<<"\n================================================"<<endl;
+    if (isdigit(x) && isdigit(y) && isdigit(w) && isdigit(h)) {
+        Image cropped_Img(w, h); //create a new image to store the cropped one
+        for (int i = 0; i < w; ++i) {
+            for (int j = 0; j < h; ++j) {
+                for (int k = 0; k < 3; ++k) {
+                    cropped_Img(i, j, k) = image(i + x, j + y, k);
+                    // we add x to i and add y to j to start the image  at the starting points
+                }
             }
         }
+        continuePhotoshop();
+        exit_choice = 1;
+        menu(cropped_Img);
     }
-    continuePhotoshop() ;
-    exit_choice = 1 ;
-    menu(cropped_Img) ;
+    if (!isdigit(x) || !isdigit(y)){
+        cout <<" Invalid,PLease enter a valid starting points\n" ;
+        crop(image);
+    }
+    else if (w == 0 || h == 0){
+        cout << "Invalid,Please Enter Valid Dimensions  !!\n ";
+        crop(image) ;
+    }
+    else if ((x + w )> image.width || (y + h) > image.height ){
+        cout << "Out of boundaries , please enter a valid dimensions \n " ;
+        crop(image) ;
+          }
 }
+
+
+
+
+
 
 void frame(Image image) //Loai (Done)
 {
@@ -814,30 +851,32 @@ void edges(Image image) //Hossam (Done)
 }
 
 void resize(Image image) //Abdallah (Done)
-{   int w, h;
-    cout <<"Please enter the new dimensions (Width & Height): " ;
-    cin >> w >> h ; // getting the values of new dimensions
-
+{   cout <<"The original size of the image is :  "<<image.width <<"x"<<image.height <<endl;
+    int w, h;
+    cout <<"Please enter the new dimensions (Width & Height)\n" ;
+    cout <<"The Width : " ;
+    cin >> w ;                     // getting the values of new dimensions
+    cout << "\nThe Height : " ;
+    cin >> h ;
+    cout << "\n======================================"<<endl;
     Image resized_Img (w,h) ; //create a new image to store the resized one
-     float  s ; // the ratio between the width of the original img and the new width
-     float  r ; //the ratio between the height of the original img and the new height
-
+    float  s ; // the ratio between the width of the original img and the new width
+    float  r ; //the ratio between the height of the original img and the new height
+    // ===========================================================
     s = static_cast<float>(image.width) / w  ;
     r = static_cast<float>(image.height) / h  ;
+    //=============================================================
     for (int i = 0; i < w ; ++i) {
         for (int j = 0; j <  h; ++j) {
             for (int k = 0; k < 3  ; ++k) {
-                int new1 = round(s*i) ;
+                int new1 = round(s*i) ; // we make s and i normal integers
                 int new2 = round(r*j);
-                resized_Img (i ,j ,k) = image (new1, new2  , k) ;
+                resized_Img (i ,j ,k) = image (new1, new2  , k) ;  }}}
+        continuePhotoshop() ;
+        exit_choice = 1 ;
+        menu(resized_Img) ;
 
-            }
-        }
-    }
-    continuePhotoshop() ;
-    exit_choice = 1 ;
-    menu(resized_Img) ;
-}
+ }
 
 void blur(Image image) //Loai (Done)
 {
@@ -910,16 +949,18 @@ void blur(Image image) //Loai (Done)
 }
 
 //  ********************** Bonus ****************************
-void Magenta(Image image) //Abdallah
+void look_Purple(Image image) //Abdallah (Done)
 {
     for (int i = 0; i < image.width; i++) {
         for (int j = 0; j < image.height; j++) {
             unsigned int red = image(i, j, 0);
+            unsigned int green = image(i, j, 1);
             unsigned int blue = image(i, j, 2);
-             float newRed = static_cast<float > (red  + (red / 4 ) );
-             float newBlue =  static_cast<float > (blue + (blue / 4) ) ;
-             newRed = newRed * 0.75 ; // قلل شدة الأحمر بنسبة 25%
-             newBlue =newBlue *  0.75 ; // قلل شدة الأزرق بنسبة 25%
+             float newRed = static_cast<float > (red  * 0.75 );
+             float newGreen =  static_cast<float > (green * 0.8) ;
+             float newBlue =  static_cast<float > (blue * 0.75) ;
+             newRed = newRed * 1.6 ;
+             newBlue =newBlue * 1.6 ;
 
             if (newRed > 255) {
                 newRed = 255 ;
@@ -927,10 +968,12 @@ void Magenta(Image image) //Abdallah
             if (newBlue > 255) {
                 newBlue = 255 ;
             }
-
+            if (newGreen > 255) {
+                newGreen= 255 ;
+            }
 
             image(i, j, 0) = newRed;
-            image(i, j, 1) = 0;
+            image(i, j, 1) = newGreen;
             image(i, j, 2) = newBlue;
     }}
 
@@ -938,32 +981,24 @@ void Magenta(Image image) //Abdallah
     exit_choice = 1 ;
     menu(image) ;
 }
-
-void IR(Image image) //Abdallah
-{
-    for (int i = 0; i < image.width ; ++i) {
+void IR (Image image) { //Abdallah (Done)
+    cout <<"Applying Infrared (IR) Filter....................\n";
+    for (int i = 0; i < image.width; ++i) {
         for (int j = 0; j < image.height; ++j) {
             unsigned int red = image(i, j, 0);
-            unsigned int green = image(i, j, 1);
-            unsigned int blue = image(i, j, 2);
-            float newRed = static_cast<float > (red  + (red  /2 ) );
-            float newgreen = static_cast<float > (green );
-            float newblue = static_cast<float > (blue  );
-            newRed = newRed * 1.5;
-            if (newRed > 255)
-            {
-                newRed = 255 ;
-            }
-
-            image(i, j, 0) =newRed;
-            image(i, j, 1) = newgreen;
-            image(i, j, 2) =  newblue;
+            unsigned int New_Red = 255 ;
+            unsigned int New_Green = 255-red  ;
+            unsigned int New_Blue = 255 -red;
+            image(i, j, 0) = New_Red ;
+            image(i, j, 1) = New_Green;
+            image(i, j, 2) = New_Blue ;
         }
     }
     continuePhotoshop() ;
     exit_choice = 1 ;
     menu(image) ;
 }
+
 
 void tv(Image image) //Loai
 {
