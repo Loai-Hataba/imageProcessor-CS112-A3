@@ -13,6 +13,8 @@ Authors: Loai Hataba,       ID: 20230553, Section: S24, Email: Loaiwleed2005@gma
 #include <vector>
 #include <fstream>
 #include <algorithm>
+#include <cstdlib>
+#include <ctime>
 #include "Image_Class.h"
 using namespace std;
 
@@ -36,11 +38,11 @@ void edges(Image image);
 void resize(Image image);
 void blur(Image image);
 /*--------------------------------------------*/
-void Magenta(Image image) ;
+void Magenta(Image image);
 void IR(Image image);
 void tv(Image image);
 void oil(Image image);
-
+void sepia(Image image);
 
 /*To make:
 1- Endless program loop (Done)
@@ -53,6 +55,8 @@ void oil(Image image);
 8- add save to !!!current image or load a new image
 9- not quit after 21) save image
 10- continue or load menu adjust
+11- proper validation (blur-oil)
+12- Safeguard menu choices
 */
 int exit_choice = 0 ;
 
@@ -100,7 +104,7 @@ void menu(Image image) {
             "14) IR\n"
             "15) TV\n"
             "16) Oil Painting\n"
-            "17) \n"
+            "17) Sepia\n"
             "18) \n"
             "19) \n"
             "20) \n"
@@ -147,7 +151,7 @@ void choose_filter(string ans, Image image) {
     } else if (ans == "16") {
         oil(image);
     } else if (ans == "17") {
-        cout << "Under Construction...\n";
+        sepia(image);
     } else if (ans == "18") {
         cout << "Under Construction...\n";
     } else if (ans == "19") {
@@ -963,13 +967,84 @@ void IR(Image image) //Abdallah
 
 void tv(Image image) //Loai
 {
+    // Seed the random number generator
+    srand(time(nullptr));
+    // Constants for noise intensity
+    double noiseIntensity; // Adjust as needed
+    string temp;
+    bool test;
+    do
+    {
+        test = true;
+        cout << "Choose intensity of noise (0.1-1): ";
+        cin >> temp;
+        for (auto digit: temp)
+        {
+            if (not isdigit(digit) && digit != '.')
+            {
+                test = false;
+            }
+        }
+    }
+    while (not test);
+    noiseIntensity = stod(temp);
 
+
+    for (int i = 0; i < image.width; ++i) {
+        for (int j = 0; j < image.height; ++j) {
+            // Get color values
+            unsigned int red = image(i, j, 0);
+            unsigned int green = image(i, j, 1);
+            unsigned int blue = image(i, j, 2);
+
+            // Add noise to each channel
+            unsigned int noiseRed = rand() % (int)(red * noiseIntensity);
+            unsigned int noiseGreen = rand() % (int)(green * noiseIntensity);
+            unsigned int noiseBlue = rand() % (int)(blue * noiseIntensity);
+
+            // Add noise to the original pixel values
+            unsigned int newRed = min(red + noiseRed, 255u);
+            unsigned int newGreen = min(green + noiseGreen, 255u);
+            unsigned int newBlue = min(blue + noiseBlue, 255u);
+
+            // Update image with modified color channels
+            image(i, j, 0) = newRed;
+            image(i, j, 1) = newGreen;
+            image(i, j, 2) = newBlue;
+        }
+    }
+    continuePhotoshop(); // Assuming these are functions you've defined elsewhere.
+    exit_choice = 1;
+    menu(image);
 }
 
+void sepia(Image image) //Loai
+{
+    for (int i = 0; i < image.width; ++i) {
+        for (int j = 0; j < image.height; ++j) {
+            // Get color values
+            unsigned int red = image(i, j, 0);
+            unsigned int green = image(i, j, 1);
+            unsigned int blue = image(i, j, 2);
 
+            // Apply sepia tone
+            unsigned int newRed = min((int)(red * 0.393 + green * 0.769 + blue * 0.189), 255);
+            unsigned int newGreen = min((int)(red * 0.349 + green * 0.686 + blue * 0.168), 255);
+            unsigned int newBlue = min((int)(red * 0.272 + green * 0.534 + blue * 0.131), 255);
 
-// Function to apply the oil painting effect
-void oil(Image image) {
+            // Update image with modified color channels
+            image(i, j, 0) = newRed;
+            image(i, j, 1) = newGreen;
+            image(i, j, 2) = newBlue;
+        }
+    }
+    continuePhotoshop();
+    exit_choice = 1;
+    menu(image);
+}
+
+void oil(Image image) //Loai (Done)
+{
     unsigned int brushSize;
     string temp;
     bool test;
@@ -1055,9 +1130,7 @@ void oil(Image image) {
             fill_n(nSumB, 256, 0);
         }
     }
-
-    cout << "Oil painting filter applied successfully.\n";
-    continuePhotoshop(); // Assuming these are functions you've defined elsewhere.
+    continuePhotoshop();
     exit_choice = 1;
     menu(oilPaintedImage);
 }
