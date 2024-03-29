@@ -924,8 +924,6 @@ void IR (Image image) { //Abdallah (Done)
             image(i, j, 2) = New_Blue ;
         }
     }
-    continuePhotoshop() ;
-    exit_choice = 1 ;
     menu(image) ;
 }
 
