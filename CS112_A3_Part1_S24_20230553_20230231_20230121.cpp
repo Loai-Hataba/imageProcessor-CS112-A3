@@ -22,7 +22,6 @@ using namespace std;
 void menu(Image image);
 void choose_filter(string ans, Image image);
 void save(Image image);
-void continuePhotoshop () ;
 string file_check(string file_name);
 /*--------------------------------------------*/
 void grayscale(Image image);
@@ -51,14 +50,14 @@ void sepia(Image image);
 4- add automatic naming for file name in main menu (Done)
 5- add usage instructions (Done)
 6- safeguard all int input with chars (Done)
-7- add color choosing and a fancier frame (as in assignment sheet or better)
-8- add save to !!!current image or load a new image
-9- not quit after 21) save image
-10- continue or load menu adjust
-11- proper validation (blur-oil)
-12- Safeguard menu choices
+7- add color choosing and a fancier frame *
+8- add save to !!!current image or load a new image *
+9- not quit after 21) save image *
+10- continue or load menu adjust (Done)
+11- proper validation (blur-oil) *
+12- Safeguard menu choices *
+13- Flowchart diagram
 */
-int exit_choice = 0 ;
 
 int main() {
     bool flag = true;
@@ -170,21 +169,8 @@ void choose_filter(string ans, Image image) {
 //    Exit
     else if (ans == "23")
     {
-        int x ;
-        if (  exit_choice == 1 ){
-            cout << "Do you want to save before exit? \n1) Save\n2) Exit without saving\nYour Choice:";
-             cin >>x;
-             if(x==1){
-                 save(image);
-             }
-             else if (x==2){
-                 cout << "Goodbye!!";
-                 return;
-             }}
-        else if (exit_choice == 0){
-            cout << "Goodbye!!";
-            return;
-        }
+        cout << "Goodbye!!";
+        return;
     }
     else {
         cout << "Invalid choice!\n";
@@ -197,33 +183,18 @@ void save(Image image) {
     string file_name;
     cout << "Choose the name of the new image (Default is .jpg):";
     cin >> file_name;
-    // Clear input buffer
-    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     bool def = true;
     for (int i = 0; i < file_name.size(); ++i) {
         if (file_name[i] == '.')def = false;
     }
     if (def)file_name += ".jpg";
+    cout << "Saving " << file_name << "...\n";
     image.saveImage(file_name);
     cout << file_name << " has been saved successfully.\n";
+    menu(image);
 }
 
-// Restart Program
-void continuePhotoshop () {
-    cout << "Filter has been applied!\n\n";
-    int answer ;
-    Image image ;
-    cout << "\nDo you want to continue on the current image or load a new one   \n1) Continue\n2) Load a new one\nYour Choice: " ;
-    cin >>answer ;
-    if (answer == 1)
-    {
-        return;
-    }
-    else if (answer == 2){
-        main();
-    }
 
-}
 
 string file_check(string file_name)
 {
@@ -267,9 +238,7 @@ void grayscale(Image image) //Hossam (Done)
             }
         }
     }
-    continuePhotoshop() ;
-    exit_choice = 1 ;
-    menu(image) ;
+    menu(image);
 
 }
 
@@ -292,8 +261,6 @@ void black_white(Image image) //Abdallah (Done)
             }
         }
     }
-    continuePhotoshop() ;
-    exit_choice = 1 ;
     menu(image);
 }
 
@@ -313,8 +280,6 @@ void inverted(Image image) //Loai (Done)
         }
     }
 
-    continuePhotoshop() ;
-    exit_choice = 1 ;
     menu(image) ;
 }
 
@@ -342,20 +307,17 @@ void merge(Image image1) //Hossam (Done)
             }
         }
     }
-    continuePhotoshop() ;
-    exit_choice = 1 ;
     menu(image3) ;
-
 }
 
 void flip(Image image) //Abdallah (Done)
 {
-  char choice ;
-  cout << "Which flip you want to do Vertical or  Horizontal (V/H):  " ;
-  cin >> choice ;
-  choice = toupper(choice) ;
+    char choice ;
+    cout << "Which flip you want to do Vertical or  Horizontal (V/H):  " ;
+    cin >> choice ;
+    choice = toupper(choice) ;
     Image flipped_image(image.width, image.height) ; // store the  flipped image in a new one
-  if (choice == 'V'){
+    if (choice == 'V'){
       // we will flip the image vertically
       for (int i = 0; i < image.width; ++i) {
           for (int j = image.height - 1; j >= 0; --j) { //  to reach each column of the image in reverse order
@@ -364,8 +326,8 @@ void flip(Image image) //Abdallah (Done)
               }
           }
       }
-  }
-  else if (choice == 'H') {
+    }
+    else if (choice == 'H') {
       // we will flip the image horizontally
       for (int i = image.width - 1; i >= 0 ; i--) {//  to reach each row of the image in reverse order
           for (int j = 0; j < image.height ; ++j) {
@@ -374,9 +336,7 @@ void flip(Image image) //Abdallah (Done)
               }
           }
       }
-  }
-    continuePhotoshop() ;
-    exit_choice = 1 ;
+    }
     menu(flipped_image);
 }
 
@@ -411,8 +371,6 @@ void rotate(Image image) //Loai (Done)
                 }
             }
         }
-        continuePhotoshop() ;
-        exit_choice = 1 ;
         menu(rotated_image) ;
     }
 //    180 Rotation
@@ -428,8 +386,6 @@ void rotate(Image image) //Loai (Done)
                 }
             }
         }
-        continuePhotoshop() ;
-        exit_choice = 1 ;
         menu(rotated_image) ;
     } else {
         cout << "Invalid angle. Please choose 90, 180, or 270." << endl;
@@ -462,8 +418,6 @@ void darken_lighten(Image image) //Hossam (Done)
             image(i, j, 0) = red;
         }
     }
-    continuePhotoshop() ;
-    exit_choice = 1 ;
     menu(image) ;
 }
 
@@ -493,8 +447,6 @@ void crop(Image image) //Abdallah (Done)
             }
         }
     }
-    continuePhotoshop() ;
-    exit_choice = 1 ;
     menu(cropped_Img) ;
 }
 
@@ -772,8 +724,6 @@ void frame(Image image) //Loai (Done)
             }
         }
     }
-    continuePhotoshop();
-    exit_choice = 1;
     menu(image);
 }
 
@@ -807,8 +757,6 @@ void edges(Image image) //Hossam (Done)
             }
         }
     }
-    continuePhotoshop() ;
-    exit_choice = 1 ;
     menu(image) ;
 
 }
@@ -834,8 +782,6 @@ void resize(Image image) //Abdallah (Done)
             }
         }
     }
-    continuePhotoshop() ;
-    exit_choice = 1 ;
     menu(resized_Img) ;
 }
 
@@ -903,9 +849,6 @@ void blur(Image image) //Loai (Done)
             blurred_image(j, i, 2) = sumB / count;
         }
     }
-    // Copy the blurred image back to the original image
-    continuePhotoshop() ;
-    exit_choice = 1 ;
     menu(blurred_image) ;
 }
 
@@ -932,10 +875,8 @@ void Magenta(Image image) //Abdallah
             image(i, j, 0) = newRed;
             image(i, j, 1) = 0;
             image(i, j, 2) = newBlue;
-    }}
-
-    continuePhotoshop() ;
-    exit_choice = 1 ;
+        }
+    }
     menu(image) ;
 }
 
@@ -960,8 +901,6 @@ void IR(Image image) //Abdallah
             image(i, j, 2) =  newblue;
         }
     }
-    continuePhotoshop() ;
-    exit_choice = 1 ;
     menu(image) ;
 }
 
@@ -1013,8 +952,6 @@ void tv(Image image) //Loai
             image(i, j, 2) = newBlue;
         }
     }
-    continuePhotoshop(); // Assuming these are functions you've defined elsewhere.
-    exit_choice = 1;
     menu(image);
 }
 
@@ -1038,8 +975,6 @@ void sepia(Image image) //Loai
             image(i, j, 2) = newBlue;
         }
     }
-    continuePhotoshop();
-    exit_choice = 1;
     menu(image);
 }
 
@@ -1072,7 +1007,7 @@ void oil(Image image) //Loai (Done)
     int height = image.height;
     int width = image.width;
 
-    Image oilPaintedImage(width, height);
+    Image oil_image(width, height);
     cout << "Applying oil painting filter...\n";
 
     const int nRadius = brushSize; // Equivalent to brush size in the provided algorithm
@@ -1119,9 +1054,9 @@ void oil(Image image) //Loai (Done)
             }
 
             // Assign the average color to the oil painted image
-            oilPaintedImage(x, y, 0) = nSumR[nMaxIndex] / nCurMax;
-            oilPaintedImage(x, y, 1) = nSumG[nMaxIndex] / nCurMax;
-            oilPaintedImage(x, y, 2) = nSumB[nMaxIndex] / nCurMax;
+            oil_image(x, y, 0) = nSumR[nMaxIndex] / nCurMax;
+            oil_image(x, y, 1) = nSumG[nMaxIndex] / nCurMax;
+            oil_image(x, y, 2) = nSumB[nMaxIndex] / nCurMax;
 
             // Reset intensity count and sum arrays for the next pixel
             fill_n(nIntensityCount, 256, 0);
@@ -1130,7 +1065,5 @@ void oil(Image image) //Loai (Done)
             fill_n(nSumB, 256, 0);
         }
     }
-    continuePhotoshop();
-    exit_choice = 1;
-    menu(oilPaintedImage);
+    menu(oil_image);
 }
