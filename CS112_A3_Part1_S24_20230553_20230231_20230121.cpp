@@ -21,7 +21,7 @@ using namespace std;
 //prototypes
 void menu(Image image);
 void choose_filter(string ans, Image image);
-void save(Image image);
+void save(Image image, int back = 0);
 string file_check(string file_name);
 /*--------------------------------------------*/
 void grayscale(Image image);
@@ -51,12 +51,13 @@ void sepia(Image image);
 5- add usage instructions (Done)
 6- safeguard all int input with chars (Done)
 7- add color choosing and a fancier frame *
-8- add save to !!!current image or load a new image *
-9- not quit after 21) save image *
+8- add save to !!!current image or load a new image (Done)
+9- not quit after 21) save image (Done)
 10- continue or load menu adjust (Done)
-11- proper validation (blur-oil) *
-12- Safeguard menu choices *
-13- Flowchart diagram
+11- proper validation (blur-oil) (Done)
+12- Safeguard menu choices (Done)
+13- Flowchart diagram *
+14- Comments *
 */
 
 int main() {
@@ -160,8 +161,9 @@ void choose_filter(string ans, Image image) {
     }
 //    Save
     else if (ans == "21") {
-        save(image);
+        save(image, 1);
     }
+//    Load new image
     else if (ans == "22")
     {
         main();
@@ -169,17 +171,35 @@ void choose_filter(string ans, Image image) {
 //    Exit
     else if (ans == "23")
     {
-        cout << "Goodbye!!";
-        return;
+        string ex;
+        cout << "Do you want to save before exiting?\n"
+                "1) Yes\n"
+                "2) No\n"
+                "Choice: ";
+        cin >> ex;
+        if (ex == "1")
+        {
+            save(image);
+        }
+        else if (ex == "2")
+        {
+            cout << "\nGoodbye!!";
+            return;
+        }
+        else
+        {
+            cout << "Invalid choice!\n";
+        }
     }
     else {
         cout << "Invalid choice!\n";
-
+        menu(image);
     }
 }
 
 //name and save the new file
-void save(Image image) {
+void save(Image image, int back)
+{
     string file_name;
     cout << "Choose the name of the new image (Default is .jpg):";
     cin >> file_name;
@@ -191,11 +211,13 @@ void save(Image image) {
     cout << "Saving " << file_name << "...\n";
     image.saveImage(file_name);
     cout << file_name << " has been saved successfully.\n";
-    menu(image);
+    if (back == 1)
+    {
+        menu(image);
+    }
 }
 
-
-
+//checks file is valid
 string file_check(string file_name)
 {
 //    auto name extension
@@ -828,6 +850,7 @@ void blur(Image image) //Loai (Done)
     int blur_size;
     string temp;
     bool test;
+//    check input validation
     do
     {
         test = true;
@@ -843,17 +866,19 @@ void blur(Image image) //Loai (Done)
                 test = false;
             }
         }
+        if (test)
+        {
+            if (blur_size < 1 || blur_size > 15)
+            {
+                cout << "Range (1-15)!!!\n";
+                test = false;
+            }
+        }
     }
     while (not test);
+//    turn answer to proper int
     blur_size = stoi(temp);
-    while (blur_size < 1 || blur_size > 15) {
-        cout << "Range (1-15)!!!\n";
-        cout << "Choose Blur size (1-15)\n"
-                "1-->\"Less Blur, more efficient, Time: 5 Sec\"\n"
-                "15-->\"More Blur,less efficient, Time: 3 Min\"\n"
-                "Choice: ";
-        cin >> blur_size;
-    }
+
     int height = image.height;
     int width = image.width;
 
