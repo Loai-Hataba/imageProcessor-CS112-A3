@@ -238,6 +238,7 @@ void grayscale(Image image) //Hossam (Done)
             }
         }
     }
+    cout << "Filter Applied...\n";
     menu(image);
 
 }
@@ -261,6 +262,7 @@ void black_white(Image image) //Abdallah (Done)
             }
         }
     }
+    cout << "Filter Applied...\n";
     menu(image);
 }
 
@@ -279,7 +281,7 @@ void inverted(Image image) //Loai (Done)
             image(i, j, 2) = 255 - blue;
         }
     }
-
+    cout << "Filter Applied...\n";
     menu(image) ;
 }
 
@@ -307,6 +309,7 @@ void merge(Image image1) //Hossam (Done)
             }
         }
     }
+    cout << "Filter Applied...\n";
     menu(image3) ;
 }
 
@@ -337,6 +340,7 @@ void flip(Image image) //Abdallah (Done)
             cout<<"Invalid Input ,please insert a correct character !  \n";
             flip(image) ;
         }
+        cout << "Filter Applied...\n";
         menu(flipped_image);
     }
     else {
@@ -376,6 +380,7 @@ void rotate(Image image) //Loai (Done)
                 }
             }
         }
+        cout << "Filter Applied...\n";
         menu(rotated_image) ;
     }
 //    180 Rotation
@@ -423,6 +428,7 @@ void darken_lighten(Image image) //Hossam (Done)
             image(i, j, 0) = red;
         }
     }
+    cout << "Filter Applied...\n";
     menu(image) ;
 }
 void crop(Image image) //Abdallah (Done)
@@ -457,6 +463,7 @@ void crop(Image image) //Abdallah (Done)
                 }
             }
         }
+        cout << "Filter Applied...\n";
         menu(cropped_Img);
     }
     if (!isdigit(x) || !isdigit(y)){
@@ -470,7 +477,7 @@ void crop(Image image) //Abdallah (Done)
     else if ((x + w )> image.width || (y + h) > image.height ){
         cout << "Out of boundaries , please enter a valid dimensions \n " ;
         crop(image) ;
-          }
+    }
 }
 
 void frame(Image image) //Loai (Done)
@@ -747,6 +754,7 @@ void frame(Image image) //Loai (Done)
             }
         }
     }
+    cout << "Filter Applied...\n";
     menu(image);
 }
 
@@ -780,6 +788,7 @@ void edges(Image image) //Hossam (Done)
             }
         }
     }
+    cout << "Filter Applied...\n";
     menu(image);
 
 }
@@ -810,6 +819,7 @@ void resize(Image image) //Abdallah (Done)
             }
         }
     }
+    cout << "Filter Applied...\n";
     menu(resized_Img) ;
 }
 
@@ -877,6 +887,7 @@ void blur(Image image) //Loai (Done)
             blurred_image(j, i, 2) = sumB / count;
         }
     }
+    cout << "Filter Applied...\n";
     menu(blurred_image) ;
 }
 
@@ -909,6 +920,7 @@ void look_Purple(Image image) //Abdallah (Done)
             image(i, j, 2) = newBlue;
         }
     }
+    cout << "Filter Applied...\n";
     menu(image) ;
 }
 void IR (Image image) { //Abdallah (Done)
@@ -924,6 +936,7 @@ void IR (Image image) { //Abdallah (Done)
             image(i, j, 2) = New_Blue ;
         }
     }
+    cout << "Filter Applied...\n";
     menu(image) ;
 }
 
@@ -975,6 +988,7 @@ void tv(Image image) //Loai
             image(i, j, 2) = newBlue;
         }
     }
+    cout << "Filter Applied...\n";
     menu(image);
 }
 
@@ -998,6 +1012,7 @@ void sepia(Image image) //Loai
             image(i, j, 2) = newBlue;
         }
     }
+    cout << "Filter Applied...\n";
     menu(image);
 }
 
@@ -1088,5 +1103,6 @@ void oil(Image image) //Loai (Done)
             fill_n(nSumB, 256, 0);
         }
     }
+    cout << "Filter Applied...\n";
     menu(oil_image);
 }
