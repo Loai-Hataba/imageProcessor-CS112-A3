@@ -663,7 +663,7 @@ void frame(Image image) //Loai (Done)
 //        Textured Frame
     else if (ans == "2")
     {
-        unsigned int Rtexture; // Color of the texture (adjustable)
+        unsigned int Rtexture; // Color of the texture
         unsigned int Gtexture;
         unsigned int Btexture;
         char col = '0';
@@ -872,22 +872,57 @@ void frame(Image image) //Loai (Done)
                 cout << "Please choose a valid option!\n";
             }
         }
-
-        for (int i = 0; i < image.width; i++) {
-            for (int j = 0; j < image.height; j++) {
-                if ((i < frame_size || i >= image.width - frame_size || j < frame_size || j >= image.height - frame_size) &&
-                    (i + j) % (frame_size / 10) == 0) {
-                    // Increase intensity of line colors to thicken the lines
-                    for (int dx = -lineThickness / 2; dx <= lineThickness / 2; dx++) {
-                        for (int dy = -lineThickness / 2; dy <= lineThickness / 2; dy++) {
-                            int x = i + dx;
-                            int y = j + dy;
-                            if (x >= 0 && x < image.width && y >= 0 && y < image.height) {
-                                image(x, y, 0) = (Rcolor + 50 <= 255) ? Rcolor + 50 : 255; // Red
-                                image(x, y, 1) = (Gcolor + 50 <= 255) ? Gcolor + 50 : 255; // Green
-                                image(x, y, 2) = (Bcolor + 50 <= 255) ? Bcolor + 50 : 255; // Blue
+        bool check = true;
+        string pattern;
+        do {
+            cout << "1) Diagonals\n"
+                    "2) Checkerboard\n"
+                    "Choice: ";
+            cin >> pattern;
+            if (pattern != "1" && pattern != "2")
+            {
+                cout << "Invalid Option!\n";
+            }
+            else if (pattern == "1" || pattern == "2")
+            {
+                check = false;
+            }
+        } while (check);
+//        diagonals
+        if (pattern == "1") {
+            for (int i = 0; i < image.width; i++) {
+                for (int j = 0; j < image.height; j++) {
+                    if ((i < frame_size || i >= image.width - frame_size || j < frame_size ||
+                         j >= image.height - frame_size) &&
+                        (i + j) % (frame_size / 10) == 0) {
+                        // Increase intensity of line colors to thicken the lines
+                        for (int dx = -lineThickness / 2; dx <= lineThickness / 2; dx++) {
+                            for (int dy = -lineThickness / 2; dy <= lineThickness / 2; dy++) {
+                                int x = i + dx;
+                                int y = j + dy;
+                                if (x >= 0 && x < image.width && y >= 0 && y < image.height) {
+                                    image(x, y, 0) = (Rcolor + 50 <= 255) ? Rcolor + 50 : 255; // Red
+                                    image(x, y, 1) = (Gcolor + 50 <= 255) ? Gcolor + 50 : 255; // Green
+                                    image(x, y, 2) = (Bcolor + 50 <= 255) ? Bcolor + 50 : 255; // Blue
+                                }
                             }
                         }
+                    }
+                }
+            }
+        }
+//       Checkerboard
+        else if (pattern == "2")
+        {
+            int cellSize = frame_size / 5; // Adjust cell size as needed
+
+            for (int i = 0; i < image.width; i++) {
+                for (int j = 0; j < image.height; j++) {
+                    if ((i < frame_size || i >= image.width - frame_size || j < frame_size || j >= image.height - frame_size) &&
+                        ((i / cellSize) + (j / cellSize)) % 2 == 0) { // Check for checkerboard pattern
+                        image(i, j, 0) = (Rcolor + 50 <= 255) ? Rcolor + 50 : 255; // Red
+                        image(i, j, 1) = (Gcolor + 50 <= 255) ? Gcolor + 50 : 255; // Green
+                        image(i, j, 2) = (Bcolor + 50 <= 255) ? Bcolor + 50 : 255; // Blue
                     }
                 }
             }
@@ -1083,56 +1118,55 @@ void IR (Image image) { //Abdallah (Done)
 }
 
 void tv(Image image) //Loai
-{
-    // Seed the random number generator
-    srand(time(nullptr));
-    // Constants for noise intensity
-    double noiseIntensity; // Adjust as needed
-    string temp;
-    bool test;
-    do
     {
-        test = true;
-        cout << "Choose intensity of noise (0.1-1): ";
-        cin >> temp;
-        for (auto digit: temp)
+        // Seed the random number generator
+        srand(time(nullptr));
+        // Constants for noise intensity
+        double noiseIntensity; // Adjust as needed
+        string temp;
+        bool test;
+        do
         {
-            if (not isdigit(digit) && digit != '.')
+            test = true;
+            cout << "Choose intensity of noise (0.1-1): ";
+            cin >> temp;
+            for (auto digit: temp)
             {
-                test = false;
+                if (not isdigit(digit) && digit != '.')
+                {
+                    test = false;
+                }
             }
         }
-    }
-    while (not test);
-    noiseIntensity = stod(temp);
+        while (not test);
+        noiseIntensity = stod(temp);
 
 
-    for (int i = 0; i < image.width; ++i) {
-        for (int j = 0; j < image.height; ++j) {
-            // Get color values
-            unsigned int red = image(i, j, 0);
-            unsigned int green = image(i, j, 1);
-            unsigned int blue = image(i, j, 2);
+        for (int i = 0; i < image.width; ++i) {
+            for (int j = 0; j < image.height; ++j) {
+                // Get color values
+                unsigned int red = image(i, j, 0);
+                unsigned int green = image(i, j, 1);
+                unsigned int blue = image(i, j, 2);
 
-            // Add noise to each channel
-            unsigned int noiseRed = rand() % (int)(red * noiseIntensity);
-            unsigned int noiseGreen = rand() % (int)(green * noiseIntensity);
-            unsigned int noiseBlue = rand() % (int)(blue * noiseIntensity);
+                // Add noise to each channel
+                unsigned int noiseRed = rand() % (int)(red * noiseIntensity);
+                unsigned int noiseGreen = rand() % (int)(green * noiseIntensity);
+                unsigned int noiseBlue = rand() % (int)(blue * noiseIntensity);
 
-            // Add noise to the original pixel values
-            unsigned int newRed = min(red + noiseRed, 255u);
-            unsigned int newGreen = min(green + noiseGreen, 255u);
-            unsigned int newBlue = min(blue + noiseBlue, 255u);
+                // Add noise to the original pixel values
+                unsigned int newRed = min(red + noiseRed, 255u);
+                unsigned int newGreen = min(green + noiseGreen, 255u);
+                unsigned int newBlue = min(blue + noiseBlue, 255u);
 
-            // Update image with modified color channels
-            image(i, j, 0) = newRed;
-            image(i, j, 1) = newGreen;
-            image(i, j, 2) = newBlue;
+                // Update image with modified color channels
+                image(i, j, 0) = newRed;
+                image(i, j, 1) = newGreen;
+                image(i, j, 2) = newBlue;
+            }
         }
+        menu(image);
     }
-    cout << "Filter Applied...\n";
-    menu(image);
-}
 
 void sepia(Image image) //Loai
 {
