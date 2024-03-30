@@ -10,7 +10,7 @@ Authors: Loai Hataba,       ID: 20230553, Section: S24, Email: Loaiwleed2005@gma
 
 #include <iostream>
 #include <cmath>
-#include <vector>
+#include <string>
 #include <fstream>
 #include <algorithm>
 #include <cstdlib>
@@ -44,20 +44,21 @@ void oil(Image image);
 void sepia(Image image);
 
 /*To make:
-1- Endless program loop (Done)
-2- Safeguard unsigned colors (Done)
-3- Handle current image save and Load (Done)
-4- add automatic naming for file name in main menu (Done)
-5- add usage instructions (Done)
-6- safeguard all int input with chars (Done)
-7- add color choosing and a fancier frame *
+1- Endless program loop                             (Done)
+2- Safeguard unsigned colors                        (Done)
+3- Handle current image save and Load               (Done)
+4- add automatic naming for file name in main menu  (Done)
+5- add usage instructions                           (Done)
+6- safeguard all int input with chars               (Done)
+7- add color choosing and a fancier frame           *
 8- add save to !!!current image or load a new image (Done)
-9- not quit after 21) save image (Done)
-10- continue or load menu adjust (Done)
-11- proper validation (blur-oil) (Done)
-12- Safeguard menu choices (Done)
-13- Flowchart diagram *
-14- Comments *
+9- not quit after 21) save image                    (Done)
+10- continue or load menu adjust                    (Done)
+11- proper validation (blur-oil)                    (Done)
+12- Safeguard menu choices                          (Done)
+13- Flowchart diagram                               *
+14- Comments                                        *
+15- check file extension when quitting              (Done)
 */
 
 int main() {
@@ -203,11 +204,27 @@ void save(Image image, int back)
     string file_name;
     cout << "Choose the name of the new image (Default is .jpg):";
     cin >> file_name;
+    bool check = false;
     bool def = true;
     for (int i = 0; i < file_name.size(); ++i) {
         if (file_name[i] == '.')def = false;
     }
     if (def)file_name += ".jpg";
+    else if (not def) {
+        do
+        {
+            for (int i = 0; i < file_name.length(); i++) {
+                if (file_name[i] == '.') {
+                    string t = file_name.substr(i + 1, 3);
+                    if (t != "jpg" && t != "png" && t != "bmp" && t != "tga") {
+                        cout << "File extension unsupported (jpg, png, bmp, tga)!\n";
+                        menu(image);
+                    }
+                }
+            }
+        }
+        while (check);
+    }
     cout << "Saving " << file_name << "...\n";
     image.saveImage(file_name);
     cout << file_name << " has been saved successfully.\n";
@@ -522,20 +539,22 @@ void frame(Image image) //Loai (Done)
     }
     while (not test);
     frame_size = stoi(temp);
-    char ans;
+    string ans;
     cout << "1) Simple Frame\n"
             "2) Textured Frame\n"
+            "3) Fancy Frame\n"
             "Choice: ";
     cin >> ans;
-    while (ans != '1' && ans != '2') {
+    while (ans != "1" && ans != "2" && ans != "3") {
             cout << "Please Enter a valid choice!\n\n";
             cout << "1) Simple Frame\n"
                     "2) Textured Frame\n"
+                    "3) Fancy Frame\n"
                     "Choice: ";
             cin >> ans;
         }
 //        Simple frame
-    if (ans == '1')
+    if (ans == "1")
     {
         unsigned int Rcolor, Gcolor, Bcolor;
         char col = '0';
@@ -642,7 +661,7 @@ void frame(Image image) //Loai (Done)
         }
     }
 //        Textured Frame
-    else
+    else if (ans == "2")
     {
         unsigned int Rtexture; // Color of the texture (adjustable)
         unsigned int Gtexture;
@@ -773,6 +792,104 @@ void frame(Image image) //Loai (Done)
                 image(image.width - 1 - i, j, 0) = R;
                 image(image.width - 1 - i, j, 1) = G;
                 image(image.width - 1 - i, j, 2) = B;
+            }
+        }
+    }
+// Fancy frame
+    else
+    {
+        int lineThickness = 5;
+//      choose color
+        unsigned int Rcolor, Gcolor, Bcolor;
+        char col = '0';
+        while (col == '0') {
+            cout << "Frame color\n"
+                    "1) Colors\n"
+                    "2) Manual RGB values\n"
+                    "Choice: ";
+            cin >> col;
+            if (col == '1') {
+                char color_choice = '0';
+                while (color_choice == '0') {
+                    cout << "Colors:\n"
+                            "1) Red\n"
+                            "2) Blue\n"
+                            "3) Green\n"
+                            "4) Brown\n"
+                            "5) Yellow\n"
+                            "6) Turquoise\n"
+                            "Choice: ";
+                    cin >> color_choice;
+//                       Red
+                    if (color_choice == '1') {
+                        Rcolor = 255;
+                        Bcolor = 0;
+                        Gcolor = 0;
+                    }
+//                      Blue
+                    else if (color_choice == '2') {
+                        Rcolor = 0;
+                        Bcolor = 255;
+                        Gcolor = 0;
+                    }
+//                        Green
+                    else if (color_choice == '3') {
+                        Rcolor = 0;
+                        Bcolor = 0;
+                        Gcolor = 255;
+                    }
+//                        Brown
+                    else if (color_choice == '4') {
+                        Rcolor = 149;
+                        Bcolor = 23;
+                        Gcolor = 78;
+                    }
+//                        Yellow
+                    else if (color_choice == '5') {
+                        Rcolor = 225;
+                        Bcolor = 39;
+                        Gcolor = 206;
+                    }
+//                        Turquoise
+                    else if (color_choice == '6') {
+                        Rcolor = 51;
+                        Bcolor = 189;
+                        Gcolor = 230;
+                    } else {
+                        cout << "Please enter a valid option!\n";
+                    }
+                }
+            } else if (col == '2') {
+                cout << "Enter RGB values (Usage: R G B): ";
+                cin >> Rcolor >> Gcolor >> Bcolor;
+//                valid color values
+                while (Rcolor > 255 || Rcolor < 0 || Gcolor > 255 || Gcolor < 0 || Bcolor > 255 || Bcolor > 255) {
+                    cout << "Color Values should between 0 and 255\n";
+                    cout << "Enter Color values (Usage: R G B): ";
+                    cin >> Rcolor >> Gcolor >> Bcolor;
+                }
+            } else {
+                cout << "Please choose a valid option!\n";
+            }
+        }
+
+        for (int i = 0; i < image.width; i++) {
+            for (int j = 0; j < image.height; j++) {
+                if ((i < frame_size || i >= image.width - frame_size || j < frame_size || j >= image.height - frame_size) &&
+                    (i + j) % (frame_size / 10) == 0) {
+                    // Increase intensity of line colors to thicken the lines
+                    for (int dx = -lineThickness / 2; dx <= lineThickness / 2; dx++) {
+                        for (int dy = -lineThickness / 2; dy <= lineThickness / 2; dy++) {
+                            int x = i + dx;
+                            int y = j + dy;
+                            if (x >= 0 && x < image.width && y >= 0 && y < image.height) {
+                                image(x, y, 0) = (Rcolor + 50 <= 255) ? Rcolor + 50 : 255; // Red
+                                image(x, y, 1) = (Gcolor + 50 <= 255) ? Gcolor + 50 : 255; // Green
+                                image(x, y, 2) = (Bcolor + 50 <= 255) ? Bcolor + 50 : 255; // Blue
+                            }
+                        }
+                    }
+                }
             }
         }
     }
