@@ -1117,58 +1117,74 @@ void IR (Image image) { //Abdallah (Done)
     menu(image) ;
 }
 
-void tv(Image image) //Loai
-    {
-        // Seed the random number generator
-        srand(time(nullptr));
-        // Constants for noise intensity
-        double noiseIntensity; // Adjust as needed
-        string temp;
-        bool test;
-        do
-        {
-            test = true;
-            cout << "Choose intensity of noise (0.1-1): ";
-            cin >> temp;
-            for (auto digit: temp)
-            {
-                if (not isdigit(digit) && digit != '.')
-                {
-                    test = false;
-                }
-            }
+void tv(Image image) {
+    // Seed the random number generator
+    srand(time(nullptr));
+
+    // Constants for noise intensity
+    const double noiseIntensity = 0.5; // Adjust as needed
+
+    for (int i = 0; i < image.width; ++i) {
+        for (int j = 0; j < image.height; ++j) {
+            // Get color values
+            unsigned int red = image(i, j, 0);
+            unsigned int green = image(i, j, 1);
+            unsigned int blue = image(i, j, 2);
+
+            // Add noise to each channel
+            unsigned int noiseRed = rand() % (int)(red * noiseIntensity);
+            unsigned int noiseGreen = rand() % (int)(green * noiseIntensity);
+            unsigned int noiseBlue = rand() % (int)(blue * noiseIntensity);
+
+            // Add noise to the original pixel values
+            unsigned int newRed = min(red + noiseRed, 255u);
+            unsigned int newGreen = min(green + noiseGreen, 255u);
+            unsigned int newBlue = min(blue + noiseBlue, 255u);
+
+            // Update image with modified color channels
+            image(i, j, 0) = newRed;
+            image(i, j, 1) = newGreen;
+            image(i, j, 2) = newBlue;
         }
-        while (not test);
-        noiseIntensity = stod(temp);
-
-
-        for (int i = 0; i < image.width; ++i) {
-            for (int j = 0; j < image.height; ++j) {
-                // Get color values
-                unsigned int red = image(i, j, 0);
-                unsigned int green = image(i, j, 1);
-                unsigned int blue = image(i, j, 2);
-
-                // Add noise to each channel
-                unsigned int noiseRed = rand() % (int)(red * noiseIntensity);
-                unsigned int noiseGreen = rand() % (int)(green * noiseIntensity);
-                unsigned int noiseBlue = rand() % (int)(blue * noiseIntensity);
-
-                // Add noise to the original pixel values
-                unsigned int newRed = min(red + noiseRed, 255u);
-                unsigned int newGreen = min(green + noiseGreen, 255u);
-                unsigned int newBlue = min(blue + noiseBlue, 255u);
-
-                // Update image with modified color channels
-                image(i, j, 0) = newRed;
-                image(i, j, 1) = newGreen;
-                image(i, j, 2) = newBlue;
-            }
-        }
-        menu(image);
     }
+    menu(image);
+}
 
-void sepia(Image image) //Loai
+
+
+//void tv(Image image) //Loai
+//{
+//    // Seed the random number generator
+//    srand(time(nullptr));
+//    const double noiseIntensity = 0.5;
+//
+//    for (int i = 0; i < image.width; ++i) {
+//        for (int j = 0; j < image.height; ++j) {
+//            // Get color values
+//            unsigned int red = image(i, j, 0);
+//            unsigned int green = image(i, j, 1);
+//            unsigned int blue = image(i, j, 2);
+//
+//            // Add noise to each channel
+//            unsigned int noiseRed = rand() % (int)(red * noiseIntensity);
+//            unsigned int noiseGreen = rand() % (int)(green * noiseIntensity);
+//            unsigned int noiseBlue = rand() % (int)(blue * noiseIntensity);
+//
+//            // Add noise to the original pixel values
+//            unsigned int newRed = min(red + noiseRed, 255u);
+//            unsigned int newGreen = min(green + noiseGreen, 255u);
+//            unsigned int newBlue = min(blue + noiseBlue, 255u);
+//
+//            // Update image with modified color channels
+//            image(i, j, 0) = newRed;
+//            image(i, j, 1) = newGreen;
+//            image(i, j, 2) = newBlue;
+//        }
+//    }
+//    menu(image);
+//}
+
+void sepia(Image image) //Loai (Done)
 {
     for (int i = 0; i < image.width; ++i) {
         for (int j = 0; j < image.height; ++j) {
