@@ -1,7 +1,7 @@
 /*
 Program: Image Processor (baby photoshop)
 Description: A program that applies several filters and modifications to a photo.
-Version: 3.0
+Version: 4.0
 Date: 20/3/2024
 Authors: Loai Hataba,       ID: 20230553, Section: S24, Email: Loaiwleed2005@gmail.com,       Filters: 3, 6, 9, 12
          Abdallah mohammed, ID: 20230231, Section: S24, Email: abdallamohammmed649@gmail.com, Filters: 2, 5, 8, 11
@@ -15,6 +15,7 @@ Authors: Loai Hataba,       ID: 20230553, Section: S24, Email: Loaiwleed2005@gma
 #include <algorithm>
 #include <cstdlib>
 #include <ctime>
+#include <vector>
 #include "Image_Class.h"
 using namespace std;
 
@@ -50,7 +51,7 @@ void sepia(Image image);
 4- add automatic naming for file name in main menu  (Done)
 5- add usage instructions                           (Done)
 6- safeguard all int input with chars               (Done)
-7- add color choosing and a fancier frame           *
+7- add color choosing and a fancier frame           (Done)
 8- add save to !!!current image or load a new image (Done)
 9- not quit after 21) save image                    (Done)
 10- continue or load menu adjust                    (Done)
@@ -59,13 +60,13 @@ void sepia(Image image);
 13- Flowchart diagram                               *
 14- Comments                                        *
 15- check file extension when quitting              (Done)
+16- Fix tv filter                                   (Done)
 */
 
 int main() {
     bool flag = true;
     while (flag) {
-        cout << "\n\n      Welcome to Photoshop on a budget! \n"
-                "       (Last updated to the A3 V6.0!!)\n\n";
+        cout << "\n\n      Welcome to Photoshop on a budget! \n\n";
         string file_name;
         cout << "Please enter the image name (Default is .jpg): ";
         cin >> file_name;
@@ -470,6 +471,7 @@ void darken_lighten(Image image) //Hossam (Done)
     cout << "Filter Applied...\n";
     menu(image) ;
 }
+
 void crop(Image image) //Abdallah (Done)
 {
     int x, y, w, h;
@@ -1100,7 +1102,8 @@ void look_Purple(Image image) //Abdallah (Done)
     cout << "Filter Applied...\n";
     menu(image) ;
 }
-void IR (Image image) { //Abdallah (Done)
+void IR (Image image) //Abdallah (Done)
+{
     cout <<"Applying Infrared (IR) Filter....................\n";
     for (int i = 0; i < image.width; ++i) {
         for (int j = 0; j < image.height; ++j) {
@@ -1114,27 +1117,47 @@ void IR (Image image) { //Abdallah (Done)
         }
     }
     cout << "Filter Applied...\n";
-    menu(image) ;
+    menu(image);
 }
 
-void tv(Image image) {
+void tv(Image image) //Loai (Done)
+{
     // Seed the random number generator
     srand(time(nullptr));
 
     // Constants for noise intensity
-    const double noiseIntensity = 0.5; // Adjust as needed
+    const double noiseIntensity = 1; // Adjust as needed
 
-    for (int i = 0; i < image.width; ++i) {
-        for (int j = 0; j < image.height; ++j) {
+    int width = image.width;
+    int height = image.height;
+
+//    cout << "Image width: " << width << ", height: " << height << endl;
+
+    // Generate random numbers outside the loop
+    vector<int> randomValues(width * height * 3);
+    for (int i = 0; i < width * height * 3; ++i) {
+        randomValues[i] = rand() % 256; // Generate random numbers between 0 and 255
+    }
+
+    int count = 0;
+    for (int i = 0; i < width; ++i) {
+        for (int j = 0; j < height; ++j) {
             // Get color values
-            unsigned int red = image(i, j, 0);
-            unsigned int green = image(i, j, 1);
-            unsigned int blue = image(i, j, 2);
+            unsigned int red = image.getPixel(i, j, 0);
+            unsigned int green = image.getPixel(i, j, 1);
+            unsigned int blue = image.getPixel(i, j, 2);
 
-            // Add noise to each channel
-            unsigned int noiseRed = rand() % (int)(red * noiseIntensity);
-            unsigned int noiseGreen = rand() % (int)(green * noiseIntensity);
-            unsigned int noiseBlue = rand() % (int)(blue * noiseIntensity);
+//            cout << "Pixel at (" << i << ", " << j << "): ";
+//            cout << "Red: " << red << ", Green: " << green << ", Blue: " << blue << endl;
+
+            // Add noise to each channel, skipping if the color value is below a threshold
+            const int threshold = 5; // Adjust as needed
+            unsigned int noiseRed = (red < threshold) ? 0 : randomValues[count] % static_cast<int>(red * noiseIntensity);
+            unsigned int noiseGreen = (green < threshold) ? 0 : randomValues[count + 1] % static_cast<int>(green * noiseIntensity);
+            unsigned int noiseBlue = (blue < threshold) ? 0 : randomValues[count + 2] % static_cast<int>(blue * noiseIntensity);
+
+            // Debugging noise values
+//            cout << "Noise - Red: " << noiseRed << ", Green: " << noiseGreen << ", Blue: " << noiseBlue << endl;
 
             // Add noise to the original pixel values
             unsigned int newRed = min(red + noiseRed, 255u);
@@ -1142,47 +1165,16 @@ void tv(Image image) {
             unsigned int newBlue = min(blue + noiseBlue, 255u);
 
             // Update image with modified color channels
-            image(i, j, 0) = newRed;
-            image(i, j, 1) = newGreen;
-            image(i, j, 2) = newBlue;
+            image.setPixel(i, j, 0, newRed);
+            image.setPixel(i, j, 1, newGreen);
+            image.setPixel(i, j, 2, newBlue);
+
+            count += 3;
         }
     }
+    cout << "Filter Applied...\n";
     menu(image);
 }
-
-
-
-//void tv(Image image) //Loai
-//{
-//    // Seed the random number generator
-//    srand(time(nullptr));
-//    const double noiseIntensity = 0.5;
-//
-//    for (int i = 0; i < image.width; ++i) {
-//        for (int j = 0; j < image.height; ++j) {
-//            // Get color values
-//            unsigned int red = image(i, j, 0);
-//            unsigned int green = image(i, j, 1);
-//            unsigned int blue = image(i, j, 2);
-//
-//            // Add noise to each channel
-//            unsigned int noiseRed = rand() % (int)(red * noiseIntensity);
-//            unsigned int noiseGreen = rand() % (int)(green * noiseIntensity);
-//            unsigned int noiseBlue = rand() % (int)(blue * noiseIntensity);
-//
-//            // Add noise to the original pixel values
-//            unsigned int newRed = min(red + noiseRed, 255u);
-//            unsigned int newGreen = min(green + noiseGreen, 255u);
-//            unsigned int newBlue = min(blue + noiseBlue, 255u);
-//
-//            // Update image with modified color channels
-//            image(i, j, 0) = newRed;
-//            image(i, j, 1) = newGreen;
-//            image(i, j, 2) = newBlue;
-//        }
-//    }
-//    menu(image);
-//}
 
 void sepia(Image image) //Loai (Done)
 {
