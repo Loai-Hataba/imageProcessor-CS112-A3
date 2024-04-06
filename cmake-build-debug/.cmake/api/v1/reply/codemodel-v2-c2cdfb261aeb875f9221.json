@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "F:/Loai/School/Programming/C/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/cmake-build-debug",
-		"source" : "F:/Loai/School/Programming/C/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3"
+		"build" : "F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/cmake-build-debug",
+		"source" : "F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3"
 	},
 	"version" : 
 	{

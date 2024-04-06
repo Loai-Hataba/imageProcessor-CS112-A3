@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "f:/Loai/School/Programming/C/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/cmake-build-debug-event-trace"
+			"value" : "f:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/cmake-build-debug-event-trace"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -575,7 +575,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "F:/Loai/School/Programming/C/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/cmake-build-debug-event-trace/CMakeFiles/pkgRedirects"
+			"value" : "F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/cmake-build-debug-event-trace/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -647,7 +647,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "F:/Loai/School/Programming/C/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3"
+			"value" : "F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -1291,7 +1291,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "F:/Loai/School/Programming/C/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/cmake-build-debug-event-trace"
+			"value" : "F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/cmake-build-debug-event-trace"
 		},
 		{
 			"name" : "imageProcessor_CS112_A3_IS_TOP_LEVEL",
@@ -1315,7 +1315,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "F:/Loai/School/Programming/C/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3"
+			"value" : "F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3"
 		}
 	],
 	"kind" : "cache",
