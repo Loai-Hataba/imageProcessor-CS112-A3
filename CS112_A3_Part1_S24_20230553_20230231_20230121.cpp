@@ -24,6 +24,7 @@ void menu(Image image);
 void choose_filter(string ans, Image image);
 void save(Image image, int back = 0);
 string file_check(string file_name);
+void GetInput(int&w , int&h , int&x ,int&y , Image image ) ;
 /*--------------------------------------------*/
 void grayscale(Image image);
 void black_white(Image image);
@@ -37,8 +38,6 @@ void frame(Image image);
 void edges(Image image);
 void resize(Image image);
 void blur(Image image);
-/*--------------------------------------------*/
-void GetInput(int&w , int&h , int&x ,int&y , Image image ) ;
 /*--------------------------------------------*/
 void look_Purple(Image image);
 void IR(Image image);
