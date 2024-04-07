@@ -38,11 +38,14 @@ void edges(Image image);
 void resize(Image image);
 void blur(Image image);
 /*--------------------------------------------*/
+void GetInput(int&w , int&h , int&x ,int&y , Image image ) ;
+/*--------------------------------------------*/
 void look_Purple(Image image);
 void IR(Image image);
 void tv(Image image);
 void oil(Image image);
 void sepia(Image image);
+void Pixelate (Image image) ;
 
 /*To make:
 1- Endless program loop                             (Done)
@@ -109,7 +112,7 @@ void menu(Image image) {
             "17) Sepia\n"
             "18) \n"
             "19) \n"
-            "20) \n"
+            "20) Pixelate \n"
             "21) Save Image\n"
             "22) Load Image\n"
             "23) Exit\n"
@@ -159,7 +162,7 @@ void choose_filter(string ans, Image image) {
     } else if (ans == "19") {
         cout << "Under Construction...\n";
     } else if (ans == "20") {
-        cout << "Under Construction...\n";
+        Pixelate(image);
     }
 //    Save
     else if (ans == "21") {
@@ -473,53 +476,73 @@ void darken_lighten(Image image) //Hossam (Done)
 }
 
 void crop(Image image) //Abdallah (Done)
-{
-    int x, y, w, h;
-    // x and y reference  to the starting  point
-    // w and h reference to the width and the height of the cropped image
-    cout << "The dimensions of the image are :  " << image.width << " * " << image.height << endl;
-    cout << "Please enter the starting point (x, y)" << endl;
-    cout << "The Staring point of X-axis :  ";
-    cin.ignore(1);
-    cin >> x;
-    cout << "The Staring point of Y-axis :  ";
-    cin.ignore(1);
-    cin >> y;
-    cout << "\n=============================================="<<endl ;
-    cout << "Please enter the dimensions of the cropped image \n" << endl;
-    cout << "The Width of the Cropped Image :  ";
-    cin.ignore(1);
-    cin >> w;
-    cout << "The Height of the Cropped Image :  ";
-    cin.ignore(1);
-    cin >> h;
-    cout<<"\n================================================"<<endl;
-    if (isdigit(x) && isdigit(y) && isdigit(w) && isdigit(h)) {
-        Image cropped_Img(w, h); //create a new image to store the cropped one
-        for (int i = 0; i < w; ++i) {
-            for (int j = 0; j < h; ++j) {
-                for (int k = 0; k < 3; ++k) {
-                    cropped_Img(i, j, k) = image(i + x, j + y, k);
-                    // we add x to i and add y to j to start the image  at the starting points
+{  while (true) {
+        int x, y, w, h;
+        // x and y reference  to the starting  point
+        // w and h reference to the width and the height of the cropped image
+        cout << "The dimensions of the image are :  " << image.width << " * " << image.height << endl;
+        cout << "Please enter the starting point (x, y)" << endl;
+        cout << "  The Staring point of X-axis :  ";
+        cin.ignore(1);
+        cin >> x;
+        if(x > 0) {
+            cout << "The Staring point of Y-axis :  ";
+            cin.ignore(1);
+            cin >> y;
+            if (y > 0 ){
+                cout << "\n==============================================" << endl;
+                cout << "Please enter the dimensions of the cropped image \n" << endl;
+                cout << "  The Width of the Cropped Image :  ";
+                cin.ignore(1);
+                cin >> w ;
+                if (w > 0){
+                    cout << "The Height of the Cropped Image :  ";
+                    cin.ignore(1);
+                    cin >> h;
+                    if (h > 0)
+                    {  Image cropped_Img(w, h); //create a new image to store the cropped one
+                        for (int i = 0; i < w; ++i) {
+                            for (int j = 0; j < h; ++j) {
+                                for (int k = 0; k < 3; ++k) {
+                                    cropped_Img(i, j, k) = image(i + x, j + y, k);
+                                    // we add x to i and add y to j to start the image  at the starting points
+                                }}}
+                        cout << "Filter Applied...\n";
+                        menu(cropped_Img); }
+                    else if ((x + w) > image.width || (y + h) > image.height) {
+                        cout << "Out of boundaries , please enter a valid dimensions \n ";
+                        cin.clear();
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    }
+                    else  {
+                        cout << "\nInvalid,Please Enter Valid height  !!\n\n";
+                        cin.clear();
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');}
+
+                }
+                else  {
+                    cout << "\nInvalid,Please Enter Valid Width  !!\n\n";
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 }
             }
+            else  {
+                cout << "\nInvalid,PLease enter a valid starting points\n\n";
+                cin.clear(); // if the user insert any invalid inout in y
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
+
         }
-        cout << "Filter Applied...\n";
-        menu(cropped_Img);
-    }
-    if (!isdigit(x) || !isdigit(y)){
-        cout <<" Invalid,PLease enter a valid starting points\n" ;
-        crop(image);
-    }
-    else if (w == 0 || h == 0){
-        cout << "Invalid,Please Enter Valid Dimensions  !!\n ";
-        crop(image) ;
-    }
-    else if ((x + w )> image.width || (y + h) > image.height ){
-        cout << "Out of boundaries , please enter a valid dimensions \n " ;
-        crop(image) ;
-    }
-}
+        else  {
+            cout << "\nInvalid,PLease enter a valid starting points\n\n";
+            cin.clear(); // if the user insert any invalid inout in x
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+}}
+
+
+
+
 
 void frame(Image image) //Loai (Done)
 {
@@ -970,34 +993,44 @@ void edges(Image image) //Hossam (Done)
 }
 
 void resize(Image image) //Abdallah (Done)
-{   cout <<"The original size of the image is :  "<<image.width <<"x"<<image.height <<endl;
-    int w, h;
-    cout <<"Please enter the new dimensions (Width & Height)\n" ;
-    cout <<"The Width : " ;
-    cin >> w ;                     // getting the values of new dimensions
-    cout << "\nThe Height : " ;
-    cin >> h ;
-    cout << "\n======================================"<<endl;
-    Image resized_Img (w,h) ; //create a new image to store the resized one
-    float  s ; // the ratio between the width of the original img and the new width
-    float  r ; //the ratio between the height of the original img and the new height
-    // ===========================================================
-    s = static_cast<float>(image.width) / w  ;
-    r = static_cast<float>(image.height) / h  ;
-    //=============================================================
-    for (int i = 0; i < w ; ++i) {
-        for (int j = 0; j <  h; ++j) {
-            for (int k = 0; k < 3  ; ++k) {
-                int new1 = round(s*i) ; // we make s and i normal integers
-                int new2 = round(r*j);
-                resized_Img (i ,j ,k) = image (new1, new2  , k) ;
-
-            }
+{  while(true) {
+        cout << "The original size of the image is :  " << image.width << "x" << image.height << endl;
+        int w, h;
+        cout << "Please enter the new dimensions (Width & Height)\n";
+        cout << " The Width : ";
+        cin >> w;                     // getting the values of new dimensions
+        cin.ignore(1);
+        cout << "The Height : ";
+        cin >> h;
+        cin.ignore(1);
+        if (w > 0 && h > 0) {
+            Image resized_Img(w, h); //create a new image to store the resized one
+            float s; // the ratio between the width of the original img and the new width
+            float r; //the ratio between the height of the original img and the new height
+            // -----------------------------------------------------------
+            s = static_cast<float>(image.width) / w;
+            r = static_cast<float>(image.height) / h;
+            //------------------------------------------------------------
+            for (int i = 0; i < w; ++i) {
+                for (int j = 0; j < h; ++j) {
+                    for (int k = 0; k < 3; ++k) {
+                        int new1 = round(s * i); // we make s and i normal integers
+                        int new2 = round(r * j);
+                        resized_Img(i, j, k) = image(new1, new2, k);}}}
+            cout << "Filter Applied...\n";
+            menu(resized_Img);
+        } else {
+            cout << "\n\nInvalid,Please enter Valid Dimensions\n "
+                    "---> Must be greater than zero  !\n\n";
+            // Clear the input buffer in case of invalid input
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
+
     }
-    cout << "Filter Applied...\n";
-    menu(resized_Img) ;
 }
+
+
 
 void blur(Image image) //Loai (Done)
 {
@@ -1088,7 +1121,7 @@ void look_Purple(Image image) //Abdallah (Done)
                 newRed = 255 ;
             }
             if (newBlue > 255) {
-                newBlue = 255 ;
+                newBlue = 255 ;    // to set every channel which is greater than 255 to (255)
             }
             if (newGreen > 255) {
                 newGreen= 255 ;
@@ -1290,3 +1323,98 @@ void oil(Image image) //Loai (Done)
     cout << "Filter Applied...\n";
     menu(oil_image);
 }
+void Pixelate(Image image) {
+    int Pixel_Size = 0;  // This variable handles the size of each pixel
+    while (true) {
+        try {
+            cout << "If The Pixelation Level is higher The image will be Distorted\n"
+                 << "Hint ---> Pixelation level is the size of each pixel\n";
+            cout << "Please enter the pixelation level :  ";
+            cin >> Pixel_Size;
+            if (Pixel_Size > 0) {
+                for (int i = 0; i < image.width; i += Pixel_Size) {
+                    // Set the new size of the width of each pixel
+                    for (int j = 0; j < image.height; j += Pixel_Size) {
+                        // Set the new size of the height of each pixel
+                        unsigned int avgRed = 0, avgGreen = 0, avgBlue = 0;
+                        int counter = 0;
+                        for (int x = i; x < i + Pixel_Size && x < image.width; ++x) {
+                            for (int y = j; y < j + Pixel_Size && y < image.height; ++y) {
+                                avgRed += image(x, y, 0);
+                                avgGreen += image(x, y, 1);
+                                avgBlue += image(x, y, 2);
+                                // Get the sum of each channel in the new pixel
+                                counter++;
+                            }
+                        }
+                        avgRed /= counter;
+                        avgGreen /= counter;
+                        avgBlue /= counter;
+                        for (int x = i; x < i + Pixel_Size && x < image.width; ++x) {
+                            for (int y = j; y < j + Pixel_Size && y < image.height; ++y) {
+                                image(x, y, 0) = avgRed;
+                                image(x, y, 1) = avgGreen;
+                                image(x, y, 2) = avgBlue;
+                            }
+                        }
+                    }
+                }
+                cout << "Pixelation Filter Applied...\n";
+                menu(image);
+            } else {
+                throw Pixel_Size;
+            }
+        } catch (int myNum) {
+            cout << "Invalid input, Please insert numbers!!\n";
+            cout << "=========================================\n" ;
+            // Clear the input buffer in case of invalid input
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+    }
+}
+ void GetInput(int&w, int&h , int&x ,int&y, Image image ) {
+
+
+    }
+
+
+
+
+/*
+ *
+ * The line `cin.ignore(numeric_limits<streamsize>::max(), '\n');` is a call to the `ignore` function from the `cin` object, which is used to clear the input buffer.
+
+Here's a breakdown of the parameters:
+
+1. `numeric_limits<streamsize>::max()`: This part retrieves the maximum value that can be stored in a `streamsize` data type.
+ `streamsize` is a data type used for stream buffer sizes. `numeric_limits` is a template class in the `<limits>` header
+ , and its `max()` function returns the maximum value representable by the specified data type
+ . In this case
+ , it returns the maximum value representable by `streamsize`. This value is used to specify the maximum number of characters
+ to extract and discard from the input stream.
+
+2. `'\n'`: This character specifies the delimiter until which the extraction will occur.
+ In this case, it's the newline character (`'\n'`). It indicates that `cin` should ignore characters in the input buffer
+ until it encounters a newline character. This is typically used to clear any remaining characters in the input buffer
+ after reading a line of input.
+
+So, `cin.ignore(numeric_limits<streamsize>::max(), '\n');` essentially tells the program to ignore and discard all characters
+ in the input buffer until it reaches a newline character (`'\n'`). This is commonly used after using `cin` to read input,
+ especially when there might be extra characters left in the input buffer. It ensures that the input buffer is cleared before
+ further input operations.
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ * */
