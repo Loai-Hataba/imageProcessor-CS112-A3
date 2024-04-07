@@ -5,6 +5,8 @@ Item {
     width: 115
     height: 69
 
+    property alias buttonText: text1.text // This is the new property alias
+
     Rectangle {
         id: rectangle2
         x: 0
@@ -29,11 +31,13 @@ Item {
 
         Text {
             id: text1
-            x: 17
-            y: 10
+            x: 4
+            y: 14
+            width: 107
+            height: 36
             color: "#ffffff"
-            text: qsTr("Filter")
-            font.pixelSize: 32
+            text: buttonText // Use the property alias here
+            font.pixelSize: 15
             font.family: "Verdana"
         }
     }

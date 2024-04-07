@@ -31,7 +31,7 @@ Rectangle {
     }
 
     Rectangle {
-        id: rectangle
+        id: image_screen
         x: 375
         y: 172
         width: 1363
@@ -42,9 +42,9 @@ Rectangle {
         Image {
             id: image
             x: 0
-            y: 8
+            y: 0
             width: 1363
-            height: 705
+            height: 713
             source: "qrc:/qtquickplugin/images/template_image.png"
             fillMode: Image.PreserveAspectFit
         }
@@ -107,83 +107,29 @@ Rectangle {
                 Filter_button {
                     id: filter_button
                 }
-
-                Filter_button {
-                    id: filter_button1
-                }
-
-                Filter_button {
-                    id: filter_button2
-                }
-
-                Filter_button {
-                    id: filter_button3
-                }
-
-                Filter_button {
-                    id: filter_button4
-                }
-
-                Filter_button {
-                    id: filter_button5
-                }
-
-                Filter_button {
-                    id: filter_button6
-                }
-
-                Filter_button {
-                    id: filter_button7
-                }
-
-                Filter_button {
-                    id: filter_button8
-                }
-
-                Filter_button {
-                    id: filter_button9
-                }
-
-                Filter_button {
-                    id: filter_button10
-                }
-
-                Filter_button {
-                    id: filter_button11
-                }
-
-                Filter_button {
-                    id: filter_button12
-                }
-
-                Filter_button {
-                    id: filter_button13
-                }
-
-                Filter_button {
-                    id: filter_button14
-                }
-
-                Filter_button {
-                    id: filter_button15
-                }
-
-                Filter_button {
-                    id: filter_button16
-                }
-
-                Filter_button {
-                    id: filter_button17
-                }
-
-                Filter_button {
-                    id: filter_button18
-                }
-
-                Filter_button {
-                    id: filter_button19
-                }
             }
+        }
+    }
+
+    Item {
+        id: item1
+        x: 50
+        y: 964
+        width: 215
+        height: 76
+
+        MouseArea {
+            id: mouseArea
+            anchors.fill: parent
+        }
+
+        Rectangle {
+            id: rectangle
+            x: 45
+            y: -9
+            width: 200
+            height: 200
+            color: "#ffffff"
         }
     }
 }
