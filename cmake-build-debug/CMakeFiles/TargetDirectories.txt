@@ -1,3 +1,3 @@
-F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/cmake-build-debug/CMakeFiles/imageProcessor-CS112-A3.dir
-F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/cmake-build-debug/CMakeFiles/edit_cache.dir
-F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/Lenovo/Desktop/c++/assignments/yarab ne5las/imageProcessor-CS112-A3/cmake-build-debug/CMakeFiles/imageProcessor-CS112-A3.dir
+C:/Users/Lenovo/Desktop/c++/assignments/yarab ne5las/imageProcessor-CS112-A3/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Lenovo/Desktop/c++/assignments/yarab ne5las/imageProcessor-CS112-A3/cmake-build-debug/CMakeFiles/rebuild_cache.dir
