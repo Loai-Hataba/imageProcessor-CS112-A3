@@ -38,10 +38,12 @@ void edges(Image image);
 void resize(Image image);
 void blur(Image image);
 /*--------------------------------------------*/
+void Sunlight(Image image);
 void look_Purple(Image image);
 void IR(Image image);
 void tv(Image image);
 void oil(Image image);
+void Skewed(Image image);
 void sepia(Image image);
 void Pixelate (Image image) ;
 
@@ -108,8 +110,8 @@ void menu(Image image) {
             "15) TV\n"
             "16) Oil Painting\n"
             "17) Sepia\n"
-            "18) \n"
-            "19) \n"
+            "18) Sunlight\n"
+            "19) Skewed\n"
             "20) Pixelate \n"
             "21) Save Image\n"
             "22) Load Image\n"
@@ -156,9 +158,9 @@ void choose_filter(string ans, Image image) {
     } else if (ans == "17") {
         sepia(image);
     } else if (ans == "18") {
-        cout << "Under Construction...\n";
+        Sunlight(image);
     } else if (ans == "19") {
-        cout << "Under Construction...\n";
+        Skewed(image);
     } else if (ans == "20") {
         Pixelate(image);
     }
@@ -447,22 +449,32 @@ void darken_lighten(Image image) //Hossam (Done)
 {
     cout << "1) darken   2)lighten\n"
             "Choice: ";
-    int choice;
+    int  degree;
+    char choice;
     cin >> choice;              //choice whether you want to darken your image or lighten it
+    while (choice!='1'&&choice!='2'){
+        cout<<"Invalid choice please enter a valid value:";
+        cin>>choice;
+    }
+    string choice2;
+    if (choice == '1')choice2 = "darkening";
+    else choice2 = "lighting";
+    cout << "choose the level of " << choice2 << " from 0 to 100 percent :"; //choosing level of darkening or lighting
+    cin >> degree;
     for (int i = 0; i < image.width; i++) {
         for (int j = 0; j < image.height; j++) {
             //getting color values
             int red = image(i, j, 0);
             int green = image(i, j, 1);
             int blue = image(i, j, 2);
-            if (choice == 1) { //darkening
-                red = red - red / 2;                //take the original value of the color and subtracting it from its half value thus darkening it
-                green =green - green / 2;
-                blue =blue - blue / 2;
+            if (choice == '1') { //darkening
+                red = red - red * degree /100;                //take the original value of the color and subtracting it from its determined fraction value thus darkening it
+                green = green - green * degree / 100;
+                blue = blue - blue * degree / 100;
             } else {
-                red = min(red + red / 2, 255);      // same as darkening but adding its half instead and taking the minimum of it and the color white in case the addition exceeds 255
-                green = min(green + green / 2, 255);
-                blue = min(blue + blue / 2, 255);
+                red = min(red + red *degree / 100,255);      // same as darkening but adding its determined fraction instead and taking the minimum of it and the color white in case the addition exceeds 255
+                green = min(green + green * degree / 100, 255);
+                blue = min(blue + blue * degree / 100, 255);
             }
             image(i, j, 2) = blue;
             image(i, j, 1) = green;
@@ -470,7 +482,7 @@ void darken_lighten(Image image) //Hossam (Done)
         }
     }
     cout << "Filter Applied...\n";
-    menu(image) ;
+    menu(image);
 }
 
 void crop(Image image) //Abdallah (Done)
@@ -1099,6 +1111,23 @@ void blur(Image image) //Loai (Done)
 }
 
 //  ********************** Bonus ****************************
+void Sunlight(Image image) {
+    for (int i = 0; i < image.width; i++) {
+        for (int j = 0; j < image.height; j++) {
+            int red = image(i, j, 0);
+            int green = image(i, j, 1);
+            int blue = image(i, j, 2);
+            image(i, j, 0) = min(red + 30, 255);
+            image(i, j, 1) = min(green + 30, 255);
+            image(i, j, 2) = min(blue * 8 / 10, 255);
+        }
+    }
+    cout << "Filter Applied...\n";
+    menu(image);
+
+}
+
+
 void look_Purple(Image image) //Abdallah (Done)
 {
     for (int i = 0; i < image.width; i++) {
@@ -1317,6 +1346,42 @@ void oil(Image image) //Loai (Done)
     menu(oil_image);
 }
 
+void Skewed(Image image) {
+    Image white(image.width*3, image.height);
+    for (int i = 0; i < white.height; ++i) {
+        for (int j = 0; j < white.width; ++j) {
+            for (int k = 0; k < 3; ++k) {
+                white(j, i, k) = 255;
+            }
+        }
+    }
+    int base = image.width/5;
+    int cnt = image.height;
+    cout<<"Enter the degree of skewness: (1-80)"<<endl;
+    string deg;cin>>deg;
+    bool flag = true;
+    while(flag) {
+        if (!isdigit(deg[0]) || !isdigit(deg[1]) || stoi(deg)<1 ||stoi(deg)>80) {
+            cout << "invalid value please enter a valid degree(1-80):";
+            cin >> deg;
+        }
+        else flag = false;
+    }
+    int deg1 = stoi(deg);
+    deg1 = abs(deg1 - 81);
+    int dinom = max(deg1/20,1);
+    //cout<<dinom;
+    for (int i = 0; i < image.height; ++i) {
+        for (int j = 0; j < image.width; ++j) {
+            for (int k = 0; k < 3; ++k) {
+                white(j+cnt+ base, i, k) = image(j, i, k);
+            }
+        }
+        if (i%dinom == 0)cnt--;
+    }
+    menu(white);
+
+}
 
 void Pixelate(Image image) {
     int Pixel_Size = 0;  // This variable handles the size of each pixel
