@@ -31,13 +31,15 @@ Item {
 
         Text {
             id: text1
-            x: 4
-            y: 14
-            width: 107
+            x: 14
+            y: 17
+            width: 93
             height: 36
             color: "#ffffff"
             text: buttonText // Use the property alias here
             font.pixelSize: 15
+            font.bold: true
+            wrapMode: Text.WordWrap
             font.family: "Verdana"
         }
     }

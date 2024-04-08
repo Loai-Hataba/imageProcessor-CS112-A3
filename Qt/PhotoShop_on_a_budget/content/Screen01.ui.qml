@@ -15,7 +15,7 @@ import QtQuick.Studio.Components
 Rectangle {
     id: main_screen
     width: Constants.width
-    height: Constants.height
+    height: 1050
     color: "#333333"
     radius: 0
     border.color: "#333333"
@@ -105,31 +105,117 @@ Rectangle {
                 spacing: 22
 
                 Filter_button {
-                    id: filter_button
+                    id: grayscale
+                    buttonText: "Grayscale"
+                }
+
+                Filter_button {
+                    id: bw
+                    buttonText: "Black &White"
+                }
+
+                Filter_button {
+                    id: inverted
+                    buttonText: "Inverted"
+                }
+
+                Filter_button {
+                    id: merge
+                    buttonText: "Merge"
+                }
+
+                Filter_button {
+                    id: flip
+                    buttonText: "Flip"
+                }
+
+                Filter_button {
+                    id: rotate
+                    buttonText: "Rotate"
+                }
+
+                Filter_button {
+                    id: darken_lighten
+                    buttonText: "Darken-Lighten"
+                }
+
+                Filter_button {
+                    id: crop
+                    buttonText: "Crop"
+                }
+
+                Filter_button {
+                    id: frame
+                    buttonText: "Frame"
+                }
+
+                Filter_button {
+                    id: edge
+                    buttonText: "Edge"
+                }
+
+                Filter_button {
+                    id: resize
+                    buttonText: "Resize"
+                }
+
+                Filter_button {
+                    id: blur
+                    buttonText: "Blur"
+                }
+
+                Filter_button {
+                    id: purple
+                    buttonText: "Purple"
+                }
+
+                Filter_button {
+                    id: ir
+                    buttonText: "Infrared"
+                }
+
+                Filter_button {
+                    id: tv
+                    buttonText: "T.V"
+                }
+
+                Filter_button {
+                    id: oil
+                    buttonText: "Oil Painting"
+                }
+
+                Filter_button {
+                    id: sepia
+                    buttonText: "Sepia"
+                }
+
+                Filter_button {
+                    id: pixelate
+                    buttonText: "Pixelate"
+                }
+
+                Filter_button {
+                    id: filter_button18
+                    buttonText: ""
+                }
+
+                Filter_button {
+                    id: filter_button19
+                    buttonText: ""
                 }
             }
         }
     }
 
-    Item {
-        id: item1
-        x: 50
-        y: 964
-        width: 215
-        height: 76
+    Save_button {
+        id: save_button
+        x: 40
+        y: 922
+    }
 
-        MouseArea {
-            id: mouseArea
-            anchors.fill: parent
-        }
-
-        Rectangle {
-            id: rectangle
-            x: 45
-            y: -9
-            width: 200
-            height: 200
-            color: "#ffffff"
-        }
+    MyMyLoad_button {
+        id: myMyLoad_button
+        x: 200
+        y: 922
     }
 }
