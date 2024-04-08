@@ -24,7 +24,6 @@ void menu(Image image);
 void choose_filter(string ans, Image image);
 void save(Image image, int back = 0);
 string file_check(string file_name);
-void GetInput(int&w , int&h , int&x ,int&y , Image image ) ;
 /*--------------------------------------------*/
 void grayscale(Image image);
 void black_white(Image image);
@@ -32,7 +31,7 @@ void inverted(Image image);
 void merge(Image image);
 void flip(Image image);
 void rotate(Image image);
-void darken_lighten(Image image);
+ void darken_lighten(Image image);
 void crop(Image image);
 void frame(Image image);
 void edges(Image image);
@@ -476,7 +475,7 @@ void darken_lighten(Image image) //Hossam (Done)
 
 void crop(Image image) //Abdallah (Done)
 {  while (true) {
-        int x, y, w, h;
+        int x , y , w , h ;
         // x and y reference  to the starting  point
         // w and h reference to the width and the height of the cropped image
         cout << "The dimensions of the image are :  " << image.width << " * " << image.height << endl;
@@ -484,22 +483,24 @@ void crop(Image image) //Abdallah (Done)
         cout << "  The Staring point of X-axis :  ";
         cin.ignore(1);
         cin >> x;
-        if(x > 0) {
+        if (x > 0) {
             cout << "The Staring point of Y-axis :  ";
             cin.ignore(1);
             cin >> y;
-            if (y > 0 ){
-                cout << "\n==============================================" << endl;
-                cout << "Please enter the dimensions of the cropped image \n" << endl;
+            if (y > 0) {
+                cout << "\nPlease enter the dimensions of the cropped image \n" ;
                 cout << "  The Width of the Cropped Image :  ";
                 cin.ignore(1);
-                cin >> w ;
-                if (w > 0){
+                cin >> w;
+                if (w > 0) {
                     cout << "The Height of the Cropped Image :  ";
                     cin.ignore(1);
                     cin >> h;
-                    if (h > 0)
-                    {  Image cropped_Img(w, h); //create a new image to store the cropped one
+                    if (h > 0) {
+                        /*if ((x + w) > image.width || (y + h) > image.height) {
+                            cin.clear();  // Clear the input buffer to avoid the infinite loop
+                            cin.ignore(numeric_limits<streamsize>::max(), '\n');}*/
+                        Image cropped_Img(w, h); //create a new image to store the cropped one
                         for (int i = 0; i < w; ++i) {
                             for (int j = 0; j < h; ++j) {
                                 for (int k = 0; k < 3; ++k) {
@@ -507,37 +508,33 @@ void crop(Image image) //Abdallah (Done)
                                     // we add x to i and add y to j to start the image  at the starting points
                                 }}}
                         cout << "Filter Applied...\n";
-                        menu(cropped_Img); }
-                    else if ((x + w) > image.width || (y + h) > image.height) {
-                        cout << "Out of boundaries , please enter a valid dimensions \n ";
-                        cin.clear();
+                        menu(cropped_Img);
+                    } else { // if the user insert  invalid Height
+                        cout << "\nInvalid,Please Enter Valid height  !!\n\n";
+                        cin.clear();// Clear the input buffer to avoid the infinite recursion
                         cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     }
-                    else  {
-                        cout << "\nInvalid,Please Enter Valid height  !!\n\n";
-                        cin.clear();
-                        cin.ignore(numeric_limits<streamsize>::max(), '\n');}
 
-                }
-                else  {
+                } else { // if the user insert  invalid Width
                     cout << "\nInvalid,Please Enter Valid Width  !!\n\n";
-                    cin.clear();
+                    cin.clear();// Clear the input buffer to avoid the infinite recursion
                     cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 }
-            }
-            else  {
+
+            } else { // if the user insert  invalid starting point (y)
                 cout << "\nInvalid,PLease enter a valid starting points\n\n";
-                cin.clear(); // if the user insert any invalid inout in y
+                cin.clear(); // Clear the input buffer to avoid the infinite recursion
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
             }
-
-        }
-        else  {
+        } else { // if the user insert  invalid starting point (x)
             cout << "\nInvalid,PLease enter a valid starting points\n\n";
-            cin.clear(); // if the user insert any invalid inout in x
+            cin.clear();   // Clear the input buffer to avoid the infinite recursion
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
-}}
+
+
+    }}
+
 
 
 
@@ -993,38 +990,37 @@ void edges(Image image) //Hossam (Done)
 
 void resize(Image image) //Abdallah (Done)
 {  while(true) {
-        cout << "The original size of the image is :  " << image.width << "x" << image.height << endl;
-        int w, h;
-        cout << "Please enter the new dimensions (Width & Height)\n";
-        cout << " The Width : ";
-        cin >> w;                     // getting the values of new dimensions
-        cin.ignore(1);
-        cout << "The Height : ";
-        cin >> h;
-        cin.ignore(1);
-        if (w > 0 && h > 0) {
-            Image resized_Img(w, h); //create a new image to store the resized one
-            float s; // the ratio between the width of the original img and the new width
-            float r; //the ratio between the height of the original img and the new height
-            // -----------------------------------------------------------
-            s = static_cast<float>(image.width) / w;
-            r = static_cast<float>(image.height) / h;
-            //------------------------------------------------------------
-            for (int i = 0; i < w; ++i) {
-                for (int j = 0; j < h; ++j) {
-                    for (int k = 0; k < 3; ++k) {
-                        int new1 = round(s * i); // we make s and i normal integers
-                        int new2 = round(r * j);
-                        resized_Img(i, j, k) = image(new1, new2, k);}}}
+    cout << "The original size of the image is :  " << image.width << "x" << image.height << endl;
+    int w, h;
+    cout << "Please enter the new dimensions (Width & Height)\n";
+    cout << " The Width : ";
+    cin >> w;                     // getting the values of new dimensions
+    cin.ignore(1);
+    cout << "The Height : ";
+    cin >> h;
+    cin.ignore(1);
+    if (w > 0 && h > 0) {
+        Image resized_Img(w, h); //create a new image to store the resized one
+        float s; // the ratio between the width of the original img and the new width
+        float r; //the ratio between the height of the original img and the new height
+        // -------------------------------------------------------------------------------------------------------------
+        s = static_cast<float>(image.width) / w;
+        r = static_cast<float>(image.height) / h;
+        //--------------------------------------------------------------------------------------------------------------
+        for (int i = 0; i < w; ++i) {
+            for (int j = 0; j < h; ++j) {
+                for (int k = 0; k < 3; ++k) {
+                    int new1 = round(s * i); // we make s and i normal integers
+                    int new2 = round(r * j);
+                    resized_Img(i, j, k) = image(new1, new2, k);}}}
             cout << "Filter Applied...\n";
-            menu(resized_Img);
-        } else {
-            cout << "\n\nInvalid,Please enter Valid Dimensions\n "
-                    "---> Must be greater than zero  !\n\n";
-            // Clear the input buffer in case of invalid input
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        }
+            menu(resized_Img);}
+    else {
+        cout << "\n\nInvalid,Please enter Valid Dimensions\n "
+                "---> Must be greater than zero  !\n\n";
+        // Clear the input buffer in case of invalid input
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');}
 
     }
 }
@@ -1107,20 +1103,17 @@ void look_Purple(Image image) //Abdallah (Done)
 {
     for (int i = 0; i < image.width; i++) {
         for (int j = 0; j < image.height; j++) {
-            unsigned int red = image(i, j, 0);
+            unsigned int red = image(i, j, 0);  //initialize values of each channel
             unsigned int green = image(i, j, 1);
             unsigned int blue = image(i, j, 2);
-             float newRed = static_cast<float > (red  * 0.75 );
-             float newGreen =  static_cast<float > (green * 0.8) ;
-             float newBlue =  static_cast<float > (blue * 0.75) ;
-             newRed = newRed * 1.6 ;
-             newBlue =newBlue * 1.6 ;
-
+             float newRed = static_cast<float > (red *1.2 );//increase the red channel by 20 %
+             float newGreen =  static_cast<float > (green * 0.8) ;//decrease the green channel by 20 %
+             float newBlue =  static_cast<float > (blue * 1.2 ) ;//raise the blue channel by 20 %
             if (newRed > 255) {
                 newRed = 255 ;
             }
             if (newBlue > 255) {
-                newBlue = 255 ;    // to set every channel which is greater than 255 to (255)
+                newBlue = 255 ;    // all channels that are larger than 255 should be set to (255).
             }
             if (newGreen > 255) {
                 newGreen= 255 ;
@@ -1140,11 +1133,12 @@ void IR (Image image) //Abdallah (Done)
     for (int i = 0; i < image.width; ++i) {
         for (int j = 0; j < image.height; ++j) {
             unsigned int red = image(i, j, 0);
-            unsigned int New_Red = 255 ;
+            unsigned int New_Red = 255 ; // assign the red channel to be 255
             unsigned int New_Green = 255-red  ;
+            // fill green channel and blue channel with the inverse of the red channel
             unsigned int New_Blue = 255 -red;
             image(i, j, 0) = New_Red ;
-            image(i, j, 1) = New_Green;
+            image(i, j, 1) = New_Green;//put the new values in each channel
             image(i, j, 2) = New_Blue ;
         }
     }
@@ -1322,6 +1316,8 @@ void oil(Image image) //Loai (Done)
     cout << "Filter Applied...\n";
     menu(oil_image);
 }
+
+
 void Pixelate(Image image) {
     int Pixel_Size = 0;  // This variable handles the size of each pixel
     while (true) {
@@ -1336,49 +1332,41 @@ void Pixelate(Image image) {
                     for (int j = 0; j < image.height; j += Pixel_Size) {
                         // Set the new size of the height of each pixel
                         unsigned int avgRed = 0, avgGreen = 0, avgBlue = 0;
+                        //variables to store the avg of each channel
                         int counter = 0;
                         for (int x = i; x < i + Pixel_Size && x < image.width; ++x) {
                             for (int y = j; y < j + Pixel_Size && y < image.height; ++y) {
-                                avgRed += image(x, y, 0);
-                                avgGreen += image(x, y, 1);
-                                avgBlue += image(x, y, 2);
-                                // Get the sum of each channel in the new pixel
+                                avgRed += image(x, y,
+                                                0); // assign it to equal the sum of each red channel                                avgGreen += image(x, y, 1);
+                                avgGreen += image(x, y, 1); // assign it to equal the sum of each green channel
+                                avgBlue += image(x, y, 2);// assign it to equal the sum of each blue channel
+
                                 counter++;
                             }
                         }
-                        avgRed /= counter;
-                        avgGreen /= counter;
-                        avgBlue /= counter;
+                        // Obtain the avg for each channel
+                        avgRed = avgRed / counter;
+                        avgGreen = avgGreen / counter;
+                        avgBlue = avgBlue / counter;
                         for (int x = i; x < i + Pixel_Size && x < image.width; ++x) {
                             for (int y = j; y < j + Pixel_Size && y < image.height; ++y) {
                                 image(x, y, 0) = avgRed;
                                 image(x, y, 1) = avgGreen;
-                                image(x, y, 2) = avgBlue;
-                            }
-                        }
-                    }
-                }
+                                image(x, y, 2) = avgBlue;}}}}
                 cout << "Pixelation Filter Applied...\n";
-                menu(image);
-            } else {
-                throw Pixel_Size;
-            }
-        } catch (int myNum) {
+                menu(image);}
+            else
+            { throw Pixel_Size;}
+        }
+        catch (int myNum) { //catch the error
             cout << "Invalid input, Please insert numbers!!\n";
             cout << "=========================================\n" ;
-            // Clear the input buffer in case of invalid input
+            // Clear the input buffer to avoid the infinite loop
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
     }
 }
- void GetInput(int&w, int&h , int&x ,int&y, Image image ) {
-
-
-    }
-
-
-
 
 /*
  *
