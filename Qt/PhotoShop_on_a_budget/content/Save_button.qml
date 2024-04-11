@@ -1,14 +1,10 @@
-import QtQuick 6.6
+import QtQuick 2.15
+import QtQuick.Controls 2.15
 
 Item {
     id: save_button
     width: 136
     height: 59
-
-    MouseArea {
-        id: mouseArea
-        anchors.fill: parent
-    }
 
     Rectangle {
         id: rectangle1
@@ -41,5 +37,13 @@ Item {
         renderType: Text.NativeRendering
         font.styleName: "Bold Italic"
         font.family: "Verdana"
+    }
+
+    MouseArea {
+            id: mouseArea
+            anchors.fill: parent
+            onClicked: {
+                console.log("Button clicked!")
+            }
     }
 }

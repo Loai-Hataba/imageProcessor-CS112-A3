@@ -1,19 +1,12 @@
-
-
-/*
-This is a UI file (.ui.qml) that is intended to be edited in Qt Design Studio only.
-It is supposed to be strictly declarative and only uses a subset of QML. If you edit
-this file manually, you might introduce QML code that is not supported by Qt Design Studio.
-Check out https://doc.qt.io/qtcreator/creator-quick-ui-forms.html for details on .ui.qml files.
-*/
+import QtQuick 2.15
+import QtQuick.Controls 2.15
 import QtQuick 6.6
 import QtQuick.Controls 6.6
 import PhotoShop_on_a_budget
 import QtQuick.Layouts
-import QtQuick.Studio.Components
 
 Rectangle {
-    id: main_screen
+    id: mainScreen
     width: Constants.width
     height: 1050
     color: "#333333"
@@ -30,24 +23,10 @@ Rectangle {
         fillMode: Image.PreserveAspectFit
     }
 
-    Rectangle {
+    Image_screen {
         id: image_screen
         x: 375
         y: 172
-        width: 1363
-        height: 713
-        color: "#888888"
-        radius: 27
-
-        Image {
-            id: image
-            x: 0
-            y: 0
-            width: 1363
-            height: 713
-            source: "qrc:/qtquickplugin/images/template_image.png"
-            fillMode: Image.PreserveAspectFit
-        }
     }
 
     Rectangle {
@@ -207,15 +186,15 @@ Rectangle {
         }
     }
 
-    Save_button {
-        id: save_button
-        x: 40
-        y: 922
+    Load_button {
+        id: load_button
+        x: 208
+        y: 914
     }
 
-    MyMyLoad_button {
-        id: myMyLoad_button
-        x: 200
-        y: 922
+    Save_button {
+        id: save_button
+        x: 53
+        y: 914
     }
 }

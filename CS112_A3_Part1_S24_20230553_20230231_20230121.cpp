@@ -535,11 +535,6 @@ void crop(Image image) //Abdallah (Done)
 
     }}
 
-
-
-
-
-
 void frame(Image image) //Loai (Done)
 {
     int frame_size;
@@ -1025,8 +1020,6 @@ void resize(Image image) //Abdallah (Done)
     }
 }
 
-
-
 void blur(Image image) //Loai (Done)
 {
     int blur_size;
@@ -1127,6 +1120,7 @@ void look_Purple(Image image) //Abdallah (Done)
     cout << "Filter Applied...\n";
     menu(image) ;
 }
+
 void IR (Image image) //Abdallah (Done)
 {
     cout <<"Applying Infrared (IR) Filter....................\n";
@@ -1316,7 +1310,6 @@ void oil(Image image) //Loai (Done)
     cout << "Filter Applied...\n";
     menu(oil_image);
 }
-
 
 void Pixelate(Image image) {
     int Pixel_Size = 0;  // This variable handles the size of each pixel

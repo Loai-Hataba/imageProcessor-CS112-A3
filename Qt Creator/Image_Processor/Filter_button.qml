@@ -1,4 +1,5 @@
-import QtQuick 6.6
+import QtQuick 2.15
+import QtQuick.Controls 2.15
 
 Item {
     id: filter_button
@@ -31,13 +32,13 @@ Item {
 
         Text {
             id: text1
-            x: 14
-            y: 17
-            width: 93
+            x: 9
+            y: 14
+            width: 99
             height: 36
             color: "#ffffff"
             text: buttonText // Use the property alias here
-            font.pixelSize: 15
+            font.pixelSize: 18
             font.bold: true
             wrapMode: Text.WordWrap
             font.family: "Verdana"

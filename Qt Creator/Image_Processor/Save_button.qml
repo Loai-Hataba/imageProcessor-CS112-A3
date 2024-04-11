@@ -1,7 +1,8 @@
 import QtQuick 2.15
+import QtQuick.Controls 2.15
 
 Item {
-    id: myLoad_button
+    id: save_button
     width: 136
     height: 59
 
@@ -11,7 +12,6 @@ Item {
         y: 16
         width: 136
         height: 59
-        visible: true
         color: "#000000"
         radius: 23
         border.color: "#ffffff"
@@ -31,13 +31,14 @@ Item {
         id: text1
         x: 31
         y: 12
-        color: "#ffffff"
-        text: qsTr("Load")
+        color: "#dedede"
+        text: qsTr("Save")
         font.pixelSize: 30
-        //renderType: Text.NativeRendering
+        renderType: Text.NativeRendering
         font.styleName: "Bold Italic"
         font.family: "Verdana"
     }
+
     MouseArea {
             id: mouseArea
             anchors.fill: parent
