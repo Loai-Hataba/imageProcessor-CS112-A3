@@ -186,11 +186,14 @@ Rectangle {
         }
     }
 
-    Load_button {
+    Load_button
+    {
         id: load_button
-        x: 208
+        x: 200
         y: 914
+
     }
+
 
     Save_button {
         id: save_button
