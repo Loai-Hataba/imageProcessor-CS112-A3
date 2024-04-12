@@ -74,15 +74,18 @@ int main() {
         cout << "Please enter the image name (Default is .jpg): ";
         cin >> file_name;
 //        check file
-        string check = file_check(file_name);
-//        doesn't exist
-        if (check == "None")
-        {
-            continue;
-        }
+//        string check = file_check(file_name);
+////        doesn't exist
+//        if (check == "None")
+//        {
+//            continue;
+//        }
 //    construct image object
-        string path = check;
-        Image image(path);
+        string path = "F:\\Loai\\School\\Programming\\C++\\Main\\College\\Structured_Programming\\Assignment 3\\imageProcessor-CS112-A3\\Qt Creator\\Photoshop_budget\\Assets\\placeholder.png";
+        cout << "1\n";
+;        Image image(path);
+        cout << "2\n";
+
 //        display menu
         menu(image);
     }
@@ -121,7 +124,7 @@ void menu(Image image) {
     choose_filter(ans, image);
 }
 
-//call filter
+
 void choose_filter(string ans, Image image) {
     if (ans == "1") {
         grayscale(image);
@@ -258,7 +261,6 @@ string file_check(string file_name)
         cout << "File Doesn't exist!\n";
         return "None";
     }
-
 }
 
 //  ********************** Filters ****************************

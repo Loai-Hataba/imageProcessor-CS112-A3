@@ -17,12 +17,20 @@ set(PROJECT_SOURCES
         photoshop_budget.cpp
         photoshop_budget.h
         photoshop_budget.ui
+
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(Photoshop_budget
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
+
+
+        image_processor_code.cpp
+        Image_Class.h
+        stb_image.h
+        stb_image_write.h
+        image_processor.h
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET Photoshop_budget APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

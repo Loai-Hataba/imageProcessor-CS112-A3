@@ -20,6 +20,8 @@ public:
 private slots:
     void on_load_button_clicked();
 
+    void on_inverted_button_clicked();
+
 private:
     Ui::Photoshop_budget *ui;
 };
