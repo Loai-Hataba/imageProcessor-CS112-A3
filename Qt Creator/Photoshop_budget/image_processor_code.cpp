@@ -67,147 +67,45 @@ void Pixelate(Image image);
 16- Fix tv filter                                   (Done)
 */
 
-int main() {
-    bool flag = true;
-    // while (flag)
-    {/*
-        cout << "\n\n      Welcome to Photoshop on a budget! \n\n";
-        string file_name;
-        cout << "Please enter the image name (Default is .jpg): ";
-        cin >> file_name;*/
-        //        check file
-        //        string check = file_check(file_name);
-        ////        doesn't exist
-        //        if (check == "None")
-        //        {
-        //            continue;
-        //        }
-        //    construct image object
-        // const std::string& toast = image_path()
-        // cout << "yarab " <<
-        // string path = "F:\\Loai\\School\\Programming\\C++\\Main\\College\\Structured_Programming\\Assignment 3\\imageProcessor-CS112-A3\\Qt Creator\\Photoshop_budget\\Assets\\placeholder.png";
-        // Image image(path);
+// int main() {
+//     bool flag = true;
+//     // while (flag)
+//     {/*
+//         cout << "\n\n      Welcome to Photoshop on a budget! \n\n";
+//         string file_name;
+//         cout << "Please enter the image name (Default is .jpg): ";
+//         cin >> file_name;*/
+//         //        check file
+//         //        string check = file_check(file_name);
+//         ////        doesn't exist
+//         //        if (check == "None")
+//         //        {
+//         //            continue;
+//         //        }
+//         //    construct image object
+//         // const std::string& toast = image_path()
+//         // cout << "yarab " <<
+//         // string path = "F:\\Loai\\School\\Programming\\C++\\Main\\College\\Structured_Programming\\Assignment 3\\imageProcessor-CS112-A3\\Qt Creator\\Photoshop_budget\\Assets\\placeholder.png";
+//         // Image image(path);
 
-        // //        display menu
-        // menu(image);
-    }
-    return 0;
-}
+//         // //        display menu
+//         // menu(image);
+//     }
+//     return 0;
+// }
+
+string file_path;
 
 void image_path(const std::string& path)
 {
     cout << path << endl;
+    file_path = path;
+    cout << file_path << endl;
 
-    cout << "2\n";
-}
-
-//display menu
-void menu(Image image) {
-    string ans;
-    cout << "\n\nChoose which filter you would like to apply\n"
-            "1)  Grayscale\n"
-            "2)  Black & White\n"
-            "3)  Inverted\n"
-            "4)  Merge\n"
-            "5)  Flip \n"
-            "6)  Rotate\n"
-            "7)  Darken/Lighten\n"
-            "8)  Crop \n"
-            "9)  Frame \n"
-            "10) Edges\n"
-            "11) Resize \n"
-            "12) Blur\n"
-            "13) Look Purple\n"
-            "14) Infrared Radiation (IR)\n"
-            "15) TV\n"
-            "16) Oil Painting\n"
-            "17) Sepia\n"
-            "18) Sunlight\n"
-            "19) Skewed\n"
-            "20) Pixelate \n"
-            "21) Save Image\n"
-            "22) Load Image\n"
-            "23) Exit\n"
-            "Choice: ";
-    cin >> ans;
-    choose_filter(ans, image);
 }
 
 
-void choose_filter(string ans, Image image) {
-    if (ans == "1") {
-        grayscale(image);
-    } else if (ans == "2") {
-        black_white(image);
-    } else if (ans == "3") {
-        inverted(image);
-    } else if (ans == "4") {
-        merge(image);
-    } else if (ans == "5") {
-        flip(image);
-    } else if (ans == "6") {
-        rotate(image);
-    } else if (ans == "7") {
-        darken_lighten(image);
-    } else if (ans == "8") {
-        crop(image);
-    } else if (ans == "9") {
-        frame(image);
-    } else if (ans == "10") {
-        edges(image);
-    } else if (ans == "11") {
-        resize(image);
-    } else if (ans == "12") {
-        blur(image);
-    } else if (ans == "13") {
-        look_Purple(image);
-    } else if (ans == "14") {
-        IR(image);
-    } else if (ans == "15") {
-        tv(image);
-    } else if (ans == "16") {
-        oil(image);
-    } else if (ans == "17") {
-        sepia(image);
-    } else if (ans == "18") {
-        Sunlight(image);
-    } else if (ans == "19") {
-        Skewed(image);
-    } else if (ans == "20") {
-        Pixelate(image);
-    }
-    //    Save
-    else if (ans == "21") {
-        save(image, 1);
-    }
-    //    Load new image
-    else if (ans == "22") {
-        main();
-    }
-    //    Exit
-    else if (ans == "23") {
-        string ex;
-        cout << "Do you want to save before exiting?\n"
-                "1) Yes\n"
-                "2) No\n"
-                "Choice: ";
-        cin >> ex;
-        if (ex == "1")
-        {
-            save(image);
-        }
-        else if (ex == "2")
-        {
-            cout << "\nGoodbye!!";
-            return;
-        } else {
-            cout << "Invalid choice!\n";
-        }
-    } else {
-        cout << "Invalid choice!\n";
-        menu(image);
-    }
-}
+
 
 //name and save the new file
 void save(Image image, int back)
@@ -229,7 +127,7 @@ void save(Image image, int back)
                     string t = file_name.substr(i + 1, 3);
                     if (t != "jpg" && t != "png" && t != "bmp" && t != "tga") {
                         cout << "File extension unsupported (jpg, png, bmp, tga)!\n";
-                        menu(image);
+
                     }
                 }
             }
@@ -241,7 +139,7 @@ void save(Image image, int back)
     cout << file_name << " has been saved successfully.\n";
     if (back == 1)
     {
-        menu(image);
+
     }
 }
 
@@ -288,7 +186,7 @@ void grayscale(Image image) //Hossam (Done)
         }
     }
     cout << "Filter Applied...\n";
-    menu(image);
+
 
 }
 
@@ -311,8 +209,6 @@ void black_white(Image image) //Abdallah (Done)
             }
         }
     }
-    cout << "Filter Applied...\n";
-    menu(image);
 }
 
 void inverted(Image image) //Loai (Done)
@@ -331,7 +227,7 @@ void inverted(Image image) //Loai (Done)
         }
     }
     cout << "Filter Applied...\n";
-    menu(image);
+
 }
 
 Image resizeMerge(Image image, int max_width, int max_height) { //straight up copied Abdallah's resized filter
@@ -388,7 +284,7 @@ void merge(Image image1) //Hossam (Done)
             }
         }
         cout << "Filter Applied...\n";
-        menu(image3);
+
     } else { //resized both images to the greatest height and width
         int m_width = max(image1.width, image.width);
         int m_height = max(image1.height, image.height);
@@ -403,7 +299,7 @@ void merge(Image image1) //Hossam (Done)
             }
         }
         cout << "Filter Applied...\n";
-        menu(image3);
+
     }
 }
 
@@ -440,7 +336,7 @@ void flip(Image image) //Abdallah (Done)
             flip(image);
         }
         cout << "Filter Applied...\n";
-        menu(flipped_image);
+
     } else {
         cout << "\nInvalid Input ,please insert a correct character !  \n";
         flip(image);
@@ -478,7 +374,7 @@ void rotate(Image image) //Loai (Done)
             }
         }
         cout << "Filter Applied...\n";
-        menu(rotated_image);
+
     }
     //    180 Rotation
     else if (angle == 180) {
@@ -493,7 +389,7 @@ void rotate(Image image) //Loai (Done)
                 }
             }
         }
-        menu(rotated_image);
+
     } else {
         cout << "Invalid angle. Please choose 90, 180, or 270." << endl;
     }
@@ -538,7 +434,7 @@ void darken_lighten(Image image) //Hossam (Done)
         }
     }
     cout << "Filter Applied...\n";
-    menu(image);
+
 }
 
 void crop(Image image) //Abdallah (Done)
@@ -579,7 +475,7 @@ void crop(Image image) //Abdallah (Done)
                             }
                         }
                         cout << "Filter Applied...\n";
-                        menu(cropped_Img);
+
                     } else { // if the user insert  invalid Height
                         cout << "\nInvalid,Please Enter Valid height  !!\n\n";
                         cin.clear();// Clear the input buffer to avoid the infinite recursion
@@ -1009,7 +905,7 @@ void frame(Image image) //Loai (Done)
         }
     }
     cout << "Filter Applied...\n";
-    menu(image);
+
 }
 
 void edges(Image image) { //Hossam (Done)
@@ -1044,7 +940,7 @@ void edges(Image image) { //Hossam (Done)
         }
     }
     cout << "Filter Applied...\n";
-    menu(image);
+
 
 }
 
@@ -1078,7 +974,7 @@ void resize(Image image) //Abdallah (Done)
                 }
             }
             cout << "Filter Applied...\n";
-            menu(resized_Img);
+
         } else {
             cout << "\n\nInvalid,Please enter Valid Dimensions\n "
                     "---> Must be greater than zero  !\n\n";
@@ -1158,7 +1054,7 @@ void blur(Image image) //Loai (Done)
         }
     }
     cout << "Filter Applied...\n";
-    menu(blurred_image);
+
 }
 
 //  ********************** Bonus ****************************
@@ -1174,7 +1070,7 @@ void Sunlight(Image image) {
         }
     }
     cout << "Filter Applied...\n";
-    menu(image);
+
 
 }
 
@@ -1205,7 +1101,7 @@ void look_Purple(Image image) //Abdallah (Done)
         }
     }
     cout << "Filter Applied...\n";
-    menu(image);
+
 }
 
 void IR (Image image) //Abdallah (Done)
@@ -1224,7 +1120,7 @@ void IR (Image image) //Abdallah (Done)
         }
     }
     cout << "Filter Applied...\n";
-    menu(image);
+
 }
 
 void tv(Image image) //Loai (Done)
@@ -1280,7 +1176,7 @@ void tv(Image image) //Loai (Done)
         }
     }
     cout << "Filter Applied...\n";
-    menu(image);
+
 }
 
 void sepia(Image image) //Loai (Done)
@@ -1304,7 +1200,7 @@ void sepia(Image image) //Loai (Done)
         }
     }
     cout << "Filter Applied...\n";
-    menu(image);
+
 }
 
 void oil(Image image) //Loai (Done)
@@ -1391,7 +1287,7 @@ void oil(Image image) //Loai (Done)
         }
     }
     cout << "Filter Applied...\n";
-    menu(oil_image);
+
 }
 
 void Skewed(Image image) {
@@ -1427,7 +1323,7 @@ void Skewed(Image image) {
         }
         if (i % dinom == 0)cnt--;
     }
-    menu(white);
+
 
 }
 
@@ -1471,7 +1367,7 @@ void Pixelate(Image image) {
                     }
                 }
                 cout << "Pixelation Filter Applied...\n";
-                menu(image);
+
             } else { throw Pixel_Size; }
         }
         catch (int myNum) { //catch the error

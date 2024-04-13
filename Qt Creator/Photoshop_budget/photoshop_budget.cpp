@@ -32,7 +32,7 @@ Photoshop_budget::~Photoshop_budget()
 void Photoshop_budget::on_load_button_clicked()
 {   bool test = false;
     file_name = QFileDialog::getOpenFileName(this, "Load Image", "C://");
-    if (!file_name.isEmpty() || file_name.endsWith(".jpg")) {
+    if (!file_name.isEmpty() && (file_name.endsWith(".jpg") || file_name.endsWith(".png") || file_name.endsWith(".bmp"))) {
         QPixmap pix(file_name);
         int w = ui->image->width();
         int h = ui->image->height();
@@ -44,10 +44,9 @@ void Photoshop_budget::on_load_button_clicked()
     else //file didn't open
     {
         QMessageBox msgError;
-        msgError.setText("CRITICAL ERROR!\nThe File couldn't be opened!");
+        msgError.setText("The File couldn't be opened!");
         msgError.setIcon(QMessageBox::Critical);
         msgError.setWindowTitle("File not opened");
-
         msgError.exec();
     }
 }
