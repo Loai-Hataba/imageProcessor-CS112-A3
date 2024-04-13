@@ -4,8 +4,11 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include "image_processor.h"
+#include <String>
+
 
 QString file_name;
+Image image;
 
 Photoshop_budget::Photoshop_budget(QWidget *parent)
     : QMainWindow(parent)
@@ -37,9 +40,7 @@ void Photoshop_budget::on_load_button_clicked()
         int w = ui->image->width();
         int h = ui->image->height();
         ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
-        test = true;
-
-        image_path(file_name.toStdString());
+        image = image_path(file_name.toStdString());
     }
     else //file didn't open
     {
@@ -53,6 +54,8 @@ void Photoshop_budget::on_load_button_clicked()
 
 void Photoshop_budget::on_inverted_button_clicked()
 {
-
+    QMessageBox::information(this, "started", "yarab ");
+    string toast = test();
+    QMessageBox::information(this, "started", toast.c_str());
 }
 

@@ -525,5 +525,7 @@ Photoshop_budget_autogen/timestamp: \
   F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment\ 3/imageProcessor-CS112-A3/Qt\ Creator/Photoshop_budget/photoshop_budget.cpp \
   F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment\ 3/imageProcessor-CS112-A3/Qt\ Creator/Photoshop_budget/photoshop_budget.h \
   F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment\ 3/imageProcessor-CS112-A3/Qt\ Creator/Photoshop_budget/photoshop_budget.ui \
+  F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment\ 3/imageProcessor-CS112-A3/Qt\ Creator/Photoshop_budget/resources.qrc \
   F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment\ 3/imageProcessor-CS112-A3/Qt\ Creator/Photoshop_budget/stb_image.h \
-  F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment\ 3/imageProcessor-CS112-A3/Qt\ Creator/Photoshop_budget/stb_image_write.h
+  F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment\ 3/imageProcessor-CS112-A3/Qt\ Creator/Photoshop_budget/stb_image_write.h \
+  F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment\ 3/imageProcessor-CS112-A3/Qt\ Creator/Photoshop_budget/stb_implementation.cpp

@@ -7,7 +7,7 @@
 				{
 					"build" : ".",
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-.-Debug-022edb04e8ea1063ccd8.json",
+					"jsonFile" : "directory-.-Debug-86dd0f4aaa669fc000ce.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.16"
@@ -44,7 +44,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "Photoshop_budget::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-Photoshop_budget-Debug-4a2272f932fee5f06a6a.json",
+					"jsonFile" : "target-Photoshop_budget-Debug-63f5a7b0b089b4eb1c6c.json",
 					"name" : "Photoshop_budget",
 					"projectIndex" : 0
 				},

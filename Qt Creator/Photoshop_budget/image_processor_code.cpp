@@ -20,33 +20,7 @@ Authors: Loai Hataba,       ID: 20230553, Section: S24, Email: Loaiwleed2005@gma
 #include "image_processor.h"
 using namespace std;
 
-//prototypes
-void menu(Image image);
-void choose_filter(string ans, Image image);
-void save(Image image, int back = 0);
-string file_check(string file_name);
-/*--------------------------------------------*/
-void grayscale(Image image);
-void black_white(Image image);
-void inverted(Image image);
-void merge(Image image);
-void flip(Image image);
-void rotate(Image image);
-void darken_lighten(Image image);
-void crop(Image image);
-void frame(Image image);
-void edges(Image image);
-void resize(Image image);
-void blur(Image image);
-/*--------------------------------------------*/
-void Sunlight(Image image);
-void look_Purple(Image image);
-void IR(Image image);
-void tv(Image image);
-void oil(Image image);
-void Skewed(Image image);
-void sepia(Image image);
-void Pixelate(Image image);
+
 
 /*To make:
 1- Endless program loop                             (Done)
@@ -67,41 +41,18 @@ void Pixelate(Image image);
 16- Fix tv filter                                   (Done)
 */
 
-// int main() {
-//     bool flag = true;
-//     // while (flag)
-//     {/*
-//         cout << "\n\n      Welcome to Photoshop on a budget! \n\n";
-//         string file_name;
-//         cout << "Please enter the image name (Default is .jpg): ";
-//         cin >> file_name;*/
-//         //        check file
-//         //        string check = file_check(file_name);
-//         ////        doesn't exist
-//         //        if (check == "None")
-//         //        {
-//         //            continue;
-//         //        }
-//         //    construct image object
-//         // const std::string& toast = image_path()
-//         // cout << "yarab " <<
-//         // string path = "F:\\Loai\\School\\Programming\\C++\\Main\\College\\Structured_Programming\\Assignment 3\\imageProcessor-CS112-A3\\Qt Creator\\Photoshop_budget\\Assets\\placeholder.png";
-//         // Image image(path);
 
-//         // //        display menu
-//         // menu(image);
-//     }
-//     return 0;
-// }
 
 string file_path;
 
-void image_path(const std::string& path)
+
+Image image_path(const std::string& path)
 {
     cout << path << endl;
     file_path = path;
     cout << file_path << endl;
-
+    Image image(path);
+    return image;
 }
 
 
@@ -111,36 +62,32 @@ void image_path(const std::string& path)
 void save(Image image, int back)
 {
     string file_name;
-    cout << "Choose the name of the new image (Default is .jpg):";
-    cin >> file_name;
-    bool check = false;
-    bool def = true;
-    for (int i = 0; i < file_name.size(); ++i) {
-        if (file_name[i] == '.')def = false;
-    }
-    if (def)file_name += ".jpg";
-    else if (not def) {
-        do
-        {
-            for (int i = 0; i < file_name.length(); i++) {
-                if (file_name[i] == '.') {
-                    string t = file_name.substr(i + 1, 3);
-                    if (t != "jpg" && t != "png" && t != "bmp" && t != "tga") {
-                        cout << "File extension unsupported (jpg, png, bmp, tga)!\n";
-
-                    }
-                }
-            }
-        }
-        while (check);
-    }
-    cout << "Saving " << file_name << "...\n";
-    image.saveImage(file_name);
+//    cout << "Choose the name of the new image (Default is .jpg):";
+//    cin >> file_name;
+//    bool check = false;
+//    bool def = true;
+//    for (int i = 0; i < file_name.size(); ++i) {
+//        if (file_name[i] == '.')def = false;
+//    }
+//    if (def)file_name += ".jpg";
+//    else if (not def) {
+//        do
+//        {
+//            for (int i = 0; i < file_name.length(); i++) {
+//                if (file_name[i] == '.') {
+//                    string t = file_name.substr(i + 1, 3);
+//                    if (t != "jpg" && t != "png" && t != "bmp" && t != "tga") {
+//                        cout << "File extension unsupported (jpg, png, bmp, tga)!\n";
+//
+//                    }
+//                }
+//            }
+//        }
+//        while (check);
+//    }
+//    cout << "Saving " << file_name << "...\n";
+    image.saveImage("F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/cmake-build-debug/Samples/testyarab.jpg");
     cout << file_name << " has been saved successfully.\n";
-    if (back == 1)
-    {
-
-    }
 }
 
 //checks file is valid
@@ -170,9 +117,16 @@ string file_check(string file_name)
     }
 }
 
-//  ********************** Filters ****************************
-void grayscale(Image image) //Hossam (Done)
+string test()
 {
+    cout << "testing\n";
+    return "done!! Lol";
+}
+
+//  ********************** Filters ****************************
+void grayscale(Image& image) //Hossam (Done)
+{
+    cout << "bada2na el7\n";
     for (int i = 0; i < image.width; i++) {
         for (int j = 0; j < image.height; j++) {
             unsigned int avg = 0;
@@ -185,6 +139,8 @@ void grayscale(Image image) //Hossam (Done)
             }
         }
     }
+    cout << "saving the file!!!\n";
+    save(image);
     cout << "Filter Applied...\n";
 
 

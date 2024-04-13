@@ -1,0 +1,19 @@
+{
+	"BUILD_DIR" : "F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/Photoshop_budget_autogen",
+	"CMAKE_BINARY_DIR" : "F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug",
+	"CMAKE_CURRENT_BINARY_DIR" : "F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug",
+	"CMAKE_CURRENT_SOURCE_DIR" : "F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget",
+	"CMAKE_SOURCE_DIR" : "F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget",
+	"INCLUDE_DIR" : "F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/Photoshop_budget_autogen/include",
+	"INPUTS" : [],
+	"LOCK_FILE" : "F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/CMakeFiles/Photoshop_budget_autogen.dir/AutoRcc_Resource_EWIEGA46WW_Lock.lock",
+	"MULTI_CONFIG" : false,
+	"OPTIONS" : [ "--no-zstd", "-name", "Resource" ],
+	"OUTPUT_CHECKSUM" : "EWIEGA46WW",
+	"OUTPUT_NAME" : "qrc_Resource.cpp",
+	"RCC_EXECUTABLE" : "C:/Qt/6.6.3/mingw_64/./bin/rcc.exe",
+	"RCC_LIST_OPTIONS" : [ "--list" ],
+	"SETTINGS_FILE" : "F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/CMakeFiles/Photoshop_budget_autogen.dir/AutoRcc_Resource_EWIEGA46WW_Used.txt",
+	"SOURCE" : "F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/Resource.qrc",
+	"VERBOSITY" : 0
+}

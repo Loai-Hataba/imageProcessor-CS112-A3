@@ -74,17 +74,15 @@ int main() {
         cout << "Please enter the image name (Default is .jpg): ";
         cin >> file_name;
 //        check file
-//        string check = file_check(file_name);
-////        doesn't exist
-//        if (check == "None")
-//        {
-//            continue;
-//        }
+        string check = file_check(file_name);
+//        doesn't exist
+        if (check == "None")
+        {
+            continue;
+        }
 //    construct image object
-        string path = "F:\\Loai\\School\\Programming\\C++\\Main\\College\\Structured_Programming\\Assignment 3\\imageProcessor-CS112-A3\\Qt Creator\\Photoshop_budget\\Assets\\placeholder.png";
-        cout << "1\n";
+        string path = check;
 ;        Image image(path);
-        cout << "2\n";
 
 //        display menu
         menu(image);
@@ -203,9 +201,10 @@ void choose_filter(string ans, Image image) {
 //name and save the new file
 void save(Image image, int back)
 {
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     string file_name;
     cout << "Choose the name of the new image (Default is .jpg):";
-    cin >> file_name;
+    getline(cin, file_name);
     bool check = false;
     bool def = true;
     for (int i = 0; i < file_name.size(); ++i) {
@@ -230,10 +229,10 @@ void save(Image image, int back)
     cout << "Saving " << file_name << "...\n";
     image.saveImage(file_name);
     cout << file_name << " has been saved successfully.\n";
-    if (back == 1)
-    {
-        menu(image);
-    }
+//    if (back == 1)
+//    {
+//        menu(image);
+//    }
 }
 
 //checks file is valid
