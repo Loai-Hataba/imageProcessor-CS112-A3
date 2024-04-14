@@ -357,16 +357,16 @@ void merge(Image image1) //Hossam (Done)
     }
     string path = check;
     Image image(path);
-    char choice;
+    string choice;
     cout<<"1) Scale both images to the biggest height and width\n"
           "2) Merge common area of the smaller image\n"
           "Choice: ";
     cin >> choice;
-    while (choice!='1' && choice!='2'){
+    while (choice!="1" && choice!="2" || choice.size()!=1){
         cout<<"Invalid choice,please choose from (1,2):";
         cin>>choice;
     }
-    if (choice == '1') { //common area of smaller image
+    if (choice == "1") { //common area of smaller image
         //making another image that have them both merged and setting its dimensions to the smaller image
         Image image3(min(image1.width, image.width), min(image1.height, image.height));
         for (int i = 0; i < image3.width; ++i) {
@@ -494,14 +494,14 @@ void darken_lighten(Image image) //Hossam (Done)
     cout << "1) darken   2)lighten\n"
             "Choice: ";
     int degree;
-    char choice;
+    string choice;
     cin >> choice;              //choice whether you want to darken your image or lighten it
-    while (choice != '1' && choice != '2') {
+    while (choice != "1" && choice != "2" || choice.size()!=1) {
         cout << "Invalid choice please enter a valid value:";
         cin >> choice;
     }
     string choice2;
-    if (choice == '1')choice2 = "darkening";
+    if (choice == "1")choice2 = "darkening";
     else choice2 = "lighting";
     cout << "choose the level of " << choice2 << " from 0 to 100 percent :"; //choosing level of darkening or lighting
     cin >> degree;
@@ -511,7 +511,7 @@ void darken_lighten(Image image) //Hossam (Done)
             int red = image(i, j, 0);
             int green = image(i, j, 1);
             int blue = image(i, j, 2);
-            if (choice == '1') { //darkening
+            if (choice == "1") { //darkening
                 red = red - red * degree /
                             100;                //take the original value of the color and subtracting it from its determined fraction value thus darkening it
                 green = green - green * degree / 100;
@@ -1004,31 +1004,27 @@ void frame(Image image) //Loai (Done)
 
 void edges(Image image) { //Hossam (Done)
 
-    for (int i = 0; i < image.width; i++) {
+    for (int i = 0; i < image.width; i++) {     //black and white filter before we detect edges
         for (int j = 0; j < image.height; j++) {
-            unsigned int avg = 0;
             for (int k = 0; k < 3; ++k) {
-                avg += image(i, j, k);
-            }
-            avg = avg / 3;
-            for (int k = 0; k < 3; ++k) {
-                image(i, j, k) = avg;
+                unsigned int average = (image(i, j, 0) + image(i, j, 1) + image(i, j, 2)) / 3;
+                if (average <= 127.5) {
+                    image(i, j, k) = 0;
+                } else {
+                    image(i, j, k) = 255;
+                }
             }
         }
     }
-    //setting the sensitivity of the diff between each color of the pixels in comparison so that if it exceeds the limit we edge(make it black) that pixel else we whiten it
-    int sens = 25;
+    int sens = 150; //doesnt matter value of sensitivity between pixels since image is in black and white filter
     //end with less height and width by one because we only check the right and bottom side pixels since they are all we need to check and if we iterate at last pixel of row or column we dont get out of image limits
     for (int i = 0; i < image.width - 1; i++) {
-        for (int j = 0; j < image.height -
-                            1; j++) { //here since we grey scaled the image before the values of each color gonna be the same so we just roll with red
-            if (abs(image(i, j, 0) - image(i, j + 1, 0) >= sens || abs(image(i, j, 0) - image(i + 1, j, 0)) >= sens)) {
-                for (int k = 0; k < 3; ++k) {
-                    image(i, j, k) = 0;
-                }
-            } else {
-                for (int k = 0; k < 3; ++k) {
-                    image(i, j, k) = 255;
+        for (int j = 0; j < image.height -1; j++) {
+            for (int k = 0; k < 3; ++k) {
+                if (abs(image(i, j, k) - image(i, j + 1, k)) >=sens || abs(image(i, j, k) - image(i + 1, j, k)) >= sens) {
+                        image(i, j, k) = 0;
+                } else {
+                        image(i, j, k) = 255;
                 }
             }
         }
