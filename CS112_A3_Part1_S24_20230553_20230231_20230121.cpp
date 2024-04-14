@@ -24,6 +24,7 @@ void menu(Image image);
 void choose_filter(string ans, Image image);
 void save(Image image, int back = 0);
 string file_check(string file_name);
+int valid(string& input) ;
 /*--------------------------------------------*/
 void grayscale(Image image);
 void black_white(Image image);
@@ -531,71 +532,113 @@ void darken_lighten(Image image) //Hossam (Done)
     menu(image);
 }
 
-void crop(Image image) //Abdallah (Done)
-{
-    while (true) {
-        int x, y, w, h;
-        // x and y reference  to the starting  point
-        // w and h reference to the width and the height of the cropped image
-        cout << "The dimensions of the image are :  " << image.width << " * " << image.height << endl;
-        cout << "Please enter the starting point (x, y)" << endl;
-        cout << "  The Staring point of X-axis :  ";
-        cin.ignore(1);
-        cin >> x;
-        if (x > 0) {
-            cout << "The Staring point of Y-axis :  ";
-            cin.ignore(1);
-            cin >> y;
-            if (y > 0) {
-                cout << "\nPlease enter the dimensions of the cropped image \n";
-                cout << "  The Width of the Cropped Image :  ";
-                cin.ignore(1);
-                cin >> w;
-                if (w > 0) {
-                    cout << "The Height of the Cropped Image :  ";
-                    cin.ignore(1);
-                    cin >> h;
-                    if (h > 0) {
-                        /*if ((x + w) > image.width || (y + h) > image.height) {
-                            cin.clear();  // Clear the input buffer to avoid the infinite loop
-                            cin.ignore(numeric_limits<streamsize>::max(), '\n');}*/
-                        Image cropped_Img(w, h); //create a new image to store the cropped one
-                        for (int i = 0; i < w; ++i) {
-                            for (int j = 0; j < h; ++j) {
-                                for (int k = 0; k < 3; ++k) {
-                                    cropped_Img(i, j, k) = image(i + x, j + y, k);
-                                    // we add x to i and add y to j to start the image  at the starting points
-                                }
-                            }
-                        }
-                        cout << "Filter Applied...\n";
-                        menu(cropped_Img);
-                    } else { // if the user insert  invalid Height
-                        cout << "\nInvalid,Please Enter Valid height  !!\n\n";
-                        cin.clear();// Clear the input buffer to avoid the infinite recursion
-                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                    }
+int valid(string& input) {
+    bool flag = true;
 
-                } else { // if the user insert  invalid Width
-                    cout << "\nInvalid,Please Enter Valid Width  !!\n\n";
-                    cin.clear();// Clear the input buffer to avoid the infinite recursion
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                }
-
-            } else { // if the user insert  invalid starting point (y)
-                cout << "\nInvalid,PLease enter a valid starting points\n\n";
-                cin.clear(); // Clear the input buffer to avoid the infinite recursion
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            }
-        } else { // if the user insert  invalid starting point (x)
-            cout << "\nInvalid,PLease enter a valid starting points\n\n";
-            cin.clear();   // Clear the input buffer to avoid the infinite recursion
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    for (int i = 0; i < input.size(); ++i) {
+        //check if in the input there is invalid input or not
+        if (!isdigit(input[i]) || input[i] == 0 ){
+            flag = false;
+            break;
         }
+    }
 
+    if (flag) {
+        int result = stoi(input); //convert input to integer
+        return result;
+    } else {
+        cout << "\nInvalid input! Please enter valid dimensions (digits only).\n";
+        cin.clear();  // Clear the input buffer to avoid the infinite loop
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
+        return -1;
     }
 }
+
+void crop(Image image) {
+    string strX, strY, strW, strH;
+    int x, y, w, h;
+    // x and y reference  to the starting  point
+    // w and h reference to the width and the height of the cropped image
+
+    cout << "The dimensions of the image are: " << image.width << " * " << image.height << endl;
+    cout << "Please enter the starting point (x, y)" << endl; //to show the original dimensions
+
+    cout << "  The Starting point of X-axis: ";
+    cin.ignore(1);
+    cin >> strX;
+    x = valid(strX);
+    while (x == -1 ){
+        // this step to allow the user to Reenter The Staring point of X-axis
+        //--> (-1) is a returned  value  from function valid if there is error
+        cout << "  The Starting point of X-axis: ";
+        cin.ignore(1);
+        cin >> strX;
+        x = valid(strX);
+    }
+    //------------------------------------------------------------------------------------------------------------------
+    cout << "The Starting point of Y-axis: ";
+    cin.ignore(1);
+    cin >> strY;
+    y = valid(strY);
+    while (y == -1){
+        // this step to allow the user to Reenter The Staring point of Y-axis  again
+        //--> (-1) is a returned  value  from function valid if there is error
+        cout << "The Starting point of Y-axis: ";
+        cin.ignore(1);
+        cin >> strY;
+        y = valid(strY);
+    }
+    //------------------------------------------------------------------------------------------------------------------
+    cout << "Please enter the dimensions of the cropped image" << endl;
+    cout << "  The Width of the Cropped Image: ";
+    cin.ignore(1);
+    cin >> strW;
+    w = valid(strW);
+    while(w == -1){
+        // this step to allow the user to Reenter The Width of the Cropped Image again
+        //--> (-1) is a returned  value  from function valid if there is error
+        cout << "  The Width of the Cropped Image: ";
+        cin.ignore(1);
+        cin >> strW;
+        w = valid(strW);
+    }
+    //------------------------------------------------------------------------------------------------------------------
+    cout << "The Height of the Cropped Image: ";
+    cin.ignore(1);
+    cin >> strH;
+    h = valid(strH);
+    while (h == -1){
+        // this step to allow the user to Reenter The Height of the Cropped Image again
+        //--> (-1) is a returned  value  from function valid if there is error
+        cout << "The Height of the Cropped Image: ";
+        cin.ignore(1);
+        cin >> strH;
+        h = valid(strH);
+    }
+    //------------------------------------------------------------------------------------------------------------------
+    if ((x + w) > image.width || (y + h) > image.height) {
+        // if the sum  is higher than the original dimensions
+        cout << "Out of bounds, Please enter valid dimensions!\n";
+        cin.clear();  // Clear the input buffer to avoid the infinite loop
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        crop(image) ;
+    }
+    else {
+        Image cropped_Img(w, h); // create a new image to store the cropped one
+        for (int i = 0; i < w; ++i) {
+            for (int j = 0; j < h; ++j) {
+                for (int k = 0; k < 3; ++k) {
+                    cropped_Img(i, j, k) = image(i + x, j + y, k);
+                    // we add x to i and add y to j to start the image  at the starting points
+                }
+            }
+        }
+        cout << "Filter Applied...\n";
+        menu(cropped_Img);
+    }
+}
+
 
 
 void frame(Image image) //Loai (Done)
