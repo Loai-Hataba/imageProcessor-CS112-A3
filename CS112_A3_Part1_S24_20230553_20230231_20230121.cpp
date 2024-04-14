@@ -27,11 +27,11 @@ string file_check(string file_name);
 /*--------------------------------------------*/
 void grayscale(Image image);
 void black_white(Image image);
-void inverted(Image image);
+void inverted(Image& image);
 void merge(Image image);
 void flip(Image image);
 void rotate(Image image);
- void darken_lighten(Image image);
+void darken_lighten(Image image);
 void crop(Image image);
 void frame(Image image);
 void edges(Image image);
@@ -229,10 +229,10 @@ void save(Image image, int back)
     cout << "Saving " << file_name << "...\n";
     image.saveImage(file_name);
     cout << file_name << " has been saved successfully.\n";
-//    if (back == 1)
-//    {
-//        menu(image);
-//    }
+    if (back == 1)
+    {
+        menu(image);
+    }
 }
 
 //checks file is valid
@@ -305,7 +305,7 @@ void black_white(Image image) //Abdallah (Done)
     menu(image);
 }
 
-void inverted(Image image) //Loai (Done)
+void inverted(Image& image) //Loai (Done)
 {
     for (int i = 0; i < image.width; i++) {
         for (int j = 0; j < image.height; j++) {

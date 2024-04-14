@@ -1,28 +1,14 @@
 # ninja log v5
-9	309	7347416267677840	Photoshop_budget_autogen/timestamp	f16883f339161065
-56	71	0	clean	577b940aee94fbd7
-9	309	7347416267677840	Photoshop_budget_autogen/mocs_compilation.cpp	f16883f339161065
-9	309	7347416267677840	F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/Photoshop_budget_autogen/timestamp	f16883f339161065
-341	2778	7347416292445820	CMakeFiles/Photoshop_budget.dir/photoshop_budget.cpp.obj	9db077ffc79c462a
-9	309	7347416267677840	F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/Photoshop_budget_autogen/mocs_compilation.cpp	f16883f339161065
-726	2804	7347358048418333	CMakeFiles/Photoshop_budget.dir/main.cpp.obj	962778d7ab12b8e4
-748	1830	7347358038777343	CMakeFiles/Photoshop_budget.dir/stb_implementation.cpp.obj	c88d74e0d0479578
-720	2745	7347358047915799	CMakeFiles/Photoshop_budget.dir/Photoshop_budget_autogen/mocs_compilation.cpp.obj	b087b2ce31613ec8
-2644	2928	7347404445592834	Photoshop_budget.exe	4faee6a08a427692
-0	55	0	CMakeFiles/clean.additional	baedbe210acaa455
-276	1209	7347404428488769	CMakeFiles/Photoshop_budget.dir/image_processor_code.cpp.obj	5aa5f0a64a78ed50
-6	668	7347418540888731	build.ninja	e198dc0595967a36
-400	423	7347414775534138	F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/Photoshop_budget_autogen/EWIEGA46WW/qrc_resources.cpp	9ceccd2007ddaec7
-0	58	0	CMakeFiles/clean.additional	baedbe210acaa455
-58	76	0	clean	577b940aee94fbd7
-6	733	7347418874605734	Photoshop_budget_autogen/timestamp	f16883f339161065
-6	733	7347418874605734	Photoshop_budget_autogen/mocs_compilation.cpp	f16883f339161065
-6	733	7347418874605734	F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/Photoshop_budget_autogen/timestamp	f16883f339161065
-6	733	7347418874605734	F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/Photoshop_budget_autogen/mocs_compilation.cpp	f16883f339161065
-734	841	7347418876284753	Photoshop_budget_autogen/EWIEGA46WW/qrc_resources.cpp	1e912d201daf6232
-734	841	7347418876284753	F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/Photoshop_budget_autogen/EWIEGA46WW/qrc_resources.cpp	1e912d201daf6232
-853	1904	7347418887011394	CMakeFiles/Photoshop_budget.dir/stb_implementation.cpp.obj	c88d74e0d0479578
-866	1930	7347418887342004	CMakeFiles/Photoshop_budget.dir/image_processor_code.cpp.obj	5aa5f0a64a78ed50
-842	2873	7347418896795317	CMakeFiles/Photoshop_budget.dir/Photoshop_budget_autogen/mocs_compilation.cpp.obj	b087b2ce31613ec8
-858	2883	7347418896900333	CMakeFiles/Photoshop_budget.dir/main.cpp.obj	962778d7ab12b8e4
-847	3339	7347418901302020	CMakeFiles/Photoshop_budget.dir/photoshop_budget.cpp.obj	9db077ffc79c462a
+5	748	7348010277219963	Photoshop_budget_autogen/timestamp	f16883f339161065
+48	67	0	clean	577b940aee94fbd7
+5	748	7348010277219963	Photoshop_budget_autogen/mocs_compilation.cpp	f16883f339161065
+5	748	7348010277219963	F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/Photoshop_budget_autogen/timestamp	f16883f339161065
+771	3256	7348010303093004	CMakeFiles/Photoshop_budget.dir/photoshop_budget.cpp.obj	9db077ffc79c462a
+5	748	7348010277219963	F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/Photoshop_budget_autogen/mocs_compilation.cpp	f16883f339161065
+748	2781	7348010298338309	CMakeFiles/Photoshop_budget.dir/main.cpp.obj	962778d7ab12b8e4
+760	1797	7348010288509834	CMakeFiles/Photoshop_budget.dir/stb_implementation.cpp.obj	c88d74e0d0479578
+754	2776	7348010298293145	CMakeFiles/Photoshop_budget.dir/Photoshop_budget_autogen/mocs_compilation.cpp.obj	b087b2ce31613ec8
+3257	3552	7348010305975589	Photoshop_budget.exe	4faee6a08a427692
+1	47	0	CMakeFiles/clean.additional	baedbe210acaa455
+765	1778	7348010288271824	CMakeFiles/Photoshop_budget.dir/image_processor_code.cpp.obj	5aa5f0a64a78ed50
+6	668	7348010374575970	build.ninja	e198dc0595967a36

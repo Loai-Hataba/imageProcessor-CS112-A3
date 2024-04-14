@@ -13,7 +13,7 @@ void choose_filter(string ans, Image image);
 void save(Image image, int back = 0);
 string file_check(string file_name);
 /*--------------------------------------------*/
-void grayscale(Image& image);
+void grayscale(string path);
 void black_white(Image image);
 void inverted(Image image);
 void merge(Image image);

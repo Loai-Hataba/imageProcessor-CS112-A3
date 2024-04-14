@@ -62,31 +62,8 @@ Image image_path(const std::string& path)
 void save(Image image, int back)
 {
     string file_name;
-//    cout << "Choose the name of the new image (Default is .jpg):";
-//    cin >> file_name;
-//    bool check = false;
-//    bool def = true;
-//    for (int i = 0; i < file_name.size(); ++i) {
-//        if (file_name[i] == '.')def = false;
-//    }
-//    if (def)file_name += ".jpg";
-//    else if (not def) {
-//        do
-//        {
-//            for (int i = 0; i < file_name.length(); i++) {
-//                if (file_name[i] == '.') {
-//                    string t = file_name.substr(i + 1, 3);
-//                    if (t != "jpg" && t != "png" && t != "bmp" && t != "tga") {
-//                        cout << "File extension unsupported (jpg, png, bmp, tga)!\n";
-//
-//                    }
-//                }
-//            }
-//        }
-//        while (check);
-//    }
-//    cout << "Saving " << file_name << "...\n";
-    image.saveImage("F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/cmake-build-debug/Samples/testyarab.jpg");
+    cout << "saving: " << file_name << endl;
+    // image.saveImage("F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/cmake-build-debug/Samples/testyarab.jpg");
     cout << file_name << " has been saved successfully.\n";
 }
 
@@ -119,14 +96,17 @@ string file_check(string file_name)
 
 string test()
 {
-    cout << "testing\n";
+    string koko = "testing\n";
+    cout << koko;
     return "done!! Lol";
 }
 
 //  ********************** Filters ****************************
-void grayscale(Image& image) //Hossam (Done)
+void grayscale(string path) //Hossam (Done)
 {
-    cout << "bada2na el7\n";
+    cout << "path: " << path << endl;
+    Image image(path);
+    cout << "path2: " << path << endl;
     for (int i = 0; i < image.width; i++) {
         for (int j = 0; j < image.height; j++) {
             unsigned int avg = 0;
@@ -139,11 +119,10 @@ void grayscale(Image& image) //Hossam (Done)
             }
         }
     }
-    cout << "saving the file!!!\n";
-    save(image);
-    cout << "Filter Applied...\n";
-
-
+    cout << "path3: " << path << endl;
+    // cout << "saving the file!!!\n";
+    // save(image);
+    // cout << "Filter Applied...\n";
 }
 
 void black_white(Image image) //Abdallah (Done)

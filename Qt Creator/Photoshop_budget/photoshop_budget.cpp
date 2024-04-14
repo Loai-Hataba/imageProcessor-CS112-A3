@@ -5,6 +5,7 @@
 #include <QMessageBox>
 #include "image_processor.h"
 #include <String>
+// #include <iostream>
 
 
 QString file_name;
@@ -33,9 +34,9 @@ Photoshop_budget::~Photoshop_budget()
 }
 
 void Photoshop_budget::on_load_button_clicked()
-{   bool test = false;
-    file_name = QFileDialog::getOpenFileName(this, "Load Image", "C://");
-    if (!file_name.isEmpty() && (file_name.endsWith(".jpg") || file_name.endsWith(".png") || file_name.endsWith(".bmp"))) {
+{
+    file_name = QFileDialog::getOpenFileName(this, "Load Image", "F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/cmake-build-debug/Samples/");
+    if (!file_name.isEmpty() && (file_name.endsWith(".jpg") || file_name.endsWith(".png") || file_name.endsWith(".bmp") || file_name.endsWith(".tga"))) {
         QPixmap pix(file_name);
         int w = ui->image->width();
         int h = ui->image->height();
@@ -49,13 +50,15 @@ void Photoshop_budget::on_load_button_clicked()
         msgError.setIcon(QMessageBox::Critical);
         msgError.setWindowTitle("File not opened");
         msgError.exec();
+        file_name = "";
     }
 }
 
 void Photoshop_budget::on_inverted_button_clicked()
 {
     QMessageBox::information(this, "started", "yarab ");
-    string toast = test();
-    QMessageBox::information(this, "started", toast.c_str());
+    grayscale(file_name.toStdString());
+    QMessageBox::information(this, "ended", "el7!!");
+    cout << "allah akbar\n";
 }
 

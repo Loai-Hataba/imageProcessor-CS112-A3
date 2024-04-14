@@ -366,8 +366,7 @@
 				1,
 				2,
 				5,
-				10,
-				14
+				10
 			]
 		}
 	],
@@ -492,8 +491,7 @@
 				1,
 				2,
 				5,
-				10,
-				14
+				10
 			]
 		},
 		{
@@ -505,7 +503,7 @@
 				7,
 				8,
 				9,
-				12
+				11
 			]
 		},
 		{
@@ -513,16 +511,14 @@
 			"sourceIndexes" : 
 			[
 				4,
-				11,
-				13
+				12
 			]
 		},
 		{
 			"name" : "CMake Rules",
 			"sourceIndexes" : 
 			[
-				15,
-				16
+				13
 			]
 		}
 	],
@@ -590,11 +586,6 @@
 			"sourceGroupIndex" : 0
 		},
 		{
-			"backtrace" : 4,
-			"path" : "resources.qrc",
-			"sourceGroupIndex" : 2
-		},
-		{
 			"backtrace" : 0,
 			"isGenerated" : true,
 			"path" : "build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/Photoshop_budget_autogen/include/ui_photoshop_budget.h",
@@ -608,21 +599,8 @@
 		},
 		{
 			"backtrace" : 0,
-			"compileGroupIndex" : 0,
-			"isGenerated" : true,
-			"path" : "build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/Photoshop_budget_autogen/EWIEGA46WW/qrc_resources.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 0,
 			"isGenerated" : true,
 			"path" : "build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/Photoshop_budget_autogen/timestamp.rule",
-			"sourceGroupIndex" : 3
-		},
-		{
-			"backtrace" : 0,
-			"isGenerated" : true,
-			"path" : "build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/Photoshop_budget_autogen/EWIEGA46WW/qrc_resources.cpp.rule",
 			"sourceGroupIndex" : 3
 		}
 	],
