@@ -61,10 +61,10 @@ Image image_path(const std::string& path)
 //name and save the new file
 void save(Image image, int back)
 {
-    string file_name;
-    cout << "saving: " << file_name << endl;
-    // image.saveImage("F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/cmake-build-debug/Samples/testyarab.jpg");
-    cout << file_name << " has been saved successfully.\n";
+    // string file_name = "koko";
+    // cout << "saving: " << file_name << endl;
+    image.saveImage("F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/cmake-build-debug/Samples/testyarab.jpg");
+    // cout << file_name << " has been saved successfully.\n";
 }
 
 //checks file is valid
@@ -120,9 +120,9 @@ void grayscale(string path) //Hossam (Done)
         }
     }
     cout << "path3: " << path << endl;
-    // cout << "saving the file!!!\n";
-    // save(image);
-    // cout << "Filter Applied...\n";
+    cout << "saving the file!!!\n";
+    save(image);
+    cout << "Filter Applied...\n";
 }
 
 void black_white(Image image) //Abdallah (Done)
