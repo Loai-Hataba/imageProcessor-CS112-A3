@@ -653,8 +653,6 @@ void crop(Image image) {
     }
 }
 
-
-
 void frame(Image image) //Loai (Done)
 {
     int frame_size;

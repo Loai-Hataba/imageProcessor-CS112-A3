@@ -27,6 +27,15 @@ Photoshop_budget::Photoshop_budget(QWidget *parent)
 
     // Set the pixmap to the label with scaled size
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
+
+    //rotate combo box
+    ui->rotate_combobox->addItem("");
+    for (int i = 1; i <= 3; i++)
+    {
+        int angle = i * 90;
+        ui->rotate_combobox->addItem(QString::number(angle));
+    }
+
 }
 
 Photoshop_budget::~Photoshop_budget()
@@ -58,7 +67,6 @@ void Photoshop_budget::on_load_button_clicked()
 void Photoshop_budget::on_inverted_button_clicked()
 {
     inverted(file_name.toStdString());
-    QMessageBox::information(this, "ended", "Filter Applied!");
     QPixmap pix("F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp/temp.jpg");
     int w = ui->image->width();
     int h = ui->image->height();
@@ -72,7 +80,6 @@ void Photoshop_budget::on_inverted_button_clicked()
 void Photoshop_budget::on_grayscale_button_clicked()
 {
     grayscale(file_name.toStdString());
-    QMessageBox::information(this, "ended", "Filter Applied!");
     QPixmap pix("F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp/temp.jpg");
     int w = ui->image->width();
     int h = ui->image->height();
@@ -84,7 +91,6 @@ void Photoshop_budget::on_grayscale_button_clicked()
 void Photoshop_budget::on_bw_button_clicked()
 {
     black_white(file_name.toStdString());
-    QMessageBox::information(this, "ended", "Filter Applied!");
     QPixmap pix("F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp/temp.jpg");
     int w = ui->image->width();
     int h = ui->image->height();
@@ -95,7 +101,7 @@ void Photoshop_budget::on_bw_button_clicked()
 
 void Photoshop_budget::on_save_button_clicked()
 {
-    save_file_name = QFileDialog::getSaveFileName(this, "Save Image", "F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/cmake-build-debug/Samples/");
+    save_file_name = QFileDialog::getSaveFileName(this, "Save Image", "F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/cmake-build-debug/Samples/", "JPEG (*.jpg);;PNG (*.png);;Bitmap (*.bmp);;Targa (*.tga)");
     Image image("F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp/temp.jpg");
     save(image, 0, save_file_name.toStdString());
 }

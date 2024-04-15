@@ -39,6 +39,7 @@ using namespace std;
 14- Comments                                        *
 15- check file extension when quitting              (Done)
 16- Fix tv filter                                   (Done)
+17- Handle empty or wrong files when using filters  *
 */
 
 
@@ -55,9 +56,6 @@ Image image_path(const std::string& path)
     return image;
 }
 
-
-
-
 //name and save the new file
 void save(Image image, int back, string path)
 {
@@ -67,33 +65,6 @@ void save(Image image, int back, string path)
     image.saveImage(path);
 
     // cout << file_name << " has been saved successfully.\n";
-}
-
-//checks file is valid
-string file_check(string file_name)
-{
-    //    auto name extension
-    bool def = true;
-    for (int i = 0; i < file_name.size(); ++i) {
-        if (file_name[i] == '.')def = false;
-    }
-    //    default .jpg
-    if (def)file_name += ".jpg";
-    //  check file exists
-    ifstream file;
-    file.open(file_name);
-    //    exists
-    if (file)
-    {
-        file.close();
-        return file_name;
-    }
-    //        doesn't exist
-    else
-    {
-        cout << "File Doesn't exist!\n";
-        return "None";
-    }
 }
 
 //  ********************** Filters ****************************
@@ -162,6 +133,7 @@ void inverted(string path) //Loai (Done)
 
 }
 
+//!!
 Image resizeMerge(Image image, int max_width, int max_height) { //straight up copied Abdallah's resized filter
     Image resized_Img(max_width, max_height);
     float s;
@@ -181,61 +153,60 @@ Image resizeMerge(Image image, int max_width, int max_height) { //straight up co
     }
     return resized_Img;
 }
+// void merge(Image image1) //Hossam (Done)
+// {
+//     string file_name;  //2nd image input
+//     cout << "Please enter 2nd image name (Default is .jpg): ";
+//     cin >> file_name;
+//     // string check = file_check(file_name);
+//     // while (check == "None") {
+//     //     cout << "Please enter 2nd image name (Default is .jpg): ";
+//     //     cin >> file_name;
+//     //     check = file_check(file_name);
+//     // }
+//     // string path = check;
+//     Image image(path);
+//     char choice;
+//     cout<<"1) Scale both images to the biggest height and width\n"
+//             "2) Merge common area of the smaller image\n"
+//             "Choice: ";
+//     cin >> choice;
+//     while (choice!='1' && choice!='2'){
+//         cout<<"Invalid choice,please choose from (1,2):";
+//         cin>>choice;
+//     }
+//     if (choice == '1') { //common area of smaller image
+//         //making another image that have them both merged and setting its dimensions to the smaller image
+//         Image image3(min(image1.width, image.width), min(image1.height, image.height));
+//         for (int i = 0; i < image3.width; ++i) {
+//             for (int j = 0; j < image3.height; ++j) {
+//                 for (int k = 0; k < 3; ++k) {
+//                     //merging them by adding the colors of evey pixel from both images to output image and dividing by 2
+//                     image3(i, j, k) = (image(i, j, k) + image1(i, j, k)) / 2;
+//                 }
+//             }
+//         }
+//         cout << "Filter Applied...\n";
 
-void merge(Image image1) //Hossam (Done)
-{
-    string file_name;  //2nd image input
-    cout << "Please enter 2nd image name (Default is .jpg): ";
-    cin >> file_name;
-    string check = file_check(file_name);
-    while (check == "None") {
-        cout << "Please enter 2nd image name (Default is .jpg): ";
-        cin >> file_name;
-        check = file_check(file_name);
-    }
-    string path = check;
-    Image image(path);
-    char choice;
-    cout<<"1) Scale both images to the biggest height and width\n"
-            "2) Merge common area of the smaller image\n"
-            "Choice: ";
-    cin >> choice;
-    while (choice!='1' && choice!='2'){
-        cout<<"Invalid choice,please choose from (1,2):";
-        cin>>choice;
-    }
-    if (choice == '1') { //common area of smaller image
-        //making another image that have them both merged and setting its dimensions to the smaller image
-        Image image3(min(image1.width, image.width), min(image1.height, image.height));
-        for (int i = 0; i < image3.width; ++i) {
-            for (int j = 0; j < image3.height; ++j) {
-                for (int k = 0; k < 3; ++k) {
-                    //merging them by adding the colors of evey pixel from both images to output image and dividing by 2
-                    image3(i, j, k) = (image(i, j, k) + image1(i, j, k)) / 2;
-                }
-            }
-        }
-        cout << "Filter Applied...\n";
+//     } else { //resized both images to the greatest height and width
+//         int m_width = max(image1.width, image.width);
+//         int m_height = max(image1.height, image.height);
+//         Image image3(m_width, m_height);
+//         Image resized_im1 = resizeMerge(image1,m_width,m_height);
+//         Image resized_im2 = resizeMerge(image,m_width,m_height);
+//         for (int i = 0; i < image3.width; ++i) {
+//             for (int j = 0; j < image3.height; ++j) {
+//                 for (int k = 0; k < 3; ++k) {
+//                     image3(i, j, k) = (resized_im1(i, j, k) + resized_im2(i, j, k)) / 2;
+//                 }
+//             }
+//         }
+//         cout << "Filter Applied...\n";
 
-    } else { //resized both images to the greatest height and width
-        int m_width = max(image1.width, image.width);
-        int m_height = max(image1.height, image.height);
-        Image image3(m_width, m_height);
-        Image resized_im1 = resizeMerge(image1,m_width,m_height);
-        Image resized_im2 = resizeMerge(image,m_width,m_height);
-        for (int i = 0; i < image3.width; ++i) {
-            for (int j = 0; j < image3.height; ++j) {
-                for (int k = 0; k < 3; ++k) {
-                    image3(i, j, k) = (resized_im1(i, j, k) + resized_im2(i, j, k)) / 2;
-                }
-            }
-        }
-        cout << "Filter Applied...\n";
+//     }
+// }
 
-    }
-}
-
-
+//!
 void flip(Image image) //Abdallah (Done)
 {
     char choice;
@@ -274,20 +245,16 @@ void flip(Image image) //Abdallah (Done)
         flip(image);
     }
 }
-
+//!
 void rotate(Image image) //Loai (Done)
 {
     int angle;
     string ang;
-    cout << "How much rotation angle would you like? (90, 180, 270)\n"
-            "Choice: ";
-    cin >> ang;
-    while (ang != "90" && ang != "180" && ang != "270") {
-        cout << "Please Enter a valid angle (90, 180, 270): ";
-        cin >> ang;
-    }
+//    cout << "How much rotation angle would you like? (90, 180, 270)\n"
+//            "Choice: ";
+//    cin >> ang;
     angle = stoi(ang);
-    Image final;
+//    Image final;
     // Perform rotation based on angle
     if (angle == 90 || angle == 270) {
         // For 90 or 270 degrees, transpose and flip the image
@@ -369,6 +336,7 @@ void darken_lighten(Image image) //Hossam (Done)
 
 }
 
+//!!!
 void crop(Image image) //Abdallah (Done)
 {
     while (true) {
@@ -435,7 +403,7 @@ void crop(Image image) //Abdallah (Done)
     }
 }
 
-
+//!!!
 void frame(Image image) //Loai (Done)
 {
     int frame_size;
@@ -876,6 +844,7 @@ void edges(Image image) { //Hossam (Done)
 
 }
 
+//!!
 void resize(Image image) //Abdallah (Done)
 {
     while (true) {
@@ -917,7 +886,7 @@ void resize(Image image) //Abdallah (Done)
 
     }
 }
-
+//!
 void blur(Image image) //Loai (Done)
 {
     int blur_size;
@@ -1005,7 +974,6 @@ void Sunlight(Image image) {
 
 
 }
-
 
 void look_Purple(Image image) //Abdallah (Done)
 {
@@ -1134,7 +1102,7 @@ void sepia(Image image) //Loai (Done)
     cout << "Filter Applied...\n";
 
 }
-
+// make it static
 void oil(Image image) //Loai (Done)
 {
     unsigned int brushSize;
@@ -1221,7 +1189,7 @@ void oil(Image image) //Loai (Done)
     cout << "Filter Applied...\n";
 
 }
-
+//!
 void Skewed(Image image) {
     Image white(image.width * 3, image.height);
     for (int i = 0; i < white.height; ++i) {
@@ -1258,7 +1226,7 @@ void Skewed(Image image) {
 
 
 }
-
+//!
 void Pixelate(Image image) {
     int Pixel_Size = 0;  // This variable handles the size of each pixel
     while (true) {
@@ -1311,41 +1279,3 @@ void Pixelate(Image image) {
         }
     }
 }
-
-/*
- *
- * The line `cin.ignore(numeric_limits<streamsize>::max(), '\n');` is a call to the `ignore` function from the `cin` object, which is used to clear the input buffer.
-
-Here's a breakdown of the parameters:
-
-1. `numeric_limits<streamsize>::max()`: This part retrieves the maximum value that can be stored in a `streamsize` data type.
- `streamsize` is a data type used for stream buffer sizes. `numeric_limits` is a template class in the `<limits>` header
- , and its `max()` function returns the maximum value representable by the specified data type
- . In this case
- , it returns the maximum value representable by `streamsize`. This value is used to specify the maximum number of characters
- to extract and discard from the input stream.
-
-2. `'\n'`: This character specifies the delimiter until which the extraction will occur.
- In this case, it's the newline character (`'\n'`). It indicates that `cin` should ignore characters in the input buffer
- until it encounters a newline character. This is typically used to clear any remaining characters in the input buffer
- after reading a line of input.
-
-So, `cin.ignore(numeric_limits<streamsize>::max(), '\n');` essentially tells the program to ignore and discard all characters
- in the input buffer until it reaches a newline character (`'\n'`). This is commonly used after using `cin` to read input,
- especially when there might be extra characters left in the input buffer. It ensures that the input buffer is cleared before
- further input operations.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- * */
