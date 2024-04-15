@@ -10,12 +10,12 @@ Image image_path(const std::string& path);
 //prototypes
 void menu(Image image);
 void choose_filter(string ans, Image image);
-void save(Image image, int back = 0);
+void save(Image image, int back = 0, string path = "F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp/temp.jpg");
 string file_check(string file_name);
 /*--------------------------------------------*/
 void grayscale(string path);
-void black_white(Image image);
-void inverted(Image image);
+void black_white(string path);
+void inverted(string path);
 void merge(Image image);
 void flip(Image image);
 void rotate(Image image);

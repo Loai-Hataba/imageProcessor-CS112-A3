@@ -9,6 +9,7 @@
 
 
 QString file_name;
+QString save_file_name;
 Image image;
 
 Photoshop_budget::Photoshop_budget(QWidget *parent)
@@ -56,9 +57,46 @@ void Photoshop_budget::on_load_button_clicked()
 
 void Photoshop_budget::on_inverted_button_clicked()
 {
-    QMessageBox::information(this, "started", "yarab ");
+    inverted(file_name.toStdString());
+    QMessageBox::information(this, "ended", "Filter Applied!");
+    QPixmap pix("F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp/temp.jpg");
+    int w = ui->image->width();
+    int h = ui->image->height();
+    ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
+    file_name = "F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp/temp.jpg";
+}
+
+
+
+
+void Photoshop_budget::on_grayscale_button_clicked()
+{
     grayscale(file_name.toStdString());
-    QMessageBox::information(this, "ended", "el7!!");
-    cout << "allah akbar\n";
+    QMessageBox::information(this, "ended", "Filter Applied!");
+    QPixmap pix("F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp/temp.jpg");
+    int w = ui->image->width();
+    int h = ui->image->height();
+    ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
+    file_name = "F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp/temp.jpg";
+}
+
+
+void Photoshop_budget::on_bw_button_clicked()
+{
+    black_white(file_name.toStdString());
+    QMessageBox::information(this, "ended", "Filter Applied!");
+    QPixmap pix("F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp/temp.jpg");
+    int w = ui->image->width();
+    int h = ui->image->height();
+    ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
+    file_name = "F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp/temp.jpg";
+}
+
+
+void Photoshop_budget::on_save_button_clicked()
+{
+    save_file_name = QFileDialog::getSaveFileName(this, "Save Image", "F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/cmake-build-debug/Samples/");
+    Image image("F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp/temp.jpg");
+    save(image, 0, save_file_name.toStdString());
 }
 

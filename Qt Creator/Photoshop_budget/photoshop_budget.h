@@ -22,6 +22,12 @@ private slots:
 
     void on_inverted_button_clicked();
 
+    void on_grayscale_button_clicked();
+
+    void on_bw_button_clicked();
+
+    void on_save_button_clicked();
+
 private:
     Ui::Photoshop_budget *ui;
 };

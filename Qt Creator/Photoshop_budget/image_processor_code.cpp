@@ -59,11 +59,13 @@ Image image_path(const std::string& path)
 
 
 //name and save the new file
-void save(Image image, int back)
+void save(Image image, int back, string path)
 {
+
     // string file_name = "koko";
     // cout << "saving: " << file_name << endl;
-    image.saveImage("F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/cmake-build-debug/Samples/testyarab.jpg");
+    image.saveImage(path);
+
     // cout << file_name << " has been saved successfully.\n";
 }
 
@@ -94,13 +96,6 @@ string file_check(string file_name)
     }
 }
 
-string test()
-{
-    string koko = "testing\n";
-    cout << koko;
-    return "done!! Lol";
-}
-
 //  ********************** Filters ****************************
 void grayscale(string path) //Hossam (Done)
 {
@@ -119,14 +114,13 @@ void grayscale(string path) //Hossam (Done)
             }
         }
     }
-    cout << "path3: " << path << endl;
-    cout << "saving the file!!!\n";
     save(image);
     cout << "Filter Applied...\n";
 }
 
-void black_white(Image image) //Abdallah (Done)
+void black_white(string path) //Abdallah (Done)
 {
+    Image image(path);
     for (int i = 0; i < image.width; i++) {
         for (int j = 0; j < image.height; j++) {
             for (int k = 0; k < 3; ++k) {
@@ -144,10 +138,12 @@ void black_white(Image image) //Abdallah (Done)
             }
         }
     }
+    save(image);
 }
 
-void inverted(Image image) //Loai (Done)
+void inverted(string path) //Loai (Done)
 {
+    Image image(path);
     for (int i = 0; i < image.width; i++) {
         for (int j = 0; j < image.height; j++) {
             //            color values
@@ -161,6 +157,7 @@ void inverted(Image image) //Loai (Done)
             image(i, j, 2) = 255 - blue;
         }
     }
+    save(image);
     cout << "Filter Applied...\n";
 
 }
