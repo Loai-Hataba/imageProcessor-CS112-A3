@@ -17,34 +17,58 @@ Authors: Loai Hataba,       ID: 20230553, Section: S24, Email: Loaiwleed2005@gma
 #include <ctime>
 #include <vector>
 #include "Image_Class.h"
+
 using namespace std;
 
 //prototypes
 void menu(Image image);
+
 void choose_filter(string ans, Image image);
+
 void save(Image image, int back = 0);
+
 string file_check(string file_name);
+
 /*--------------------------------------------*/
 void grayscale(Image image);
+
 void black_white(Image image);
-void inverted(Image& image);
+
+void inverted(Image &image);
+
 void merge(Image image);
+
 void flip(Image image);
+
 void rotate(Image image);
+
 void darken_lighten(Image image);
+
 void crop(Image image);
+
 void frame(Image image);
+
 void edges(Image image);
+
 void resize(Image image);
+
 void blur(Image image);
+
 /*--------------------------------------------*/
 void Sunlight(Image image);
+
 void look_Purple(Image image);
+
 void IR(Image image);
+
 void tv(Image image);
+
 void oil(Image image);
+
 void Skewed(Image image);
+
 void sepia(Image image);
+
 void Pixelate(Image image);
 
 /*To make:
@@ -76,13 +100,12 @@ int main() {
 //        check file
         string check = file_check(file_name);
 //        doesn't exist
-        if (check == "None")
-        {
+        if (check == "None") {
             continue;
         }
 //    construct image object
-        string path = check;
-;        Image image(path);
+        string path = check;;
+        Image image(path);
 
 //        display menu
         menu(image);
@@ -181,12 +204,9 @@ void choose_filter(string ans, Image image) {
                 "2) No\n"
                 "Choice: ";
         cin >> ex;
-        if (ex == "1")
-        {
+        if (ex == "1") {
             save(image);
-        }
-        else if (ex == "2")
-        {
+        } else if (ex == "2") {
             cout << "\nGoodbye!!";
             return;
         } else {
@@ -199,8 +219,7 @@ void choose_filter(string ans, Image image) {
 }
 
 //name and save the new file
-void save(Image image, int back)
-{
+void save(Image image, int back) {
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     string file_name;
     cout << "Choose the name of the new image (Default is .jpg):";
@@ -212,8 +231,7 @@ void save(Image image, int back)
     }
     if (def)file_name += ".jpg";
     else if (not def) {
-        do
-        {
+        do {
             for (int i = 0; i < file_name.length(); i++) {
                 if (file_name[i] == '.') {
                     string t = file_name.substr(i + 1, 3);
@@ -223,21 +241,18 @@ void save(Image image, int back)
                     }
                 }
             }
-        }
-        while (check);
+        } while (check);
     }
     cout << "Saving " << file_name << "...\n";
     image.saveImage(file_name);
     cout << file_name << " has been saved successfully.\n";
-    if (back == 1)
-    {
+    if (back == 1) {
         menu(image);
     }
 }
 
 //checks file is valid
-string file_check(string file_name)
-{
+string file_check(string file_name) {
 //    auto name extension
     bool def = true;
     for (int i = 0; i < file_name.size(); ++i) {
@@ -249,14 +264,12 @@ string file_check(string file_name)
     ifstream file;
     file.open(file_name);
 //    exists
-    if (file)
-    {
+    if (file) {
         file.close();
         return file_name;
     }
 //        doesn't exist
-    else
-    {
+    else {
         cout << "File Doesn't exist!\n";
         return "None";
     }
@@ -305,7 +318,7 @@ void black_white(Image image) //Abdallah (Done)
     menu(image);
 }
 
-void inverted(Image& image) //Loai (Done)
+void inverted(Image &image) //Loai (Done)
 {
     for (int i = 0; i < image.width; i++) {
         for (int j = 0; j < image.height; j++) {
@@ -358,13 +371,13 @@ void merge(Image image1) //Hossam (Done)
     string path = check;
     Image image(path);
     string choice;
-    cout<<"1) Scale both images to the biggest height and width\n"
-          "2) Merge common area of the smaller image\n"
-          "Choice: ";
+    cout << "1) Scale both images to the biggest height and width\n"
+            "2) Merge common area of the smaller image\n"
+            "Choice: ";
     cin >> choice;
-    while (choice!="1" && choice!="2" || choice.size()!=1){
-        cout<<"Invalid choice,please choose from (1,2):";
-        cin>>choice;
+    while (choice != "1" && choice != "2" || choice.size() != 1) {
+        cout << "Invalid choice,please choose from (1,2):";
+        cin >> choice;
     }
     if (choice == "1") { //common area of smaller image
         //making another image that have them both merged and setting its dimensions to the smaller image
@@ -383,8 +396,8 @@ void merge(Image image1) //Hossam (Done)
         int m_width = max(image1.width, image.width);
         int m_height = max(image1.height, image.height);
         Image image3(m_width, m_height);
-        Image resized_im1 = resizeMerge(image1,m_width,m_height);
-        Image resized_im2 = resizeMerge(image,m_width,m_height);
+        Image resized_im1 = resizeMerge(image1, m_width, m_height);
+        Image resized_im2 = resizeMerge(image, m_width, m_height);
         for (int i = 0; i < image3.width; ++i) {
             for (int j = 0; j < image3.height; ++j) {
                 for (int k = 0; k < 3; ++k) {
@@ -428,6 +441,7 @@ void flip(Image image) //Abdallah (Done)
         } else {
             cout << "Invalid Input ,please insert a correct character !  \n";
             flip(image);
+            return;
         }
         cout << "Filter Applied...\n";
         menu(flipped_image);
@@ -496,7 +510,7 @@ void darken_lighten(Image image) //Hossam (Done)
     int degree;
     string choice;
     cin >> choice;              //choice whether you want to darken your image or lighten it
-    while (choice != "1" && choice != "2" || choice.size()!=1) {
+    while (choice != "1" && choice != "2" || choice.size() != 1) {
         cout << "Invalid choice please enter a valid value:";
         cin >> choice;
     }
@@ -731,21 +745,18 @@ void frame(Image image) //Loai (Done)
         }
     }
 //        Textured Frame
-    else if (ans == "2")
-    {
+    else if (ans == "2") {
         unsigned int Rtexture; // Color of the texture
         unsigned int Gtexture;
         unsigned int Btexture;
         char col = '0';
-        while (col == '0')
-        {
+        while (col == '0') {
             cout << "Frame color\n"
                     "1) Colors\n"
                     "2) Manual RGB values\n"
                     "Choice: ";
             cin >> col;
-            if (col == '1')
-            {
+            if (col == '1') {
                 char color_choice = '0';
                 while (color_choice == '0') {
                     cout << "Colors:\n"
@@ -792,25 +803,21 @@ void frame(Image image) //Loai (Done)
                         Rtexture = 51;
                         Btexture = 189;
                         Gtexture = 230;
-                    }
-                    else {
+                    } else {
                         cout << "Please enter a valid option!\n";
                     }
                 }
-            }
-            else if (col == '2')
-            {
+            } else if (col == '2') {
                 cout << "Enter RGB values (Usage: R G B): ";
                 cin >> Rtexture >> Gtexture >> Btexture;
                 //                valid color values
-                while (Rtexture > 255 || Rtexture < 0 || Gtexture > 255 || Gtexture < 0 || Btexture > 255 || Btexture > 255) {
+                while (Rtexture > 255 || Rtexture < 0 || Gtexture > 255 || Gtexture < 0 || Btexture > 255 ||
+                       Btexture > 255) {
                     cout << "Color Values should between 0 and 255\n";
                     cout << "Enter Color values (Usage: R G B): ";
                     cin >> Rtexture >> Gtexture >> Btexture;
                 }
-            }
-            else
-            {
+            } else {
                 cout << "Please choose a valid option!\n";
             }
         }
@@ -819,10 +826,8 @@ void frame(Image image) //Loai (Done)
 //        best using one color
 
 //        Horizontal Frame
-        for (int i = 0; i < image.width; i++)
-        {
-            for (int j = 0; j < frame_size; j++)
-            {
+        for (int i = 0; i < image.width; i++) {
+            for (int j = 0; j < frame_size; j++) {
                 // Calculate the texture intensity based on the sine function
                 float texture_intensity = sin(frequency * i) * sin(frequency * j);
 
@@ -842,10 +847,8 @@ void frame(Image image) //Loai (Done)
             }
         }
         // Vertical Textured Frame
-        for (int j = 0; j < image.height; j++)
-        {
-            for (int i = 0; i < frame_size; i++)
-            {
+        for (int j = 0; j < image.height; j++) {
+            for (int i = 0; i < frame_size; i++) {
                 // Calculate the texture intensity based on the sine function
                 float texture_intensity = sin(frequency * i) * sin(frequency * j);
 
@@ -866,8 +869,7 @@ void frame(Image image) //Loai (Done)
         }
     }
 // Fancy frame
-    else
-    {
+    else {
         int lineThickness = 5;
 //      choose color
         unsigned int Rcolor, Gcolor, Bcolor;
@@ -949,12 +951,9 @@ void frame(Image image) //Loai (Done)
                     "2) Checkerboard\n"
                     "Choice: ";
             cin >> pattern;
-            if (pattern != "1" && pattern != "2")
-            {
+            if (pattern != "1" && pattern != "2") {
                 cout << "Invalid Option!\n";
-            }
-            else if (pattern == "1" || pattern == "2")
-            {
+            } else if (pattern == "1" || pattern == "2") {
                 check = false;
             }
         } while (check);
@@ -982,13 +981,13 @@ void frame(Image image) //Loai (Done)
             }
         }
 //       Checkerboard
-        else if (pattern == "2")
-        {
+        else if (pattern == "2") {
             int cellSize = frame_size / 5; // Adjust cell size as needed
 
             for (int i = 0; i < image.width; i++) {
                 for (int j = 0; j < image.height; j++) {
-                    if ((i < frame_size || i >= image.width - frame_size || j < frame_size || j >= image.height - frame_size) &&
+                    if ((i < frame_size || i >= image.width - frame_size || j < frame_size ||
+                         j >= image.height - frame_size) &&
                         ((i / cellSize) + (j / cellSize)) % 2 == 0) { // Check for checkerboard pattern
                         image(i, j, 0) = (Rcolor + 50 <= 255) ? Rcolor + 50 : 255; // Red
                         image(i, j, 1) = (Gcolor + 50 <= 255) ? Gcolor + 50 : 255; // Green
@@ -1016,15 +1015,16 @@ void edges(Image image) { //Hossam (Done)
             }
         }
     }
-    int sens = 150; //doesnt matter value of sensitivity between pixels since image is in black and white filter
+    int sens = 255; //doesnt matter value of sensitivity between pixels since image is in black and white filter
     //end with less height and width by one because we only check the right and bottom side pixels since they are all we need to check and if we iterate at last pixel of row or column we dont get out of image limits
     for (int i = 0; i < image.width - 1; i++) {
-        for (int j = 0; j < image.height -1; j++) {
+        for (int j = 0; j < image.height - 1; j++) {
             for (int k = 0; k < 3; ++k) {
-                if (abs(image(i, j, k) - image(i, j + 1, k)) >=sens || abs(image(i, j, k) - image(i + 1, j, k)) >= sens) {
-                        image(i, j, k) = 0;
+                if (abs(image(i, j, k) - image(i, j + 1, k)) == sens ||
+                    abs(image(i, j, k) - image(i + 1, j, k)) == sens) {
+                    image(i, j, k) = 0;
                 } else {
-                        image(i, j, k) = 255;
+                    image(i, j, k) = 255;
                 }
             }
         }
@@ -1082,31 +1082,25 @@ void blur(Image image) //Loai (Done)
     string temp;
     bool test;
 //    check input validation
-    do
-    {
+    do {
         test = true;
         cout << "Choose Blur size (1-15)\n"
                 "1-->\"Less Blur, more efficient, Time: 5 Sec\"\n"
                 "15-->\"More Blur,less efficient, Time: 3 Min\"\n"
                 "Choice: ";
         cin >> temp;
-        for (auto digit: temp)
-        {
-            if (not isdigit(digit))
-            {
+        for (auto digit: temp) {
+            if (not isdigit(digit)) {
                 test = false;
             }
         }
-        if (test)
-        {
-            if (blur_size < 1 || blur_size > 15)
-            {
+        if (test) {
+            if (blur_size < 1 || blur_size > 15) {
                 cout << "Range (1-15)!!!\n";
                 test = false;
             }
         }
-    }
-    while (not test);
+    } while (not test);
 //    turn answer to proper int
     blur_size = stoi(temp);
 
@@ -1194,7 +1188,7 @@ void look_Purple(Image image) //Abdallah (Done)
     menu(image);
 }
 
-void IR (Image image) //Abdallah (Done)
+void IR(Image image) //Abdallah (Done)
 {
     cout << "Applying Infrared (IR) Filter....................\n";
     for (int i = 0; i < image.width; ++i) {
@@ -1245,9 +1239,12 @@ void tv(Image image) //Loai (Done)
 
             // Add noise to each channel, skipping if the color value is below a threshold
             const int threshold = 5; // Adjust as needed
-            unsigned int noiseRed = (red < threshold) ? 0 : randomValues[count] % static_cast<int>(red * noiseIntensity);
-            unsigned int noiseGreen = (green < threshold) ? 0 : randomValues[count + 1] % static_cast<int>(green * noiseIntensity);
-            unsigned int noiseBlue = (blue < threshold) ? 0 : randomValues[count + 2] % static_cast<int>(blue * noiseIntensity);
+            unsigned int noiseRed = (red < threshold) ? 0 : randomValues[count] %
+                                                            static_cast<int>(red * noiseIntensity);
+            unsigned int noiseGreen = (green < threshold) ? 0 : randomValues[count + 1] %
+                                                                static_cast<int>(green * noiseIntensity);
+            unsigned int noiseBlue = (blue < threshold) ? 0 : randomValues[count + 2] %
+                                                              static_cast<int>(blue * noiseIntensity);
 
             // Debugging noise values
 //            cout << "Noise - Red: " << noiseRed << ", Green: " << noiseGreen << ", Blue: " << noiseBlue << endl;
@@ -1279,9 +1276,9 @@ void sepia(Image image) //Loai (Done)
             unsigned int blue = image(i, j, 2);
 
             // Apply sepia tone
-            unsigned int newRed = min((int)(red * 0.393 + green * 0.769 + blue * 0.189), 255);
-            unsigned int newGreen = min((int)(red * 0.349 + green * 0.686 + blue * 0.168), 255);
-            unsigned int newBlue = min((int)(red * 0.272 + green * 0.534 + blue * 0.131), 255);
+            unsigned int newRed = min((int) (red * 0.393 + green * 0.769 + blue * 0.189), 255);
+            unsigned int newGreen = min((int) (red * 0.349 + green * 0.686 + blue * 0.168), 255);
+            unsigned int newBlue = min((int) (red * 0.272 + green * 0.534 + blue * 0.131), 255);
 
             // Update image with modified color channels
             image(i, j, 0) = newRed;
@@ -1298,8 +1295,7 @@ void oil(Image image) //Loai (Done)
     unsigned int brushSize;
     string temp;
     bool test;
-    do
-    {
+    do {
         test = true;
         cout << "Choose brush size (1-15) \"Recommended 15\": ";
         cin >> temp;
@@ -1381,7 +1377,30 @@ void oil(Image image) //Loai (Done)
 }
 
 void Skewed(Image image) {
-    Image white(image.width * 3, image.height);
+    cout << "Enter the degree of skewness: (1-180)" << endl;
+    string deg;
+    cin >> deg;
+    bool flag = true;
+
+    while (flag) {
+        if ( stoi(deg) < 1 || stoi(deg) > 180) {
+            cout << "invalid value please enter a valid degree(1-180):";
+            cin >> deg;
+        } else flag = false;
+    }
+    int deg1 = stoi(deg);
+    bool flip = deg1 > 90;
+    if (flip)deg1 -= 90;//if degree greater than 90 just skew it normally then flip
+    if (deg1 <= 20 && deg1>0)deg1 = 20;
+    if (deg1 <= 40 && deg1>20)deg1 = 40;
+    if (deg1 <= 60 && deg1>40)deg1 = 60;
+    double y = deg1 * 3.14159 / 180;//convert degree to radian so we can use cosine
+    int cnt = (double) image.height * cos(y);
+    
+    //cout<<"cos "<<cos(y)<<endl;
+    //cnt = abs(cnt);
+    Image white(abs((int) (image.width + cnt)), image.height);
+    cout << white.width << endl;
     for (int i = 0; i < white.height; ++i) {
         for (int j = 0; j < white.width; ++j) {
             for (int k = 0; k < 3; ++k) {
@@ -1389,29 +1408,33 @@ void Skewed(Image image) {
             }
         }
     }
-    int base = image.width / 5;
-    int cnt = image.height;
-    cout << "Enter the degree of skewness: (1-80)" << endl;
-    string deg;
-    cin >> deg;
-    bool flag = true;
-    while (flag) {
-        if (!isdigit(deg[0]) || !isdigit(deg[1]) || stoi(deg) < 1 || stoi(deg) > 80) {
-            cout << "invalid value please enter a valid degree(1-80):";
-            cin >> deg;
-        } else flag = false;
-    }
-    int deg1 = stoi(deg);
-    deg1 = abs(deg1 - 81);
-    int dinom = max(deg1 / 20, 1);
-    //cout<<dinom;
+    //cout<<"deg1: "<<deg1<<endl;
+
+    int turn = 0;
+    cout << "cnt: " << cnt << endl;
+    int denom = ceil(image.height / (double) cnt);
     for (int i = 0; i < image.height; ++i) {
         for (int j = 0; j < image.width; ++j) {
             for (int k = 0; k < 3; ++k) {
-                white(j + cnt + base, i, k) = image(j, i, k);
+//                cout<<" ss"<<j + cnt+30<<endl;
+                white(j + cnt, i, k) = image(j, i, k);
             }
         }
-        if (i % dinom == 0)cnt--;
+        if (i % denom == 0){
+            cnt--;
+        }
+    }
+    if (flip) {
+        Image flipped_image(white.width, white.height);
+        for (int i = white.width - 1; i >= 0; i--) {
+            for (int j = 0; j < white.height; ++j) {
+                for (int k = 0; k < 3; ++k) {
+                    flipped_image(white.width - 1 - i, j, k) = white(i, j, k);
+                }
+            }
+        }
+        menu(flipped_image);
+        return;
     }
     menu(white);
 
