@@ -2,6 +2,5 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/Qt/PhotoShop_on_a_budget/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/_deps/ds-src" vcs="Git" />
   </component>
 </project>
