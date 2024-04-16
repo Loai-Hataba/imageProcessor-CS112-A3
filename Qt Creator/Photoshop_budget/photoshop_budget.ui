@@ -35,8 +35,8 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>640</x>
-      <y>130</y>
+      <x>650</x>
+      <y>-40</y>
       <width>1211</width>
       <height>651</height>
      </rect>
@@ -50,39 +50,14 @@
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QLabel" name="image">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>1211</width>
-       <height>651</height>
-      </rect>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
-     </property>
-     <property name="lineWidth">
-      <number>5</number>
-     </property>
-     <property name="midLineWidth">
-      <number>3</number>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
    </widget>
    <widget class="QPushButton" name="load_btn">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>600</y>
-      <width>141</width>
-      <height>51</height>
+      <x>450</x>
+      <y>670</y>
+      <width>211</width>
+      <height>70</height>
      </rect>
     </property>
     <property name="font">
@@ -106,10 +81,10 @@
    <widget class="QPushButton" name="save_btn">
     <property name="geometry">
      <rect>
-      <x>190</x>
-      <y>600</y>
-      <width>131</width>
-      <height>51</height>
+      <x>770</x>
+      <y>670</y>
+      <width>211</width>
+      <height>70</height>
      </rect>
     </property>
     <property name="font">
@@ -360,7 +335,7 @@
     </property>
     <property name="font">
      <font>
-      <family>Segoe UI</family>
+      <family>Sitka</family>
       <pointsize>13</pointsize>
      </font>
     </property>
@@ -437,6 +412,157 @@
      <string>Blur</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="Pixelate_btn">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>360</y>
+      <width>131</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Pixelate</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="skewed_btn">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>420</y>
+      <width>131</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Skew</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Crop_btn">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>420</y>
+      <width>131</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Crop</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="rsize_btn">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>480</y>
+      <width>131</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Resize</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="image">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>-10</y>
+      <width>1211</width>
+      <height>651</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <property name="lineWidth">
+     <number>5</number>
+    </property>
+    <property name="midLineWidth">
+     <number>3</number>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="flip_btn">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>480</y>
+      <width>131</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Flip</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="merge_btn">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>540</y>
+      <width>131</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Merge</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="darken_btn">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>540</y>
+      <width>131</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Darken &amp; lighten</string>
+    </property>
+   </widget>
    <zorder>image_frame</zorder>
    <zorder>load_btn</zorder>
    <zorder>save_btn</zorder>
@@ -454,6 +580,14 @@
    <zorder>rotate_btn</zorder>
    <zorder>rotate_combobox</zorder>
    <zorder>blur_btn</zorder>
+   <zorder>Pixelate_btn</zorder>
+   <zorder>skewed_btn</zorder>
+   <zorder>Crop_btn</zorder>
+   <zorder>rsize_btn</zorder>
+   <zorder>image</zorder>
+   <zorder>flip_btn</zorder>
+   <zorder>merge_btn</zorder>
+   <zorder>darken_btn</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
