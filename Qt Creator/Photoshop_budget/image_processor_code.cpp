@@ -46,6 +46,7 @@ using namespace std;
 
 string file_path;
 
+Image temp ;
 
 Image image_path(const std::string& path)
 {
@@ -68,7 +69,7 @@ void save(Image image, int back, string path)
 }
 
 //  ********************** Filters ****************************
-void grayscale(string path) //Hossam (Done)
+void grayscale(string path ,string filePath) //Hossam (Done)
 {
     cout << "path: " << path << endl;
     Image image(path);
@@ -85,11 +86,12 @@ void grayscale(string path) //Hossam (Done)
             }
         }
     }
-    save(image);
+    temp = image ;
+    save(image,0,filePath) ;
     cout << "Filter Applied...\n";
 }
 
-void black_white(string path) //Abdallah (Done)
+void black_white(string path ,string filePath) //Abdallah (Done)
 {
     Image image(path);
     for (int i = 0; i < image.width; i++) {
@@ -109,10 +111,10 @@ void black_white(string path) //Abdallah (Done)
             }
         }
     }
-    save(image);
+    save(image,0,filePath) ;
 }
 
-void inverted(string path) //Loai (Done)
+void inverted(string path,string filePath) //Loai (Done)
 {
     Image image(path);
     for (int i = 0; i < image.width; i++) {
@@ -128,7 +130,7 @@ void inverted(string path) //Loai (Done)
             image(i, j, 2) = 255 - blue;
         }
     }
-    save(image);
+    save(image,0,filePath) ;
     cout << "Filter Applied...\n";
 
 }
@@ -207,9 +209,8 @@ Image resizeMerge(Image image, int max_width, int max_height) { //straight up co
 // }
 
 //!
-void flip(string path) //Abdallah (Done)
-{
-    Image image(path);
+void flip(string path,string filePath) //Abdallah (Done)
+{ Image image(path);
     char choice;
     cout << "Which flip you want to do Vertical or  Horizontal (V/H):  ";
     cin >> choice;
@@ -237,23 +238,19 @@ void flip(string path) //Abdallah (Done)
             }
         } else {
             cout << "Invalid Input ,please insert a correct character !  \n";
-            flip(path);
-            return;
+            flip(path,filePath);
         }
+        save(flipped_image,0,filePath) ;
         cout << "Filter Applied...\n";
 
     } else {
         cout << "\nInvalid Input ,please insert a correct character !  \n";
-        flip(path);
-        return;
+        flip(path,filePath);
     }
-    save(image);
-    cout<<"Filter Applied...\n ";
 }
 //!
-void rotate(string path) //Loai (Done)
-{
-    Image image(path);
+void rotate(string path ,string filePath) //Loai (Done)
+{ Image image(path);
     int angle;
     string ang;
 //    cout << "How much rotation angle would you like? (90, 180, 270)\n"
@@ -278,11 +275,11 @@ void rotate(string path) //Loai (Done)
                 }
             }
         }
-        save(image);
+        save(rotated_image,0,filePath) ;
         cout << "Filter Applied...\n";
 
     }
-    //    180 Rotation
+        //    180 Rotation
     else if (angle == 180) {
         // For 180 degrees, flip the image horizontally and vertically
         Image rotated_image = Image(image.width, image.height);
@@ -295,15 +292,14 @@ void rotate(string path) //Loai (Done)
                 }
             }
         }
-
+        save(rotated_image,0,filePath) ;
     } else {
         cout << "Invalid angle. Please choose 90, 180, or 270." << endl;
     }
 }
 
-void darken_lighten(string path) //Hossam (Done)
-{
-    Image image(path);
+void darken_lighten(string path , string filePath) //Hossam (Done)
+{  Image image(path);
     cout << "1) darken   2)lighten\n"
             "Choice: ";
     int degree;
@@ -326,7 +322,7 @@ void darken_lighten(string path) //Hossam (Done)
             int blue = image(i, j, 2);
             if (choice == "1") { //darkening
                 red = red - red * degree /
-                                100;                //take the original value of the color and subtracting it from its determined fraction value thus darkening it
+                            100;                //take the original value of the color and subtracting it from its determined fraction value thus darkening it
                 green = green - green * degree / 100;
                 blue = blue - blue * degree / 100;
             } else {
@@ -340,80 +336,121 @@ void darken_lighten(string path) //Hossam (Done)
             image(i, j, 0) = red;
         }
     }
-    save(image);
+    save(image,0,filePath) ;
     cout << "Filter Applied...\n";
+
+}
+int valid(string& input) {
+    bool flag = true;
+
+    for (int i = 0; i < input.size(); ++i) {
+        //check if in the input there is invalid input or not
+        if (!isdigit(input[i]) || input[i] == 0 ){
+            flag = false;
+            break;
+        }
+    }
+
+    if (flag) {
+        int result = stoi(input); //convert input to integer
+        return result;
+    } else {
+        cout << "\nInvalid input! Please enter valid dimensions (digits only).\n";
+        cin.clear();  // Clear the input buffer to avoid the infinite loop
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+        return -1;
+    }
 }
 
-//!!!
-void crop(string path) //Abdallah (Done)
-{
+void crop(string path,string filePath) {
     Image image(path);
-    while (true) {
-        int x, y, w, h;
-        // x and y reference  to the starting  point
-        // w and h reference to the width and the height of the cropped image
-        cout << "The dimensions of the image are :  " << image.width << " * " << image.height << endl;
-        cout << "Please enter the starting point (x, y)" << endl;
-        cout << "  The Staring point of X-axis :  ";
+    string strX, strY, strW, strH;
+    int x, y, w, h;
+    // x and y reference  to the starting  point
+    // w and h reference to the width and the height of the cropped image
+
+    cout << "The dimensions of the image are: " << image.width << " * " << image.height << endl;
+    cout << "Please enter the starting point (x, y)" << endl; //to show the original dimensions
+
+    cout << "  The Starting point of X-axis: ";
+    cin.ignore(1);
+    cin >> strX;
+    x = valid(strX);
+    while (x == -1 ){
+        // this step to allow the user to Reenter The Staring point of X-axis
+        //--> (-1) is a returned  value  from function valid if there is error
+        cout << "  The Starting point of X-axis: ";
         cin.ignore(1);
-        cin >> x;
-        if (x > 0) {
-            cout << "The Staring point of Y-axis :  ";
-            cin.ignore(1);
-            cin >> y;
-            if (y > 0) {
-                cout << "\nPlease enter the dimensions of the cropped image \n";
-                cout << "  The Width of the Cropped Image :  ";
-                cin.ignore(1);
-                cin >> w;
-                if (w > 0) {
-                    cout << "The Height of the Cropped Image :  ";
-                    cin.ignore(1);
-                    cin >> h;
-                    if (h > 0) {
-                        /*if ((x + w) > image.width || (y + h) > image.height) {
-                            cin.clear();  // Clear the input buffer to avoid the infinite loop
-                            cin.ignore(numeric_limits<streamsize>::max(), '\n');}*/
-                        Image cropped_Img(w, h); //create a new image to store the cropped one
-                        for (int i = 0; i < w; ++i) {
-                            for (int j = 0; j < h; ++j) {
-                                for (int k = 0; k < 3; ++k) {
-                                    cropped_Img(i, j, k) = image(i + x, j + y, k);
-                                    // we add x to i and add y to j to start the image  at the starting points
-                                }
-                            }
-                        }
-                        save(image);
-                        cout << "Filter Applied...\n";
-
-                    } else { // if the user insert  invalid Height
-                        cout << "\nInvalid,Please Enter Valid height  !!\n\n";
-                        cin.clear();// Clear the input buffer to avoid the infinite recursion
-                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                    }
-
-                } else { // if the user insert  invalid Width
-                    cout << "\nInvalid,Please Enter Valid Width  !!\n\n";
-                    cin.clear();// Clear the input buffer to avoid the infinite recursion
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin >> strX;
+        x = valid(strX);
+    }
+    //------------------------------------------------------------------------------------------------------------------
+    cout << "The Starting point of Y-axis: ";
+    cin.ignore(1);
+    cin >> strY;
+    y = valid(strY);
+    while (y == -1){
+        // this step to allow the user to Reenter The Staring point of Y-axis  again
+        //--> (-1) is a returned  value  from function valid if there is error
+        cout << "The Starting point of Y-axis: ";
+        cin.ignore(1);
+        cin >> strY;
+        y = valid(strY);
+    }
+    //------------------------------------------------------------------------------------------------------------------
+    cout << "Please enter the dimensions of the cropped image" << endl;
+    cout << "  The Width of the Cropped Image: ";
+    cin.ignore(1);
+    cin >> strW;
+    w = valid(strW);
+    while(w == -1){
+        // this step to allow the user to Reenter The Width of the Cropped Image again
+        //--> (-1) is a returned  value  from function valid if there is error
+        cout << "  The Width of the Cropped Image: ";
+        cin.ignore(1);
+        cin >> strW;
+        w = valid(strW);
+    }
+    //------------------------------------------------------------------------------------------------------------------
+    cout << "The Height of the Cropped Image: ";
+    cin.ignore(1);
+    cin >> strH;
+    h = valid(strH);
+    while (h == -1){
+        // this step to allow the user to Reenter The Height of the Cropped Image again
+        //--> (-1) is a returned  value  from function valid if there is error
+        cout << "The Height of the Cropped Image: ";
+        cin.ignore(1);
+        cin >> strH;
+        h = valid(strH);
+    }
+    //------------------------------------------------------------------------------------------------------------------
+    if ((x + w) > image.width || (y + h) > image.height) {
+        // if the sum  is higher than the original dimensions
+        cout << "Out of bounds, Please enter valid dimensions!\n";
+        cin.clear();  // Clear the input buffer to avoid the infinite loop
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        crop(path,filePath) ;
+    }
+    else {
+        Image cropped_Img(w, h); // create a new image to store the cropped one
+        for (int i = 0; i < w; ++i) {
+            for (int j = 0; j < h; ++j) {
+                for (int k = 0; k < 3; ++k) {
+                    cropped_Img(i, j, k) = image(i + x, j + y, k);
+                    // we add x to i and add y to j to start the image  at the starting points
                 }
-
-            } else { // if the user insert  invalid starting point (y)
-                cout << "\nInvalid,PLease enter a valid starting points\n\n";
-                cin.clear(); // Clear the input buffer to avoid the infinite recursion
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
             }
-        } else { // if the user insert  invalid starting point (x)
-            cout << "\nInvalid,PLease enter a valid starting points\n\n";
-            cin.clear();   // Clear the input buffer to avoid the infinite recursion
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
+        save(image,0,filePath) ;
+        cout << "Filter Applied...\n";
     }
 }
 
 //!!!
-void frame(Image image) //Loai (Done)
-{
+void frame(string path,string filePath) //Loai (Done)
+{ Image image(path);
     int frame_size;
     string temp;
     bool test;
@@ -470,31 +507,31 @@ void frame(Image image) //Loai (Done)
                         Bcolor = 0;
                         Gcolor = 0;
                     }
-                    //                      Blue
+                        //                      Blue
                     else if (color_choice == '2') {
                         Rcolor = 0;
                         Bcolor = 255;
                         Gcolor = 0;
                     }
-                    //                        Green
+                        //                        Green
                     else if (color_choice == '3') {
                         Rcolor = 0;
                         Bcolor = 0;
                         Gcolor = 255;
                     }
-                    //                        Brown
+                        //                        Brown
                     else if (color_choice == '4') {
                         Rcolor = 149;
                         Bcolor = 23;
                         Gcolor = 78;
                     }
-                    //                        Yellow
+                        //                        Yellow
                     else if (color_choice == '5') {
                         Rcolor = 225;
                         Bcolor = 39;
                         Gcolor = 206;
                     }
-                    //                        Turquoise
+                        //                        Turquoise
                     else if (color_choice == '6') {
                         Rcolor = 51;
                         Bcolor = 189;
@@ -544,7 +581,7 @@ void frame(Image image) //Loai (Done)
 
         }
     }
-    //        Textured Frame
+        //        Textured Frame
     else if (ans == "2")
     {
         unsigned int Rtexture; // Color of the texture
@@ -577,31 +614,31 @@ void frame(Image image) //Loai (Done)
                         Btexture = 0;
                         Gtexture = 0;
                     }
-                    //                      Blue
+                        //                      Blue
                     else if (color_choice == '2') {
                         Rtexture = 0;
                         Btexture = 255;
                         Gtexture = 0;
                     }
-                    //                        Green
+                        //                        Green
                     else if (color_choice == '3') {
                         Rtexture = 0;
                         Btexture = 0;
                         Gtexture = 255;
                     }
-                    //                        Brown
+                        //                        Brown
                     else if (color_choice == '4') {
                         Rtexture = 149;
                         Btexture = 23;
                         Gtexture = 78;
                     }
-                    //                        Yellow
+                        //                        Yellow
                     else if (color_choice == '5') {
                         Rtexture = 225;
                         Btexture = 39;
                         Gtexture = 206;
                     }
-                    //                        Turquoise
+                        //                        Turquoise
                     else if (color_choice == '6') {
                         Rtexture = 51;
                         Btexture = 189;
@@ -679,7 +716,7 @@ void frame(Image image) //Loai (Done)
             }
         }
     }
-    // Fancy frame
+        // Fancy frame
     else
     {
         int lineThickness = 5;
@@ -710,31 +747,31 @@ void frame(Image image) //Loai (Done)
                         Bcolor = 0;
                         Gcolor = 0;
                     }
-                    //                      Blue
+                        //                      Blue
                     else if (color_choice == '2') {
                         Rcolor = 0;
                         Bcolor = 255;
                         Gcolor = 0;
                     }
-                    //                        Green
+                        //                        Green
                     else if (color_choice == '3') {
                         Rcolor = 0;
                         Bcolor = 0;
                         Gcolor = 255;
                     }
-                    //                        Brown
+                        //                        Brown
                     else if (color_choice == '4') {
                         Rcolor = 149;
                         Bcolor = 23;
                         Gcolor = 78;
                     }
-                    //                        Yellow
+                        //                        Yellow
                     else if (color_choice == '5') {
                         Rcolor = 225;
                         Bcolor = 39;
                         Gcolor = 206;
                     }
-                    //                        Turquoise
+                        //                        Turquoise
                     else if (color_choice == '6') {
                         Rcolor = 51;
                         Bcolor = 189;
@@ -795,7 +832,7 @@ void frame(Image image) //Loai (Done)
                 }
             }
         }
-        //       Checkerboard
+            //       Checkerboard
         else if (pattern == "2")
         {
             int cellSize = frame_size / 5; // Adjust cell size as needed
@@ -812,12 +849,12 @@ void frame(Image image) //Loai (Done)
             }
         }
     }
+    save(image,0,filePath) ;
     cout << "Filter Applied...\n";
 
 }
 
-void edges(string path) { //Hossam (Done)
-    cout << "path: " << path << endl;
+void edges(string path,string filePath) { //Hossam (Done)
     Image image(path);
     for (int i = 0; i < image.width; i++) {     //black and white filter before we detect edges
         for (int j = 0; j < image.height; j++) {
@@ -845,15 +882,14 @@ void edges(string path) { //Hossam (Done)
             }
         }
     }
-    save(image);
     cout << "Filter Applied...\n";
+    save(image,0,filePath) ;
+
 }
 
-
 //!!
-void resize(string path) //Abdallah (Done)
-{
-    Image image(path);
+void resize(string path,string filePath) //Abdallah (Done)
+{  Image image(path);
     while (true) {
         cout << "The original size of the image is :  " << image.width << "x" << image.height << endl;
         int w, h;
@@ -881,7 +917,7 @@ void resize(string path) //Abdallah (Done)
                     }
                 }
             }
-            save(image);
+            save(image,0,filePath) ;
             cout << "Filter Applied...\n";
 
         } else {
@@ -895,9 +931,8 @@ void resize(string path) //Abdallah (Done)
     }
 }
 //!
-void blur(string path) //Loai (Done)
-{
-    Image image(path);
+void blur(string path,string filePath) //Loai (Done)
+{Image image(path);
     int blur_size;
     string temp;
     bool test;
@@ -963,14 +998,14 @@ void blur(string path) //Loai (Done)
             blurred_image(j, i, 2) = sumB / count;
         }
     }
-    save(image);
+    save(image,0,filePath) ;
     cout << "Filter Applied...\n";
 
 }
 
 //  ********************** Bonus ****************************
-void Sunlight(string path) {
-    Image image(path);
+void Sunlight (string path,string filePath) {
+    Image image(path) ;
     for (int i = 0; i < image.width; i++) {
         for (int j = 0; j < image.height; j++) {
             int red = image(i, j, 0);
@@ -981,13 +1016,14 @@ void Sunlight(string path) {
             image(i, j, 2) = min(blue * 8 / 10, 255);
         }
     }
-    save(image);
+    save(image,0,filePath) ;
     cout << "Filter Applied...\n";
+
 
 }
 
-void look_Purple(string path){ //Abdallah (Done)
-    Image image(path);
+void look_Purple(string path,string filePath) //Abdallah (Done)
+{ Image image(path) ;
     for (int i = 0; i < image.width; i++) {
         for (int j = 0; j < image.height; j++) {
             unsigned int red = image(i, j, 0);  //initialize values of each channel
@@ -1011,14 +1047,13 @@ void look_Purple(string path){ //Abdallah (Done)
             image(i, j, 2) = newBlue;
         }
     }
-    save(image);
+    save(image,0,filePath) ;
     cout << "Filter Applied...\n";
 
 }
 
-void IR (string path){ //Abdallah (Done)
-    Image image(path);
-    cout << "Applying Infrared (IR) Filter....................\n";
+void IR (string path,string filePath) //Abdallah (Done)
+{  Image image(path) ;
     for (int i = 0; i < image.width; ++i) {
         for (int j = 0; j < image.height; ++j) {
             unsigned int red = image(i, j, 0);
@@ -1031,13 +1066,13 @@ void IR (string path){ //Abdallah (Done)
             image(i, j, 2) = New_Blue;
         }
     }
-    save(image);
+    save(image,0,filePath) ;
     cout << "Filter Applied...\n";
 
 }
 
-void tv(string path){ //Loai (Done)
-    Image image(path);
+void tv(string path,string filePath) //Loai (Done)
+{Image image(path) ;
     // Seed the random number generator
     srand(time(nullptr));
 
@@ -1088,13 +1123,13 @@ void tv(string path){ //Loai (Done)
             count += 3;
         }
     }
-    save(image);
+    save(image,0,filePath) ;
     cout << "Filter Applied...\n";
 
 }
 
-void sepia(string path){ //Loai (Done)
-    Image image(path);
+void sepia(string path,string filePath) //Loai (Done)
+{ Image image(path) ;
     for (int i = 0; i < image.width; ++i) {
         for (int j = 0; j < image.height; ++j) {
             // Get color values
@@ -1113,13 +1148,13 @@ void sepia(string path){ //Loai (Done)
             image(i, j, 2) = newBlue;
         }
     }
-    save(image);
+    save(image,0,filePath) ;
     cout << "Filter Applied...\n";
 
 }
 // make it static
-void oil(string path){ //Loai (Done)
-    Image image(path);
+void oil (string path,string filePath) //Loai (Done)
+{  Image image(path) ;
     unsigned int brushSize;
     string temp;
     bool test;
@@ -1201,12 +1236,12 @@ void oil(string path){ //Loai (Done)
             fill_n(nSumB, 256, 0);
         }
     }
-    save(image);
+    save(image,0,filePath) ;
     cout << "Filter Applied...\n";
 
 }
 //!
-void Skewed(string path) {
+void Skewed(string path,string filePath) {
     Image image(path);
     cout << "Enter the degree of skewness: (1-180)" << endl;
     string deg;
@@ -1247,7 +1282,7 @@ void Skewed(string path) {
     for (int i = 0; i < image.height; ++i) {
         for (int j = 0; j < image.width; ++j) {
             for (int k = 0; k < 3; ++k) {
-                //                cout<<" ss"<<j + cnt+30<<endl;
+//                cout<<" ss"<<j + cnt+30<<endl;
                 white(j + cnt, i, k) = image(j, i, k);
             }
         }
@@ -1264,15 +1299,15 @@ void Skewed(string path) {
                 }
             }
         }
-        save(image);
+        save(flipped_image,0,filePath) ;
         return;
     }
-    save(image);
+    save(white,0,filePath) ;
 
 }
 //!
-void Pixelate(string path) {
-    Image image(path);
+void Pixelate(string path,string filePath) {
+    Image image(path) ;
     int Pixel_Size = 0;  // This variable handles the size of each pixel
     while (true) {
         try {
@@ -1311,7 +1346,6 @@ void Pixelate(string path) {
                         }
                     }
                 }
-                save(image);
                 cout << "Pixelation Filter Applied...\n";
 
             } else { throw Pixel_Size; }
@@ -1323,5 +1357,7 @@ void Pixelate(string path) {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
+        save(image,0,filePath) ;
     }
+
 }

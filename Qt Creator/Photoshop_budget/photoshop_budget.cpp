@@ -5,12 +5,20 @@
 #include <QMessageBox>
 #include "image_processor.h"
 #include <String>
+#include <QStandardPaths>
+#include <QDir>
+#include <QDebug>
+#include <QtGui>
 // #include <iostream>
 
 
 QString file_name;
 QString save_file_name;
 Image image;
+
+QString filePath ;
+
+string ana = filePath.toStdString() ;
 
 Photoshop_budget::Photoshop_budget(QWidget *parent)
     : QMainWindow(parent)
@@ -35,7 +43,49 @@ Photoshop_budget::Photoshop_budget(QWidget *parent)
         int angle = i * 90;
         ui->rotate_combobox->addItem(QString::number(angle));
     }
+// Get the user's home directory path
+    QString homePath = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
+    if (homePath.isEmpty()) {
+        qWarning() << "Failed to retrieve the home directory path.";
+        return;
+    }
 
+    // Construct the full path for the image folder
+    QString folderPath = QDir::toNativeSeparators(homePath + "/Desktop/temp");
+
+    // Create the folder
+    QDir dir(folderPath);
+    if (!dir.exists()) {
+        if (dir.mkpath(folderPath)) {
+            qDebug() << "Folder created successfully: " << folderPath;
+        } else {
+            qWarning() << "Failed to create folder: " << folderPath;
+        }
+    } else {
+        qDebug() << "Folder already exists: " << folderPath;
+    }
+//-----------------------------------
+    QString fileName = "temp.jpg" ;
+    // Define image size
+    int width = 400;
+    int height = 300;
+
+    // Create a QImage object with the specified size and format
+    QImage image(width, height, QImage::Format_RGB32);
+
+    // Fill the image with white color
+    image.fill(Qt::white);
+
+
+    // Construct the full file path
+    filePath = folderPath + "/" + fileName;
+
+    // Save the image to the specified file path
+    if (!image.save(filePath)) {
+        qDebug() << "Failed to save the image.";
+    } else {
+        qDebug() << "Image saved successfully: " << filePath;
+    }
 }
 
 Photoshop_budget::~Photoshop_budget()
@@ -66,12 +116,12 @@ void Photoshop_budget::on_load_btn_clicked()
 
 void Photoshop_budget::on_inverted_btn_clicked()
 {
-    inverted(file_name.toStdString());
-    QPixmap pix("D:/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp.jpg");
+    inverted(file_name.toStdString(),filePath.toStdString());//tmam
+    QPixmap pix(filePath);
     int w = ui->image->width();
     int h = ui->image->height();
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
-    file_name = "D:/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp.jpg";
+    file_name = filePath;
 }
 
 
@@ -79,110 +129,110 @@ void Photoshop_budget::on_inverted_btn_clicked()
 
 void Photoshop_budget::on_grayscale_btn_clicked()
 {
-    grayscale(file_name.toStdString());
-    QPixmap pix("D:/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp.jpg");
+    grayscale(file_name.toStdString(),filePath.toStdString());
+    QPixmap pix(filePath);
     int w = ui->image->width();
     int h = ui->image->height();
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
-    file_name = "D:/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp.jpg";
+    file_name = filePath;
 }
 
 
 void Photoshop_budget::on_bw_btn_clicked()
 {
-    black_white(file_name.toStdString());
-    QPixmap pix("D:/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp.jpg");
+    black_white(file_name.toStdString(),filePath.toStdString());
+      QPixmap pix(filePath);
     int w = ui->image->width();
     int h = ui->image->height();
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
-    file_name = "D:/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp.jpg";
+     file_name = filePath;
 }
 
 
 void Photoshop_budget::on_save_btn_clicked()
 {
     save_file_name = QFileDialog::getSaveFileName(this, "Save Image", "D:/imageProcessor-CS112-A3/cmake-build-debug/Samples", "JPEG (*.jpg);;PNG (*.png);;Bitmap (*.bmp);;Targa (*.tga)");
-    Image image("D:/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp.jpg");
+    Image image(filePath.toStdString());
     save(image, 0, save_file_name.toStdString());
 }
 
 
 void Photoshop_budget::on_sunlight_btn_clicked()
 {
-    Sunlight(file_name.toStdString());
-    QPixmap pix("D:/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp.jpg");
+    Sunlight(file_name.toStdString(),filePath.toStdString());
+      QPixmap pix(filePath);
     int w = ui->image->width();
     int h = ui->image->height();
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
-    file_name = "D:/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp.jpg";
+     file_name = filePath;
 }
 
 
 void Photoshop_budget::on_edge_btn_clicked()
 {
-    edges(file_name.toStdString());
-    QPixmap pix("D:/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp.jpg");
+    edges(file_name.toStdString(),filePath.toStdString());
+      QPixmap pix(filePath);
     int w = ui->image->width();
     int h = ui->image->height();
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
-    file_name = "D:/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp.jpg";
+     file_name = filePath;
 }
 
 
 void Photoshop_budget::on_IR_btn_clicked()
 {
-    IR(file_name.toStdString());
-    QPixmap pix("D:/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp.jpg");
+    IR(file_name.toStdString(),filePath.toStdString());
+      QPixmap pix(filePath);
     int w = ui->image->width();
     int h = ui->image->height();
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
-    file_name = "D:/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp.jpg";
+     file_name = filePath;
 }
 
 
 void Photoshop_budget::on_TV_btn_clicked()
 {
-    tv(file_name.toStdString());
-    QPixmap pix("D:/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp.jpg");
+    tv(file_name.toStdString(),filePath.toStdString());
+      QPixmap pix(filePath);
     int w = ui->image->width();
     int h = ui->image->height();
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
-    file_name = "D:/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp.jpg";
+     file_name = filePath;
 }
 
 
 
 void Photoshop_budget::on_purble_btn_clicked()
 {
-    look_Purple(file_name.toStdString());
-    QPixmap pix("D:/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp.jpg");
+    look_Purple(file_name.toStdString(),filePath.toStdString());
+      QPixmap pix(filePath);
     int w = ui->image->width();
     int h = ui->image->height();
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
-    file_name = "D:/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp.jpg";
+     file_name = filePath;
 }
 
 
 void Photoshop_budget::on_sepia_btn_clicked()
 {
-    sepia(file_name.toStdString());
-    QPixmap pix("D:/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp.jpg");
+    sepia(file_name.toStdString(),filePath.toStdString());
+      QPixmap pix(filePath);
     int w = ui->image->width();
     int h = ui->image->height();
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
-    file_name = "D:/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp.jpg";
+     file_name = filePath;
 }
 
 
 
 void Photoshop_budget::on_oil_btn_clicked()
 {
-    oil(file_name.toStdString());
-    QPixmap pix("D:/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp.jpg");
+    oil(file_name.toStdString(),filePath.toStdString());
+      QPixmap pix(filePath);
     int w = ui->image->width();
     int h = ui->image->height();
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
-    file_name = "D:/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp.jpg";
+     file_name = filePath;
 }
 
 
