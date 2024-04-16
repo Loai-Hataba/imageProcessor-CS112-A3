@@ -560,6 +560,69 @@
      <string>Lighten</string>
     </property>
    </widget>
+   <widget class="QSlider" name="brightness_degree_slider">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>680</y>
+      <width>211</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="maximum">
+     <number>100</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="brightness_degree">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>670</y>
+      <width>61</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>24</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>0</string>
+    </property>
+   </widget>
+   <zorder>image_frame</zorder>
+   <zorder>load_btn</zorder>
+   <zorder>save_btn</zorder>
+   <zorder>sunlight_btn</zorder>
+   <zorder>IR_btn</zorder>
+   <zorder>edge_btn</zorder>
+   <zorder>sepia_btn</zorder>
+   <zorder>frame_btn</zorder>
+   <zorder>inverted_btn</zorder>
+   <zorder>TV_btn</zorder>
+   <zorder>oil_btn</zorder>
+   <zorder>grayscale_btn</zorder>
+   <zorder>bw_btn</zorder>
+   <zorder>purble_btn</zorder>
+   <zorder>rotate_btn</zorder>
+   <zorder>rotate_combobox</zorder>
+   <zorder>blur_btn</zorder>
+   <zorder>Pixelate_btn</zorder>
+   <zorder>skewed_btn</zorder>
+   <zorder>Crop_btn</zorder>
+   <zorder>rsize_btn</zorder>
+   <zorder>image</zorder>
+   <zorder>flip_btn</zorder>
+   <zorder>merge_btn</zorder>
+   <zorder>darken_btn</zorder>
+   <zorder>lighten_btn</zorder>
+   <zorder>brightness_degree_slider</zorder>
+   <zorder>brightness_degree</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="enabled">

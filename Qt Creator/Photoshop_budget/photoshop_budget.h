@@ -60,6 +60,9 @@ private slots:
 
     void on_blur_btn_clicked();
 
+    void on_brightness_degree_slider_valueChanged(int value);
+
+
 private:
     Ui::Photoshop_budget *ui;
 };
