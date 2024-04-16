@@ -1,5 +1,5 @@
-F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment\ 3/imageProcessor-CS112-A3/Qt\ Creator/Photoshop_budget/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/Photoshop_budget_autogen/EWIEGA46WW/moc_photoshop_budget.cpp: F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment\ 3/imageProcessor-CS112-A3/Qt\ Creator/Photoshop_budget/photoshop_budget.h \
-  F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment\ 3/imageProcessor-CS112-A3/Qt\ Creator/Photoshop_budget/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/Photoshop_budget_autogen/moc_predefs.h \
+D:/imageProcessor-CS112-A3/Qt\ Creator/Photoshop_budget/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/Photoshop_budget_autogen/EWIEGA46WW/moc_photoshop_budget.cpp: D:/imageProcessor-CS112-A3/Qt\ Creator/Photoshop_budget/photoshop_budget.h \
+  D:/imageProcessor-CS112-A3/Qt\ Creator/Photoshop_budget/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/Photoshop_budget_autogen/moc_predefs.h \
   C:/Qt/6.6.3/mingw_64/include/QtCore/q20functional.h \
   C:/Qt/6.6.3/mingw_64/include/QtCore/q20memory.h \
   C:/Qt/6.6.3/mingw_64/include/QtCore/q20type_traits.h \
