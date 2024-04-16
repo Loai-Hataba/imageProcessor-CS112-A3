@@ -11,7 +11,9 @@
 // #include <QtGui>
 #include <QDockWidget>
 #include <QStackedWidget>
-
+#include <QtGui>
+#include <QSlider>
+#include <QLabel>
 // #include <iostream>
 
 
@@ -226,7 +228,6 @@ void Photoshop_budget::on_lighten_btn_clicked()
     file_name = filePath;
 }
 
-
 void Photoshop_budget::on_Pixelate_btn_clicked()
 {
 
@@ -264,11 +265,14 @@ void Photoshop_budget::on_flip_btn_clicked()
 
 }
 
-
 void Photoshop_budget::on_blur_btn_clicked()
 {
     // Show the QDockWidget and set the current widget of the QStackedWidget
     ui->dock_Widget_2->show();
     ui->stackedWidget->setCurrentIndex(0);
+}
+void Photoshop_budget::on_brightness_degree_slider_valueChanged(int value)
+{
+ui->brightness_degree->setText(QString::number(value));
 }
 
