@@ -46,6 +46,20 @@ private slots:
 
     void on_lighten_btn_clicked();
 
+    void on_Pixelate_btn_clicked();
+
+    void on_skewed_btn_clicked();
+
+    void on_rsize_btn_clicked();
+
+    void on_Crop_btn_clicked();
+
+    void on_merge_btn_clicked();
+
+    void on_flip_btn_clicked();
+
+    void on_blur_btn_clicked();
+
 private:
     Ui::Photoshop_budget *ui;
 };

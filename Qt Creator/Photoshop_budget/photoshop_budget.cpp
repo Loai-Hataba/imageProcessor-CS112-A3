@@ -18,8 +18,6 @@
 QString file_name;
 QString save_file_name;
 Image image;
-QDockWidget *dockWidget;
-QStackedWidget *stackedWidget;
 
 QString filePath ;
 
@@ -33,7 +31,7 @@ Photoshop_budget::Photoshop_budget(QWidget *parent)
 
     // Set the alignment of the image label to center
     ui->image->setAlignment(Qt::AlignCenter);
-
+    ui->dock_Widget_2->hide();
     QPixmap pix("D:/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/Assets/placeholder.png");
     int w = ui->image->width();
     int h = ui->image->height();
@@ -41,32 +39,7 @@ Photoshop_budget::Photoshop_budget(QWidget *parent)
     // Set the pixmap to the label with scaled size
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
 
-    //rotate combo box
-    ui->rotate_combobox->addItem("");
-    for (int i = 1; i <= 3; i++)
-    {
-        int angle = i * 90;
-        ui->rotate_combobox->addItem(QString::number(angle));
-    }
 
-    // // Initialize the QDockWidget and the QStackedWidget
-    // dockWidget = new QDockWidget("Filter Options", this);
-    // stackedWidget = new QStackedWidget(this);
-
-    // // Add a widget for each filter to the QStackedWidget
-    // stackedWidget->addWidget(new QLabel("Merge", this));
-    // stackedWidget->addWidget(new QLabel("Crop", this));
-    // stackedWidget->addWidget(new QLabel("Resize", this));
-    // stackedWidget->addWidget(new QLabel("Blur", this));
-    // stackedWidget->addWidget(new QLabel("Skew", this));
-    // stackedWidget->addWidget(new QLabel("Frame", this));
-    // stackedWidget->addWidget(new QLabel("Flip", this));
-    // stackedWidget->addWidget(new QLabel("Rotate", this));
-    // stackedWidget->addWidget(new QLabel("Pixelate", this));
-    // // Set the QStackedWidget as the widget of the QDockWidget
-    // dockWidget->setWidget(stackedWidget);
-    // // Add the QDockWidget to the right dock widget area of the main window
-    // addDockWidget(Qt::RightDockWidgetArea, dockWidget);
 
 // Get the user's home directory path
     QString homePath = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
@@ -117,7 +90,6 @@ Photoshop_budget::~Photoshop_budget()
 {
     delete ui;
 }
-
 void Photoshop_budget::on_load_btn_clicked()
 {
     file_name = QFileDialog::getOpenFileName(this, "Load Image", "D:/imageProcessor-CS112-A3/cmake-build-debug/Samples");
@@ -137,6 +109,12 @@ void Photoshop_budget::on_load_btn_clicked()
         msgError.exec();
         file_name = "";
     }
+}
+void Photoshop_budget::on_save_btn_clicked()
+{
+    save_file_name = QFileDialog::getSaveFileName(this, "Save Image", "D:/imageProcessor-CS112-A3/cmake-build-debug/Samples", "JPEG (*.jpg);;PNG (*.png);;Bitmap (*.bmp);;Targa (*.tga)");
+    Image image(filePath.toStdString());
+    save(image, 0, save_file_name.toStdString());
 }
 
 void Photoshop_budget::on_inverted_btn_clicked()
@@ -166,13 +144,6 @@ void Photoshop_budget::on_bw_btn_clicked()
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
      file_name = filePath;
 }
-void Photoshop_budget::on_save_btn_clicked()
-{
-    save_file_name = QFileDialog::getSaveFileName(this, "Save Image", "D:/imageProcessor-CS112-A3/cmake-build-debug/Samples", "JPEG (*.jpg);;PNG (*.png);;Bitmap (*.bmp);;Targa (*.tga)");
-    Image image(filePath.toStdString());
-    save(image, 0, save_file_name.toStdString());
-}
-
 void Photoshop_budget::on_sunlight_btn_clicked()
 {
     Sunlight(file_name.toStdString(),filePath.toStdString());
@@ -182,8 +153,6 @@ void Photoshop_budget::on_sunlight_btn_clicked()
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
      file_name = filePath;
 }
-
-
 void Photoshop_budget::on_edge_btn_clicked()
 {
     edges(file_name.toStdString(),filePath.toStdString());
@@ -193,8 +162,6 @@ void Photoshop_budget::on_edge_btn_clicked()
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
      file_name = filePath;
 }
-
-
 void Photoshop_budget::on_IR_btn_clicked()
 {
     IR(file_name.toStdString(),filePath.toStdString());
@@ -204,8 +171,6 @@ void Photoshop_budget::on_IR_btn_clicked()
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
      file_name = filePath;
 }
-
-
 void Photoshop_budget::on_TV_btn_clicked()
 {
     tv(file_name.toStdString(),filePath.toStdString());
@@ -215,9 +180,6 @@ void Photoshop_budget::on_TV_btn_clicked()
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
      file_name = filePath;
 }
-
-
-
 void Photoshop_budget::on_purble_btn_clicked()
 {
     look_Purple(file_name.toStdString(),filePath.toStdString());
@@ -227,8 +189,6 @@ void Photoshop_budget::on_purble_btn_clicked()
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
      file_name = filePath;
 }
-
-
 void Photoshop_budget::on_sepia_btn_clicked()
 {
     sepia(file_name.toStdString(),filePath.toStdString());
@@ -238,9 +198,6 @@ void Photoshop_budget::on_sepia_btn_clicked()
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
      file_name = filePath;
 }
-
-
-
 void Photoshop_budget::on_oil_btn_clicked()
 {
     oil(file_name.toStdString(),filePath.toStdString());
@@ -250,9 +207,6 @@ void Photoshop_budget::on_oil_btn_clicked()
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
      file_name = filePath;
 }
-
-
-
 void Photoshop_budget::on_darken_btn_clicked()
 {
     darken(file_name.toStdString(),filePath.toStdString());
@@ -262,8 +216,6 @@ void Photoshop_budget::on_darken_btn_clicked()
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
     file_name = filePath;
 }
-
-
 void Photoshop_budget::on_lighten_btn_clicked()
 {
     lighten(file_name.toStdString(),filePath.toStdString());
@@ -272,5 +224,51 @@ void Photoshop_budget::on_lighten_btn_clicked()
     int h = ui->image->height();
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
     file_name = filePath;
+}
+
+
+void Photoshop_budget::on_Pixelate_btn_clicked()
+{
+
+}
+
+
+void Photoshop_budget::on_skewed_btn_clicked()
+{
+
+}
+
+
+void Photoshop_budget::on_rsize_btn_clicked()
+{
+
+}
+
+
+void Photoshop_budget::on_Crop_btn_clicked()
+{
+
+}
+
+
+void Photoshop_budget::on_merge_btn_clicked()
+{
+    // Show the QDockWidget and set the current widget of the QStackedWidget
+    ui->dock_Widget_2->show();
+    ui->stackedWidget->setCurrentIndex(5);
+}
+
+
+void Photoshop_budget::on_flip_btn_clicked()
+{
+
+}
+
+
+void Photoshop_budget::on_blur_btn_clicked()
+{
+    // Show the QDockWidget and set the current widget of the QStackedWidget
+    ui->dock_Widget_2->show();
+    ui->stackedWidget->setCurrentIndex(0);
 }
 
