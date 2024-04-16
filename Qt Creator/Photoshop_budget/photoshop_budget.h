@@ -63,6 +63,8 @@ private slots:
     void on_brightness_degree_slider_valueChanged(int value);
 
 
+    void on_rotate_btn_clicked();
+
 private:
     Ui::Photoshop_budget *ui;
 };

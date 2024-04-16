@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1850</width>
-    <height>1000</height>
+    <height>1038</height>
    </rect>
   </property>
   <property name="font">
@@ -563,8 +563,8 @@
    <widget class="QSlider" name="brightness_degree_slider">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>680</y>
+      <x>820</x>
+      <y>610</y>
       <width>211</width>
       <height>51</height>
      </rect>
@@ -579,8 +579,8 @@
    <widget class="QLabel" name="brightness_degree">
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>670</y>
+      <x>1000</x>
+      <y>660</y>
       <width>61</width>
       <height>61</height>
      </rect>
@@ -595,34 +595,6 @@
      <string>0</string>
     </property>
    </widget>
-   <zorder>image_frame</zorder>
-   <zorder>load_btn</zorder>
-   <zorder>save_btn</zorder>
-   <zorder>sunlight_btn</zorder>
-   <zorder>IR_btn</zorder>
-   <zorder>edge_btn</zorder>
-   <zorder>sepia_btn</zorder>
-   <zorder>frame_btn</zorder>
-   <zorder>inverted_btn</zorder>
-   <zorder>TV_btn</zorder>
-   <zorder>oil_btn</zorder>
-   <zorder>grayscale_btn</zorder>
-   <zorder>bw_btn</zorder>
-   <zorder>purble_btn</zorder>
-   <zorder>rotate_btn</zorder>
-   <zorder>rotate_combobox</zorder>
-   <zorder>blur_btn</zorder>
-   <zorder>Pixelate_btn</zorder>
-   <zorder>skewed_btn</zorder>
-   <zorder>Crop_btn</zorder>
-   <zorder>rsize_btn</zorder>
-   <zorder>image</zorder>
-   <zorder>flip_btn</zorder>
-   <zorder>merge_btn</zorder>
-   <zorder>darken_btn</zorder>
-   <zorder>lighten_btn</zorder>
-   <zorder>brightness_degree_slider</zorder>
-   <zorder>brightness_degree</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="enabled">
@@ -633,13 +605,13 @@
      <x>0</x>
      <y>0</y>
      <width>1850</width>
-     <height>40</height>
+     <height>27</height>
     </rect>
    </property>
    <property name="minimumSize">
     <size>
      <width>0</width>
-     <height>40</height>
+     <height>20</height>
     </size>
    </property>
    <property name="font">
@@ -666,8 +638,8 @@
   <widget class="QDockWidget" name="dock_Widget_2">
    <property name="minimumSize">
     <size>
-     <width>250</width>
-     <height>961</height>
+     <width>221</width>
+     <height>976</height>
     </size>
    </property>
    <property name="floating">
@@ -679,7 +651,7 @@
    <widget class="QWidget" name="dock_Widget">
     <property name="minimumSize">
      <size>
-      <width>297</width>
+      <width>221</width>
       <height>957</height>
      </size>
     </property>
@@ -688,12 +660,12 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>250</width>
+       <width>221</width>
        <height>961</height>
       </rect>
      </property>
      <property name="currentIndex">
-      <number>5</number>
+      <number>8</number>
      </property>
      <widget class="QWidget" name="blur_optn"/>
      <widget class="QWidget" name="crop_optn"/>
@@ -707,7 +679,32 @@
      </widget>
      <widget class="QWidget" name="pixelate_optn"/>
      <widget class="QWidget" name="resize_optn"/>
-     <widget class="QWidget" name="rotate_optn"/>
+     <widget class="QWidget" name="rotate_optn">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(31, 255, 15);</string>
+      </property>
+      <widget class="QPushButton" name="pushButton">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>800</y>
+         <width>151</width>
+         <height>71</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>20</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(61, 117, 23);</string>
+       </property>
+       <property name="text">
+        <string>Apply</string>
+       </property>
+      </widget>
+     </widget>
      <widget class="QWidget" name="skew_optn"/>
     </widget>
    </widget>

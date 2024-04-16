@@ -8,10 +8,8 @@
 #include <QStandardPaths>
 #include <QDir>
 #include <QDebug>
-// #include <QtGui>
 #include <QDockWidget>
 #include <QStackedWidget>
-#include <QtGui>
 #include <QSlider>
 #include <QLabel>
 // #include <iostream>
@@ -273,6 +271,13 @@ void Photoshop_budget::on_blur_btn_clicked()
 }
 void Photoshop_budget::on_brightness_degree_slider_valueChanged(int value)
 {
-ui->brightness_degree->setText(QString::number(value));
+    ui->brightness_degree->setText(QString::number(value));
+}
+
+
+void Photoshop_budget::on_rotate_btn_clicked()
+{
+    ui->dock_Widget_2->show();
+    ui->stackedWidget->setCurrentIndex(8);
 }
 
