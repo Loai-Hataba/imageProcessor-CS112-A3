@@ -8,13 +8,18 @@
 #include <QStandardPaths>
 #include <QDir>
 #include <QDebug>
-#include <QtGui>
+// #include <QtGui>
+#include <QDockWidget>
+#include <QStackedWidget>
+
 // #include <iostream>
 
 
 QString file_name;
 QString save_file_name;
 Image image;
+QDockWidget *dockWidget;
+QStackedWidget *stackedWidget;
 
 QString filePath ;
 
@@ -43,6 +48,26 @@ Photoshop_budget::Photoshop_budget(QWidget *parent)
         int angle = i * 90;
         ui->rotate_combobox->addItem(QString::number(angle));
     }
+
+    // // Initialize the QDockWidget and the QStackedWidget
+    // dockWidget = new QDockWidget("Filter Options", this);
+    // stackedWidget = new QStackedWidget(this);
+
+    // // Add a widget for each filter to the QStackedWidget
+    // stackedWidget->addWidget(new QLabel("Merge", this));
+    // stackedWidget->addWidget(new QLabel("Crop", this));
+    // stackedWidget->addWidget(new QLabel("Resize", this));
+    // stackedWidget->addWidget(new QLabel("Blur", this));
+    // stackedWidget->addWidget(new QLabel("Skew", this));
+    // stackedWidget->addWidget(new QLabel("Frame", this));
+    // stackedWidget->addWidget(new QLabel("Flip", this));
+    // stackedWidget->addWidget(new QLabel("Rotate", this));
+    // stackedWidget->addWidget(new QLabel("Pixelate", this));
+    // // Set the QStackedWidget as the widget of the QDockWidget
+    // dockWidget->setWidget(stackedWidget);
+    // // Add the QDockWidget to the right dock widget area of the main window
+    // addDockWidget(Qt::RightDockWidgetArea, dockWidget);
+
 // Get the user's home directory path
     QString homePath = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
     if (homePath.isEmpty()) {
@@ -123,10 +148,6 @@ void Photoshop_budget::on_inverted_btn_clicked()
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
     file_name = filePath;
 }
-
-
-
-
 void Photoshop_budget::on_grayscale_btn_clicked()
 {
     grayscale(file_name.toStdString(),filePath.toStdString());
@@ -136,8 +157,6 @@ void Photoshop_budget::on_grayscale_btn_clicked()
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
     file_name = filePath;
 }
-
-
 void Photoshop_budget::on_bw_btn_clicked()
 {
     black_white(file_name.toStdString(),filePath.toStdString());
@@ -147,15 +166,12 @@ void Photoshop_budget::on_bw_btn_clicked()
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
      file_name = filePath;
 }
-
-
 void Photoshop_budget::on_save_btn_clicked()
 {
     save_file_name = QFileDialog::getSaveFileName(this, "Save Image", "D:/imageProcessor-CS112-A3/cmake-build-debug/Samples", "JPEG (*.jpg);;PNG (*.png);;Bitmap (*.bmp);;Targa (*.tga)");
     Image image(filePath.toStdString());
     save(image, 0, save_file_name.toStdString());
 }
-
 
 void Photoshop_budget::on_sunlight_btn_clicked()
 {

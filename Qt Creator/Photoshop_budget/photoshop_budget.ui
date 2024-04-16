@@ -35,8 +35,8 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>650</x>
-      <y>-40</y>
+      <x>340</x>
+      <y>-50</y>
       <width>1211</width>
       <height>651</height>
      </rect>
@@ -50,12 +50,37 @@
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
+    <widget class="QLabel" name="image">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>50</y>
+       <width>1211</width>
+       <height>601</height>
+      </rect>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <property name="lineWidth">
+      <number>5</number>
+     </property>
+     <property name="midLineWidth">
+      <number>3</number>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
    </widget>
    <widget class="QPushButton" name="load_btn">
     <property name="geometry">
      <rect>
-      <x>450</x>
-      <y>670</y>
+      <x>20</x>
+      <y>830</y>
       <width>211</width>
       <height>70</height>
      </rect>
@@ -81,8 +106,8 @@
    <widget class="QPushButton" name="save_btn">
     <property name="geometry">
      <rect>
-      <x>770</x>
-      <y>670</y>
+      <x>260</x>
+      <y>840</y>
       <width>211</width>
       <height>70</height>
      </rect>
@@ -484,31 +509,6 @@
      <string>Resize</string>
     </property>
    </widget>
-   <widget class="QLabel" name="image">
-    <property name="geometry">
-     <rect>
-      <x>420</x>
-      <y>-10</y>
-      <width>1211</width>
-      <height>651</height>
-     </rect>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
-    </property>
-    <property name="lineWidth">
-     <number>5</number>
-    </property>
-    <property name="midLineWidth">
-     <number>3</number>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
    <widget class="QPushButton" name="flip_btn">
     <property name="geometry">
      <rect>
@@ -602,7 +602,6 @@
    <zorder>skewed_btn</zorder>
    <zorder>Crop_btn</zorder>
    <zorder>rsize_btn</zorder>
-   <zorder>image</zorder>
    <zorder>flip_btn</zorder>
    <zorder>merge_btn</zorder>
    <zorder>darken_btn</zorder>
@@ -614,7 +613,7 @@
      <x>0</x>
      <y>0</y>
      <width>1850</width>
-     <height>25</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -627,6 +626,39 @@
    <addaction name="menuFile"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QDockWidget" name="dockWidget_3">
+   <attribute name="dockWidgetArea">
+    <number>2</number>
+   </attribute>
+   <widget class="QWidget" name="dock_Widget">
+    <widget class="QStackedWidget" name="stackedWidget">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>182</width>
+       <height>957</height>
+      </rect>
+     </property>
+     <property name="currentIndex">
+      <number>2</number>
+     </property>
+     <widget class="QWidget" name="merge_optn">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(28, 39, 255);</string>
+      </property>
+     </widget>
+     <widget class="QWidget" name="crop_optn"/>
+     <widget class="QWidget" name="flip_optn"/>
+     <widget class="QWidget" name="rotate_optn"/>
+     <widget class="QWidget" name="pixelate_optn"/>
+     <widget class="QWidget" name="resize_optn"/>
+     <widget class="QWidget" name="blur_optn"/>
+     <widget class="QWidget" name="skew_optn"/>
+     <widget class="QWidget" name="frame_optn"/>
+    </widget>
+   </widget>
+  </widget>
   <action name="actionLoad_Image">
    <property name="text">
     <string>Load Image</string>
