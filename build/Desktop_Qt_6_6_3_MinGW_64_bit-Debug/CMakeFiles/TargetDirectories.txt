@@ -1,0 +1,3 @@
+D:/imageProcessor-CS112-A3/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/CMakeFiles/imageProcessor-CS112-A3.dir
+D:/imageProcessor-CS112-A3/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/CMakeFiles/edit_cache.dir
+D:/imageProcessor-CS112-A3/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/CMakeFiles/rebuild_cache.dir
