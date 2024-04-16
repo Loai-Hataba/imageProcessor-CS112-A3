@@ -298,39 +298,18 @@ void rotate(string path ,string filePath) //Loai (Done)
     }
 }
 
-void darken_lighten(string path , string filePath) //Hossam (Done)
+void darken(string path , string filePath) //Hossam (Done)
 {  Image image(path);
-    cout << "1) darken   2)lighten\n"
-            "Choice: ";
-    int degree;
-    string choice;
-    cin >> choice;              //choice whether you want to darken your image or lighten it
-    while (choice != "1" && choice != "2" || choice.size() != 1) {
-        cout << "Invalid choice please enter a valid value:";
-        cin >> choice;
-    }
-    string choice2;
-    if (choice == "1")choice2 = "darkening";
-    else choice2 = "lighting";
-    cout << "choose the level of " << choice2 << " from 0 to 100 percent :"; //choosing level of darkening or lighting
-    cin >> degree;
+    int degree = 50;
     for (int i = 0; i < image.width; i++) {
         for (int j = 0; j < image.height; j++) {
             //getting color values
             int red = image(i, j, 0);
             int green = image(i, j, 1);
             int blue = image(i, j, 2);
-            if (choice == "1") { //darkening
-                red = red - red * degree /
-                            100;                //take the original value of the color and subtracting it from its determined fraction value thus darkening it
-                green = green - green * degree / 100;
-                blue = blue - blue * degree / 100;
-            } else {
-                red = min(red + red * degree / 100,
-                          255);      // same as darkening but adding its determined fraction instead and taking the minimum of it and the color white in case the addition exceeds 255
-                green = min(green + green * degree / 100, 255);
-                blue = min(blue + blue * degree / 100, 255);
-            }
+            red = red - red * degree /100;                //take the original value of the color and subtracting it from its determined fraction value thus darkening it
+            green = green - green * degree / 100;
+            blue = blue - blue * degree / 100;
             image(i, j, 2) = blue;
             image(i, j, 1) = green;
             image(i, j, 0) = red;
@@ -339,6 +318,26 @@ void darken_lighten(string path , string filePath) //Hossam (Done)
     save(image,0,filePath) ;
     cout << "Filter Applied...\n";
 
+}
+void lighten(string path , string filePath){ //Hossam (Done){
+    Image image(path);
+    int degree = 50;
+    for (int i = 0; i < image.width; i++) {
+        for (int j = 0; j < image.height; j++) {
+            //getting color values
+            int red = image(i, j, 0);
+            int green = image(i, j, 1);
+            int blue = image(i, j, 2);
+            red = min(red + red * degree / 100,255);      // same as darkening but adding its determined fraction instead and taking the minimum of it and the color white in case the addition exceeds 255
+            green = min(green + green * degree / 100, 255);
+            blue = min(blue + blue * degree / 100, 255);
+            image(i, j, 2) = blue;
+            image(i, j, 1) = green;
+            image(i, j, 0) = red;
+        }
+    }
+    save(image,0,filePath) ;
+    cout << "Filter Applied...\n";
 }
 int valid(string& input) {
     bool flag = true;

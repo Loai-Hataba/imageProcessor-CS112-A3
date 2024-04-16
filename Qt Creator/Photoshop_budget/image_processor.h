@@ -15,12 +15,13 @@ string file_check(string file_name);
 int valid(string& input) ;
 /*--------------------------------------------*/
 void grayscale(string path ,string filePath);
-void black_white(string path ,string filePath) ;
+void black_white(string path ,string filePath);
 void inverted(string path,string filePath);
 void merge(string path,string filePath);
 void flip(string path,string filePath);
 void rotate(string path,string filePath);
-void darken_lighten(string path,string filePath);
+void darken(string path,string filePath);
+void lighten(string path,string filePath);
 void crop(string path,string filePath);
 void frame(string path,string filePath);
 void edges(string path,string filePath);

@@ -560,7 +560,25 @@
      </font>
     </property>
     <property name="text">
-     <string>Darken &amp; lighten</string>
+     <string>Darken</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="lighten_btn">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>600</y>
+      <width>131</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Lighten</string>
     </property>
    </widget>
    <zorder>image_frame</zorder>
@@ -588,6 +606,7 @@
    <zorder>flip_btn</zorder>
    <zorder>merge_btn</zorder>
    <zorder>darken_btn</zorder>
+   <zorder>lighten_btn</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -595,7 +614,7 @@
      <x>0</x>
      <y>0</y>
      <width>1850</width>
-     <height>27</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">

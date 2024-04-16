@@ -42,6 +42,10 @@ private slots:
 
     void on_oil_btn_clicked();
 
+    void on_darken_btn_clicked();
+
+    void on_lighten_btn_clicked();
+
 private:
     Ui::Photoshop_budget *ui;
 };

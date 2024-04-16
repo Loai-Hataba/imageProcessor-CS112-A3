@@ -236,3 +236,25 @@ void Photoshop_budget::on_oil_btn_clicked()
 }
 
 
+
+void Photoshop_budget::on_darken_btn_clicked()
+{
+    darken(file_name.toStdString(),filePath.toStdString());
+    QPixmap pix(filePath);
+    int w = ui->image->width();
+    int h = ui->image->height();
+    ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
+    file_name = filePath;
+}
+
+
+void Photoshop_budget::on_lighten_btn_clicked()
+{
+    lighten(file_name.toStdString(),filePath.toStdString());
+    QPixmap pix(filePath);
+    int w = ui->image->width();
+    int h = ui->image->height();
+    ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
+    file_name = filePath;
+}
+
