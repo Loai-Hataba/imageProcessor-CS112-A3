@@ -26,12 +26,12 @@ void rotate(string path);
 void darken_lighten(string path);
 //
 void crop(string path);
-//
+
 void frame(Image image);
 void edges(string path);
 //
 void resize(string path);
-//
+
 void blur(string path);
 /*--------------------------------------------*/
 void Sunlight(string path);
