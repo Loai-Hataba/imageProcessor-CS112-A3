@@ -207,8 +207,9 @@ Image resizeMerge(Image image, int max_width, int max_height) { //straight up co
 // }
 
 //!
-void flip(Image image) //Abdallah (Done)
+void flip(string path) //Abdallah (Done)
 {
+    Image image(path);
     char choice;
     cout << "Which flip you want to do Vertical or  Horizontal (V/H):  ";
     cin >> choice;
@@ -236,18 +237,23 @@ void flip(Image image) //Abdallah (Done)
             }
         } else {
             cout << "Invalid Input ,please insert a correct character !  \n";
-            flip(image);
+            flip(path);
+            return;
         }
         cout << "Filter Applied...\n";
 
     } else {
         cout << "\nInvalid Input ,please insert a correct character !  \n";
-        flip(image);
+        flip(path);
+        return;
     }
+    save(image);
+    cout<<"Filter Applied...\n ";
 }
 //!
-void rotate(Image image) //Loai (Done)
+void rotate(string path) //Loai (Done)
 {
+    Image image(path);
     int angle;
     string ang;
 //    cout << "How much rotation angle would you like? (90, 180, 270)\n"
@@ -272,6 +278,7 @@ void rotate(Image image) //Loai (Done)
                 }
             }
         }
+        save(image);
         cout << "Filter Applied...\n";
 
     }
@@ -294,19 +301,20 @@ void rotate(Image image) //Loai (Done)
     }
 }
 
-void darken_lighten(Image image) //Hossam (Done)
+void darken_lighten(string path) //Hossam (Done)
 {
+    Image image(path);
     cout << "1) darken   2)lighten\n"
             "Choice: ";
     int degree;
-    char choice;
+    string choice;
     cin >> choice;              //choice whether you want to darken your image or lighten it
-    while (choice != '1' && choice != '2') {
+    while (choice != "1" && choice != "2" || choice.size() != 1) {
         cout << "Invalid choice please enter a valid value:";
         cin >> choice;
     }
     string choice2;
-    if (choice == '1')choice2 = "darkening";
+    if (choice == "1")choice2 = "darkening";
     else choice2 = "lighting";
     cout << "choose the level of " << choice2 << " from 0 to 100 percent :"; //choosing level of darkening or lighting
     cin >> degree;
@@ -316,7 +324,7 @@ void darken_lighten(Image image) //Hossam (Done)
             int red = image(i, j, 0);
             int green = image(i, j, 1);
             int blue = image(i, j, 2);
-            if (choice == '1') { //darkening
+            if (choice == "1") { //darkening
                 red = red - red * degree /
                                 100;                //take the original value of the color and subtracting it from its determined fraction value thus darkening it
                 green = green - green * degree / 100;
@@ -332,13 +340,14 @@ void darken_lighten(Image image) //Hossam (Done)
             image(i, j, 0) = red;
         }
     }
+    save(image);
     cout << "Filter Applied...\n";
-
 }
 
 //!!!
-void crop(Image image) //Abdallah (Done)
+void crop(string path) //Abdallah (Done)
 {
+    Image image(path);
     while (true) {
         int x, y, w, h;
         // x and y reference  to the starting  point
@@ -374,6 +383,7 @@ void crop(Image image) //Abdallah (Done)
                                 }
                             }
                         }
+                        save(image);
                         cout << "Filter Applied...\n";
 
                     } else { // if the user insert  invalid Height
@@ -398,8 +408,6 @@ void crop(Image image) //Abdallah (Done)
             cin.clear();   // Clear the input buffer to avoid the infinite recursion
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
-
-
     }
 }
 
@@ -808,45 +816,44 @@ void frame(Image image) //Loai (Done)
 
 }
 
-void edges(Image image) { //Hossam (Done)
-
-    for (int i = 0; i < image.width; i++) {
+void edges(string path) { //Hossam (Done)
+    cout << "path: " << path << endl;
+    Image image(path);
+    for (int i = 0; i < image.width; i++) {     //black and white filter before we detect edges
         for (int j = 0; j < image.height; j++) {
-            unsigned int avg = 0;
             for (int k = 0; k < 3; ++k) {
-                avg += image(i, j, k);
-            }
-            avg = avg / 3;
-            for (int k = 0; k < 3; ++k) {
-                image(i, j, k) = avg;
-            }
-        }
-    }
-    //setting the sensitivity of the diff between each color of the pixels in comparison so that if it exceeds the limit we edge(make it black) that pixel else we whiten it
-    int sens = 25;
-    //end with less height and width by one because we only check the right and bottom side pixels since they are all we need to check and if we iterate at last pixel of row or column we dont get out of image limits
-    for (int i = 0; i < image.width - 1; i++) {
-        for (int j = 0; j < image.height -
-                                1; j++) { //here since we grey scaled the image before the values of each color gonna be the same so we just roll with red
-            if (abs(image(i, j, 0) - image(i, j + 1, 0) >= sens || abs(image(i, j, 0) - image(i + 1, j, 0)) >= sens)) {
-                for (int k = 0; k < 3; ++k) {
+                unsigned int average = (image(i, j, 0) + image(i, j, 1) + image(i, j, 2)) / 3;
+                if (average <= 127.5) {
                     image(i, j, k) = 0;
-                }
-            } else {
-                for (int k = 0; k < 3; ++k) {
+                } else {
                     image(i, j, k) = 255;
                 }
             }
         }
     }
+    int sens = 255; //doesnt matter value of sensitivity between pixels since image is in black and white filter
+    //end with less height and width by one because we only check the right and bottom side pixels since they are all we need to check and if we iterate at last pixel of row or column we dont get out of image limits
+    for (int i = 0; i < image.width - 1; i++) {
+        for (int j = 0; j < image.height - 1; j++) {
+            for (int k = 0; k < 3; ++k) {
+                if (abs(image(i, j, k) - image(i, j + 1, k)) == sens ||
+                    abs(image(i, j, k) - image(i + 1, j, k)) == sens) {
+                    image(i, j, k) = 0;
+                } else {
+                    image(i, j, k) = 255;
+                }
+            }
+        }
+    }
+    save(image);
     cout << "Filter Applied...\n";
-
-
 }
 
+
 //!!
-void resize(Image image) //Abdallah (Done)
+void resize(string path) //Abdallah (Done)
 {
+    Image image(path);
     while (true) {
         cout << "The original size of the image is :  " << image.width << "x" << image.height << endl;
         int w, h;
@@ -874,6 +881,7 @@ void resize(Image image) //Abdallah (Done)
                     }
                 }
             }
+            save(image);
             cout << "Filter Applied...\n";
 
         } else {
@@ -887,8 +895,9 @@ void resize(Image image) //Abdallah (Done)
     }
 }
 //!
-void blur(Image image) //Loai (Done)
+void blur(string path) //Loai (Done)
 {
+    Image image(path);
     int blur_size;
     string temp;
     bool test;
@@ -954,12 +963,14 @@ void blur(Image image) //Loai (Done)
             blurred_image(j, i, 2) = sumB / count;
         }
     }
+    save(image);
     cout << "Filter Applied...\n";
 
 }
 
 //  ********************** Bonus ****************************
-void Sunlight(Image image) {
+void Sunlight(string path) {
+    Image image(path);
     for (int i = 0; i < image.width; i++) {
         for (int j = 0; j < image.height; j++) {
             int red = image(i, j, 0);
@@ -970,13 +981,13 @@ void Sunlight(Image image) {
             image(i, j, 2) = min(blue * 8 / 10, 255);
         }
     }
+    save(image);
     cout << "Filter Applied...\n";
-
 
 }
 
-void look_Purple(Image image) //Abdallah (Done)
-{
+void look_Purple(string path){ //Abdallah (Done)
+    Image image(path);
     for (int i = 0; i < image.width; i++) {
         for (int j = 0; j < image.height; j++) {
             unsigned int red = image(i, j, 0);  //initialize values of each channel
@@ -1000,12 +1011,13 @@ void look_Purple(Image image) //Abdallah (Done)
             image(i, j, 2) = newBlue;
         }
     }
+    save(image);
     cout << "Filter Applied...\n";
 
 }
 
-void IR (Image image) //Abdallah (Done)
-{
+void IR (string path){ //Abdallah (Done)
+    Image image(path);
     cout << "Applying Infrared (IR) Filter....................\n";
     for (int i = 0; i < image.width; ++i) {
         for (int j = 0; j < image.height; ++j) {
@@ -1019,12 +1031,13 @@ void IR (Image image) //Abdallah (Done)
             image(i, j, 2) = New_Blue;
         }
     }
+    save(image);
     cout << "Filter Applied...\n";
 
 }
 
-void tv(Image image) //Loai (Done)
-{
+void tv(string path){ //Loai (Done)
+    Image image(path);
     // Seed the random number generator
     srand(time(nullptr));
 
@@ -1075,12 +1088,13 @@ void tv(Image image) //Loai (Done)
             count += 3;
         }
     }
+    save(image);
     cout << "Filter Applied...\n";
 
 }
 
-void sepia(Image image) //Loai (Done)
-{
+void sepia(string path){ //Loai (Done)
+    Image image(path);
     for (int i = 0; i < image.width; ++i) {
         for (int j = 0; j < image.height; ++j) {
             // Get color values
@@ -1099,12 +1113,13 @@ void sepia(Image image) //Loai (Done)
             image(i, j, 2) = newBlue;
         }
     }
+    save(image);
     cout << "Filter Applied...\n";
 
 }
 // make it static
-void oil(Image image) //Loai (Done)
-{
+void oil(string path){ //Loai (Done)
+    Image image(path);
     unsigned int brushSize;
     string temp;
     bool test;
@@ -1186,12 +1201,37 @@ void oil(Image image) //Loai (Done)
             fill_n(nSumB, 256, 0);
         }
     }
+    save(image);
     cout << "Filter Applied...\n";
 
 }
 //!
-void Skewed(Image image) {
-    Image white(image.width * 3, image.height);
+void Skewed(string path) {
+    Image image(path);
+    cout << "Enter the degree of skewness: (1-180)" << endl;
+    string deg;
+    cin >> deg;
+    bool flag = true;
+
+    while (flag) {
+        if ( stoi(deg) < 1 || stoi(deg) > 180) {
+            cout << "invalid value please enter a valid degree(1-180):";
+            cin >> deg;
+        } else flag = false;
+    }
+    int deg1 = stoi(deg);
+    bool flip = deg1 > 90;
+    if (flip)deg1 -= 90;//if degree greater than 90 just skew it normally then flip
+    if (deg1 <= 20 && deg1>0)deg1 = 20;
+    if (deg1 <= 40 && deg1>20)deg1 = 40;
+    if (deg1 <= 60 && deg1>40)deg1 = 60;
+    double y = deg1 * 3.14159 / 180;//convert degree to radian so we can use cosine
+    int cnt = (double) image.height * cos(y);
+
+    //cout<<"cos "<<cos(y)<<endl;
+    //cnt = abs(cnt);
+    Image white(abs((int) (image.width + cnt)), image.height);
+    cout << white.width << endl;
     for (int i = 0; i < white.height; ++i) {
         for (int j = 0; j < white.width; ++j) {
             for (int k = 0; k < 3; ++k) {
@@ -1199,35 +1239,40 @@ void Skewed(Image image) {
             }
         }
     }
-    int base = image.width / 5;
-    int cnt = image.height;
-    cout << "Enter the degree of skewness: (1-80)" << endl;
-    string deg;
-    cin >> deg;
-    bool flag = true;
-    while (flag) {
-        if (!isdigit(deg[0]) || !isdigit(deg[1]) || stoi(deg) < 1 || stoi(deg) > 80) {
-            cout << "invalid value please enter a valid degree(1-80):";
-            cin >> deg;
-        } else flag = false;
-    }
-    int deg1 = stoi(deg);
-    deg1 = abs(deg1 - 81);
-    int dinom = max(deg1 / 20, 1);
-    //cout<<dinom;
+    //cout<<"deg1: "<<deg1<<endl;
+
+    int turn = 0;
+    cout << "cnt: " << cnt << endl;
+    int denom = ceil(image.height / (double) cnt);
     for (int i = 0; i < image.height; ++i) {
         for (int j = 0; j < image.width; ++j) {
             for (int k = 0; k < 3; ++k) {
-                white(j + cnt + base, i, k) = image(j, i, k);
+                //                cout<<" ss"<<j + cnt+30<<endl;
+                white(j + cnt, i, k) = image(j, i, k);
             }
         }
-        if (i % dinom == 0)cnt--;
+        if (i % denom == 0){
+            cnt--;
+        }
     }
-
+    if (flip) {
+        Image flipped_image(white.width, white.height);
+        for (int i = white.width - 1; i >= 0; i--) {
+            for (int j = 0; j < white.height; ++j) {
+                for (int k = 0; k < 3; ++k) {
+                    flipped_image(white.width - 1 - i, j, k) = white(i, j, k);
+                }
+            }
+        }
+        save(image);
+        return;
+    }
+    save(image);
 
 }
 //!
-void Pixelate(Image image) {
+void Pixelate(string path) {
+    Image image(path);
     int Pixel_Size = 0;  // This variable handles the size of each pixel
     while (true) {
         try {
@@ -1266,6 +1311,7 @@ void Pixelate(Image image) {
                         }
                     }
                 }
+                save(image);
                 cout << "Pixelation Filter Applied...\n";
 
             } else { throw Pixel_Size; }

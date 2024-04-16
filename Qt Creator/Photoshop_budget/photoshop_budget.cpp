@@ -43,7 +43,7 @@ Photoshop_budget::~Photoshop_budget()
     delete ui;
 }
 
-void Photoshop_budget::on_load_button_clicked()
+void Photoshop_budget::on_load_btn_clicked()
 {
     file_name = QFileDialog::getOpenFileName(this, "Load Image", "F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/cmake-build-debug/Samples/");
     if (!file_name.isEmpty() && (file_name.endsWith(".jpg") || file_name.endsWith(".png") || file_name.endsWith(".bmp") || file_name.endsWith(".tga"))) {
@@ -64,7 +64,7 @@ void Photoshop_budget::on_load_button_clicked()
     }
 }
 
-void Photoshop_budget::on_inverted_button_clicked()
+void Photoshop_budget::on_inverted_btn_clicked()
 {
     inverted(file_name.toStdString());
     QPixmap pix("F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp/temp.jpg");
@@ -77,7 +77,7 @@ void Photoshop_budget::on_inverted_button_clicked()
 
 
 
-void Photoshop_budget::on_grayscale_button_clicked()
+void Photoshop_budget::on_grayscale_btn_clicked()
 {
     grayscale(file_name.toStdString());
     QPixmap pix("F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp/temp.jpg");
@@ -88,7 +88,7 @@ void Photoshop_budget::on_grayscale_button_clicked()
 }
 
 
-void Photoshop_budget::on_bw_button_clicked()
+void Photoshop_budget::on_bw_btn_clicked()
 {
     black_white(file_name.toStdString());
     QPixmap pix("F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp/temp.jpg");
@@ -99,10 +99,90 @@ void Photoshop_budget::on_bw_button_clicked()
 }
 
 
-void Photoshop_budget::on_save_button_clicked()
+void Photoshop_budget::on_save_btn_clicked()
 {
     save_file_name = QFileDialog::getSaveFileName(this, "Save Image", "F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/cmake-build-debug/Samples/", "JPEG (*.jpg);;PNG (*.png);;Bitmap (*.bmp);;Targa (*.tga)");
     Image image("F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp/temp.jpg");
     save(image, 0, save_file_name.toStdString());
 }
+
+
+void Photoshop_budget::on_sunlight_btn_clicked()
+{
+    Sunlight(file_name.toStdString());
+    QPixmap pix("F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp/temp.jpg");
+    int w = ui->image->width();
+    int h = ui->image->height();
+    ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
+    file_name = "F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp/temp.jpg";
+}
+
+
+void Photoshop_budget::on_edge_btn_clicked()
+{
+    edges(file_name.toStdString());
+    QPixmap pix("F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp/temp.jpg");
+    int w = ui->image->width();
+    int h = ui->image->height();
+    ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
+    file_name = "F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp/temp.jpg";
+}
+
+
+void Photoshop_budget::on_IR_btn_clicked()
+{
+    IR(file_name.toStdString());
+    QPixmap pix("F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp/temp.jpg");
+    int w = ui->image->width();
+    int h = ui->image->height();
+    ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
+    file_name = "F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp/temp.jpg";
+}
+
+
+void Photoshop_budget::on_TV_btn_clicked()
+{
+    tv(file_name.toStdString());
+    QPixmap pix("F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp/temp.jpg");
+    int w = ui->image->width();
+    int h = ui->image->height();
+    ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
+    file_name = "F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp/temp.jpg";
+}
+
+
+
+void Photoshop_budget::on_purble_btn_clicked()
+{
+    look_Purple(file_name.toStdString());
+    QPixmap pix("F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp/temp.jpg");
+    int w = ui->image->width();
+    int h = ui->image->height();
+    ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
+    file_name = "F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp/temp.jpg";
+}
+
+
+void Photoshop_budget::on_sepia_btn_clicked()
+{
+    sepia(file_name.toStdString());
+    QPixmap pix("F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp/temp.jpg");
+    int w = ui->image->width();
+    int h = ui->image->height();
+    ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
+    file_name = "F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp/temp.jpg";
+}
+
+
+
+void Photoshop_budget::on_oil_btn_clicked()
+{
+    oil(file_name.toStdString());
+    QPixmap pix("F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp/temp.jpg");
+    int w = ui->image->width();
+    int h = ui->image->height();
+    ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
+    file_name = "F:/Loai/School/Programming/C++/Main/College/Structured_Programming/Assignment 3/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/temp/temp.jpg";
+}
+
 

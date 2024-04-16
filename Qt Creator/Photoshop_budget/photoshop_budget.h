@@ -18,15 +18,29 @@ public:
     ~Photoshop_budget();
 
 private slots:
-    void on_load_button_clicked();
+    void on_load_btn_clicked();
 
-    void on_inverted_button_clicked();
+    void on_inverted_btn_clicked();
 
-    void on_grayscale_button_clicked();
+    void on_grayscale_btn_clicked();
 
-    void on_bw_button_clicked();
+    void on_bw_btn_clicked();
 
-    void on_save_button_clicked();
+    void on_save_btn_clicked();
+
+    void on_sunlight_btn_clicked();
+
+    void on_edge_btn_clicked();
+
+    void on_IR_btn_clicked();
+
+    void on_TV_btn_clicked();
+
+    void on_purble_btn_clicked();
+
+    void on_sepia_btn_clicked();
+
+    void on_oil_btn_clicked();
 
 private:
     Ui::Photoshop_budget *ui;

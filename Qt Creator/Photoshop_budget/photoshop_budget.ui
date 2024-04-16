@@ -76,11 +76,11 @@
      </property>
     </widget>
    </widget>
-   <widget class="QPushButton" name="load_button">
+   <widget class="QPushButton" name="load_btn">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>820</y>
+      <x>30</x>
+      <y>700</y>
       <width>211</width>
       <height>91</height>
      </rect>
@@ -103,11 +103,11 @@
      <string>Load</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="inverted_button">
+   <widget class="QPushButton" name="inverted_btn">
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>270</y>
+      <y>310</y>
       <width>191</width>
       <height>81</height>
      </rect>
@@ -125,11 +125,11 @@
      <string>Inverted</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="grayscale_button">
+   <widget class="QPushButton" name="grayscale_btn">
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>380</y>
+      <y>400</y>
       <width>191</width>
       <height>81</height>
      </rect>
@@ -147,7 +147,7 @@
      <string>Grayscale</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="bw_button">
+   <widget class="QPushButton" name="bw_btn">
     <property name="geometry">
      <rect>
       <x>50</x>
@@ -169,11 +169,11 @@
      <string>Black and White</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="save_button">
+   <widget class="QPushButton" name="save_btn">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>820</y>
+      <x>270</x>
+      <y>700</y>
       <width>211</width>
       <height>91</height>
      </rect>
@@ -217,7 +217,7 @@
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="rotate_button">
+   <widget class="QPushButton" name="rotate_btn">
     <property name="geometry">
      <rect>
       <x>50</x>
@@ -239,6 +239,160 @@
      <string>Rotate</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="sunlight_btn">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>220</y>
+      <width>191</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Segoe UI</family>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(85, 85, 255);</string>
+    </property>
+    <property name="text">
+     <string>Sunlight</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="edge_btn">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>130</y>
+      <width>191</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Segoe UI</family>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(85, 85, 255);</string>
+    </property>
+    <property name="text">
+     <string>Edges</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="IR_btn">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>130</y>
+      <width>191</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Segoe UI</family>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(85, 85, 255);</string>
+    </property>
+    <property name="text">
+     <string>IR</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="TV_btn">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>220</y>
+      <width>191</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Segoe UI</family>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(85, 85, 255);</string>
+    </property>
+    <property name="text">
+     <string>TV</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="purble_btn">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>310</y>
+      <width>191</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Segoe UI</family>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(85, 85, 255);</string>
+    </property>
+    <property name="text">
+     <string>Purple</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="sepia_btn">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>400</y>
+      <width>191</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Segoe UI</family>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(85, 85, 255);</string>
+    </property>
+    <property name="text">
+     <string>Sepia</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="oil_btn">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>490</y>
+      <width>191</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Segoe UI</family>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(85, 85, 255);</string>
+    </property>
+    <property name="text">
+     <string>Oil</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -246,7 +400,7 @@
      <x>0</x>
      <y>0</y>
      <width>1900</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
   </widget>
