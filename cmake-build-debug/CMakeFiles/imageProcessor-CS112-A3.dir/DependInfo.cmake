@@ -8,8 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "D:/imageProcessor-CS112-A3/CS112_A3_Part1_S24_20230553_20230231_20230121.cpp" "CMakeFiles/imageProcessor-CS112-A3.dir/CS112_A3_Part1_S24_20230553_20230231_20230121.cpp.obj" "gcc" "CMakeFiles/imageProcessor-CS112-A3.dir/CS112_A3_Part1_S24_20230553_20230231_20230121.cpp.obj.d"
-  "D:/imageProcessor-CS112-A3/ImageProcessingDemo.cpp" "CMakeFiles/imageProcessor-CS112-A3.dir/ImageProcessingDemo.cpp.obj" "gcc" "CMakeFiles/imageProcessor-CS112-A3.dir/ImageProcessingDemo.cpp.obj.d"
+  "C:/Users/Lenovo/Desktop/om el ramly/imageProcessor-CS112-A3/CS112_A3_Part1_S24_20230553_20230231_20230121.cpp" "CMakeFiles/imageProcessor-CS112-A3.dir/CS112_A3_Part1_S24_20230553_20230231_20230121.cpp.obj" "gcc" "CMakeFiles/imageProcessor-CS112-A3.dir/CS112_A3_Part1_S24_20230553_20230231_20230121.cpp.obj.d"
+  "C:/Users/Lenovo/Desktop/om el ramly/imageProcessor-CS112-A3/ImageProcessingDemo.cpp" "CMakeFiles/imageProcessor-CS112-A3.dir/ImageProcessingDemo.cpp.obj" "gcc" "CMakeFiles/imageProcessor-CS112-A3.dir/ImageProcessingDemo.cpp.obj.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

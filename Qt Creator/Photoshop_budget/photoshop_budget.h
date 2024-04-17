@@ -75,6 +75,14 @@ private slots:
 
     void on_frame_btn_clicked();
 
+    void on_flip_v_clicked();
+
+    void on_flip_h_clicked();
+
+    void on_flipV_clicked();
+
+    void on_resize_w_editingFinished();
+
 private:
     Ui::Photoshop_budget *ui;
 };

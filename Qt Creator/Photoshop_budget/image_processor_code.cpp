@@ -203,43 +203,35 @@ Image resizeMerge(Image image, int max_width, int max_height) { //straight up co
 // }
 
 //!
-void flip(string path,string filePath) //Abdallah (Done)
-{ Image image(path);
-    char choice;
-    cout << "Which flip you want to do Vertical or  Horizontal (V/H):  ";
-    cin >> choice;
-    if (isalpha(choice)) {
-        choice = toupper(choice); // change the input to uppercase character
-        Image flipped_image(image.width, image.height); // store the  flipped image in a new one
-        if (choice == 'V') {
+void flip(string path,string filePath,string choice) //Abdallah (Done)
+{
+    Image image(path);
+    Image flipped_image(image.width, image.height); // store the  flipped image in a new one
+    if (choice == "V") {
             // we will flip the image vertically
-            for (int i = 0; i < image.width; ++i) {
-                for (int j = image.height - 1; j >= 0; --j) { //  to reach each column of the image in reverse order
-                    for (int k = 0; k < 3; ++k) {
-                        flipped_image(i, image.height - 1 - j, k) = image(i, j, k);
+        for (int i = 0; i < image.width; ++i) {
+            for (int j = image.height - 1; j >= 0; --j) { //  to reach each column of the image in reverse order
+                for (int k = 0; k < 3; ++k) {
+                    flipped_image(i, image.height - 1 - j, k) = image(i, j, k);
                         //we start from the last index the last colum
                     }
                 }
             }
-        } else if (choice == 'H') {
-            // we will flip the image horizontally
-            for (int i = image.width - 1; i >= 0; i--) {//  to reach each row of the image in reverse order
-                for (int j = 0; j < image.height; ++j) {
-                    for (int k = 0; k < 3; ++k) {
-                        flipped_image(image.width - 1 - i, j, k) = image(i, j, k);
-                    }
+        }
+    else if (choice == "H") {
+        // we will flip the image horizontally
+        for (int i = image.width - 1; i >= 0; i--) {//  to reach each row of the image in reverse order
+            for (int j = 0; j < image.height; ++j) {
+                for (int k = 0; k < 3; ++k) {
+                    flipped_image(image.width - 1 - i, j, k) = image(i, j, k);
                 }
             }
-        } else {
-            cout << "Invalid Input ,please insert a correct character !  \n";
-            flip(path,filePath);
         }
-        save(flipped_image,0,filePath) ;
+
+        save(flipped_image, 0, filePath);
         cout << "Filter Applied...\n";
 
-    } else {
-        cout << "\nInvalid Input ,please insert a correct character !  \n";
-        flip(path,filePath);
+
     }
 }
 
@@ -346,77 +338,9 @@ int valid(string& input) {
         return -1;
     }
 }
-void crop(string path,string filePath) {
+
+void crop(string path,string filePath ,int x,int y, int w, int  h ) {
     Image image(path);
-    string strX, strY, strW, strH;
-    int x, y, w, h;
-    // x and y reference  to the starting  point
-    // w and h reference to the width and the height of the cropped image
-
-    cout << "The dimensions of the image are: " << image.width << " * " << image.height << endl;
-    cout << "Please enter the starting point (x, y)" << endl; //to show the original dimensions
-
-    cout << "  The Starting point of X-axis: ";
-    cin.ignore(1);
-    cin >> strX;
-    x = valid(strX);
-    while (x == -1 ){
-        // this step to allow the user to Reenter The Staring point of X-axis
-        //--> (-1) is a returned  value  from function valid if there is error
-        cout << "  The Starting point of X-axis: ";
-        cin.ignore(1);
-        cin >> strX;
-        x = valid(strX);
-    }
-    //------------------------------------------------------------------------------------------------------------------
-    cout << "The Starting point of Y-axis: ";
-    cin.ignore(1);
-    cin >> strY;
-    y = valid(strY);
-    while (y == -1){
-        // this step to allow the user to Reenter The Staring point of Y-axis  again
-        //--> (-1) is a returned  value  from function valid if there is error
-        cout << "The Starting point of Y-axis: ";
-        cin.ignore(1);
-        cin >> strY;
-        y = valid(strY);
-    }
-    //------------------------------------------------------------------------------------------------------------------
-    cout << "Please enter the dimensions of the cropped image" << endl;
-    cout << "  The Width of the Cropped Image: ";
-    cin.ignore(1);
-    cin >> strW;
-    w = valid(strW);
-    while(w == -1){
-        // this step to allow the user to Reenter The Width of the Cropped Image again
-        //--> (-1) is a returned  value  from function valid if there is error
-        cout << "  The Width of the Cropped Image: ";
-        cin.ignore(1);
-        cin >> strW;
-        w = valid(strW);
-    }
-    //------------------------------------------------------------------------------------------------------------------
-    cout << "The Height of the Cropped Image: ";
-    cin.ignore(1);
-    cin >> strH;
-    h = valid(strH);
-    while (h == -1){
-        // this step to allow the user to Reenter The Height of the Cropped Image again
-        //--> (-1) is a returned  value  from function valid if there is error
-        cout << "The Height of the Cropped Image: ";
-        cin.ignore(1);
-        cin >> strH;
-        h = valid(strH);
-    }
-    //------------------------------------------------------------------------------------------------------------------
-    if ((x + w) > image.width || (y + h) > image.height) {
-        // if the sum  is higher than the original dimensions
-        cout << "Out of bounds, Please enter valid dimensions!\n";
-        cin.clear();  // Clear the input buffer to avoid the infinite loop
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        crop(path,filePath) ;
-    }
-    else {
         Image cropped_Img(w, h); // create a new image to store the cropped one
         for (int i = 0; i < w; ++i) {
             for (int j = 0; j < h; ++j) {
@@ -429,7 +353,8 @@ void crop(string path,string filePath) {
         save(image,0,filePath) ;
         cout << "Filter Applied...\n";
     }
-}
+
+
 //!!!
 void frame(string path,string filePath) //Loai (Done)
 { Image image(path);
@@ -868,19 +793,10 @@ void edges(string path,string filePath) { //Hossam (Done)
     save(image,0,filePath) ;
 
 }
+
 //!!
-void resize(string path,string filePath) //Abdallah (Done)
+void resize(string path,string filePath , int w, int h ) //Abdallah (Done)
 {  Image image(path);
-    while (true) {
-        cout << "The original size of the image is :  " << image.width << "x" << image.height << endl;
-        int w, h;
-        cout << "Please enter the new dimensions (Width & Height)\n";
-        cout << " The Width : ";
-        cin >> w;                     // getting the values of new dimensions
-        cin.ignore(1);
-        cout << "The Height : ";
-        cin >> h;
-        cin.ignore(1);
         if (w > 0 && h > 0) {
             Image resized_Img(w, h); //create a new image to store the resized one
             float s; // the ratio between the width of the original img and the new width
@@ -901,16 +817,10 @@ void resize(string path,string filePath) //Abdallah (Done)
             save(image,0,filePath) ;
             cout << "Filter Applied...\n";
 
-        } else {
-            cout << "\n\nInvalid,Please enter Valid Dimensions\n "
-                    "---> Must be greater than zero  !\n\n";
-            // Clear the input buffer in case of invalid input
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
 
     }
-}
+
 //!
 void blur(string path,string filePath) //Loai (Done)
 {Image image(path);
@@ -983,7 +893,8 @@ void blur(string path,string filePath) //Loai (Done)
     cout << "Filter Applied...\n";
 
 }
-//  ***************************** Bonus *****************************************
+
+//  ********************** Bonus ****************************
 void Sunlight (string path,string filePath) {
     Image image(path) ;
     for (int i = 0; i < image.width; i++) {
@@ -1134,9 +1045,8 @@ void sepia(string path,string filePath) //Loai (Done)
 }
 
 void oil (string path,string filePath) //Loai (Done)
-{
-    Image image(path) ;
-    unsigned int brushSize = 3;
+{  Image image(path) ;
+    unsigned int brushSize = 5;
     bool test;
     int height = image.height;
     int width = image.width;
@@ -1270,57 +1180,36 @@ void Skewed(string path,string filePath) {
 }
 //!
 void Pixelate(string path,string filePath) {
-    Image image(path) ;
-    int Pixel_Size = 0;  // This variable handles the size of each pixel
-    while (true) {
-        try {
-            cout << "If The Pixelation Level is higher The image will be Distorted\n"
-                 << "Hint ---> Pixelation level is the size of each pixel\n";
-            cout << "Please enter the pixelation level :  ";
-            cin >> Pixel_Size;
-            if (Pixel_Size > 0) {
-                for (int i = 0; i < image.width; i += Pixel_Size) {
-                    // Set the new size of the width of each pixel
-                    for (int j = 0; j < image.height; j += Pixel_Size) {
-                        // Set the new size of the height of each pixel
-                        unsigned int avgRed = 0, avgGreen = 0, avgBlue = 0;
-                        //variables to store the avg of each channel
-                        int counter = 0;
-                        for (int x = i; x < i + Pixel_Size && x < image.width; ++x) {
-                            for (int y = j; y < j + Pixel_Size && y < image.height; ++y) {
-                                avgRed += image(x, y,
-                                                0); // assign it to equal the sum of each red channel                                avgGreen += image(x, y, 1);
-                                avgGreen += image(x, y, 1); // assign it to equal the sum of each green channel
-                                avgBlue += image(x, y, 2);// assign it to equal the sum of each blue channel
-
-                                counter++;
-                            }
-                        }
-                        // Obtain the avg for each channel
-                        avgRed = avgRed / counter;
-                        avgGreen = avgGreen / counter;
-                        avgBlue = avgBlue / counter;
-                        for (int x = i; x < i + Pixel_Size && x < image.width; ++x) {
-                            for (int y = j; y < j + Pixel_Size && y < image.height; ++y) {
-                                image(x, y, 0) = avgRed;
-                                image(x, y, 1) = avgGreen;
-                                image(x, y, 2) = avgBlue;
-                            }
-                        }
-                    }
+    Image image(path);
+    int Pixel_Size = 10 ;  // This variable handles the size of each pixel
+    for (int i = 0; i < image.width; i += Pixel_Size) {
+        // Set the new size of the width of each pixel
+        for (int j = 0; j < image.height; j += Pixel_Size) {
+            // Set the new size of the height of each pixel
+            unsigned int avgRed = 0, avgGreen = 0, avgBlue = 0;
+            //variables to store the avg of each channel
+            int counter = 0;
+            for (int x = i; x < i + Pixel_Size && x < image.width; ++x) {
+                for (int y = j; y < j + Pixel_Size && y < image.height; ++y) {
+                    avgRed += image(x, y,0); // assign it to equal the sum of each red channel                                avgGreen += image(x, y, 1);
+                    avgGreen += image(x, y, 1); // assign it to equal the sum of each green channel
+                    avgBlue += image(x, y, 2);// assign it to equal the sum of each blue channel
+                    counter++;
                 }
-                cout << "Pixelation Filter Applied...\n";
+            }
+            // Obtain the avg for each channel
+            avgRed = avgRed / counter;
+            avgGreen = avgGreen / counter;
+            avgBlue = avgBlue / counter;
+            for (int x = i; x < i + Pixel_Size && x < image.width; ++x) {
+                for (int y = j; y < j + Pixel_Size && y < image.height; ++y) {
+                    image(x, y, 0) = avgRed;
+                    image(x, y, 1) = avgGreen;
+                    image(x, y, 2) = avgBlue;
+                }
+            }
 
-            } else { throw Pixel_Size; }
-        }
-        catch (int myNum) { //catch the error
-            cout << "Invalid input, Please insert numbers!!\n";
-            cout << "=========================================\n";
-            // Clear the input buffer to avoid the infinite loop
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        }
-        save(image,0,filePath) ;
-    }
 
-}
+        }}
+    cout << "Pixelation Filter Applied...\n";
+    save(image,0,filePath) ;}

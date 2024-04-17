@@ -1,3 +1,3 @@
-"F:\Programs\CLion\CLion 2023.3.2\bin\cmake\win\x64\bin\cmake.exe" -E rm -f CMakeFiles\imageProcessor-CS112-A3.dir/objects.a
-"F:\Programs\CLion\CLion 2023.3.2\bin\mingw\bin\ar.exe" qc CMakeFiles\imageProcessor-CS112-A3.dir/objects.a @CMakeFiles\imageProcessor-CS112-A3.dir\objects1.rsp
-"F:\Programs\CLion\CLion 2023.3.2\bin\mingw\bin\g++.exe" -g -Wl,--whole-archive CMakeFiles\imageProcessor-CS112-A3.dir/objects.a -Wl,--no-whole-archive -o imageProcessor-CS112-A3.exe -Wl,--out-implib,libimageProcessor-CS112-A3.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\imageProcessor-CS112-A3.dir\linkLibs.rsp
+"C:\Program Files\JetBrains\CLion 2023.3.1\bin\cmake\win\x64\bin\cmake.exe" -E rm -f CMakeFiles\imageProcessor-CS112-A3.dir/objects.a
+C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\ar.exe qc CMakeFiles\imageProcessor-CS112-A3.dir/objects.a @CMakeFiles\imageProcessor-CS112-A3.dir\objects1.rsp
+C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE -g -Wl,--whole-archive CMakeFiles\imageProcessor-CS112-A3.dir/objects.a -Wl,--no-whole-archive -o imageProcessor-CS112-A3.exe -Wl,--out-implib,libimageProcessor-CS112-A3.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\imageProcessor-CS112-A3.dir\linkLibs.rsp
