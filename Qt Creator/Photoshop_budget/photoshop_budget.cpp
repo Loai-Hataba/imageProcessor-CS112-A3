@@ -36,8 +36,7 @@ Photoshop_budget::Photoshop_budget(QWidget *parent)
     connect(ui->horizontal, &QPushButton::clicked, this, &Photoshop_budget::on_horizontal_clicked);
     //connect(ui->pushButton, &QPushButton::clicked, this, &Photoshop_budget::on_pushButton_clicked);
     //connect(ui->pushButton_2, &QPushButton::clicked, this, &Photoshop_budget::on_pushButton_2_clicked);
-    // connect(ui->yourSpinBox, QOverload<int>::of(&QSpinBox::valueChanged), this, &Photoshop_budget::onSpinBoxValueChanged);
-    // int value = spinBox1->value();
+    connect(ui->frame_size_val, &QSpinBox::valueChanged, this, &Photoshop_budget::on_frame_size_val_valueChanged);
     connect(ui->frame_btn, &QPushButton::clicked, this, &Photoshop_budget::on_frame_btn_clicked);
     connect(ui->color_btn, &QPushButton::clicked, this, &Photoshop_budget::on_color_btn_clicked);
 
@@ -312,6 +311,7 @@ void Photoshop_budget::on_rotate_btn_clicked()
 }
 void Photoshop_budget::on_apply_rotation_clicked()
 {
+
     if (ui->angle_90->isChecked())
     {
         rotate(file_name.toStdString(),filePath.toStdString(), 90);
@@ -320,6 +320,7 @@ void Photoshop_budget::on_apply_rotation_clicked()
         int h = ui->image->height();
         ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
         file_name = filePath;
+        QMessageBox::information(this, "test", "90");
     }
     else if (ui->angle_180->isChecked())
     {
@@ -329,6 +330,7 @@ void Photoshop_budget::on_apply_rotation_clicked()
         int h = ui->image->height();
         ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
         file_name = filePath;
+        QMessageBox::information(this, "test", "180");
     }
     else if (ui->angle_270->isChecked())
     {
@@ -338,6 +340,7 @@ void Photoshop_budget::on_apply_rotation_clicked()
         int h = ui->image->height();
         ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
         file_name = filePath;
+        QMessageBox::information(this, "test", "270");
     }
 }
 
@@ -358,17 +361,6 @@ void Photoshop_budget::on_color_btn_clicked()
 
 }
 
-
-
-
-
-
-
-
-// void Photoshop_budget::on_flipV_clicked()
-// {
-
-// }
 
 
 void Photoshop_budget::on_resize_w_editingFinished()
@@ -398,6 +390,7 @@ void Photoshop_budget::on_pushButton_2_clicked()
 }
 */
 
+int frame_size_num;
 void Photoshop_budget::on_vertical_clicked()
 {
     flip(file_name.toStdString(),filePath.toStdString(),"V");
@@ -417,5 +410,12 @@ void Photoshop_budget::on_horizontal_clicked()
     int h = ui->image->height();
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
     file_name = filePath;
+}
+
+
+void Photoshop_budget::on_frame_size_val_valueChanged(int arg1)
+{
+    frame_size_num = arg1;
+    QMessageBox::information(this, "Value", "The new value of the spin box is: " + QString::number(arg1));
 }
 
