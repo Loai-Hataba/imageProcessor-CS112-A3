@@ -7,7 +7,6 @@
     <x>0</x>
     <y>0</y>
     <width>1850</width>
-    <height>1053</height>
     <height>1079</height>
    </rect>
   </property>
@@ -633,7 +632,7 @@
      <x>0</x>
      <y>0</y>
      <width>1850</width>
-     <height>27</height>
+     <height>28</height>
     </rect>
    </property>
    <property name="minimumSize">
@@ -703,7 +702,7 @@
       </rect>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="blur_optn"/>
      <widget class="QWidget" name="crop_optn">

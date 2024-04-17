@@ -102,7 +102,8 @@ private slots:
 
     void on_apply_skew_clicked();
 
-    void on_original_image_clicked();
+
+    void on_original_image_pressed();
 
 private:
     Ui::Photoshop_budget *ui;
