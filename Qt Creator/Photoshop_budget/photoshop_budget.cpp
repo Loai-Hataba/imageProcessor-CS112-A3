@@ -31,11 +31,10 @@ Photoshop_budget::Photoshop_budget(QWidget *parent)
 {
     ui->setupUi(this);
     connect(ui->apply_rotation, &QPushButton::clicked, this, &Photoshop_budget::on_apply_rotation_clicked);
-    connect(ui->flip_v, &QPushButton::clicked, this, &Photoshop_budget::on_flip_v_clicked);
-    connect(ui->flip_h, &QPushButton::clicked, this, &Photoshop_budget::on_flip_h_clicked);
-    int value = spinBox1->value();
-
-
+    // connect(ui->flip_v, &QPushButton::clicked, this, &Photoshop_budget::on_flip_v_clicked);
+    // connect(ui->flip_h, &QPushButton::clicked, this, &Photoshop_budget::on_flip_h_clicked);
+    // connect(ui->yourSpinBox, QOverload<int>::of(&QSpinBox::valueChanged), this, &Photoshop_budget::onSpinBoxValueChanged);
+    // int value = spinBox1->value();
     connect(ui->frame_btn, &QPushButton::clicked, this, &Photoshop_budget::on_frame_btn_clicked);
     connect(ui->color_btn, &QPushButton::clicked, this, &Photoshop_budget::on_color_btn_clicked);
 
