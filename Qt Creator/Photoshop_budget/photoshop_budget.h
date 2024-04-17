@@ -99,6 +99,8 @@ private slots:
 
     void on_height_crop_apply_valueChanged(int arg1);
 
+    void on_apply_brightness_btn_clicked();
+
 private:
     Ui::Photoshop_budget *ui;
 };

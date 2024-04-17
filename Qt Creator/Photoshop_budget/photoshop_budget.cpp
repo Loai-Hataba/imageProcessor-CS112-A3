@@ -42,6 +42,8 @@ Photoshop_budget::Photoshop_budget(QWidget *parent)
     , ui(new Ui::Photoshop_budget)
 {
     ui->setupUi(this);
+
+    connect(ui->apply_brightness_btn, &QPushButton::clicked, this, &Photoshop_budget::on_apply_brightness_btn_clicked);
     // connect(ui->apply_rotation, &QPushButton::clicked, this, &Photoshop_budget::on_apply_rotation_clicked);
 /*connect(ui->vertical, &QPushButton::clicked, this, &Photoshop_budget::on_vertical_clicked);
 connect(ui->horizontal, &QPushButton::clicked, this, &Photoshop_budget::on_horizontal_clicked);*/
@@ -244,23 +246,46 @@ void Photoshop_budget::on_oil_btn_clicked()
     file_name = filePath;
     delete oilmessageBox;
 }
+int degree = 0;
+void Photoshop_budget::on_brightness_degree_slider_valueChanged(int value)
+{
+    ui->brightness_degree->setText(QString::number(value));
+    degree = value;
+}
+int cntrd = 0;
+int cntrl = 0;
 void Photoshop_budget::on_darken_btn_clicked()
 {
-    darken(file_name.toStdString(),filePath.toStdString());
-    QPixmap pix(filePath);
-    int w = ui->image->width();
-    int h = ui->image->height();
-    ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
-    file_name = filePath;
+    ui->dock_Widget_2->show();
+    ui->stackedWidget->setCurrentIndex(2);
+    cntrd = 1;
+    cntrl = 0;
 }
 void Photoshop_budget::on_lighten_btn_clicked()
 {
-    lighten(file_name.toStdString(),filePath.toStdString());
-    QPixmap pix(filePath);
-    int w = ui->image->width();
-    int h = ui->image->height();
-    ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
-    file_name = filePath;
+    ui->dock_Widget_2->show();
+    ui->stackedWidget->setCurrentIndex(2);
+    cntrl = 1;
+    cntrd = 0;
+}
+void Photoshop_budget::on_apply_brightness_btn_clicked()
+{
+    if(cntrd == 1){
+        darken(file_name.toStdString(),filePath.toStdString(),degree);
+        QPixmap pix(filePath);
+        int w = ui->image->width();
+        int h = ui->image->height();
+        ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
+        file_name = filePath;
+    }
+    else if(cntrl == 1){
+        lighten(file_name.toStdString(),filePath.toStdString(),degree);
+        QPixmap pix(filePath);
+        int w = ui->image->width();
+        int h = ui->image->height();
+        ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
+        file_name = filePath;
+    }
 }
 
 void Photoshop_budget::on_Pixelate_btn_clicked()
@@ -311,10 +336,7 @@ void Photoshop_budget::on_blur_btn_clicked()
     ui->dock_Widget_2->show();
     ui->stackedWidget->setCurrentIndex(0);
 }
-void Photoshop_budget::on_brightness_degree_slider_valueChanged(int value)
-{
-    ui->brightness_degree->setText(QString::number(value));
-}
+
 //************************************************************************************************************
 // rotate
 void Photoshop_budget::on_rotate_btn_clicked()
@@ -505,6 +527,7 @@ void Photoshop_budget::on_Apply_crop_clicked()
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
     file_name = filePath;
 }
+
 
 
 

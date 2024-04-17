@@ -277,9 +277,8 @@ void rotate(string path ,string filePath, int angle) //Loai (Done)
     }
 }
 
-void darken(string path , string filePath) //Hossam (Done)
+void darken(string path , string filePath,int degree) //Hossam (Done)
 {  Image image(path);
-    int degree = 50;
     for (int i = 0; i < image.width; i++) {
         for (int j = 0; j < image.height; j++) {
             //getting color values
@@ -298,9 +297,8 @@ void darken(string path , string filePath) //Hossam (Done)
     cout << "Filter Applied...\n";
 
 }
-void lighten(string path , string filePath){ //Hossam (Done){
+void lighten(string path , string filePath,int degree){ //Hossam (Done){
     Image image(path);
-    int degree = 50;
     for (int i = 0; i < image.width; i++) {
         for (int j = 0; j < image.height; j++) {
             //getting color values
