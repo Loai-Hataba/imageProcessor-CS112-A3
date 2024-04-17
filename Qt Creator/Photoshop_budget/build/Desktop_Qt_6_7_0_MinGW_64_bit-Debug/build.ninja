@@ -217,7 +217,7 @@ build Photoshop_budget_autogen/EWIEGA46WW/qrc_rsc.cpp | ${cmake_ninja_workdir}Ph
 #############################################
 # Phony custom command for CMakeFiles\Photoshop_budget_autogen_timestamp_deps
 
-build CMakeFiles/Photoshop_budget_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/Photoshop_budget_autogen_timestamp_deps: phony D$:/Gui/6.7.0/mingw_64/lib/libQt6Core.a D$:/Gui/6.7.0/mingw_64/./bin/uic.exe D$:/Gui/6.7.0/mingw_64/./bin/moc.exe D$:/Gui/6.7.0/mingw_64/lib/libQt6Widgets.a
+build CMakeFiles/Photoshop_budget_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/Photoshop_budget_autogen_timestamp_deps: phony D$:/Gui/6.7.0/mingw_64/./bin/uic.exe D$:/Gui/6.7.0/mingw_64/./bin/moc.exe D$:/Gui/6.7.0/mingw_64/lib/libQt6Core.a D$:/Gui/6.7.0/mingw_64/lib/libQt6Widgets.a
 
 
 #############################################

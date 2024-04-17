@@ -27,21 +27,21 @@
 		],
 		"files" : 
 		[
-			"D:/Qt/6.7.0/mingw_64/lib/cmake/Qt6Core/Qt6CoreMacros.cmake",
+			"D:/Gui/6.7.0/mingw_64/lib/cmake/Qt6Core/Qt6CoreMacros.cmake",
 			"CMakeLists.txt",
-			"D:/Qt/6.7.0/mingw_64/lib/cmake/Qt6Widgets/Qt6WidgetsTargets.cmake",
-			"D:/Qt/6.7.0/mingw_64/lib/cmake/Qt6Widgets/Qt6WidgetsConfig.cmake",
-			"D:/Qt/6.7.0/mingw_64/lib/cmake/Qt6/Qt6Config.cmake",
-			"D:/Qt/6.7.0/mingw_64/lib/cmake/Qt6Core/Qt6CoreTargets.cmake",
-			"D:/Qt/6.7.0/mingw_64/lib/cmake/Qt6Core/Qt6CoreConfig.cmake",
-			"D:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/CMakeFindDependencyMacro.cmake",
-			"D:/Qt/6.7.0/mingw_64/lib/cmake/Qt6/QtPublicDependencyHelpers.cmake",
-			"D:/Qt/6.7.0/mingw_64/lib/cmake/Qt6Widgets/Qt6WidgetsDependencies.cmake",
-			"D:/Qt/6.7.0/mingw_64/lib/cmake/Qt6EntryPointPrivate/Qt6EntryPointPrivateTargets.cmake",
-			"D:/Qt/6.7.0/mingw_64/lib/cmake/Qt6EntryPointPrivate/Qt6EntryPointPrivateConfig.cmake",
-			"D:/Qt/6.7.0/mingw_64/lib/cmake/Qt6Core/Qt6CoreDependencies.cmake",
-			"D:/Qt/6.7.0/mingw_64/lib/cmake/Qt6Gui/Qt6GuiTargets.cmake",
-			"D:/Qt/6.7.0/mingw_64/lib/cmake/Qt6Gui/Qt6GuiConfig.cmake"
+			"D:/Gui/6.7.0/mingw_64/lib/cmake/Qt6Widgets/Qt6WidgetsTargets.cmake",
+			"D:/Gui/6.7.0/mingw_64/lib/cmake/Qt6Widgets/Qt6WidgetsConfig.cmake",
+			"D:/Gui/6.7.0/mingw_64/lib/cmake/Qt6/Qt6Config.cmake",
+			"D:/Gui/6.7.0/mingw_64/lib/cmake/Qt6Core/Qt6CoreTargets.cmake",
+			"D:/Gui/6.7.0/mingw_64/lib/cmake/Qt6Core/Qt6CoreConfig.cmake",
+			"D:/Gui/Tools/CMake_64/share/cmake-3.27/Modules/CMakeFindDependencyMacro.cmake",
+			"D:/Gui/6.7.0/mingw_64/lib/cmake/Qt6/QtPublicDependencyHelpers.cmake",
+			"D:/Gui/6.7.0/mingw_64/lib/cmake/Qt6Widgets/Qt6WidgetsDependencies.cmake",
+			"D:/Gui/6.7.0/mingw_64/lib/cmake/Qt6EntryPointPrivate/Qt6EntryPointPrivateTargets.cmake",
+			"D:/Gui/6.7.0/mingw_64/lib/cmake/Qt6EntryPointPrivate/Qt6EntryPointPrivateConfig.cmake",
+			"D:/Gui/6.7.0/mingw_64/lib/cmake/Qt6Core/Qt6CoreDependencies.cmake",
+			"D:/Gui/6.7.0/mingw_64/lib/cmake/Qt6Gui/Qt6GuiTargets.cmake",
+			"D:/Gui/6.7.0/mingw_64/lib/cmake/Qt6Gui/Qt6GuiConfig.cmake"
 		],
 		"nodes" : 
 		[
@@ -75,13 +75,13 @@
 			{
 				"command" : 4,
 				"file" : 1,
-				"line" : 75,
+				"line" : 76,
 				"parent" : 0
 			},
 			{
 				"command" : 5,
 				"file" : 1,
-				"line" : 58,
+				"line" : 59,
 				"parent" : 0
 			},
 			{
@@ -268,7 +268,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g -std=gnu++17 -fdiagnostics-color=always"
+					"fragment" : "-DQT_QML_DEBUG -g -std=gnu++17 -fdiagnostics-color=always"
 				}
 			],
 			"defines" : 
@@ -322,32 +322,32 @@
 			[
 				{
 					"backtrace" : 0,
-					"path" : "D:/Hoss/github/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/Photoshop_budget_autogen/include"
+					"path" : "C:/Users/Lenovo/Desktop/om el ramly/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/Photoshop_budget_autogen/include"
 				},
 				{
 					"backtrace" : 14,
 					"isSystem" : true,
-					"path" : "D:/Qt/6.7.0/mingw_64/include/QtCore"
+					"path" : "D:/Gui/6.7.0/mingw_64/include/QtCore"
 				},
 				{
 					"backtrace" : 14,
 					"isSystem" : true,
-					"path" : "D:/Qt/6.7.0/mingw_64/include"
+					"path" : "D:/Gui/6.7.0/mingw_64/include"
 				},
 				{
 					"backtrace" : 14,
 					"isSystem" : true,
-					"path" : "D:/Qt/6.7.0/mingw_64/mkspecs/win32-g++"
+					"path" : "D:/Gui/6.7.0/mingw_64/mkspecs/win32-g++"
 				},
 				{
 					"backtrace" : 6,
 					"isSystem" : true,
-					"path" : "D:/Qt/6.7.0/mingw_64/include/QtWidgets"
+					"path" : "D:/Gui/6.7.0/mingw_64/include/QtWidgets"
 				},
 				{
 					"backtrace" : 6,
 					"isSystem" : true,
-					"path" : "D:/Qt/6.7.0/mingw_64/include/QtGui"
+					"path" : "D:/Gui/6.7.0/mingw_64/include/QtGui"
 				}
 			],
 			"language" : "CXX",
@@ -366,7 +366,8 @@
 				1,
 				2,
 				5,
-				10
+				10,
+				14
 			]
 		}
 	],
@@ -400,7 +401,7 @@
 		"commandFragments" : 
 		[
 			{
-				"fragment" : "-g",
+				"fragment" : "-DQT_QML_DEBUG -g",
 				"role" : "flags"
 			},
 			{
@@ -409,17 +410,17 @@
 			},
 			{
 				"backtrace" : 6,
-				"fragment" : "D:\\Qt\\6.7.0\\mingw_64\\lib\\libQt6Widgets.a",
+				"fragment" : "D:\\Gui\\6.7.0\\mingw_64\\lib\\libQt6Widgets.a",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 13,
-				"fragment" : "D:\\Qt\\6.7.0\\mingw_64\\lib\\libQt6Gui.a",
+				"fragment" : "D:\\Gui\\6.7.0\\mingw_64\\lib\\libQt6Gui.a",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 14,
-				"fragment" : "D:\\Qt\\6.7.0\\mingw_64\\lib\\libQt6Core.a",
+				"fragment" : "D:\\Gui\\6.7.0\\mingw_64\\lib\\libQt6Core.a",
 				"role" : "libraries"
 			},
 			{
@@ -439,7 +440,7 @@
 			},
 			{
 				"backtrace" : 32,
-				"fragment" : "D:\\Qt\\6.7.0\\mingw_64\\lib\\libQt6EntryPoint.a",
+				"fragment" : "D:\\Gui\\6.7.0\\mingw_64\\lib\\libQt6EntryPoint.a",
 				"role" : "libraries"
 			},
 			{
@@ -491,7 +492,8 @@
 				1,
 				2,
 				5,
-				10
+				10,
+				14
 			]
 		},
 		{
@@ -503,7 +505,7 @@
 				7,
 				8,
 				9,
-				11
+				12
 			]
 		},
 		{
@@ -511,14 +513,16 @@
 			"sourceIndexes" : 
 			[
 				4,
-				12
+				11,
+				13
 			]
 		},
 		{
 			"name" : "CMake Rules",
 			"sourceIndexes" : 
 			[
-				13
+				15,
+				16
 			]
 		}
 	],
@@ -586,6 +590,11 @@
 			"sourceGroupIndex" : 0
 		},
 		{
+			"backtrace" : 4,
+			"path" : "rsc.qrc",
+			"sourceGroupIndex" : 2
+		},
+		{
 			"backtrace" : 0,
 			"isGenerated" : true,
 			"path" : "build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/Photoshop_budget_autogen/include/ui_photoshop_budget.h",
@@ -599,8 +608,21 @@
 		},
 		{
 			"backtrace" : 0,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/Photoshop_budget_autogen/EWIEGA46WW/qrc_rsc.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 0,
 			"isGenerated" : true,
 			"path" : "build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/Photoshop_budget_autogen/timestamp.rule",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/Photoshop_budget_autogen/EWIEGA46WW/qrc_rsc.cpp.rule",
 			"sourceGroupIndex" : 3
 		}
 	],
