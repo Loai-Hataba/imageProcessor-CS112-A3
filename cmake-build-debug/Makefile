@@ -152,30 +152,6 @@ CS112_A3_Part1_S24_20230553_20230231_20230121.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\imageProcessor-CS112-A3.dir\build.make CMakeFiles/imageProcessor-CS112-A3.dir/CS112_A3_Part1_S24_20230553_20230231_20230121.cpp.s
 .PHONY : CS112_A3_Part1_S24_20230553_20230231_20230121.cpp.s
 
-ImageProcessingDemo.obj: ImageProcessingDemo.cpp.obj
-.PHONY : ImageProcessingDemo.obj
-
-# target to build an object file
-ImageProcessingDemo.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\imageProcessor-CS112-A3.dir\build.make CMakeFiles/imageProcessor-CS112-A3.dir/ImageProcessingDemo.cpp.obj
-.PHONY : ImageProcessingDemo.cpp.obj
-
-ImageProcessingDemo.i: ImageProcessingDemo.cpp.i
-.PHONY : ImageProcessingDemo.i
-
-# target to preprocess a source file
-ImageProcessingDemo.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\imageProcessor-CS112-A3.dir\build.make CMakeFiles/imageProcessor-CS112-A3.dir/ImageProcessingDemo.cpp.i
-.PHONY : ImageProcessingDemo.cpp.i
-
-ImageProcessingDemo.s: ImageProcessingDemo.cpp.s
-.PHONY : ImageProcessingDemo.s
-
-# target to generate assembly for a file
-ImageProcessingDemo.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\imageProcessor-CS112-A3.dir\build.make CMakeFiles/imageProcessor-CS112-A3.dir/ImageProcessingDemo.cpp.s
-.PHONY : ImageProcessingDemo.cpp.s
-
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -188,9 +164,6 @@ help:
 	@echo ... CS112_A3_Part1_S24_20230553_20230231_20230121.obj
 	@echo ... CS112_A3_Part1_S24_20230553_20230231_20230121.i
 	@echo ... CS112_A3_Part1_S24_20230553_20230231_20230121.s
-	@echo ... ImageProcessingDemo.obj
-	@echo ... ImageProcessingDemo.i
-	@echo ... ImageProcessingDemo.s
 .PHONY : help
 
 

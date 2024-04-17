@@ -65,23 +65,17 @@ private slots:
 
     void on_rotate_btn_clicked();
 
-    void on_pushButton_clicked();
-
     void on_apply_rotation_clicked();
 
-    void on_rotate_apply_clicked();
-
-    void on_color_btn_clicked();
+     void on_color_btn_clicked();
 
     void on_frame_btn_clicked();
 
-    void on_flip_v_clicked();
-
-    void on_flip_h_clicked();
-
-    void on_flipV_clicked();
-
     void on_resize_w_editingFinished();
+
+    void on_vertical_clicked();
+
+    void on_horizontal_clicked();
 
 private:
     Ui::Photoshop_budget *ui;

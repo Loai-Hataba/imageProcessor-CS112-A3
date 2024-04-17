@@ -1,42 +1,27 @@
 # ninja log v5
-26	657	7350259447144213	Photoshop_budget_autogen/timestamp	5cd53eb4065a890b
+8	1095	7350308937194453	Photoshop_budget_autogen/timestamp	5cd53eb4065a890b
 31	37	0	clean	101d0f6048d5fe99
-26	657	7350259447144213	Photoshop_budget_autogen/mocs_compilation.cpp	5cd53eb4065a890b
-327	1630	7350256239749560	CMakeFiles/Photoshop_budget.dir/image_processor_code.cpp.obj	1772ae9f07767974
+8	1095	7350308937194453	Photoshop_budget_autogen/mocs_compilation.cpp	5cd53eb4065a890b
 1148	2491	7350240458263819	CMakeFiles/Photoshop_budget.dir/stb_implementation.cpp.obj	ba76b348bad12f9d
-721	3452	7350259475095844	CMakeFiles/Photoshop_budget.dir/Photoshop_budget_autogen/mocs_compilation.cpp.obj	26119dd1d5d54154
-1049	3903	7350257412362665	CMakeFiles/Photoshop_budget.dir/main.cpp.obj	a3139a6ea0bc46d3
-723	4477	7350259485359687	CMakeFiles/Photoshop_budget.dir/photoshop_budget.cpp.obj	8766a0d3035a30bb
-4478	4808	7350259488626939	Photoshop_budget.exe	c7f6052b9531dcf0
+7	1760	7350309491782750	CMakeFiles/Photoshop_budget.dir/Photoshop_budget_autogen/mocs_compilation.cpp.obj	26119dd1d5d54154
+894	2046	7350285858955103	CMakeFiles/Photoshop_budget.dir/image_processor_code.cpp.obj	1772ae9f07767974
+1100	4045	7350308967705169	CMakeFiles/Photoshop_budget.dir/main.cpp.obj	a3139a6ea0bc46d3
+1098	5223	7350308979496082	CMakeFiles/Photoshop_budget.dir/photoshop_budget.cpp.obj	8766a0d3035a30bb
 1	31	0	CMakeFiles/clean.additional	adcc2f785672e3a3
-26	657	7350259447144213	C:/Users/Lenovo/Desktop/om el ramly/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/Photoshop_budget_autogen/timestamp	5cd53eb4065a890b
-26	657	7350259447144213	C:/Users/Lenovo/Desktop/om el ramly/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/Photoshop_budget_autogen/mocs_compilation.cpp	5cd53eb4065a890b
-1081	1139	7350240444716248	Photoshop_budget_autogen/EWIEGA46WW/qrc_rsc.cpp	48527820df5a4563
-1081	1139	7350240444716248	C:/Users/Lenovo/Desktop/om el ramly/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/Photoshop_budget_autogen/EWIEGA46WW/qrc_rsc.cpp	48527820df5a4563
-1150	1282	7350240446181981	CMakeFiles/Photoshop_budget.dir/Photoshop_budget_autogen/EWIEGA46WW/qrc_rsc.cpp.obj	c9fddce9a34a50cb
-21	822	7350262599028354	build.ninja	172ac0515f0af74a
-9	446	7350262604009985	Photoshop_budget_autogen/timestamp	5cd53eb4065a890b
-9	446	7350262604009985	Photoshop_budget_autogen/mocs_compilation.cpp	5cd53eb4065a890b
-9	446	7350262604009985	C:/Users/Lenovo/Desktop/om el ramly/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/Photoshop_budget_autogen/timestamp	5cd53eb4065a890b
-9	446	7350262604009985	C:/Users/Lenovo/Desktop/om el ramly/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/Photoshop_budget_autogen/mocs_compilation.cpp	5cd53eb4065a890b
-499	560	7350262605112487	Photoshop_budget_autogen/EWIEGA46WW/qrc_rsc.cpp	48527820df5a4563
-499	560	7350262605112487	C:/Users/Lenovo/Desktop/om el ramly/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/Photoshop_budget_autogen/EWIEGA46WW/qrc_rsc.cpp	48527820df5a4563
-560	701	7350262606579653	CMakeFiles/Photoshop_budget.dir/Photoshop_budget_autogen/EWIEGA46WW/qrc_rsc.cpp.obj	c9fddce9a34a50cb
-562	4812	7350262647646511	CMakeFiles/Photoshop_budget.dir/photoshop_budget.cpp.obj	8766a0d3035a30bb
-4812	5296	7350262652447642	Photoshop_budget.exe	c7f6052b9531dcf0
-7	232	7350265691071517	Photoshop_budget_autogen/timestamp	5cd53eb4065a890b
-7	232	7350265691071517	Photoshop_budget_autogen/mocs_compilation.cpp	5cd53eb4065a890b
-7	232	7350265691071517	C:/Users/Lenovo/Desktop/om el ramly/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/Photoshop_budget_autogen/timestamp	5cd53eb4065a890b
-7	232	7350265691071517	C:/Users/Lenovo/Desktop/om el ramly/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/Photoshop_budget_autogen/mocs_compilation.cpp	5cd53eb4065a890b
-280	3448	7350265723240563	CMakeFiles/Photoshop_budget.dir/photoshop_budget.cpp.obj	8766a0d3035a30bb
-3449	3779	7350265726502888	Photoshop_budget.exe	c7f6052b9531dcf0
-10	1255	7350269255437035	Photoshop_budget_autogen/timestamp	5cd53eb4065a890b
-10	1255	7350269255437035	Photoshop_budget_autogen/mocs_compilation.cpp	5cd53eb4065a890b
-10	1255	7350269255437035	C:/Users/Lenovo/Desktop/om el ramly/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/Photoshop_budget_autogen/timestamp	5cd53eb4065a890b
-10	1255	7350269255437035	C:/Users/Lenovo/Desktop/om el ramly/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/Photoshop_budget_autogen/mocs_compilation.cpp	5cd53eb4065a890b
-1256	4261	7350269286365603	CMakeFiles/Photoshop_budget.dir/Photoshop_budget_autogen/mocs_compilation.cpp.obj	26119dd1d5d54154
-1260	4358	7350269287343182	CMakeFiles/Photoshop_budget.dir/main.cpp.obj	a3139a6ea0bc46d3
-12	222	7350270600422207	Photoshop_budget_autogen/timestamp	5cd53eb4065a890b
-12	222	7350270600422207	Photoshop_budget_autogen/mocs_compilation.cpp	5cd53eb4065a890b
-12	222	7350270600422207	C:/Users/Lenovo/Desktop/om el ramly/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/Photoshop_budget_autogen/timestamp	5cd53eb4065a890b
-12	222	7350270600422207	C:/Users/Lenovo/Desktop/om el ramly/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/Photoshop_budget_autogen/mocs_compilation.cpp	5cd53eb4065a890b
+1760	2060	7350309494746254	Photoshop_budget.exe	c7f6052b9531dcf0
+8	1095	7350308937194453	C:/Users/Lenovo/Desktop/om el ramly/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/Photoshop_budget_autogen/timestamp	5cd53eb4065a890b
+839	891	7350285847376812	Photoshop_budget_autogen/EWIEGA46WW/qrc_rsc.cpp	48527820df5a4563
+8	1095	7350308937194453	C:/Users/Lenovo/Desktop/om el ramly/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/Photoshop_budget_autogen/mocs_compilation.cpp	5cd53eb4065a890b
+897	1024	7350285848738025	CMakeFiles/Photoshop_budget.dir/Photoshop_budget_autogen/EWIEGA46WW/qrc_rsc.cpp.obj	c9fddce9a34a50cb
+839	891	7350285847376812	C:/Users/Lenovo/Desktop/om el ramly/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/Photoshop_budget_autogen/EWIEGA46WW/qrc_rsc.cpp	48527820df5a4563
+21	822	7350277409148844	build.ninja	172ac0515f0af74a
+10	1120	7350310839801056	Photoshop_budget_autogen/timestamp	5cd53eb4065a890b
+10	1120	7350310839801056	Photoshop_budget_autogen/mocs_compilation.cpp	5cd53eb4065a890b
+10	1120	7350310839801056	C:/Users/Lenovo/Desktop/om el ramly/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/Photoshop_budget_autogen/timestamp	5cd53eb4065a890b
+10	1120	7350310839801056	C:/Users/Lenovo/Desktop/om el ramly/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/Photoshop_budget_autogen/mocs_compilation.cpp	5cd53eb4065a890b
+1121	3986	7350310869442880	CMakeFiles/Photoshop_budget.dir/Photoshop_budget_autogen/mocs_compilation.cpp.obj	26119dd1d5d54154
+1123	4023	7350310869825241	CMakeFiles/Photoshop_budget.dir/main.cpp.obj	a3139a6ea0bc46d3
+1125	5289	7350310882473468	CMakeFiles/Photoshop_budget.dir/photoshop_budget.cpp.obj	8766a0d3035a30bb
+5290	5614	7350310885701904	Photoshop_budget.exe	c7f6052b9531dcf0
+7	1958	7350313755016621	CMakeFiles/Photoshop_budget.dir/Photoshop_budget_autogen/mocs_compilation.cpp.obj	26119dd1d5d54154
+1959	2272	7350313758110500	Photoshop_budget.exe	c7f6052b9531dcf0

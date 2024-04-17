@@ -85,9 +85,6 @@
 		<Unit filename="C:/Users/Lenovo/Desktop/om el ramly/imageProcessor-CS112-A3/CS112_A3_Part1_S24_20230553_20230231_20230121.cpp">
 			<Option target="imageProcessor-CS112-A3"/>
 		</Unit>
-		<Unit filename="C:/Users/Lenovo/Desktop/om el ramly/imageProcessor-CS112-A3/ImageProcessingDemo.cpp">
-			<Option target="imageProcessor-CS112-A3"/>
-		</Unit>
 		<Unit filename="C:/Users/Lenovo/Desktop/om el ramly/imageProcessor-CS112-A3/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
