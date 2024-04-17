@@ -345,12 +345,14 @@ void Photoshop_budget::on_skew_degree_val_valueChanged(int arg1)
 
 void Photoshop_budget::on_apply_skew_clicked()
 {
+    QMessageBox::information(this, "test",QString::number(skew_degree));
     Skewed(file_name.toStdString(),filePath.toStdString(),skew_degree);
     QPixmap pix(filePath);
     int w = ui->image->width();
     int h = ui->image->height();
-    ui->image->setPixmap(pix.scaled(w, h));
+    ui->image->setPixmap(pix.scaled(w, h ,Qt::KeepAspectRatio));
     file_name = filePath;
+
 }
 
 
