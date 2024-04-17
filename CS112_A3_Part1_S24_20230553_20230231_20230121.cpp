@@ -1512,7 +1512,7 @@ void oil(Image image) //Loai (Done)
 }
 
 void Skewed(Image image) {
-    cout << "Enter the degree of skewness: (1-180)" << endl;
+    cout << "Enter the degree of skewness: (1-180):";
     string deg;
     cin >> deg;
     bool flag = true;

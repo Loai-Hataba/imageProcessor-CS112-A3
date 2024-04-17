@@ -10,6 +10,7 @@
 #include <QDebug>
 #include <QDockWidget>
 #include <QStackedWidget>
+#include "Image_Class.h"
 #include <QSlider>
 #include <QLabel>
 #include <QColor>
@@ -345,12 +346,14 @@ void Photoshop_budget::on_skew_degree_val_valueChanged(int arg1)
 
 void Photoshop_budget::on_apply_skew_clicked()
 {
+    QMessageBox::information(this, "test",QString::number(skew_degree));
     Skewed(file_name.toStdString(),filePath.toStdString(),skew_degree);
     QPixmap pix(filePath);
     int w = ui->image->width();
     int h = ui->image->height();
-    ui->image->setPixmap(pix.scaled(w, h));
+    ui->image->setPixmap(pix.scaled(w, h ,Qt::KeepAspectRatio));
     file_name = filePath;
+
 }
 
 
@@ -558,7 +561,26 @@ void Photoshop_budget::on_crop_h_valueChanged(int arg1)
    height_crop = arg1 ;
 }
 void Photoshop_budget::on_Apply_crop_clicked()
-{   cout <<x_value<<" "<< y_value<<" "<<crop_width_value<<" "<<height_crop <<endl;
+{
+
+
+   Image image(file_name.toStdString()) ;
+    if ((x_value +crop_width_value ) > image.width  ){
+       QMessageBox msgError;
+       msgError.setText("Out of Width bounds !! ");
+       msgError.setIcon(QMessageBox::Critical);
+       msgError.setWindowTitle("File not opened");
+       msgError.exec();
+       return ;
+   }
+    if ( (y_value + height_crop)  > image.height){
+       QMessageBox msgError;
+       msgError.setText("Out of Height bounds !! ");
+       msgError.setIcon(QMessageBox::Critical);
+       msgError.setWindowTitle("File not opened");
+       msgError.exec();
+       return ;
+   }
     crop(file_name.toStdString(),filePath.toStdString(),x_value , y_value ,crop_width_value , height_crop);
     QPixmap pix(filePath);
     int w = ui->image->width();
@@ -570,7 +592,7 @@ void Photoshop_budget::on_Apply_crop_clicked()
 
 
 
-
+/*
 void Photoshop_budget::on_original_image_clicked()
 {
     QPixmap pix(original);
@@ -579,5 +601,16 @@ void Photoshop_budget::on_original_image_clicked()
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
     image = image_path(file_name.toStdString());
 }
+*/
 
+
+void Photoshop_budget::on_original_image_pressed()
+{
+    QPixmap pix(original);
+    int w = ui->image->width();
+    int h = ui->image->height();
+    ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
+    image = image_path(original.toStdString());
+    file_name = original ;
+}
 
