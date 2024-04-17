@@ -149,8 +149,6 @@ void Photoshop_budget::on_load_btn_clicked()
 }
 //***************************************************************************************************************************
 //save
-
-
 void Photoshop_budget::on_save_btn_clicked()
 {
     save_file_name = QFileDialog::getSaveFileName(this, "Save Image", "D:/imageProcessor-CS112-A3/cmake-build-debug/Samples", "JPEG (*.jpg);;PNG (*.png);;Bitmap (*.bmp);;Targa (*.tga)");
@@ -289,6 +287,7 @@ void Photoshop_budget::on_darken_btn_clicked()
 {
     ui->dock_Widget_2->show();
     ui->stackedWidget->setCurrentIndex(2);
+    degree = 0;
     cntrd = 1;
     cntrl = 0;
 }
@@ -296,6 +295,7 @@ void Photoshop_budget::on_lighten_btn_clicked()
 {
     ui->dock_Widget_2->show();
     ui->stackedWidget->setCurrentIndex(2);
+    degree = 0;
     cntrl = 1;
     cntrd = 0;
 }
@@ -330,8 +330,8 @@ void Photoshop_budget::on_Pixelate_btn_clicked()
     file_name = filePath;
 }
 //***************************************************************************************************************************
+//skew
 int skew_degree = 0 ;
-
 void Photoshop_budget::on_skewed_btn_clicked()
 {
     ui->dock_Widget_2->show();
@@ -376,12 +376,9 @@ void Photoshop_budget::on_merge_btn_clicked()
     ui->stackedWidget->setCurrentIndex(5);
 }
 
-void Photoshop_budget::on_flip_btn_clicked()
-{
-    ui->dock_Widget_2->show();
-    ui->stackedWidget->setCurrentIndex(3);
-}
 
+//**********************************************************************************************************
+//blur
 void Photoshop_budget::on_blur_btn_clicked()
 {
     // Show the QDockWidget and set the current widget of the QStackedWidget
@@ -489,11 +486,14 @@ void Photoshop_budget::on_apply_frame_clicked()
     delete framemessageBox;
 }
 //*************************************************************************************************************
-
 //flip
+void Photoshop_budget::on_flip_btn_clicked()
+{
+    ui->dock_Widget_2->show();
+    ui->stackedWidget->setCurrentIndex(3);
+}
 void Photoshop_budget::on_apply_vertical_clicked()
 {
-    QMessageBox::information(this, "test", "working") ;
     flip(file_name.toStdString(),filePath.toStdString(),"V");
     QPixmap pix(filePath);
     int w = ui->image->width();
@@ -501,7 +501,6 @@ void Photoshop_budget::on_apply_vertical_clicked()
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
     file_name = filePath;
 }
-
 
 void Photoshop_budget::on_apply_horizontal_clicked()
 {
