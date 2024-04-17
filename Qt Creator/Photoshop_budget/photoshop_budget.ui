@@ -633,7 +633,7 @@
      <x>0</x>
      <y>0</y>
      <width>1850</width>
-     <height>27</height>
+     <height>28</height>
     </rect>
    </property>
    <property name="minimumSize">
@@ -667,7 +667,7 @@
    <property name="minimumSize">
     <size>
      <width>221</width>
-     <height>976</height>
+     <height>985</height>
     </size>
    </property>
    <property name="floating">
@@ -693,12 +693,39 @@
       </rect>
      </property>
      <property name="currentIndex">
-      <number>8</number>
+      <number>7</number>
      </property>
      <widget class="QWidget" name="blur_optn"/>
      <widget class="QWidget" name="crop_optn"/>
      <widget class="QWidget" name="dark_light_optn"/>
-     <widget class="QWidget" name="flip_optn"/>
+     <widget class="QWidget" name="flip_optn">
+      <widget class="QPushButton" name="flip_v">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>240</y>
+         <width>161</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Vertical</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="flip_h">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>330</y>
+         <width>161</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Horizontal</string>
+       </property>
+      </widget>
+     </widget>
      <widget class="QWidget" name="frame_optn"/>
      <widget class="QWidget" name="merge_optn">
       <property name="styleSheet">
@@ -706,7 +733,45 @@
       </property>
      </widget>
      <widget class="QWidget" name="pixelate_optn"/>
-     <widget class="QWidget" name="resize_optn"/>
+     <widget class="QWidget" name="resize_optn">
+      <widget class="QSpinBox" name="spinBox1">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>160</y>
+         <width>151</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Segoe UI Variable Display</family>
+         <pointsize>14</pointsize>
+         <italic>false</italic>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>10000</number>
+       </property>
+       <property name="singleStep">
+        <number>0</number>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="spinBox_2">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>250</y>
+         <width>151</width>
+         <height>51</height>
+        </rect>
+       </property>
+      </widget>
+     </widget>
      <widget class="QWidget" name="rotate_optn">
       <property name="styleSheet">
        <string notr="true">

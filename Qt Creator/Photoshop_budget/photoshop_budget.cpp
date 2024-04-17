@@ -29,6 +29,11 @@ Photoshop_budget::Photoshop_budget(QWidget *parent)
 {
     ui->setupUi(this);
     connect(ui->apply_rotation, &QPushButton::clicked, this, &Photoshop_budget::on_apply_rotation_clicked);
+    connect(ui->flip_v, &QPushButton::clicked, this, &Photoshop_budget::on_flip_v_clicked);
+    connect(ui->flip_h, &QPushButton::clicked, this, &Photoshop_budget::on_flip_h_clicked);
+    int value = spinBox1->value();
+
+
 
     ui->dock_Widget_2->hide();
 
@@ -40,7 +45,7 @@ Photoshop_budget::Photoshop_budget(QWidget *parent)
 
     // Set the alignment of the image label to center
     ui->image->setAlignment(Qt::AlignCenter);
-    QPixmap pix("D:/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/Assets/placeholder.png");
+    QPixmap pix(":/images/Assets/image-holder-icon-614x460.png");
     int w = ui->image->width();
     int h = ui->image->height();
 
@@ -236,7 +241,12 @@ void Photoshop_budget::on_lighten_btn_clicked()
 
 void Photoshop_budget::on_Pixelate_btn_clicked()
 {
-
+    Pixelate(file_name.toStdString(),filePath.toStdString());
+    QPixmap pix(filePath);
+    int w = ui->image->width();
+    int h = ui->image->height();
+    ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
+    file_name = filePath;
 }
 
 
@@ -248,7 +258,9 @@ void Photoshop_budget::on_skewed_btn_clicked()
 
 void Photoshop_budget::on_rsize_btn_clicked()
 {
-
+    // Show the QDockWidget and set the current widget of the QStackedWidget
+    ui->dock_Widget_2->show();
+    ui->stackedWidget->setCurrentIndex(7);
 }
 
 
@@ -268,7 +280,8 @@ void Photoshop_budget::on_merge_btn_clicked()
 
 void Photoshop_budget::on_flip_btn_clicked()
 {
-
+    ui->dock_Widget_2->show();
+    ui->stackedWidget->setCurrentIndex(3);
 }
 
 void Photoshop_budget::on_blur_btn_clicked()
@@ -323,4 +336,39 @@ void Photoshop_budget::on_apply_rotation_clicked()
 }
 
 
+
+
+void Photoshop_budget::on_flip_v_clicked()
+{     cout <<"a7a" <<endl;
+
+}
+
+
+
+void Photoshop_budget::on_flip_h_clicked()
+{
+  flip(file_name.toStdString(),filePath.toStdString(),"H");
+    QPixmap pix(filePath);
+    int w = ui->image->width();
+    int h = ui->image->height();
+    ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
+    file_name = filePath;
+}
+
+
+void Photoshop_budget::on_flipV_clicked()
+{
+   flip(file_name.toStdString(),filePath.toStdString(),"V");
+    QPixmap pix(filePath);
+    int w = ui->image->width();
+    int h = ui->image->height();
+    ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
+    file_name = filePath;
+}
+
+
+void Photoshop_budget::on_resize_w_editingFinished()
+{
+
+}
 
