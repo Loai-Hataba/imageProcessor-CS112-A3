@@ -907,7 +907,7 @@ void Skewed(string path,string filePath,int degree) {
 //!
 void Pixelate(string path,string filePath) {
     Image image(path);
-    int Pixel_Size = 10 ;  // This variable handles the size of each pixel
+    int Pixel_Size = 15 ;  // This variable handles the size of each pixel
     for (int i = 0; i < image.width; i += Pixel_Size) {
         // Set the new size of the width of each pixel
         for (int j = 0; j < image.height; j += Pixel_Size) {

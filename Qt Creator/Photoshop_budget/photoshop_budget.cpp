@@ -19,6 +19,8 @@
 
 
 QString file_name;
+
+QString original;
 QString save_file_name;
 Image image;
 
@@ -117,6 +119,7 @@ connect(ui->horizontal, &QPushButton::clicked, this, &Photoshop_budget::on_horiz
     }
 }
 
+
 Photoshop_budget::~Photoshop_budget()
 {
     delete ui;
@@ -140,7 +143,8 @@ void Photoshop_budget::on_load_btn_clicked()
         msgError.exec();
         file_name = "";
     }
-}
+
+    original = file_name ; }
 void Photoshop_budget::on_save_btn_clicked()
 {
     save_file_name = QFileDialog::getSaveFileName(this, "Save Image", "D:/imageProcessor-CS112-A3/cmake-build-debug/Samples", "JPEG (*.jpg);;PNG (*.png);;Bitmap (*.bmp);;Targa (*.tga)");
@@ -496,7 +500,7 @@ void Photoshop_budget::on_resize_height_valueChanged(int height)
 
 void Photoshop_budget::on_apply_resize_clicked()
 { //
-    cout << res_height<<" "<<res_width <<endl ;
+  cout << res_height<<" "<<res_width <<endl ;
   resize_filter(file_name.toStdString(),filePath.toStdString(),res_width,res_height);
     QPixmap pix(filePath);
   int w = ui->image->width();
@@ -544,6 +548,18 @@ void Photoshop_budget::on_Apply_crop_clicked()
     int h = ui->image->height();
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
     file_name = filePath;
+}
+
+
+
+
+void Photoshop_budget::on_original_image_clicked()
+{
+    QPixmap pix(original);
+    int w = ui->image->width();
+    int h = ui->image->height();
+    ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
+    image = image_path(file_name.toStdString());
 }
 
 

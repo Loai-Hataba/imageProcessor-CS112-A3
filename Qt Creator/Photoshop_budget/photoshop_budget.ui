@@ -48,8 +48,8 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>120</y>
+      <x>370</x>
+      <y>260</y>
       <width>1211</width>
       <height>441</height>
      </rect>
@@ -67,9 +67,9 @@
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>0</y>
+       <y>-10</y>
        <width>1211</width>
-       <height>651</height>
+       <height>451</height>
       </rect>
      </property>
      <property name="frameShape">
@@ -92,8 +92,8 @@
    <widget class="QPushButton" name="load_btn">
     <property name="geometry">
      <rect>
-      <x>310</x>
-      <y>630</y>
+      <x>320</x>
+      <y>830</y>
       <width>211</width>
       <height>70</height>
      </rect>
@@ -119,8 +119,8 @@
    <widget class="QPushButton" name="save_btn">
     <property name="geometry">
      <rect>
-      <x>550</x>
-      <y>630</y>
+      <x>560</x>
+      <y>830</y>
       <width>211</width>
       <height>70</height>
      </rect>
@@ -609,6 +609,19 @@
      <bool>false</bool>
     </property>
    </widget>
+   <widget class="QPushButton" name="original_image">
+    <property name="geometry">
+     <rect>
+      <x>800</x>
+      <y>830</y>
+      <width>211</width>
+      <height>70</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Original</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="enabled">
@@ -654,6 +667,7 @@
    <property name="minimumSize">
     <size>
      <width>221</width>
+     <height>990</height>
      <height>999</height>
     </size>
    </property>
@@ -682,14 +696,14 @@
     <widget class="QStackedWidget" name="stackedWidget">
      <property name="geometry">
       <rect>
-       <x>0</x>
+       <x>10</x>
        <y>0</y>
-       <width>221</width>
+       <width>211</width>
        <height>961</height>
       </rect>
      </property>
      <property name="currentIndex">
-      <number>9</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="blur_optn"/>
      <widget class="QWidget" name="crop_optn">
@@ -709,10 +723,10 @@
       <widget class="QSpinBox" name="crop_x">
        <property name="geometry">
         <rect>
-         <x>40</x>
+         <x>30</x>
          <y>130</y>
-         <width>171</width>
-         <height>51</height>
+         <width>161</width>
+         <height>61</height>
         </rect>
        </property>
        <property name="minimum">
@@ -725,7 +739,7 @@
       <widget class="QSpinBox" name="crop_y">
        <property name="geometry">
         <rect>
-         <x>40</x>
+         <x>30</x>
          <y>220</y>
          <width>161</width>
          <height>61</height>
@@ -741,9 +755,9 @@
       <widget class="QSpinBox" name="crop_w">
        <property name="geometry">
         <rect>
-         <x>40</x>
+         <x>30</x>
          <y>410</y>
-         <width>151</width>
+         <width>161</width>
          <height>61</height>
         </rect>
        </property>
@@ -783,9 +797,9 @@
       <widget class="QSpinBox" name="height_crop_apply">
        <property name="geometry">
         <rect>
-         <x>50</x>
+         <x>30</x>
          <y>520</y>
-         <width>121</width>
+         <width>161</width>
          <height>61</height>
         </rect>
        </property>
