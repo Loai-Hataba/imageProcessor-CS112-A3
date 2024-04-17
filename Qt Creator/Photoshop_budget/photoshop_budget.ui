@@ -17,7 +17,20 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>Photoshop_budget</string>
+   <string>Photoshop on a budget</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="rsc.qrc">
+    <normaloff>:/images/Assets/Logo.png</normaloff>:/images/Assets/Logo.png</iconset>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(52, 53, 54);</string>
+  </property>
+  <property name="tabShape">
+   <enum>QTabWidget::Rounded</enum>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="enabled">
@@ -686,6 +699,9 @@
    <property name="floating">
     <bool>false</bool>
    </property>
+   <property name="allowedAreas">
+    <set>Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea</set>
+   </property>
    <attribute name="dockWidgetArea">
     <number>2</number>
    </attribute>
@@ -790,9 +806,9 @@
       <widget class="QLabel" name="label_3">
        <property name="geometry">
         <rect>
-         <x>60</x>
+         <x>40</x>
          <y>320</y>
-         <width>141</width>
+         <width>151</width>
          <height>61</height>
         </rect>
        </property>
@@ -1237,6 +1253,8 @@ background-color: rgb(93, 111, 61);</string>
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="rsc.qrc"/>
+ </resources>
  <connections/>
 </ui>
