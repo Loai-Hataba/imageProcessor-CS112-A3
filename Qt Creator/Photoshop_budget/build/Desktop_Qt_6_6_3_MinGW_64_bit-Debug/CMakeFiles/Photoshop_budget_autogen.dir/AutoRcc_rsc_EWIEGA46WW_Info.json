@@ -1,0 +1,22 @@
+{
+	"BUILD_DIR" : "D:/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/Photoshop_budget_autogen",
+	"CMAKE_BINARY_DIR" : "D:/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug",
+	"CMAKE_CURRENT_BINARY_DIR" : "D:/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug",
+	"CMAKE_CURRENT_SOURCE_DIR" : "D:/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget",
+	"CMAKE_SOURCE_DIR" : "D:/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget",
+	"INCLUDE_DIR" : "D:/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/Photoshop_budget_autogen/include",
+	"INPUTS" : 
+	[
+		"D:/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/Assets/Logo.png"
+	],
+	"LOCK_FILE" : "D:/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/CMakeFiles/Photoshop_budget_autogen.dir/AutoRcc_rsc_EWIEGA46WW_Lock.lock",
+	"MULTI_CONFIG" : false,
+	"OPTIONS" : [ "--no-zstd", "-name", "rsc" ],
+	"OUTPUT_CHECKSUM" : "EWIEGA46WW",
+	"OUTPUT_NAME" : "qrc_rsc.cpp",
+	"RCC_EXECUTABLE" : "C:/Qt/6.6.3/mingw_64/./bin/rcc.exe",
+	"RCC_LIST_OPTIONS" : [ "--list" ],
+	"SETTINGS_FILE" : "D:/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/CMakeFiles/Photoshop_budget_autogen.dir/AutoRcc_rsc_EWIEGA46WW_Used.txt",
+	"SOURCE" : "D:/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/rsc.qrc",
+	"VERBOSITY" : 0
+}

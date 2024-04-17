@@ -29,9 +29,16 @@ Photoshop_budget::Photoshop_budget(QWidget *parent)
 {
     ui->setupUi(this);
 
+    ui->dock_Widget_2->hide();
+
+    //logo
+    QPixmap pixmap(":/images/Assets/Logo.png");
+    int logo_w = ui->logo->width();
+    int logo_h = ui->logo->height();
+    ui->logo->setPixmap(pixmap.scaled(logo_w, logo_h, Qt::KeepAspectRatio));
+
     // Set the alignment of the image label to center
     ui->image->setAlignment(Qt::AlignCenter);
-    ui->dock_Widget_2->hide();
     QPixmap pix("D:/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/Assets/placeholder.png");
     int w = ui->image->width();
     int h = ui->image->height();
@@ -279,5 +286,39 @@ void Photoshop_budget::on_rotate_btn_clicked()
 {
     ui->dock_Widget_2->show();
     ui->stackedWidget->setCurrentIndex(8);
+}
+
+
+void Photoshop_budget::on_apply_rotation_clicked()
+{
+    QMessageBox::information(this, "test", "started rotation");
+    if (ui->angle_90->isChecked())
+    {
+        rotate(file_name.toStdString(),filePath.toStdString(), 90);
+        QPixmap pix(filePath);
+        int w = ui->image->width();
+        int h = ui->image->height();
+        ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
+        file_name = filePath;
+        QMessageBox::information(this, "test", "90 degree done");
+    }
+    else if (ui->angle_180->isChecked())
+    {
+        rotate(file_name.toStdString(),filePath.toStdString(), 180);
+        QPixmap pix(filePath);
+        int w = ui->image->width();
+        int h = ui->image->height();
+        ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
+        file_name = filePath;
+    }
+    else if (ui->angle_270->isChecked())
+    {
+        rotate(file_name.toStdString(),filePath.toStdString(), 270);
+        QPixmap pix(filePath);
+        int w = ui->image->width();
+        int h = ui->image->height();
+        ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
+        file_name = filePath;
+    }
 }
 

@@ -32,6 +32,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         stb_image_write.h
         image_processor.h
         stb_implementation.cpp
+        rsc.qrc
 
 
 

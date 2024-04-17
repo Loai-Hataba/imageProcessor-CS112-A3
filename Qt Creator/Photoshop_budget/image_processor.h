@@ -19,7 +19,7 @@ void black_white(string path ,string filePath);
 void inverted(string path,string filePath);
 void merge(string path,string filePath);
 void flip(string path,string filePath);
-void rotate(string path,string filePath);
+void rotate(string path,string filePath, int angle);
 void darken(string path,string filePath);
 void lighten(string path,string filePath);
 void crop(string path,string filePath);

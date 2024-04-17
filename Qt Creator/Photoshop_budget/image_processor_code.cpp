@@ -50,7 +50,6 @@ Image temp ;
 
 Image image_path(const std::string& path)
 {
-    cout << path << endl;
     file_path = path;
     cout << file_path << endl;
     Image image(path);
@@ -60,12 +59,7 @@ Image image_path(const std::string& path)
 //name and save the new file
 void save(Image image, int back, string path)
 {
-
-    // string file_name = "koko";
-    // cout << "saving: " << file_name << endl;
     image.saveImage(path);
-
-    // cout << file_name << " has been saved successfully.\n";
 }
 
 //  ********************** Filters ****************************
@@ -249,15 +243,9 @@ void flip(string path,string filePath) //Abdallah (Done)
     }
 }
 //!
-void rotate(string path ,string filePath) //Loai (Done)
-{ Image image(path);
-    int angle;
-    string ang;
-//    cout << "How much rotation angle would you like? (90, 180, 270)\n"
-//            "Choice: ";
-//    cin >> ang;
-    angle = stoi(ang);
-//    Image final;
+void rotate(string path ,string filePath, int angle) //Loai (Done)
+{
+    Image image(path);
     // Perform rotation based on angle
     if (angle == 90 || angle == 270) {
         // For 90 or 270 degrees, transpose and flip the image
@@ -277,7 +265,6 @@ void rotate(string path ,string filePath) //Loai (Done)
         }
         save(rotated_image,0,filePath) ;
         cout << "Filter Applied...\n";
-
     }
         //    180 Rotation
     else if (angle == 180) {
@@ -293,8 +280,6 @@ void rotate(string path ,string filePath) //Loai (Done)
             }
         }
         save(rotated_image,0,filePath) ;
-    } else {
-        cout << "Invalid angle. Please choose 90, 180, or 270." << endl;
     }
 }
 

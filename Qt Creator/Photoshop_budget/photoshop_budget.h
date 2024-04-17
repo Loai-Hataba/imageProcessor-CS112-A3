@@ -65,6 +65,10 @@ private slots:
 
     void on_rotate_btn_clicked();
 
+    void on_pushButton_clicked();
+
+    void on_apply_rotation_clicked();
+
 private:
     Ui::Photoshop_budget *ui;
 };
