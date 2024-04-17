@@ -54,9 +54,9 @@
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>50</y>
+       <y>0</y>
        <width>1211</width>
-       <height>601</height>
+       <height>651</height>
       </rect>
      </property>
      <property name="frameShape">

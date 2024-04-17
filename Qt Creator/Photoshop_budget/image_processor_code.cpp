@@ -1136,29 +1136,11 @@ void sepia(string path,string filePath) //Loai (Done)
     cout << "Filter Applied...\n";
 
 }
-// make it static
+
 void oil (string path,string filePath) //Loai (Done)
 {  Image image(path) ;
-    unsigned int brushSize;
-    string temp;
+    unsigned int brushSize = 5;
     bool test;
-    do
-    {
-        test = true;
-        cout << "Choose brush size (1-15) \"Recommended 15\": ";
-        cin >> temp;
-        for (auto digit: temp) {
-            if (not isdigit(digit)) {
-                test = false;
-            }
-        }
-        if (stoi(temp) > 15 || stoi(temp) < 1) {
-            cout << "Brush size (1-15)!!!\n";
-            test = false;
-        }
-    } while (not test);
-    brushSize = stoi(temp);
-
     int height = image.height;
     int width = image.width;
 
@@ -1220,7 +1202,7 @@ void oil (string path,string filePath) //Loai (Done)
             fill_n(nSumB, 256, 0);
         }
     }
-    save(image,0,filePath) ;
+    save(oil_image,0,filePath) ;
     cout << "Filter Applied...\n";
 
 }
