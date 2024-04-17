@@ -20,7 +20,7 @@
 
 
 QString file_name;
-
+QString merge_name; //for sec image in merge filter
 QString original;
 QString save_file_name;
 Image image;
@@ -47,7 +47,7 @@ Photoshop_budget::Photoshop_budget(QWidget *parent)
     ui->setupUi(this);
 
     connect(ui->apply_brightness_btn, &QPushButton::clicked, this, &Photoshop_budget::on_apply_brightness_btn_clicked);
-    // connect(ui->apply_rotation, &QPushButton::clicked, this, &Photoshop_budget::on_apply_rotation_clicked);
+    connect(ui->apply_merge, &QPushButton::clicked, this, &Photoshop_budget::on_apply_merge_clicked);
 /*connect(ui->vertical, &QPushButton::clicked, this, &Photoshop_budget::on_vertical_clicked);
 connect(ui->horizontal, &QPushButton::clicked, this, &Photoshop_budget::on_horizontal_clicked);*/
     //connect(ui->pushButton, &QPushButton::clicked, this, &Photoshop_budget::on_pushButton_clicked);
@@ -353,7 +353,6 @@ void Photoshop_budget::on_apply_skew_clicked()
     int h = ui->image->height();
     ui->image->setPixmap(pix.scaled(w, h ,Qt::KeepAspectRatio));
     file_name = filePath;
-
 }
 
 
@@ -375,8 +374,40 @@ void Photoshop_budget::on_Crop_btn_clicked()
 void Photoshop_budget::on_merge_btn_clicked()
 {
     // Show the QDockWidget and set the current widget of the QStackedWidget
-    ui->dock_Widget_2->show();
-    ui->stackedWidget->setCurrentIndex(5);
+    merge_name = QFileDialog::getOpenFileName(this, "Load Image to be merged", "D:/imageProcessor-CS112-A3/cmake-build-debug/Samples");
+    if (!merge_name.isEmpty() && (merge_name.endsWith(".jpg") || merge_name.endsWith(".png") || merge_name.endsWith(".bmp") || merge_name.endsWith(".tga"))) {
+        ui->dock_Widget_2->show();
+        ui->stackedWidget->setCurrentIndex(5);
+    }
+    else{
+        QMessageBox msgError;
+        msgError.setText("The File couldn't be opened!");
+        msgError.setIcon(QMessageBox::Critical);
+        msgError.setWindowTitle("File not opened");
+        msgError.exec();
+        merge_name = "";
+    }
+}
+void Photoshop_budget::on_apply_merge_clicked()
+{
+    if (ui->common_area_merge->isChecked())
+    {
+        merge(file_name.toStdString(),filePath.toStdString(),1,merge_name.toStdString());
+        QPixmap pix(filePath);
+        int w = ui->image->width();
+        int h = ui->image->height();
+        ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
+        file_name = filePath;
+    }
+    else if (ui->biggest_area_merge->isChecked())
+    {
+        merge(file_name.toStdString(),filePath.toStdString(),2,merge_name.toStdString());
+        QPixmap pix(filePath);
+        int w = ui->image->width();
+        int h = ui->image->height();
+        ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
+        file_name = filePath;
+    }
 }
 
 
@@ -613,4 +644,3 @@ void Photoshop_budget::on_original_image_pressed()
     image = image_path(original.toStdString());
     file_name = original ;
 }
-

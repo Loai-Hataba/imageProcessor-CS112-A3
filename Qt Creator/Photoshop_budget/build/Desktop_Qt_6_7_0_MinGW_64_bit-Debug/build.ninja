@@ -52,7 +52,7 @@ build cmake_object_order_depends_target_Photoshop_budget: phony || Photoshop_bud
 build CMakeFiles/Photoshop_budget.dir/Photoshop_budget_autogen/mocs_compilation.cpp.obj: CXX_COMPILER__Photoshop_budget_unscanned_Debug D$:/Hoss/github/imageProcessor-CS112-A3/Qt$ Creator/Photoshop_budget/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/Photoshop_budget_autogen/mocs_compilation.cpp || cmake_object_order_depends_target_Photoshop_budget
   DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
   DEP_FILE = CMakeFiles\Photoshop_budget.dir\Photoshop_budget_autogen\mocs_compilation.cpp.obj.d
-  FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
   INCLUDES = -I"D:/Hoss/github/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/Photoshop_budget_autogen/include" -isystem D:/Qt/6.7.0/mingw_64/include/QtCore -isystem D:/Qt/6.7.0/mingw_64/include -isystem D:/Qt/6.7.0/mingw_64/mkspecs/win32-g++ -isystem D:/Qt/6.7.0/mingw_64/include/QtWidgets -isystem D:/Qt/6.7.0/mingw_64/include/QtGui
   OBJECT_DIR = CMakeFiles\Photoshop_budget.dir
   OBJECT_FILE_DIR = CMakeFiles\Photoshop_budget.dir\Photoshop_budget_autogen
@@ -62,7 +62,7 @@ build CMakeFiles/Photoshop_budget.dir/Photoshop_budget_autogen/mocs_compilation.
 build CMakeFiles/Photoshop_budget.dir/main.cpp.obj: CXX_COMPILER__Photoshop_budget_unscanned_Debug D$:/Hoss/github/imageProcessor-CS112-A3/Qt$ Creator/Photoshop_budget/main.cpp || cmake_object_order_depends_target_Photoshop_budget
   DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
   DEP_FILE = CMakeFiles\Photoshop_budget.dir\main.cpp.obj.d
-  FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
   INCLUDES = -I"D:/Hoss/github/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/Photoshop_budget_autogen/include" -isystem D:/Qt/6.7.0/mingw_64/include/QtCore -isystem D:/Qt/6.7.0/mingw_64/include -isystem D:/Qt/6.7.0/mingw_64/mkspecs/win32-g++ -isystem D:/Qt/6.7.0/mingw_64/include/QtWidgets -isystem D:/Qt/6.7.0/mingw_64/include/QtGui
   OBJECT_DIR = CMakeFiles\Photoshop_budget.dir
   OBJECT_FILE_DIR = CMakeFiles\Photoshop_budget.dir
@@ -72,7 +72,7 @@ build CMakeFiles/Photoshop_budget.dir/main.cpp.obj: CXX_COMPILER__Photoshop_budg
 build CMakeFiles/Photoshop_budget.dir/photoshop_budget.cpp.obj: CXX_COMPILER__Photoshop_budget_unscanned_Debug D$:/Hoss/github/imageProcessor-CS112-A3/Qt$ Creator/Photoshop_budget/photoshop_budget.cpp || cmake_object_order_depends_target_Photoshop_budget
   DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
   DEP_FILE = CMakeFiles\Photoshop_budget.dir\photoshop_budget.cpp.obj.d
-  FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
   INCLUDES = -I"D:/Hoss/github/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/Photoshop_budget_autogen/include" -isystem D:/Qt/6.7.0/mingw_64/include/QtCore -isystem D:/Qt/6.7.0/mingw_64/include -isystem D:/Qt/6.7.0/mingw_64/mkspecs/win32-g++ -isystem D:/Qt/6.7.0/mingw_64/include/QtWidgets -isystem D:/Qt/6.7.0/mingw_64/include/QtGui
   OBJECT_DIR = CMakeFiles\Photoshop_budget.dir
   OBJECT_FILE_DIR = CMakeFiles\Photoshop_budget.dir
@@ -82,7 +82,7 @@ build CMakeFiles/Photoshop_budget.dir/photoshop_budget.cpp.obj: CXX_COMPILER__Ph
 build CMakeFiles/Photoshop_budget.dir/image_processor_code.cpp.obj: CXX_COMPILER__Photoshop_budget_unscanned_Debug D$:/Hoss/github/imageProcessor-CS112-A3/Qt$ Creator/Photoshop_budget/image_processor_code.cpp || cmake_object_order_depends_target_Photoshop_budget
   DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
   DEP_FILE = CMakeFiles\Photoshop_budget.dir\image_processor_code.cpp.obj.d
-  FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
   INCLUDES = -I"D:/Hoss/github/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/Photoshop_budget_autogen/include" -isystem D:/Qt/6.7.0/mingw_64/include/QtCore -isystem D:/Qt/6.7.0/mingw_64/include -isystem D:/Qt/6.7.0/mingw_64/mkspecs/win32-g++ -isystem D:/Qt/6.7.0/mingw_64/include/QtWidgets -isystem D:/Qt/6.7.0/mingw_64/include/QtGui
   OBJECT_DIR = CMakeFiles\Photoshop_budget.dir
   OBJECT_FILE_DIR = CMakeFiles\Photoshop_budget.dir
@@ -92,7 +92,7 @@ build CMakeFiles/Photoshop_budget.dir/image_processor_code.cpp.obj: CXX_COMPILER
 build CMakeFiles/Photoshop_budget.dir/stb_implementation.cpp.obj: CXX_COMPILER__Photoshop_budget_unscanned_Debug D$:/Hoss/github/imageProcessor-CS112-A3/Qt$ Creator/Photoshop_budget/stb_implementation.cpp || cmake_object_order_depends_target_Photoshop_budget
   DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
   DEP_FILE = CMakeFiles\Photoshop_budget.dir\stb_implementation.cpp.obj.d
-  FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
   INCLUDES = -I"D:/Hoss/github/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/Photoshop_budget_autogen/include" -isystem D:/Qt/6.7.0/mingw_64/include/QtCore -isystem D:/Qt/6.7.0/mingw_64/include -isystem D:/Qt/6.7.0/mingw_64/mkspecs/win32-g++ -isystem D:/Qt/6.7.0/mingw_64/include/QtWidgets -isystem D:/Qt/6.7.0/mingw_64/include/QtGui
   OBJECT_DIR = CMakeFiles\Photoshop_budget.dir
   OBJECT_FILE_DIR = CMakeFiles\Photoshop_budget.dir
@@ -102,7 +102,7 @@ build CMakeFiles/Photoshop_budget.dir/stb_implementation.cpp.obj: CXX_COMPILER__
 build CMakeFiles/Photoshop_budget.dir/Photoshop_budget_autogen/EWIEGA46WW/qrc_rsc.cpp.obj: CXX_COMPILER__Photoshop_budget_unscanned_Debug D$:/Hoss/github/imageProcessor-CS112-A3/Qt$ Creator/Photoshop_budget/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/Photoshop_budget_autogen/EWIEGA46WW/qrc_rsc.cpp || cmake_object_order_depends_target_Photoshop_budget
   DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
   DEP_FILE = CMakeFiles\Photoshop_budget.dir\Photoshop_budget_autogen\EWIEGA46WW\qrc_rsc.cpp.obj.d
-  FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
   INCLUDES = -I"D:/Hoss/github/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/Photoshop_budget_autogen/include" -isystem D:/Qt/6.7.0/mingw_64/include/QtCore -isystem D:/Qt/6.7.0/mingw_64/include -isystem D:/Qt/6.7.0/mingw_64/mkspecs/win32-g++ -isystem D:/Qt/6.7.0/mingw_64/include/QtWidgets -isystem D:/Qt/6.7.0/mingw_64/include/QtGui
   OBJECT_DIR = CMakeFiles\Photoshop_budget.dir
   OBJECT_FILE_DIR = CMakeFiles\Photoshop_budget.dir\Photoshop_budget_autogen\EWIEGA46WW
@@ -118,7 +118,7 @@ build CMakeFiles/Photoshop_budget.dir/Photoshop_budget_autogen/EWIEGA46WW/qrc_rs
 # Link the executable Photoshop_budget.exe
 
 build Photoshop_budget.exe: CXX_EXECUTABLE_LINKER__Photoshop_budget_Debug CMakeFiles/Photoshop_budget.dir/Photoshop_budget_autogen/mocs_compilation.cpp.obj CMakeFiles/Photoshop_budget.dir/main.cpp.obj CMakeFiles/Photoshop_budget.dir/photoshop_budget.cpp.obj CMakeFiles/Photoshop_budget.dir/image_processor_code.cpp.obj CMakeFiles/Photoshop_budget.dir/stb_implementation.cpp.obj CMakeFiles/Photoshop_budget.dir/Photoshop_budget_autogen/EWIEGA46WW/qrc_rsc.cpp.obj | D$:/Qt/6.7.0/mingw_64/lib/libQt6Widgets.a D$:/Qt/6.7.0/mingw_64/lib/libQt6Gui.a D$:/Qt/6.7.0/mingw_64/lib/libQt6Core.a D$:/Qt/6.7.0/mingw_64/lib/libQt6EntryPoint.a || Photoshop_budget_autogen Photoshop_budget_autogen_timestamp_deps
-  FLAGS = -DQT_QML_DEBUG -g
+  FLAGS = -g
   LINK_FLAGS = -mwindows
   LINK_LIBRARIES = D:/Qt/6.7.0/mingw_64/lib/libQt6Widgets.a  D:/Qt/6.7.0/mingw_64/lib/libQt6Gui.a  D:/Qt/6.7.0/mingw_64/lib/libQt6Core.a  -lmpr  -luserenv  -lmingw32  D:/Qt/6.7.0/mingw_64/lib/libQt6EntryPoint.a  -lshell32  -ld3d11  -ldxgi  -ldxguid  -ld3d12  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Photoshop_budget.dir

@@ -149,58 +149,41 @@ Image resizeMerge(Image image, int max_width, int max_height) { //straight up co
     }
     return resized_Img;
 }
-// void merge(Image image1) //Hossam (Done)
-// {
-//     string file_name;  //2nd image input
-//     cout << "Please enter 2nd image name (Default is .jpg): ";
-//     cin >> file_name;
-//     string check = file_check(file_name);
-//     while (check == "None") {
-//         cout << "Please enter 2nd image name (Default is .jpg): ";
-//         cin >> file_name;
-//         check = file_check(file_name);
-//     }
-//     string path = check;
-//     Image image(path);
-//     char choice;
-//     cout<<"1) Scale both images to the biggest height and width\n"
-//             "2) Merge common area of the smaller image\n"
-//             "Choice: ";
-//     cin >> choice;
-//     while (choice!='1' && choice!='2'){
-//         cout<<"Invalid choice,please choose from (1,2):";
-//         cin>>choice;
-//     }
-//     if (choice == '1') { //common area of smaller image
-//         //making another image that have them both merged and setting its dimensions to the smaller image
-//         Image image3(min(image1.width, image.width), min(image1.height, image.height));
-//         for (int i = 0; i < image3.width; ++i) {
-//             for (int j = 0; j < image3.height; ++j) {
-//                 for (int k = 0; k < 3; ++k) {
-//                     //merging them by adding the colors of evey pixel from both images to output image and dividing by 2
-//                     image3(i, j, k) = (image(i, j, k) + image1(i, j, k)) / 2;
-//                 }
-//             }
-//         }
-//         cout << "Filter Applied...\n";
+void merge(string path,string filePath,int choice,string merge_path) //Hossam (Done)
+{
+    Image image1(path);
+    Image image(merge_path);
+    if (choice == 1) { //common area of smaller image
+        //making another image that have them both merged and setting its dimensions to the smaller image
+        Image image3(min(image1.width, image.width), min(image1.height, image.height));
+        for (int i = 0; i < image3.width; ++i) {
+            for (int j = 0; j < image3.height; ++j) {
+                for (int k = 0; k < 3; ++k) {
+                    //merging them by adding the colors of evey pixel from both images to output image and dividing by 2
+                    image3(i, j, k) = (image(i, j, k) + image1(i, j, k)) / 2;
+                }
+            }
+        }
+        save(image3,0,filePath);
+        cout << "Filter Applied...\n";
 
-//     } else { //resized both images to the greatest height and width
-//         int m_width = max(image1.width, image.width);
-//         int m_height = max(image1.height, image.height);
-//         Image image3(m_width, m_height);
-//         Image resized_im1 = resizeMerge(image1,m_width,m_height);
-//         Image resized_im2 = resizeMerge(image,m_width,m_height);
-//         for (int i = 0; i < image3.width; ++i) {
-//             for (int j = 0; j < image3.height; ++j) {
-//                 for (int k = 0; k < 3; ++k) {
-//                     image3(i, j, k) = (resized_im1(i, j, k) + resized_im2(i, j, k)) / 2;
-//                 }
-//             }
-//         }
-//         save()
-//         cout << "Filter Applied...\n";
-//     }
-// }
+    } else { //resized both images to the greatest height and width
+        int m_width = max(image1.width, image.width);
+        int m_height = max(image1.height, image.height);
+        Image image3(m_width, m_height);
+        Image resized_im1 = resizeMerge(image1,m_width,m_height);
+        Image resized_im2 = resizeMerge(image,m_width,m_height);
+        for (int i = 0; i < image3.width; ++i) {
+            for (int j = 0; j < image3.height; ++j) {
+                for (int k = 0; k < 3; ++k) {
+                    image3(i, j, k) = (resized_im1(i, j, k) + resized_im2(i, j, k)) / 2;
+                }
+            }
+        }
+        save(image3,0,filePath);
+        cout << "Filter Applied...\n";
+    }
+}
 
 //!
 void flip(string path,string filePath,string choice) //Abdallah (Done)

@@ -702,7 +702,7 @@
       </rect>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>4</number>
      </property>
      <widget class="QWidget" name="blur_optn"/>
      <widget class="QWidget" name="crop_optn">
@@ -1089,6 +1089,69 @@ background-color: rgb(69, 71, 72);</string>
       <property name="styleSheet">
        <string notr="true">background-color: rgb(28, 39, 255);</string>
       </property>
+      <widget class="QRadioButton" name="biggest_area_merge">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>240</y>
+         <width>201</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>9</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Scale to biggest area</string>
+       </property>
+      </widget>
+      <widget class="QRadioButton" name="common_area_merge">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>191</y>
+         <width>201</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>9</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Merge common area of smaller</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="apply_merge">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>470</y>
+         <width>151</width>
+         <height>71</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>20</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(61, 117, 23);</string>
+       </property>
+       <property name="text">
+        <string>Apply</string>
+       </property>
+      </widget>
      </widget>
      <widget class="QWidget" name="pixelate_optn"/>
      <widget class="QWidget" name="resize_optn">

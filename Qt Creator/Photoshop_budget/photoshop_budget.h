@@ -105,6 +105,10 @@ private slots:
 
     void on_original_image_pressed();
 
+    void on_apply_rotation_2_clicked();
+
+    void on_apply_merge_clicked();
+
 private:
     Ui::Photoshop_budget *ui;
 };
