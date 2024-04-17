@@ -1117,70 +1117,117 @@ void resize(Image image) //Abdallah (Done)
     }
 }
 
-void blur(Image image) //Loai (Done)
-{
-    int blur_size;
-    string temp;
-    bool test;
-//    check input validation
-    do {
-        test = true;
-        cout << "Choose Blur size (1-15)\n"
-                "1-->\"Less Blur, more efficient, Time: 5 Sec\"\n"
-                "15-->\"More Blur,less efficient, Time: 3 Min\"\n"
-                "Choice: ";
-        cin >> temp;
-        for (auto digit: temp) {
-            if (not isdigit(digit)) {
-                test = false;
-            }
-        }
-        if (test) {
-            if (blur_size < 1 || blur_size > 15) {
-                cout << "Range (1-15)!!!\n";
-                test = false;
-            }
-        }
-    } while (not test);
-//    turn answer to proper int
-    blur_size = stoi(temp);
+//void blur(Image image) //Loai (Done)
+//{
+//    int blur_size;
+//    string temp;
+//    bool test;
+////    check input validation
+//    do {
+//        test = true;
+//        cout << "Choose Blur size (1-15)\n"
+//                "1-->\"Less Blur, more efficient, Time: 5 Sec\"\n"
+//                "15-->\"More Blur,less efficient, Time: 3 Min\"\n"
+//                "Choice: ";
+//        cin >> temp;
+//        for (auto digit: temp) {
+//            if (not isdigit(digit)) {
+//                test = false;
+//            }
+//        }
+//        if (test) {
+//            if (blur_size < 1 || blur_size > 15) {
+//                cout << "Range (1-15)!!!\n";
+//                test = false;
+//            }
+//        }
+//    } while (not test);
+////    turn answer to proper int
+//    blur_size = stoi(temp);
+//
+//    int height = image.height;
+//    int width = image.width;
+//
+//    Image blurred_image(image.width, image.height);
+//    cout << "Blurring Image...\n";
+//    // Iterate over each pixel in the image
+//    for (int i = 0; i < height; ++i) {
+//        for (int j = 0; j < width; ++j) {
+//            int sumR = 0, sumG = 0, sumB = 0;
+//            int count = 0;
+//
+//            // Iterate over the surrounding pixels within the blur size
+//            for (int dy = -blur_size; dy <= blur_size; ++dy) {
+//                for (int dx = -blur_size; dx <= blur_size; ++dx) {
+//                    int nx = j + dx;
+//                    int ny = i + dy;
+//
+//                    // Check if the pixel is within the image bounds
+//                    if (nx >= 0 && nx < width && ny >= 0 && ny < height) {
+//                        sumR += image(nx, ny, 0);
+//                        sumG += image(nx, ny, 1);
+//                        sumB += image(nx, ny, 2);
+//                        count++;
+//                    }
+//                }
+//            }
+//
+//            // Calculate the average value and assign it to the blurred image
+//            blurred_image(j, i, 0) = sumR / count;
+//            blurred_image(j, i, 1) = sumG / count;
+//            blurred_image(j, i, 2) = sumB / count;
+//        }
+//    }
+//    cout << "Filter Applied...\n";
+//    menu(blurred_image);
+//}
 
+void blur(Image image)
+{
+    cout << "1\n";
+    int blur_size = 10;
     int height = image.height;
     int width = image.width;
 
-    Image blurred_image(image.width, image.height);
-    cout << "Blurring Image...\n";
-    // Iterate over each pixel in the image
-    for (int i = 0; i < height; ++i) {
-        for (int j = 0; j < width; ++j) {
-            int sumR = 0, sumG = 0, sumB = 0;
-            int count = 0;
-
-            // Iterate over the surrounding pixels within the blur size
-            for (int dy = -blur_size; dy <= blur_size; ++dy) {
-                for (int dx = -blur_size; dx <= blur_size; ++dx) {
-                    int nx = j + dx;
-                    int ny = i + dy;
-
-                    // Check if the pixel is within the image bounds
-                    if (nx >= 0 && nx < width && ny >= 0 && ny < height) {
-                        sumR += image(nx, ny, 0);
-                        sumG += image(nx, ny, 1);
-                        sumB += image(nx, ny, 2);
-                        count++;
-                    }
-                }
-            }
-
-            // Calculate the average value and assign it to the blurred image
-            blurred_image(j, i, 0) = sumR / count;
-            blurred_image(j, i, 1) = sumG / count;
-            blurred_image(j, i, 2) = sumB / count;
+    // Create the summed area table
+    vector<vector<int>> satR(height, vector<int>(width));
+    vector<vector<int>> satG(height, vector<int>(width));
+    vector<vector<int>> satB(height, vector<int>(width));
+    cout << "nos\n";
+    // Compute the summed area table
+    for (int i = 0; i < width; ++i) {
+        for (int j = 0; j < height; ++j) {
+            satR[i][j] = image(i, j, 0) + (i > 0 ? satR[i-1][j] : 0) + (j > 0 ? satR[i][j-1] : 0) - (i > 0 && j > 0 ? satR[i-1][j-1] : 0);
+            satG[i][j] = image(i, j, 1) + (i > 0 ? satG[i-1][j] : 0) + (j > 0 ? satG[i][j-1] : 0) - (i > 0 && j > 0 ? satG[i-1][j-1] : 0);
+            satB[i][j] = image(i, j, 2) + (i > 0 ? satB[i-1][j] : 0) + (j > 0 ? satB[i][j-1] : 0) - (i > 0 && j > 0 ? satB[i-1][j-1] : 0);
         }
     }
+    Image blurred_image(width, height);
+    // Apply the blur using the summed area table
+    for (int i = blur_size; i < width - blur_size; ++i) {
+        for (int j = blur_size; j < height - blur_size; ++j) {
+            int x1 = j - blur_size;
+            int x2 = j + blur_size;
+            int y1 = i - blur_size;
+            int y2 = i + blur_size;
+
+            int count = (x2 - x1 + 1) * (y2 - y1 + 1);
+
+            int sumR = satR[y2][x2] - (x1 > 0 ? satR[y2][x1-1] : 0) - (y1 > 0 ? satR[y1-1][x2] : 0) + (x1 > 0 && y1 > 0 ? satR[y1-1][x1-1] : 0);
+            int sumG = satG[y2][x2] - (x1 > 0 ? satG[y2][x1-1] : 0) - (y1 > 0 ? satG[y1-1][x2] : 0) + (x1 > 0 && y1 > 0 ? satG[y1-1][x1-1] : 0);
+            int sumB = satB[y2][x2] - (x1 > 0 ? satB[y2][x1-1] : 0) - (y1 > 0 ? satB[y1-1][x2] : 0) + (x1 > 0 && y1 > 0 ? satB[y1-1][x1-1] : 0);
+
+            blurred_image(i, j, 0) = sumR / count;
+            blurred_image(i, j, 1) = sumG / count;
+            blurred_image(i, j, 2) = sumB / count;
+        }
+    }
+
     cout << "Filter Applied...\n";
     menu(blurred_image);
 }
+
+
 
 //  ********************** Bonus ****************************
 void Sunlight(Image image) {
