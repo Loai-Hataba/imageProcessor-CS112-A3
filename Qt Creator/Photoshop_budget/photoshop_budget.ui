@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1850</width>
-    <height>1038</height>
+    <height>1060</height>
    </rect>
   </property>
   <property name="font">
@@ -424,6 +424,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Lucida Fax</family>
       <pointsize>20</pointsize>
      </font>
     </property>
@@ -442,6 +443,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Lucida Fax</family>
       <pointsize>20</pointsize>
      </font>
     </property>
@@ -460,6 +462,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Lucida Fax</family>
       <pointsize>20</pointsize>
      </font>
     </property>
@@ -478,6 +481,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Lucida Fax</family>
       <pointsize>20</pointsize>
      </font>
     </property>
@@ -496,6 +500,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Lucida Fax</family>
       <pointsize>20</pointsize>
      </font>
     </property>
@@ -514,6 +519,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Lucida Fax</family>
       <pointsize>20</pointsize>
      </font>
     </property>
@@ -532,6 +538,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Lucida Fax</family>
       <pointsize>13</pointsize>
      </font>
     </property>
@@ -550,6 +557,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Lucida Fax</family>
       <pointsize>13</pointsize>
      </font>
     </property>
@@ -584,6 +592,7 @@
     </property>
     <property name="font">
      <font>
+      <family>Lucida Fax</family>
       <pointsize>24</pointsize>
       <bold>true</bold>
      </font>
@@ -630,7 +639,7 @@
      <x>0</x>
      <y>0</y>
      <width>1850</width>
-     <height>27</height>
+     <height>28</height>
     </rect>
    </property>
    <property name="minimumSize">
@@ -641,6 +650,7 @@
    </property>
    <property name="font">
     <font>
+     <family>Segoe UI</family>
      <pointsize>13</pointsize>
     </font>
    </property>
@@ -664,7 +674,7 @@
    <property name="minimumSize">
     <size>
      <width>221</width>
-     <height>985</height>
+     <height>996</height>
     </size>
    </property>
    <property name="floating">
@@ -684,42 +694,146 @@
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>0</y>
+       <y>-30</y>
        <width>221</width>
        <height>961</height>
       </rect>
      </property>
      <property name="currentIndex">
-      <number>4</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="blur_optn"/>
-     <widget class="QWidget" name="crop_optn"/>
-     <widget class="QWidget" name="dark_light_optn"/>
-     <widget class="QWidget" name="flip_optn">
-      <widget class="QPushButton" name="vertical">
+     <widget class="QWidget" name="crop_optn">
+      <widget class="QPushButton" name="Apply_crop">
        <property name="geometry">
         <rect>
-         <x>20</x>
-         <y>240</y>
-         <width>75</width>
-         <height>25</height>
+         <x>30</x>
+         <y>680</y>
+         <width>171</width>
+         <height>51</height>
         </rect>
        </property>
        <property name="text">
-        <string>PushButton</string>
+        <string>Apply</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="horizontal">
+      <widget class="QSpinBox" name="crop_x">
        <property name="geometry">
         <rect>
-         <x>20</x>
-         <y>310</y>
-         <width>75</width>
-         <height>25</height>
+         <x>40</x>
+         <y>130</y>
+         <width>171</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>10000</number>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="crop_y">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>220</y>
+         <width>161</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>10000</number>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="crop_w">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>410</y>
+         <width>151</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="minimum">
+        <number>50</number>
+       </property>
+       <property name="maximum">
+        <number>10000</number>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_2">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>60</y>
+         <width>191</width>
+         <height>41</height>
         </rect>
        </property>
        <property name="text">
-        <string>PushButton</string>
+        <string>The Starting Points</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_3">
+       <property name="geometry">
+        <rect>
+         <x>60</x>
+         <y>320</y>
+         <width>141</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>The Dimensions of the Croped Image</string>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="height_crop_apply">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>520</y>
+         <width>121</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="minimum">
+        <number>50</number>
+       </property>
+       <property name="maximum">
+        <number>10000</number>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="dark_light_optn"/>
+     <widget class="QWidget" name="flip_optn">
+      <widget class="QPushButton" name="apply_vertical">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>220</y>
+         <width>201</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Vertical Flip</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="apply_horizontal">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>350</y>
+         <width>211</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Horizontal Flip </string>
        </property>
       </widget>
      </widget>
@@ -738,6 +852,7 @@
        </property>
        <property name="font">
         <font>
+         <family>Segoe UI</family>
          <pointsize>15</pointsize>
         </font>
        </property>
@@ -769,6 +884,7 @@
        </property>
        <property name="font">
         <font>
+         <family>Segoe UI</family>
          <pointsize>15</pointsize>
         </font>
        </property>
@@ -790,6 +906,7 @@
        </property>
        <property name="font">
         <font>
+         <family>Segoe UI</family>
          <pointsize>15</pointsize>
         </font>
        </property>
@@ -811,6 +928,7 @@
        </property>
        <property name="font">
         <font>
+         <family>Segoe UI</family>
          <pointsize>15</pointsize>
         </font>
        </property>
@@ -829,6 +947,7 @@
        </property>
        <property name="font">
         <font>
+         <family>Segoe UI</family>
          <pointsize>15</pointsize>
         </font>
        </property>
@@ -847,6 +966,7 @@
        </property>
        <property name="font">
         <font>
+         <family>Segoe UI</family>
          <pointsize>15</pointsize>
         </font>
        </property>
@@ -884,6 +1004,7 @@
        </property>
        <property name="font">
         <font>
+         <family>Segoe UI</family>
          <pointsize>15</pointsize>
         </font>
        </property>
@@ -902,6 +1023,7 @@
        </property>
        <property name="font">
         <font>
+         <family>Segoe UI</family>
          <pointsize>15</pointsize>
         </font>
        </property>
@@ -917,24 +1039,60 @@
      </widget>
      <widget class="QWidget" name="pixelate_optn"/>
      <widget class="QWidget" name="resize_optn">
-      <widget class="QSpinBox" name="spinBox1">
-       <property name="geometry">
-        <rect>
-         <x>70</x>
-         <y>90</y>
-         <width>42</width>
-         <height>25</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QSpinBox" name="spinBox_2">
+      <widget class="QSpinBox" name="resize_width">
        <property name="geometry">
         <rect>
          <x>60</x>
          <y>140</y>
-         <width>42</width>
-         <height>25</height>
+         <width>131</width>
+         <height>41</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Lucida Fax</family>
+         <pointsize>20</pointsize>
+         <italic>false</italic>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>10000</number>
+       </property>
+       <property name="stepType">
+        <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="resize_height">
+       <property name="geometry">
+        <rect>
+         <x>60</x>
+         <y>250</y>
+         <width>131</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>10000</number>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="apply_resize">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>370</y>
+         <width>181</width>
+         <height>71</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Apply</string>
        </property>
       </widget>
      </widget>
@@ -954,6 +1112,7 @@ background-color: rgb(93, 111, 61);</string>
        </property>
        <property name="font">
         <font>
+         <family>Segoe UI</family>
          <pointsize>20</pointsize>
         </font>
        </property>
@@ -975,6 +1134,7 @@ background-color: rgb(93, 111, 61);</string>
        </property>
        <property name="font">
         <font>
+         <family>Segoe UI</family>
          <pointsize>15</pointsize>
         </font>
        </property>
@@ -996,6 +1156,7 @@ background-color: rgb(93, 111, 61);</string>
        </property>
        <property name="font">
         <font>
+         <family>Segoe UI</family>
          <pointsize>15</pointsize>
         </font>
        </property>
@@ -1017,6 +1178,7 @@ background-color: rgb(93, 111, 61);</string>
        </property>
        <property name="font">
         <font>
+         <family>Segoe UI</family>
          <pointsize>15</pointsize>
         </font>
        </property>
@@ -1041,6 +1203,7 @@ background-color: rgb(93, 111, 61);</string>
        </property>
        <property name="font">
         <font>
+         <family>Segoe UI</family>
          <pointsize>15</pointsize>
         </font>
        </property>

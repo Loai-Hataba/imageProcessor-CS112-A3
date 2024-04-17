@@ -22,10 +22,10 @@ void flip(string path,string filePath,string choice) ;
 void rotate(string path,string filePath, int angle);
 void darken(string path,string filePath);
 void lighten(string path,string filePath);
-void crop(string path,string filePath ,int x,int y, int w, int  h ) ;
+void crop(string path,string filePath ,int x,int y, int w, int h ) ;
 void frame(string path,string filePath, int frame_size, int ans, unsigned int Rcolor, unsigned int Gcolor, unsigned int Bcolor, int pattern = 1);
 void edges(string path,string filePath);
-void resize(string path,string filePath , int w, int h ) ;
+void resize_filter(string path,string filePath ,int res_width,int res_height);
 void blur(string path,string filePath);
 /*--------------------------------------------*/
 void Sunlight(string path,string filePath);

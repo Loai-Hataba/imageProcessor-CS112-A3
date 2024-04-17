@@ -217,6 +217,8 @@ void flip(string path,string filePath,string choice) //Abdallah (Done)
                     }
                 }
             }
+         save(flipped_image, 0, filePath);
+             cout << "Filter Applied...\n";
         }
     else if (choice == "H") {
         // we will flip the image horizontally
@@ -339,7 +341,7 @@ int valid(string& input) {
     }
 }
 
-void crop(string path,string filePath ,int x,int y, int w, int  h ) {
+void crop(string path,string filePath ,int x,int y, int w, int h ) {
     Image image(path);
         Image cropped_Img(w, h); // create a new image to store the cropped one
         for (int i = 0; i < w; ++i) {
@@ -350,7 +352,7 @@ void crop(string path,string filePath ,int x,int y, int w, int  h ) {
                 }
             }
         }
-        save(image,0,filePath) ;
+        save(cropped_Img,0,filePath) ;
         cout << "Filter Applied...\n";
     }
 
@@ -523,18 +525,18 @@ void edges(string path,string filePath) { //Hossam (Done)
 }
 
 //!!
-void resize(string path,string filePath , int w, int h ) //Abdallah (Done)
+void resize_filter(string path,string filePath ,int res_width,int res_height) //Abdallah (Done)
 {  Image image(path);
-        if (w > 0 && h > 0) {
-            Image resized_Img(w, h); //create a new image to store the resized one
+        if (res_width > 0 && res_height > 0) {
+            Image resized_Img(res_width, res_width); //create a new image to store the resized one
             float s; // the ratio between the width of the original img and the new width
             float r; //the ratio between the height of the original img and the new height
             // -------------------------------------------------------------------------------------------------------------
-            s = static_cast<float>(image.width) / w;
-            r = static_cast<float>(image.height) / h;
+            s = static_cast<float>(image.width) / res_width;
+            r = static_cast<float>(image.height) / res_height;
             //--------------------------------------------------------------------------------------------------------------
-            for (int i = 0; i < w; ++i) {
-                for (int j = 0; j < h; ++j) {
+            for (int i = 0; i < res_width; ++i) {
+                for (int j = 0; j < res_height; ++j) {
                     for (int k = 0; k < 3; ++k) {
                         int new1 = round(s * i); // we make s and i normal integers
                         int new2 = round(r * j);
@@ -542,7 +544,7 @@ void resize(string path,string filePath , int w, int h ) //Abdallah (Done)
                     }
                 }
             }
-            save(image,0,filePath) ;
+            save(resized_Img,0,filePath) ;
             cout << "Filter Applied...\n";
 
         }
