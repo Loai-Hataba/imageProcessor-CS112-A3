@@ -31,14 +31,14 @@ Photoshop_budget::Photoshop_budget(QWidget *parent)
     , ui(new Ui::Photoshop_budget)
 {
     ui->setupUi(this);
-    connect(ui->apply_rotation, &QPushButton::clicked, this, &Photoshop_budget::on_apply_rotation_clicked);
+    // connect(ui->apply_rotation, &QPushButton::clicked, this, &Photoshop_budget::on_apply_rotation_clicked);
     connect(ui->vertical, &QPushButton::clicked, this, &Photoshop_budget::on_vertical_clicked);
     connect(ui->horizontal, &QPushButton::clicked, this, &Photoshop_budget::on_horizontal_clicked);
     //connect(ui->pushButton, &QPushButton::clicked, this, &Photoshop_budget::on_pushButton_clicked);
     //connect(ui->pushButton_2, &QPushButton::clicked, this, &Photoshop_budget::on_pushButton_2_clicked);
-    connect(ui->frame_size_val, &QSpinBox::valueChanged, this, &Photoshop_budget::on_frame_size_val_valueChanged);
+    // connect(ui->frame_size_val, &QSpinBox::valueChanged, this, &Photoshop_budget::on_frame_size_val_valueChanged);
     connect(ui->frame_btn, &QPushButton::clicked, this, &Photoshop_budget::on_frame_btn_clicked);
-    connect(ui->color_btn, &QPushButton::clicked, this, &Photoshop_budget::on_color_btn_clicked);
+    // connect(ui->apply_frame, &QPushButton::clicked, this, &Photoshop_budget::on_apply_frame_clicked);
 
     ui->dock_Widget_2->hide();
 
@@ -320,7 +320,6 @@ void Photoshop_budget::on_apply_rotation_clicked()
         int h = ui->image->height();
         ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
         file_name = filePath;
-        QMessageBox::information(this, "test", "90");
     }
     else if (ui->angle_180->isChecked())
     {
@@ -330,7 +329,6 @@ void Photoshop_budget::on_apply_rotation_clicked()
         int h = ui->image->height();
         ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
         file_name = filePath;
-        QMessageBox::information(this, "test", "180");
     }
     else if (ui->angle_270->isChecked())
     {
@@ -340,11 +338,12 @@ void Photoshop_budget::on_apply_rotation_clicked()
         int h = ui->image->height();
         ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
         file_name = filePath;
-        QMessageBox::information(this, "test", "270");
     }
 }
 
-
+//frame filter
+int frame_size_num = 50;
+QColor color = Qt::white;
 void Photoshop_budget::on_frame_btn_clicked()
 {
     ui->dock_Widget_2->show();
@@ -353,7 +352,7 @@ void Photoshop_budget::on_frame_btn_clicked()
 
 void Photoshop_budget::on_color_btn_clicked()
 {
-    QColor color = QColorDialog::getColor(Qt::white, this, "Frame Color");
+    color = QColorDialog::getColor(Qt::white, this, "Frame Color");
     if (color.isValid())
     {
         ui->color_btn->setStyleSheet("background-color: " + color.name() + ";");
@@ -362,6 +361,44 @@ void Photoshop_budget::on_color_btn_clicked()
 }
 
 
+void Photoshop_budget::on_frame_size_val_valueChanged(int arg1)
+{
+    frame_size_num = arg1;
+}
+
+void Photoshop_budget::on_apply_frame_clicked()
+{
+    QMessageBox *framemessageBox = new QMessageBox;
+    QPixmap pixmap(":/images/Assets/png-transparent-black-loading-ic.png");
+    pixmap = pixmap.scaled(20, 20, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    framemessageBox->setIconPixmap(pixmap);
+    framemessageBox->setText("Processing Image...");
+    framemessageBox->show();
+    QApplication::processEvents();
+
+    // simple frame
+    if (ui->simple_frame->isChecked())
+    {
+        frame(file_name.toStdString(),filePath.toStdString(), frame_size_num, 1, color.red(), color.green(), color.blue());
+    }
+    // textured frame
+    else if (ui->textured_frame->isChecked())
+    {
+        frame(file_name.toStdString(),filePath.toStdString(), frame_size_num, 2, color.red(), color.green(), color.blue());
+    }
+    // fancy frame
+    else if (ui->fancy_frame->isChecked())
+    {
+        frame(file_name.toStdString(),filePath.toStdString(), frame_size_num, 3, color.red(), color.green(), color.blue());
+    }
+    QPixmap pix(filePath);
+    int w = ui->image->width();
+    int h = ui->image->height();
+    ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
+    file_name = filePath;
+    delete framemessageBox;
+}
+//*************************************************************************************************************
 
 void Photoshop_budget::on_resize_w_editingFinished()
 {
@@ -390,7 +427,6 @@ void Photoshop_budget::on_pushButton_2_clicked()
 }
 */
 
-int frame_size_num;
 void Photoshop_budget::on_vertical_clicked()
 {
     flip(file_name.toStdString(),filePath.toStdString(),"V");
@@ -413,9 +449,10 @@ void Photoshop_budget::on_horizontal_clicked()
 }
 
 
-void Photoshop_budget::on_frame_size_val_valueChanged(int arg1)
-{
-    frame_size_num = arg1;
-    QMessageBox::information(this, "Value", "The new value of the spin box is: " + QString::number(arg1));
-}
+
+
+
+
+
+
 

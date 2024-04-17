@@ -62,7 +62,6 @@ private slots:
 
     void on_brightness_degree_slider_valueChanged(int value);
 
-
     void on_rotate_btn_clicked();
 
     void on_apply_rotation_clicked();
@@ -77,9 +76,9 @@ private slots:
 
     void on_horizontal_clicked();
 
-    void on_spinBox_valueChanged(int arg1);
-
     void on_frame_size_val_valueChanged(int arg1);
+
+    void on_apply_frame_clicked();
 
 private:
     Ui::Photoshop_budget *ui;
