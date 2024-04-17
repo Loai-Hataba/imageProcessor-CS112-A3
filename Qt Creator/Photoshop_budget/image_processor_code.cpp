@@ -219,20 +219,21 @@ void flip(string path,string filePath,string choice) //Abdallah (Done)
             }
         }
     else if (choice == "H") {
-            // we will flip the image horizontally
-            for (int i = image.width - 1; i >= 0; i--) {//  to reach each row of the image in reverse order
-                for (int j = 0; j < image.height; ++j) {
-                    for (int k = 0; k < 3; ++k) {
-                        flipped_image(image.width - 1 - i, j, k) = image(i, j, k);
-                    }
+        // we will flip the image horizontally
+        for (int i = image.width - 1; i >= 0; i--) {//  to reach each row of the image in reverse order
+            for (int j = 0; j < image.height; ++j) {
+                for (int k = 0; k < 3; ++k) {
+                    flipped_image(image.width - 1 - i, j, k) = image(i, j, k);
                 }
             }
+        }
 
-        save(flipped_image,0,filePath) ;
+        save(flipped_image, 0, filePath);
         cout << "Filter Applied...\n";
 
 
-}}
+    }
+}
 
 void rotate(string path ,string filePath, int angle) //Loai (Done)
 {
