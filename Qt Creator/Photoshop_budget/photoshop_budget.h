@@ -70,9 +70,6 @@ private slots:
 
     void on_frame_btn_clicked();
 
-    void on_resize_w_editingFinished();
-
-
     void on_frame_size_val_valueChanged(int arg1);
 
     void on_apply_frame_clicked();
