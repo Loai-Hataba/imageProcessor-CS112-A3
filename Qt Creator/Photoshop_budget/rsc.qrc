@@ -2,5 +2,7 @@
     <qresource prefix="/images">
         <file>Assets/Logo.png</file>
         <file>Assets/image-holder-icon-614x460.png</file>
+        <file>Assets/Loading-PNG-Photo.png</file>
+        <file>Assets/png-transparent-black-loading-ic.png</file>
     </qresource>
 </RCC>

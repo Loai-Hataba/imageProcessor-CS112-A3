@@ -796,6 +796,9 @@
        <property name="text">
         <string>Simple Frame</string>
        </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
       </widget>
       <widget class="QRadioButton" name="textured_frame">
        <property name="geometry">
@@ -820,7 +823,7 @@
         <rect>
          <x>30</x>
          <y>370</y>
-         <width>141</width>
+         <width>171</width>
          <height>51</height>
         </rect>
        </property>
@@ -830,7 +833,7 @@
         </font>
        </property>
        <property name="text">
-        <string>Fancy Frame</string>
+        <string>Digonal Frame</string>
        </property>
       </widget>
       <widget class="QLabel" name="frame_size">
@@ -886,6 +889,24 @@
        </property>
        <property name="text">
         <string>Apply</string>
+       </property>
+      </widget>
+      <widget class="QRadioButton" name="fancy_frame_2">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>420</y>
+         <width>181</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Checkered Frame</string>
        </property>
       </widget>
      </widget>
@@ -1004,6 +1025,9 @@ background-color: rgb(93, 111, 61);</string>
        </property>
        <property name="text">
         <string>90</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
        </property>
       </widget>
       <widget class="QLabel" name="label">
