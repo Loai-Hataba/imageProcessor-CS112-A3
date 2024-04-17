@@ -72,13 +72,32 @@ private slots:
 
     void on_resize_w_editingFinished();
 
-    void on_vertical_clicked();
-
-    void on_horizontal_clicked();
 
     void on_frame_size_val_valueChanged(int arg1);
 
     void on_apply_frame_clicked();
+
+    void on_apply_vertical_clicked();
+
+    void on_apply_horizontal_clicked();
+
+    void on_resize_width_valueChanged(int arg1);
+
+    void on_resize_height_valueChanged(int arg1);
+
+    void on_apply_resize_clicked();
+
+    void on_crop_x_valueChanged(int arg1);
+
+    void on_crop_y_valueChanged(int arg1);
+
+    void on_crop_w_valueChanged(int arg1);
+
+       void on_crop_h_valueChanged(int arg1);
+
+    void on_Apply_crop_clicked();
+
+    void on_height_crop_apply_valueChanged(int arg1);
 
 private:
     Ui::Photoshop_budget *ui;

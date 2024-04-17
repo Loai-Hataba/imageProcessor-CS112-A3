@@ -24,7 +24,18 @@ Image image;
 
 QString filePath ;
 
-string ana = filePath.toStdString() ;
+//for resize filter
+//resize width
+int res_width = 50 ;
+// resize height
+int res_height =  50 ;
+
+// for crop filter
+int x_value = 1 ;
+int y_value = 1 ;
+int crop_width_value = 50 ;
+int height_crop = 50 ;
+int crop_height_value = 50 ;
 
 Photoshop_budget::Photoshop_budget(QWidget *parent)
     : QMainWindow(parent)
@@ -32,8 +43,8 @@ Photoshop_budget::Photoshop_budget(QWidget *parent)
 {
     ui->setupUi(this);
     // connect(ui->apply_rotation, &QPushButton::clicked, this, &Photoshop_budget::on_apply_rotation_clicked);
-    connect(ui->vertical, &QPushButton::clicked, this, &Photoshop_budget::on_vertical_clicked);
-    connect(ui->horizontal, &QPushButton::clicked, this, &Photoshop_budget::on_horizontal_clicked);
+/*connect(ui->vertical, &QPushButton::clicked, this, &Photoshop_budget::on_vertical_clicked);
+connect(ui->horizontal, &QPushButton::clicked, this, &Photoshop_budget::on_horizontal_clicked);*/
     //connect(ui->pushButton, &QPushButton::clicked, this, &Photoshop_budget::on_pushButton_clicked);
     //connect(ui->pushButton_2, &QPushButton::clicked, this, &Photoshop_budget::on_pushButton_2_clicked);
     // connect(ui->frame_size_val, &QSpinBox::valueChanged, this, &Photoshop_budget::on_frame_size_val_valueChanged);
@@ -276,6 +287,8 @@ void Photoshop_budget::on_rsize_btn_clicked()
 
 void Photoshop_budget::on_Crop_btn_clicked()
 {
+    ui->dock_Widget_2->show();
+    ui->stackedWidget->setCurrentIndex(1);
 
 }
 
@@ -407,31 +420,9 @@ void Photoshop_budget::on_resize_w_editingFinished()
 {
 
 }
-
-
-/*void Photoshop_budget::on_pushButton_clicked()
+void Photoshop_budget::on_apply_vertical_clicked()
 {
-    flip(file_name.toStdString(),filePath.toStdString(),"V");
-    QPixmap pix(filePath);
-    int w = ui->image->width();
-    int h = ui->image->height();
-    ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
-    file_name = filePath;
-}
-
-void Photoshop_budget::on_pushButton_2_clicked()
-{
-    flip(file_name.toStdString(),filePath.toStdString(),"H");
-    QPixmap pix(filePath);
-    int w = ui->image->width();
-    int h = ui->image->height();
-    ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
-    file_name = filePath;
-}
-*/
-
-void Photoshop_budget::on_vertical_clicked()
-{
+    QMessageBox::information(this, "test", "working") ;
     flip(file_name.toStdString(),filePath.toStdString(),"V");
     QPixmap pix(filePath);
     int w = ui->image->width();
@@ -441,7 +432,7 @@ void Photoshop_budget::on_vertical_clicked()
 }
 
 
-void Photoshop_budget::on_horizontal_clicked()
+void Photoshop_budget::on_apply_horizontal_clicked()
 {
     flip(file_name.toStdString(),filePath.toStdString(),"H");
     QPixmap pix(filePath);
@@ -451,11 +442,69 @@ void Photoshop_budget::on_horizontal_clicked()
     file_name = filePath;
 }
 
+void Photoshop_budget::on_resize_width_valueChanged(int width )
+{
+    res_width = width ;
+}
+
+
+void Photoshop_budget::on_resize_height_valueChanged(int height)
+{
+    res_height = height ;
+}
+
+
+void Photoshop_budget::on_apply_resize_clicked()
+{ //
+    cout << res_height<<" "<<res_width <<endl ;
+  resize_filter(file_name.toStdString(),filePath.toStdString(),res_width,res_height);
+    QPixmap pix(filePath);
+  int w = ui->image->width();
+  int h = ui->image->height();
+  ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
+    file_name = filePath;
+}
+
+
+void Photoshop_budget::on_crop_x_valueChanged(int arg1)
+{
+    x_value = arg1 ;
+}
+
+
+void Photoshop_budget::on_crop_y_valueChanged(int arg1)
+{
+    y_value = arg1 ;
+}
+
+
+void Photoshop_budget::on_crop_w_valueChanged(int arg1)
+{
+    crop_width_value = arg1 ;
+}
 
 
 
+void Photoshop_budget::on_height_crop_apply_valueChanged(int arg1)
+{
+    height_crop = arg1 ;
+}
+
+void Photoshop_budget::on_crop_h_valueChanged(int arg1)
+{
+   height_crop = arg1 ;
+}
 
 
+void Photoshop_budget::on_Apply_crop_clicked()
+{   cout <<x_value<<" "<< y_value<<" "<<crop_width_value<<" "<<height_crop <<endl;
+    crop(file_name.toStdString(),filePath.toStdString(),x_value , y_value ,crop_width_value , height_crop);
+    QPixmap pix(filePath);
+    int w = ui->image->width();
+    int h = ui->image->height();
+    ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
+    file_name = filePath;
+}
 
 
 
