@@ -7,6 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1850</width>
+    <height>1053</height>
     <height>1079</height>
    </rect>
   </property>
@@ -609,6 +610,19 @@
      <bool>false</bool>
     </property>
    </widget>
+   <widget class="QPushButton" name="original_image">
+    <property name="geometry">
+     <rect>
+      <x>800</x>
+      <y>830</y>
+      <width>211</width>
+      <height>70</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Original</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="enabled">
@@ -682,14 +696,14 @@
     <widget class="QStackedWidget" name="stackedWidget">
      <property name="geometry">
       <rect>
-       <x>0</x>
+       <x>10</x>
        <y>0</y>
-       <width>221</width>
+       <width>211</width>
        <height>961</height>
       </rect>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="blur_optn"/>
      <widget class="QWidget" name="crop_optn">
@@ -709,10 +723,10 @@
       <widget class="QSpinBox" name="crop_x">
        <property name="geometry">
         <rect>
-         <x>40</x>
+         <x>30</x>
          <y>130</y>
-         <width>171</width>
-         <height>51</height>
+         <width>161</width>
+         <height>61</height>
         </rect>
        </property>
        <property name="minimum">
@@ -725,7 +739,7 @@
       <widget class="QSpinBox" name="crop_y">
        <property name="geometry">
         <rect>
-         <x>40</x>
+         <x>30</x>
          <y>220</y>
          <width>161</width>
          <height>61</height>
@@ -741,9 +755,9 @@
       <widget class="QSpinBox" name="crop_w">
        <property name="geometry">
         <rect>
-         <x>40</x>
+         <x>30</x>
          <y>410</y>
-         <width>151</width>
+         <width>161</width>
          <height>61</height>
         </rect>
        </property>
@@ -783,9 +797,9 @@
       <widget class="QSpinBox" name="height_crop_apply">
        <property name="geometry">
         <rect>
-         <x>50</x>
+         <x>30</x>
          <y>520</y>
-         <width>121</width>
+         <width>161</width>
          <height>61</height>
         </rect>
        </property>
@@ -1252,7 +1266,49 @@ background-color: rgb(93, 111, 61);</string>
        </property>
       </widget>
      </widget>
-     <widget class="QWidget" name="skew_optn"/>
+     <widget class="QWidget" name="skew_optn">
+      <widget class="QSpinBox" name="skew_degree_val">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>140</y>
+         <width>71</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="frame">
+        <bool>true</bool>
+       </property>
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>180</number>
+       </property>
+       <property name="value">
+        <number>50</number>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="apply_skew">
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>250</y>
+         <width>121</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>15</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Apply</string>
+       </property>
+      </widget>
+     </widget>
     </widget>
    </widget>
   </widget>

@@ -19,6 +19,8 @@
 
 
 QString file_name;
+
+QString original;
 QString save_file_name;
 Image image;
 
@@ -93,6 +95,7 @@ connect(ui->horizontal, &QPushButton::clicked, this, &Photoshop_budget::on_horiz
     } else {
         qDebug() << "Folder already exists: " << folderPath;
     }
+//-----------------------------------
     QString fileName = "temp.jpg" ;
     // Define image size
     int width = 400;
@@ -115,6 +118,7 @@ connect(ui->horizontal, &QPushButton::clicked, this, &Photoshop_budget::on_horiz
         qDebug() << "Image saved successfully: " << filePath;
     }
 }
+
 
 Photoshop_budget::~Photoshop_budget()
 {
@@ -141,9 +145,12 @@ void Photoshop_budget::on_load_btn_clicked()
         msgError.exec();
         file_name = "";
     }
+    original = file_name ;
 }
 //***************************************************************************************************************************
 //save
+
+
 void Photoshop_budget::on_save_btn_clicked()
 {
     save_file_name = QFileDialog::getSaveFileName(this, "Save Image", "D:/imageProcessor-CS112-A3/cmake-build-debug/Samples", "JPEG (*.jpg);;PNG (*.png);;Bitmap (*.bmp);;Targa (*.tga)");
@@ -323,10 +330,29 @@ void Photoshop_budget::on_Pixelate_btn_clicked()
     file_name = filePath;
 }
 //***************************************************************************************************************************
+int skew_degree = 0 ;
+
 void Photoshop_budget::on_skewed_btn_clicked()
 {
-
+    ui->dock_Widget_2->show();
+    ui->stackedWidget->setCurrentIndex(9);
 }
+
+void Photoshop_budget::on_skew_degree_val_valueChanged(int arg1)
+{
+    skew_degree = arg1;
+}
+
+void Photoshop_budget::on_apply_skew_clicked()
+{
+    Skewed(file_name.toStdString(),filePath.toStdString(),skew_degree);
+    QPixmap pix(filePath);
+    int w = ui->image->width();
+    int h = ui->image->height();
+    ui->image->setPixmap(pix.scaled(w, h));
+    file_name = filePath;
+}
+
 
 void Photoshop_budget::on_rsize_btn_clicked()
 {
@@ -463,6 +489,7 @@ void Photoshop_budget::on_apply_frame_clicked()
     delete framemessageBox;
 }
 //*************************************************************************************************************
+
 //flip
 void Photoshop_budget::on_apply_vertical_clicked()
 {
@@ -501,7 +528,7 @@ void Photoshop_budget::on_resize_height_valueChanged(int height)
 
 void Photoshop_budget::on_apply_resize_clicked()
 { //
-    cout << res_height<<" "<<res_width <<endl ;
+  cout << res_height<<" "<<res_width <<endl ;
   resize_filter(file_name.toStdString(),filePath.toStdString(),res_width,res_height);
     QPixmap pix(filePath);
   int w = ui->image->width();
@@ -541,3 +568,17 @@ void Photoshop_budget::on_Apply_crop_clicked()
     file_name = filePath;
 }
 //***************************************************************************************************************************
+
+
+
+
+void Photoshop_budget::on_original_image_clicked()
+{
+    QPixmap pix(original);
+    int w = ui->image->width();
+    int h = ui->image->height();
+    ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
+    image = image_path(file_name.toStdString());
+}
+
+

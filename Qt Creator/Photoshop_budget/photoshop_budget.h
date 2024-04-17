@@ -93,13 +93,19 @@ private slots:
 
     void on_crop_w_valueChanged(int arg1);
 
-       void on_crop_h_valueChanged(int arg1);
+    void on_crop_h_valueChanged(int arg1);
 
     void on_Apply_crop_clicked();
 
     void on_height_crop_apply_valueChanged(int arg1);
 
     void on_apply_brightness_btn_clicked();
+
+    void on_skew_degree_val_valueChanged(int arg1);
+
+    void on_apply_skew_clicked();
+
+    void on_original_image_clicked();
 
 private:
     Ui::Photoshop_budget *ui;
