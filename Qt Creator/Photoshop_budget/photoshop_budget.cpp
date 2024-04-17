@@ -302,8 +302,8 @@ void Photoshop_budget::on_brightness_degree_slider_valueChanged(int value)
 {
     ui->brightness_degree->setText(QString::number(value));
 }
-
-
+//************************************************************************************************************
+// rotate
 void Photoshop_budget::on_rotate_btn_clicked()
 {
     ui->dock_Widget_2->show();
@@ -340,7 +340,7 @@ void Photoshop_budget::on_apply_rotation_clicked()
         file_name = filePath;
     }
 }
-
+//****************************************************************************************************************
 //frame filter
 int frame_size_num = 50;
 QColor color = Qt::white;
@@ -360,7 +360,6 @@ void Photoshop_budget::on_color_btn_clicked()
 
 }
 
-
 void Photoshop_budget::on_frame_size_val_valueChanged(int arg1)
 {
     frame_size_num = arg1;
@@ -375,7 +374,6 @@ void Photoshop_budget::on_apply_frame_clicked()
     framemessageBox->setText("Processing Image...");
     framemessageBox->show();
     QApplication::processEvents();
-
     // simple frame
     if (ui->simple_frame->isChecked())
     {
@@ -386,10 +384,15 @@ void Photoshop_budget::on_apply_frame_clicked()
     {
         frame(file_name.toStdString(),filePath.toStdString(), frame_size_num, 2, color.red(), color.green(), color.blue());
     }
-    // fancy frame
+    // diagonal frame
     else if (ui->fancy_frame->isChecked())
     {
-        frame(file_name.toStdString(),filePath.toStdString(), frame_size_num, 3, color.red(), color.green(), color.blue());
+        frame(file_name.toStdString(),filePath.toStdString(), frame_size_num, 3, color.red(), color.green(), color.blue(), 1);
+    }
+    // checkered frame
+    else if (ui->fancy_frame_2->isChecked())
+    {
+        frame(file_name.toStdString(),filePath.toStdString(), frame_size_num, 3, color.red(), color.green(), color.blue(), 2);
     }
     QPixmap pix(filePath);
     int w = ui->image->width();
