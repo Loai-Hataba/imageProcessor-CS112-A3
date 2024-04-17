@@ -28,6 +28,7 @@ Photoshop_budget::Photoshop_budget(QWidget *parent)
     , ui(new Ui::Photoshop_budget)
 {
     ui->setupUi(this);
+    connect(ui->apply_rotation, &QPushButton::clicked, this, &Photoshop_budget::on_apply_rotation_clicked);
 
     ui->dock_Widget_2->hide();
 
@@ -291,7 +292,7 @@ void Photoshop_budget::on_rotate_btn_clicked()
 
 void Photoshop_budget::on_apply_rotation_clicked()
 {
-    QMessageBox::information(this, "test", "started rotation");
+    // QMessageBox::information(this, "test", "started rotation");
     if (ui->angle_90->isChecked())
     {
         rotate(file_name.toStdString(),filePath.toStdString(), 90);
@@ -300,7 +301,6 @@ void Photoshop_budget::on_apply_rotation_clicked()
         int h = ui->image->height();
         ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
         file_name = filePath;
-        QMessageBox::information(this, "test", "90 degree done");
     }
     else if (ui->angle_180->isChecked())
     {
@@ -321,4 +321,6 @@ void Photoshop_budget::on_apply_rotation_clicked()
         file_name = filePath;
     }
 }
+
+
 

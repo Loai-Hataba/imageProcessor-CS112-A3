@@ -154,13 +154,13 @@ Image resizeMerge(Image image, int max_width, int max_height) { //straight up co
 //     string file_name;  //2nd image input
 //     cout << "Please enter 2nd image name (Default is .jpg): ";
 //     cin >> file_name;
-//     // string check = file_check(file_name);
-//     // while (check == "None") {
-//     //     cout << "Please enter 2nd image name (Default is .jpg): ";
-//     //     cin >> file_name;
-//     //     check = file_check(file_name);
-//     // }
-//     // string path = check;
+//     string check = file_check(file_name);
+//     while (check == "None") {
+//         cout << "Please enter 2nd image name (Default is .jpg): ";
+//         cin >> file_name;
+//         check = file_check(file_name);
+//     }
+//     string path = check;
 //     Image image(path);
 //     char choice;
 //     cout<<"1) Scale both images to the biggest height and width\n"
@@ -242,7 +242,7 @@ void flip(string path,string filePath) //Abdallah (Done)
         flip(path,filePath);
     }
 }
-//!
+
 void rotate(string path ,string filePath, int angle) //Loai (Done)
 {
     Image image(path);
