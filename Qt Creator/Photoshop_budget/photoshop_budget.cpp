@@ -12,7 +12,9 @@
 #include <QStackedWidget>
 #include <QSlider>
 #include <QLabel>
-// #include <iostream>
+#include <QColor>
+#include <QColorDialog>
+#include <iostream>
 
 
 QString file_name;
@@ -29,6 +31,8 @@ Photoshop_budget::Photoshop_budget(QWidget *parent)
 {
     ui->setupUi(this);
     connect(ui->apply_rotation, &QPushButton::clicked, this, &Photoshop_budget::on_apply_rotation_clicked);
+    connect(ui->frame_btn, &QPushButton::clicked, this, &Photoshop_budget::on_frame_btn_clicked);
+    connect(ui->color_btn, &QPushButton::clicked, this, &Photoshop_budget::on_color_btn_clicked);
 
     ui->dock_Widget_2->hide();
 
@@ -293,7 +297,6 @@ void Photoshop_budget::on_rotate_btn_clicked()
 }
 void Photoshop_budget::on_apply_rotation_clicked()
 {
-    // QMessageBox::information(this, "test", "started rotation");
     if (ui->angle_90->isChecked())
     {
         rotate(file_name.toStdString(),filePath.toStdString(), 90);
@@ -321,6 +324,23 @@ void Photoshop_budget::on_apply_rotation_clicked()
         ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
         file_name = filePath;
     }
+}
+
+
+void Photoshop_budget::on_frame_btn_clicked()
+{
+    ui->dock_Widget_2->show();
+    ui->stackedWidget->setCurrentIndex(4);
+}
+
+void Photoshop_budget::on_color_btn_clicked()
+{
+    QColor color = QColorDialog::getColor(Qt::white, this, "Frame Color");
+    if (color.isValid())
+    {
+        ui->color_btn->setStyleSheet("background-color: " + color.name() + ";");
+    }
+
 }
 
 
