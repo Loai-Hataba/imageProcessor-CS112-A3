@@ -101,6 +101,8 @@ private slots:
 
     void on_apply_brightness_btn_clicked();
 
+    void on_original_image_clicked();
+
 private:
     Ui::Photoshop_budget *ui;
 };
