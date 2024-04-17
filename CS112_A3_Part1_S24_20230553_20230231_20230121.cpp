@@ -1182,8 +1182,15 @@ void resize(Image image) //Abdallah (Done)
 //    menu(blurred_image);
 //}
 
+// Clamping function
+int clamp(int val, int min_val, int max_val) {
+    return max(min_val, min(max_val, val));
+}
+
 void blur(Image image)
 {
+
+
     cout << "1\n";
     int blur_size = 10;
     int height = image.height;
@@ -1204,12 +1211,15 @@ void blur(Image image)
     }
     Image blurred_image(width, height);
     // Apply the blur using the summed area table
-    for (int i = blur_size; i < width - blur_size; ++i) {
-        for (int j = blur_size; j < height - blur_size; ++j) {
-            int x1 = j - blur_size;
-            int x2 = j + blur_size;
-            int y1 = i - blur_size;
-            int y2 = i + blur_size;
+    for (int i = 0; i < width; ++i) {
+        for (int j = 0; j < height; ++j) {
+            // Dynamically adjust the blur size based on the pixel's distance from the edge
+            int dynamic_blur_size = min({blur_size, i, j, width - i - 1, height - j - 1});
+
+            int x1 = j - dynamic_blur_size;
+            int x2 = j + dynamic_blur_size;
+            int y1 = i - dynamic_blur_size;
+            int y2 = i + dynamic_blur_size;
 
             int count = (x2 - x1 + 1) * (y2 - y1 + 1);
 
@@ -1217,15 +1227,18 @@ void blur(Image image)
             int sumG = satG[y2][x2] - (x1 > 0 ? satG[y2][x1-1] : 0) - (y1 > 0 ? satG[y1-1][x2] : 0) + (x1 > 0 && y1 > 0 ? satG[y1-1][x1-1] : 0);
             int sumB = satB[y2][x2] - (x1 > 0 ? satB[y2][x1-1] : 0) - (y1 > 0 ? satB[y1-1][x2] : 0) + (x1 > 0 && y1 > 0 ? satB[y1-1][x1-1] : 0);
 
-            blurred_image(i, j, 0) = sumR / count;
-            blurred_image(i, j, 1) = sumG / count;
-            blurred_image(i, j, 2) = sumB / count;
+            // Clamp the color values to the valid range
+            blurred_image(i, j, 0) = clamp(sumR / count, 0, 255);
+            blurred_image(i, j, 1) = clamp(sumG / count, 0, 255);
+            blurred_image(i, j, 2) = clamp(sumB / count, 0, 255);
         }
     }
 
     cout << "Filter Applied...\n";
     menu(blurred_image);
 }
+
+
 
 
 
