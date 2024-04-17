@@ -93,7 +93,6 @@ connect(ui->horizontal, &QPushButton::clicked, this, &Photoshop_budget::on_horiz
     } else {
         qDebug() << "Folder already exists: " << folderPath;
     }
-//-----------------------------------
     QString fileName = "temp.jpg" ;
     // Define image size
     int width = 400;
@@ -121,6 +120,8 @@ Photoshop_budget::~Photoshop_budget()
 {
     delete ui;
 }
+//***************************************************************************************************************************
+//load
 void Photoshop_budget::on_load_btn_clicked()
 {
     file_name = QFileDialog::getOpenFileName(this, "Load Image", "D:/imageProcessor-CS112-A3/cmake-build-debug/Samples");
@@ -141,13 +142,16 @@ void Photoshop_budget::on_load_btn_clicked()
         file_name = "";
     }
 }
+//***************************************************************************************************************************
+//save
 void Photoshop_budget::on_save_btn_clicked()
 {
     save_file_name = QFileDialog::getSaveFileName(this, "Save Image", "D:/imageProcessor-CS112-A3/cmake-build-debug/Samples", "JPEG (*.jpg);;PNG (*.png);;Bitmap (*.bmp);;Targa (*.tga)");
     Image image(filePath.toStdString());
     save(image, 0, save_file_name.toStdString());
 }
-
+//***************************************************************************************************************************
+//inverted
 void Photoshop_budget::on_inverted_btn_clicked()
 {
     inverted(file_name.toStdString(),filePath.toStdString());//tmam
@@ -157,6 +161,8 @@ void Photoshop_budget::on_inverted_btn_clicked()
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
     file_name = filePath;
 }
+//***************************************************************************************************************************
+//grayscale
 void Photoshop_budget::on_grayscale_btn_clicked()
 {
     grayscale(file_name.toStdString(),filePath.toStdString());
@@ -166,6 +172,8 @@ void Photoshop_budget::on_grayscale_btn_clicked()
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
     file_name = filePath;
 }
+//***************************************************************************************************************************
+//black and white
 void Photoshop_budget::on_bw_btn_clicked()
 {
     black_white(file_name.toStdString(),filePath.toStdString());
@@ -175,6 +183,8 @@ void Photoshop_budget::on_bw_btn_clicked()
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
      file_name = filePath;
 }
+//***************************************************************************************************************************
+//sunlight
 void Photoshop_budget::on_sunlight_btn_clicked()
 {
     Sunlight(file_name.toStdString(),filePath.toStdString());
@@ -184,6 +194,8 @@ void Photoshop_budget::on_sunlight_btn_clicked()
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
      file_name = filePath;
 }
+//***************************************************************************************************************************
+//edges
 void Photoshop_budget::on_edge_btn_clicked()
 {
     edges(file_name.toStdString(),filePath.toStdString());
@@ -193,6 +205,8 @@ void Photoshop_budget::on_edge_btn_clicked()
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
      file_name = filePath;
 }
+//***************************************************************************************************************************
+//IR
 void Photoshop_budget::on_IR_btn_clicked()
 {
     IR(file_name.toStdString(),filePath.toStdString());
@@ -202,6 +216,8 @@ void Photoshop_budget::on_IR_btn_clicked()
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
      file_name = filePath;
 }
+//***************************************************************************************************************************
+//tv
 void Photoshop_budget::on_TV_btn_clicked()
 {
     tv(file_name.toStdString(),filePath.toStdString());
@@ -211,6 +227,8 @@ void Photoshop_budget::on_TV_btn_clicked()
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
      file_name = filePath;
 }
+//***************************************************************************************************************************
+//purple
 void Photoshop_budget::on_purble_btn_clicked()
 {
     look_Purple(file_name.toStdString(),filePath.toStdString());
@@ -220,6 +238,8 @@ void Photoshop_budget::on_purble_btn_clicked()
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
      file_name = filePath;
 }
+//***************************************************************************************************************************
+//sepia
 void Photoshop_budget::on_sepia_btn_clicked()
 {
     sepia(file_name.toStdString(),filePath.toStdString());
@@ -229,6 +249,8 @@ void Photoshop_budget::on_sepia_btn_clicked()
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
      file_name = filePath;
 }
+//***************************************************************************************************************************
+//oil
 void Photoshop_budget::on_oil_btn_clicked()
 {
     QMessageBox *oilmessageBox = new QMessageBox;
@@ -246,6 +268,8 @@ void Photoshop_budget::on_oil_btn_clicked()
     file_name = filePath;
     delete oilmessageBox;
 }
+//***************************************************************************************************************************
+//lighten-darken
 int degree = 0;
 void Photoshop_budget::on_brightness_degree_slider_valueChanged(int value)
 {
@@ -287,7 +311,8 @@ void Photoshop_budget::on_apply_brightness_btn_clicked()
         file_name = filePath;
     }
 }
-
+//***************************************************************************************************************************
+//pixelate
 void Photoshop_budget::on_Pixelate_btn_clicked()
 {
     Pixelate(file_name.toStdString(),filePath.toStdString());
@@ -297,7 +322,7 @@ void Photoshop_budget::on_Pixelate_btn_clicked()
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
     file_name = filePath;
 }
-
+//***************************************************************************************************************************
 void Photoshop_budget::on_skewed_btn_clicked()
 {
 
@@ -316,7 +341,8 @@ void Photoshop_budget::on_Crop_btn_clicked()
     ui->stackedWidget->setCurrentIndex(1);
 
 }
-
+//***************************************************************************************************************************
+//merge
 void Photoshop_budget::on_merge_btn_clicked()
 {
     // Show the QDockWidget and set the current widget of the QStackedWidget
@@ -437,11 +463,7 @@ void Photoshop_budget::on_apply_frame_clicked()
     delete framemessageBox;
 }
 //*************************************************************************************************************
-
-void Photoshop_budget::on_resize_w_editingFinished()
-{
-
-}
+//flip
 void Photoshop_budget::on_apply_vertical_clicked()
 {
     QMessageBox::information(this, "test", "working") ;
@@ -463,7 +485,8 @@ void Photoshop_budget::on_apply_horizontal_clicked()
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
     file_name = filePath;
 }
-
+//***************************************************************************************************************************
+//resize
 void Photoshop_budget::on_resize_width_valueChanged(int width )
 {
     res_width = width ;
@@ -486,38 +509,28 @@ void Photoshop_budget::on_apply_resize_clicked()
   ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
     file_name = filePath;
 }
-
-
+//***************************************************************************************************************************
+//crop
 void Photoshop_budget::on_crop_x_valueChanged(int arg1)
 {
     x_value = arg1 ;
 }
-
-
 void Photoshop_budget::on_crop_y_valueChanged(int arg1)
 {
     y_value = arg1 ;
 }
-
-
 void Photoshop_budget::on_crop_w_valueChanged(int arg1)
 {
     crop_width_value = arg1 ;
 }
-
-
-
 void Photoshop_budget::on_height_crop_apply_valueChanged(int arg1)
 {
     height_crop = arg1 ;
 }
-
 void Photoshop_budget::on_crop_h_valueChanged(int arg1)
 {
    height_crop = arg1 ;
 }
-
-
 void Photoshop_budget::on_Apply_crop_clicked()
 {   cout <<x_value<<" "<< y_value<<" "<<crop_width_value<<" "<<height_crop <<endl;
     crop(file_name.toStdString(),filePath.toStdString(),x_value , y_value ,crop_width_value , height_crop);
@@ -527,7 +540,4 @@ void Photoshop_budget::on_Apply_crop_clicked()
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
     file_name = filePath;
 }
-
-
-
-
+//***************************************************************************************************************************
