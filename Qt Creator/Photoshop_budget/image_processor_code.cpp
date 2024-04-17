@@ -197,8 +197,8 @@ Image resizeMerge(Image image, int max_width, int max_height) { //straight up co
 //                 }
 //             }
 //         }
+//         save()
 //         cout << "Filter Applied...\n";
-
 //     }
 // }
 
@@ -868,7 +868,7 @@ void Skewed(string path,string filePath,int degree) {
             }
         }
     }
-    cnt+=margin_of_error;
+    cnt += margin_of_error;
     int denom = ceil(image.height / (double) cnt);
     int diff = 1;
     if (deg1 <= 20 && deg1>0)diff = 2;
@@ -898,11 +898,11 @@ void Skewed(string path,string filePath,int degree) {
             }
         }
         cout << "Filter Applied...\n";
-        save(flipped_image);
+         save(flipped_image,0,filePath) ;
         return;
     }
     cout << "Filter Applied...\n";
-    save(white);
+     save(white,0,filePath) ;
 }
 //!
 void Pixelate(string path,string filePath) {
