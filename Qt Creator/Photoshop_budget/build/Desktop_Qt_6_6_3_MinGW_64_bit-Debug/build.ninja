@@ -208,7 +208,7 @@ build Photoshop_budget_autogen/timestamp Photoshop_budget_autogen/mocs_compilati
 #############################################
 # Custom command for Photoshop_budget_autogen\EWIEGA46WW\qrc_rsc.cpp
 
-build Photoshop_budget_autogen/EWIEGA46WW/qrc_rsc.cpp | ${cmake_ninja_workdir}Photoshop_budget_autogen/EWIEGA46WW/qrc_rsc.cpp: CUSTOM_COMMAND D$:/imageProcessor-CS112-A3/Qt$ Creator/Photoshop_budget/rsc.qrc CMakeFiles/Photoshop_budget_autogen.dir/AutoRcc_rsc_EWIEGA46WW_Info.json D$:/imageProcessor-CS112-A3/Qt$ Creator/Photoshop_budget/Assets/Logo.png C$:/Qt/6.6.3/mingw_64/./bin/rcc.exe || Photoshop_budget_autogen Photoshop_budget_autogen_timestamp_deps
+build Photoshop_budget_autogen/EWIEGA46WW/qrc_rsc.cpp | ${cmake_ninja_workdir}Photoshop_budget_autogen/EWIEGA46WW/qrc_rsc.cpp: CUSTOM_COMMAND D$:/imageProcessor-CS112-A3/Qt$ Creator/Photoshop_budget/rsc.qrc CMakeFiles/Photoshop_budget_autogen.dir/AutoRcc_rsc_EWIEGA46WW_Info.json D$:/imageProcessor-CS112-A3/Qt$ Creator/Photoshop_budget/Assets/Loading-PNG-Photo.png D$:/imageProcessor-CS112-A3/Qt$ Creator/Photoshop_budget/Assets/png-transparent-black-loading-ic.png D$:/imageProcessor-CS112-A3/Qt$ Creator/Photoshop_budget/Assets/Logo.png C$:/Qt/6.6.3/mingw_64/./bin/rcc.exe || Photoshop_budget_autogen Photoshop_budget_autogen_timestamp_deps
   COMMAND = cmd.exe /C "cd /D "D:\imageProcessor-CS112-A3\Qt Creator\Photoshop_budget\build\Desktop_Qt_6_6_3_MinGW_64_bit-Debug" && C:\Qt\Tools\CMake_64\bin\cmake.exe -E cmake_autorcc "D:/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/CMakeFiles/Photoshop_budget_autogen.dir/AutoRcc_rsc_EWIEGA46WW_Info.json" Debug"
   DESC = Automatic RCC for rsc.qrc
   restat = 1

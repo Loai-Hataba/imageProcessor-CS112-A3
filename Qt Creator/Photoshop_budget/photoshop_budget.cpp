@@ -213,12 +213,20 @@ void Photoshop_budget::on_sepia_btn_clicked()
 }
 void Photoshop_budget::on_oil_btn_clicked()
 {
+    QMessageBox *oilmessageBox = new QMessageBox;
+    QPixmap pixmap(":/images/Assets/png-transparent-black-loading-ic.png");
+    pixmap = pixmap.scaled(20, 20, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    oilmessageBox->setIconPixmap(pixmap);
+    oilmessageBox->setText("Processing Image...");
+    oilmessageBox->show();
+    QApplication::processEvents();
     oil(file_name.toStdString(),filePath.toStdString());
-      QPixmap pix(filePath);
+    QPixmap pix(filePath);
     int w = ui->image->width();
     int h = ui->image->height();
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
-     file_name = filePath;
+    file_name = filePath;
+    delete oilmessageBox;
 }
 void Photoshop_budget::on_darken_btn_clicked()
 {
@@ -249,12 +257,10 @@ void Photoshop_budget::on_Pixelate_btn_clicked()
     file_name = filePath;
 }
 
-
 void Photoshop_budget::on_skewed_btn_clicked()
 {
 
 }
-
 
 void Photoshop_budget::on_rsize_btn_clicked()
 {
@@ -263,12 +269,10 @@ void Photoshop_budget::on_rsize_btn_clicked()
     ui->stackedWidget->setCurrentIndex(7);
 }
 
-
 void Photoshop_budget::on_Crop_btn_clicked()
 {
 
 }
-
 
 void Photoshop_budget::on_merge_btn_clicked()
 {
@@ -276,7 +280,6 @@ void Photoshop_budget::on_merge_btn_clicked()
     ui->dock_Widget_2->show();
     ui->stackedWidget->setCurrentIndex(5);
 }
-
 
 void Photoshop_budget::on_flip_btn_clicked()
 {
@@ -301,8 +304,6 @@ void Photoshop_budget::on_rotate_btn_clicked()
     ui->dock_Widget_2->show();
     ui->stackedWidget->setCurrentIndex(8);
 }
-
-
 void Photoshop_budget::on_apply_rotation_clicked()
 {
     // QMessageBox::information(this, "test", "started rotation");

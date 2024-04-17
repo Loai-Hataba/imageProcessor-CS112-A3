@@ -227,12 +227,12 @@ void flip(string path,string filePath,string choice) //Abdallah (Done)
                     }
                 }
             }
-        }
+
         save(flipped_image,0,filePath) ;
         cout << "Filter Applied...\n";
 
-    }
 
+}}
 
 void rotate(string path ,string filePath, int angle) //Loai (Done)
 {
