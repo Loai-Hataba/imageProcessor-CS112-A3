@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/images">
         <file>Assets/Logo.png</file>
+        <file>Assets/png-transparent-black-loading-ic.png</file>
+        <file>Assets/Loading-PNG-Photo.png</file>
     </qresource>
 </RCC>

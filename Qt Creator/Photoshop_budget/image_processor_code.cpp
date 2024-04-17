@@ -346,7 +346,6 @@ int valid(string& input) {
         return -1;
     }
 }
-
 void crop(string path,string filePath) {
     Image image(path);
     string strX, strY, strW, strH;
@@ -431,7 +430,6 @@ void crop(string path,string filePath) {
         cout << "Filter Applied...\n";
     }
 }
-
 //!!!
 void frame(string path,string filePath) //Loai (Done)
 { Image image(path);
@@ -870,7 +868,6 @@ void edges(string path,string filePath) { //Hossam (Done)
     save(image,0,filePath) ;
 
 }
-
 //!!
 void resize(string path,string filePath) //Abdallah (Done)
 {  Image image(path);
@@ -986,8 +983,7 @@ void blur(string path,string filePath) //Loai (Done)
     cout << "Filter Applied...\n";
 
 }
-
-//  ********************** Bonus ****************************
+//  ***************************** Bonus *****************************************
 void Sunlight (string path,string filePath) {
     Image image(path) ;
     for (int i = 0; i < image.width; i++) {
@@ -1138,8 +1134,9 @@ void sepia(string path,string filePath) //Loai (Done)
 }
 
 void oil (string path,string filePath) //Loai (Done)
-{  Image image(path) ;
-    unsigned int brushSize = 5;
+{
+    Image image(path) ;
+    unsigned int brushSize = 3;
     bool test;
     int height = image.height;
     int width = image.width;
