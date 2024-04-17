@@ -12,6 +12,7 @@ Photoshop_budget_autogen/timestamp: \
   D:/Hoss/github/imageProcessor-CS112-A3/Qt\ Creator/Photoshop_budget/photoshop_budget.cpp \
   D:/Hoss/github/imageProcessor-CS112-A3/Qt\ Creator/Photoshop_budget/photoshop_budget.h \
   D:/Hoss/github/imageProcessor-CS112-A3/Qt\ Creator/Photoshop_budget/photoshop_budget.ui \
+  D:/Hoss/github/imageProcessor-CS112-A3/Qt\ Creator/Photoshop_budget/rsc.qrc \
   D:/Hoss/github/imageProcessor-CS112-A3/Qt\ Creator/Photoshop_budget/stb_image.h \
   D:/Hoss/github/imageProcessor-CS112-A3/Qt\ Creator/Photoshop_budget/stb_image_write.h \
   D:/Hoss/github/imageProcessor-CS112-A3/Qt\ Creator/Photoshop_budget/stb_implementation.cpp \
