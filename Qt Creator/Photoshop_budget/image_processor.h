@@ -23,7 +23,7 @@ void rotate(string path,string filePath, int angle);
 void darken(string path,string filePath);
 void lighten(string path,string filePath);
 void crop(string path,string filePath ,int x,int y, int w, int  h ) ;
-void frame(string path,string filePath);
+void frame(string path,string filePath, int frame_size, int ans, unsigned int Rcolor, unsigned int Gcolor, unsigned int Bcolor, int pattern = 1);
 void edges(string path,string filePath);
 void resize(string path,string filePath , int w, int h ) ;
 void blur(string path,string filePath);

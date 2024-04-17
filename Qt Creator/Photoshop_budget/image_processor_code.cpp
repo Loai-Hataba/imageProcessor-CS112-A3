@@ -356,110 +356,11 @@ void crop(string path,string filePath ,int x,int y, int w, int  h ) {
 
 
 //!!!
-void frame(string path,string filePath) //Loai (Done)
-{ Image image(path);
-    int frame_size;
-    string temp;
-    bool test;
-    do {
-        test = true;
-        cout << "Choose Frame size in pixels (Best: 3% of image): ";
-        cin >> temp;
-        for (auto digit: temp) {
-            if (not isdigit(digit)) {
-                test = false;
-            }
-        }
-    } while (not test);
-    frame_size = stoi(temp);
-    string ans;
-    cout << "1) Simple Frame\n"
-            "2) Textured Frame\n"
-            "3) Fancy Frame\n"
-            "Choice: ";
-    cin >> ans;
-    while (ans != "1" && ans != "2" && ans != "3") {
-        cout << "Please Enter a valid choice!\n\n";
-        cout << "1) Simple Frame\n"
-                "2) Textured Frame\n"
-                "3) Fancy Frame\n"
-                "Choice: ";
-        cin >> ans;
-    }
+void frame(string path ,string filePath, int frame_size, int ans, unsigned int Rcolor, unsigned int Gcolor, unsigned int Bcolor, int pattern) //Loai (Done)
+{
+    Image image(path);
     //        Simple frame
-    if (ans == "1") {
-        unsigned int Rcolor, Gcolor, Bcolor;
-        char col = '0';
-        while (col == '0') {
-            cout << "Frame color\n"
-                    "1) Colors\n"
-                    "2) Manual RGB values\n"
-                    "Choice: ";
-            cin >> col;
-            if (col == '1') {
-                char color_choice = '0';
-                while (color_choice == '0') {
-                    cout << "Colors:\n"
-                            "1) Red\n"
-                            "2) Blue\n"
-                            "3) Green\n"
-                            "4) Brown\n"
-                            "5) Yellow\n"
-                            "6) Turquoise\n"
-                            "Choice: ";
-                    cin >> color_choice;
-                    //                       Red
-                    if (color_choice == '1') {
-                        Rcolor = 255;
-                        Bcolor = 0;
-                        Gcolor = 0;
-                    }
-                        //                      Blue
-                    else if (color_choice == '2') {
-                        Rcolor = 0;
-                        Bcolor = 255;
-                        Gcolor = 0;
-                    }
-                        //                        Green
-                    else if (color_choice == '3') {
-                        Rcolor = 0;
-                        Bcolor = 0;
-                        Gcolor = 255;
-                    }
-                        //                        Brown
-                    else if (color_choice == '4') {
-                        Rcolor = 149;
-                        Bcolor = 23;
-                        Gcolor = 78;
-                    }
-                        //                        Yellow
-                    else if (color_choice == '5') {
-                        Rcolor = 225;
-                        Bcolor = 39;
-                        Gcolor = 206;
-                    }
-                        //                        Turquoise
-                    else if (color_choice == '6') {
-                        Rcolor = 51;
-                        Bcolor = 189;
-                        Gcolor = 230;
-                    } else {
-                        cout << "Please enter a valid option!\n";
-                    }
-                }
-            } else if (col == '2') {
-                cout << "Enter RGB values (Usage: R G B): ";
-                cin >> Rcolor >> Gcolor >> Bcolor;
-                //                valid color values
-                while (Rcolor > 255 || Rcolor < 0 || Gcolor > 255 || Gcolor < 0 || Bcolor > 255 || Bcolor > 255) {
-                    cout << "Color Values should between 0 and 255\n";
-                    cout << "Enter Color values (Usage: R G B): ";
-                    cin >> Rcolor >> Gcolor >> Bcolor;
-                }
-            } else {
-                cout << "Please choose a valid option!\n";
-            }
-        }
+    if (ans == 1) {
         //    Horizontal Frame
         for (int i = 0; i < image.width; i++) {
             for (int j = 0; j < frame_size; j++) {
@@ -485,97 +386,13 @@ void frame(string path,string filePath) //Loai (Done)
                 image(image.width - 1 - i, j, 1) = Gcolor;
                 image(image.width - 1 - i, j, 2) = Bcolor;
             }
-
         }
     }
         //        Textured Frame
-    else if (ans == "2")
+    else if (ans == 2)
     {
-        unsigned int Rtexture; // Color of the texture
-        unsigned int Gtexture;
-        unsigned int Btexture;
-        char col = '0';
-        while (col == '0')
-        {
-            cout << "Frame color\n"
-                    "1) Colors\n"
-                    "2) Manual RGB values\n"
-                    "Choice: ";
-            cin >> col;
-            if (col == '1')
-            {
-                char color_choice = '0';
-                while (color_choice == '0') {
-                    cout << "Colors:\n"
-                            "1) Red\n"
-                            "2) Blue\n"
-                            "3) Green\n"
-                            "4) Brown\n"
-                            "5) Yellow\n"
-                            "6) Turquoise\n"
-                            "Choice: ";
-                    cin >> color_choice;
-                    //                       Red
-                    if (color_choice == '1') {
-                        Rtexture = 255;
-                        Btexture = 0;
-                        Gtexture = 0;
-                    }
-                        //                      Blue
-                    else if (color_choice == '2') {
-                        Rtexture = 0;
-                        Btexture = 255;
-                        Gtexture = 0;
-                    }
-                        //                        Green
-                    else if (color_choice == '3') {
-                        Rtexture = 0;
-                        Btexture = 0;
-                        Gtexture = 255;
-                    }
-                        //                        Brown
-                    else if (color_choice == '4') {
-                        Rtexture = 149;
-                        Btexture = 23;
-                        Gtexture = 78;
-                    }
-                        //                        Yellow
-                    else if (color_choice == '5') {
-                        Rtexture = 225;
-                        Btexture = 39;
-                        Gtexture = 206;
-                    }
-                        //                        Turquoise
-                    else if (color_choice == '6') {
-                        Rtexture = 51;
-                        Btexture = 189;
-                        Gtexture = 230;
-                    }
-                    else {
-                        cout << "Please enter a valid option!\n";
-                    }
-                }
-            }
-            else if (col == '2')
-            {
-                cout << "Enter RGB values (Usage: R G B): ";
-                cin >> Rtexture >> Gtexture >> Btexture;
-                //                valid color values
-                while (Rtexture > 255 || Rtexture < 0 || Gtexture > 255 || Gtexture < 0 || Btexture > 255 || Btexture > 255) {
-                    cout << "Color Values should between 0 and 255\n";
-                    cout << "Enter Color values (Usage: R G B): ";
-                    cin >> Rtexture >> Gtexture >> Btexture;
-                }
-            }
-            else
-            {
-                cout << "Please choose a valid option!\n";
-            }
-        }
         //        best at 0.1
         float frequency = 0.1; // Adjust this for texture frequency
-        //        best using one color
-
         //        Horizontal Frame
         for (int i = 0; i < image.width; i++)
         {
@@ -585,9 +402,9 @@ void frame(string path,string filePath) //Loai (Done)
                 float texture_intensity = sin(frequency * i) * sin(frequency * j);
 
                 // Interpolate color based on texture intensity
-                unsigned int R = static_cast<unsigned int>(Rtexture * texture_intensity);
-                unsigned int G = static_cast<unsigned int>(Gtexture * texture_intensity);
-                unsigned int B = static_cast<unsigned int>(Btexture * texture_intensity);
+                unsigned int R = static_cast<unsigned int>(Rcolor * texture_intensity);
+                unsigned int G = static_cast<unsigned int>(Gcolor * texture_intensity);
+                unsigned int B = static_cast<unsigned int>(Bcolor * texture_intensity);
 
                 image(i, j, 0) = R;
                 image(i, j, 1) = G;
@@ -608,9 +425,9 @@ void frame(string path,string filePath) //Loai (Done)
                 float texture_intensity = sin(frequency * i) * sin(frequency * j);
 
                 // Interpolate color based on texture intensity
-                unsigned int R = static_cast<unsigned int>(Rtexture * texture_intensity);
-                unsigned int G = static_cast<unsigned int>(Gtexture * texture_intensity);
-                unsigned int B = static_cast<unsigned int>(Btexture * texture_intensity);
+                unsigned int R = static_cast<unsigned int>(Rcolor * texture_intensity);
+                unsigned int G = static_cast<unsigned int>(Gcolor * texture_intensity);
+                unsigned int B = static_cast<unsigned int>(Bcolor * texture_intensity);
 
                 image(i, j, 0) = R;
                 image(i, j, 1) = G;
@@ -624,100 +441,11 @@ void frame(string path,string filePath) //Loai (Done)
         }
     }
         // Fancy frame
-    else
+    else if (ans == 3)
     {
         int lineThickness = 5;
-        //      choose color
-        unsigned int Rcolor, Gcolor, Bcolor;
-        char col = '0';
-        while (col == '0') {
-            cout << "Frame color\n"
-                    "1) Colors\n"
-                    "2) Manual RGB values\n"
-                    "Choice: ";
-            cin >> col;
-            if (col == '1') {
-                char color_choice = '0';
-                while (color_choice == '0') {
-                    cout << "Colors:\n"
-                            "1) Red\n"
-                            "2) Blue\n"
-                            "3) Green\n"
-                            "4) Brown\n"
-                            "5) Yellow\n"
-                            "6) Turquoise\n"
-                            "Choice: ";
-                    cin >> color_choice;
-                    //                       Red
-                    if (color_choice == '1') {
-                        Rcolor = 255;
-                        Bcolor = 0;
-                        Gcolor = 0;
-                    }
-                        //                      Blue
-                    else if (color_choice == '2') {
-                        Rcolor = 0;
-                        Bcolor = 255;
-                        Gcolor = 0;
-                    }
-                        //                        Green
-                    else if (color_choice == '3') {
-                        Rcolor = 0;
-                        Bcolor = 0;
-                        Gcolor = 255;
-                    }
-                        //                        Brown
-                    else if (color_choice == '4') {
-                        Rcolor = 149;
-                        Bcolor = 23;
-                        Gcolor = 78;
-                    }
-                        //                        Yellow
-                    else if (color_choice == '5') {
-                        Rcolor = 225;
-                        Bcolor = 39;
-                        Gcolor = 206;
-                    }
-                        //                        Turquoise
-                    else if (color_choice == '6') {
-                        Rcolor = 51;
-                        Bcolor = 189;
-                        Gcolor = 230;
-                    } else {
-                        cout << "Please enter a valid option!\n";
-                    }
-                }
-            } else if (col == '2') {
-                cout << "Enter RGB values (Usage: R G B): ";
-                cin >> Rcolor >> Gcolor >> Bcolor;
-                //                valid color values
-                while (Rcolor > 255 || Rcolor < 0 || Gcolor > 255 || Gcolor < 0 || Bcolor > 255 || Bcolor > 255) {
-                    cout << "Color Values should between 0 and 255\n";
-                    cout << "Enter Color values (Usage: R G B): ";
-                    cin >> Rcolor >> Gcolor >> Bcolor;
-                }
-            } else {
-                cout << "Please choose a valid option!\n";
-            }
-        }
-        bool check = true;
-        string pattern;
-        do {
-            cout << "1) Diagonals\n"
-                    "2) Checkerboard\n"
-                    "Choice: ";
-            cin >> pattern;
-            if (pattern != "1" && pattern != "2")
-            {
-                cout << "Invalid Option!\n";
-            }
-            else if (pattern == "1" || pattern == "2")
-            {
-                check = false;
-            }
-        } while (check);
         //        diagonals
-        if (pattern == "1") {
+        if (pattern == 1) {
             for (int i = 0; i < image.width; i++) {
                 for (int j = 0; j < image.height; j++) {
                     if ((i < frame_size || i >= image.width - frame_size || j < frame_size ||
@@ -740,7 +468,7 @@ void frame(string path,string filePath) //Loai (Done)
             }
         }
             //       Checkerboard
-        else if (pattern == "2")
+        else if (pattern == 2)
         {
             int cellSize = frame_size / 5; // Adjust cell size as needed
 
