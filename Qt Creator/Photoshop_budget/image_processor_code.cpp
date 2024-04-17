@@ -842,32 +842,25 @@ void oil (string path,string filePath) //Loai (Done)
 
 }
 //!
-void Skewed(string path,string filePath) {
+void Skewed(string path,string filePath,int degree) {
     Image image(path);
-    cout << "Enter the degree of skewness: (1-180)" << endl;
-    string deg;
-    cin >> deg;
-    bool flag = true;
-
-    while (flag) {
-        if ( stoi(deg) < 1 || stoi(deg) > 180) {
-            cout << "invalid value please enter a valid degree(1-180):";
-            cin >> deg;
-        } else flag = false;
-    }
-    int deg1 = stoi(deg);
+    int deg1 = degree;
     bool flip = deg1 > 90;
     if (flip)deg1 -= 90;//if degree greater than 90 just skew it normally then flip
-    if (deg1 <= 20 && deg1>0)deg1 = 20;
-    if (deg1 <= 40 && deg1>20)deg1 = 40;
+    int margin_of_error = 0;
+    if (deg1 <= 20 && deg1>0){
+        deg1 = 20;
+        margin_of_error = image.width * 2;
+    }
+    if (deg1 <= 40 && deg1>20){
+        deg1 = 40;
+        margin_of_error = image.width * 3;
+        margin_of_error/=2;
+    }
     if (deg1 <= 60 && deg1>40)deg1 = 60;
     double y = deg1 * 3.14159 / 180;//convert degree to radian so we can use cosine
     int cnt = (double) image.height * cos(y);
-
-    //cout<<"cos "<<cos(y)<<endl;
-    //cnt = abs(cnt);
-    Image white(abs((int) (image.width + cnt)), image.height);
-    cout << white.width << endl;
+    Image white(abs((int) (image.width + cnt + margin_of_error)), image.height);
     for (int i = 0; i < white.height; ++i) {
         for (int j = 0; j < white.width; ++j) {
             for (int k = 0; k < 3; ++k) {
@@ -875,20 +868,24 @@ void Skewed(string path,string filePath) {
             }
         }
     }
-    //cout<<"deg1: "<<deg1<<endl;
-
-    int turn = 0;
-    cout << "cnt: " << cnt << endl;
+    cnt+=margin_of_error;
     int denom = ceil(image.height / (double) cnt);
+    int diff = 1;
+    if (deg1 <= 20 && deg1>0)diff = 2;
+    if (deg1 <= 40 && deg1>20){
+        denom = 1;
+        diff = 1;
+    }
     for (int i = 0; i < image.height; ++i) {
+        if (cnt <= 0)cnt = 0;
         for (int j = 0; j < image.width; ++j) {
             for (int k = 0; k < 3; ++k) {
-//                cout<<" ss"<<j + cnt+30<<endl;
                 white(j + cnt, i, k) = image(j, i, k);
             }
         }
+        if (cnt <= 0)cnt = 0;
         if (i % denom == 0){
-            cnt--;
+            cnt-=diff;
         }
     }
     if (flip) {
@@ -900,11 +897,12 @@ void Skewed(string path,string filePath) {
                 }
             }
         }
-        save(flipped_image,0,filePath) ;
+        cout << "Filter Applied...\n";
+        save(flipped_image);
         return;
     }
-    save(white,0,filePath) ;
-
+    cout << "Filter Applied...\n";
+    save(white);
 }
 //!
 void Pixelate(string path,string filePath) {

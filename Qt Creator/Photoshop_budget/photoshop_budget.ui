@@ -7,7 +7,6 @@
     <x>0</x>
     <y>0</y>
     <width>1850</width>
-    <height>1053</height>
     <height>1079</height>
    </rect>
   </property>
@@ -620,7 +619,6 @@
      <x>0</x>
      <y>0</y>
      <width>1850</width>
-     <height>27</height>
      <height>35</height>
     </rect>
    </property>
@@ -656,7 +654,6 @@
    <property name="minimumSize">
     <size>
      <width>221</width>
-     <height>990</height>
      <height>999</height>
     </size>
    </property>
@@ -692,8 +689,7 @@
       </rect>
      </property>
      <property name="currentIndex">
-      <number>4</number>
-      <number>2</number>
+      <number>9</number>
      </property>
      <widget class="QWidget" name="blur_optn"/>
      <widget class="QWidget" name="crop_optn">
@@ -1256,7 +1252,49 @@ background-color: rgb(93, 111, 61);</string>
        </property>
       </widget>
      </widget>
-     <widget class="QWidget" name="skew_optn"/>
+     <widget class="QWidget" name="skew_optn">
+      <widget class="QSpinBox" name="skew_degree_val">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>140</y>
+         <width>71</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="frame">
+        <bool>true</bool>
+       </property>
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>180</number>
+       </property>
+       <property name="value">
+        <number>50</number>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="apply_skew">
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>250</y>
+         <width>121</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Segoe UI</family>
+         <pointsize>15</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Apply</string>
+       </property>
+      </widget>
+     </widget>
     </widget>
    </widget>
   </widget>

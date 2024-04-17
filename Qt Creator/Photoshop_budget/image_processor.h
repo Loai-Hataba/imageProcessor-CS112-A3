@@ -33,7 +33,7 @@ void look_Purple(string path,string filePath);
 void IR(string path,string filePath);
 void tv(string path,string filePath);
 void oil(string path,string filePath);
-void Skewed(string path,string filePath);
+void Skewed(string path,string filePath,int degree);
 void sepia(string path,string filePath);
 void Pixelate(string path,string filePath);
 string test();

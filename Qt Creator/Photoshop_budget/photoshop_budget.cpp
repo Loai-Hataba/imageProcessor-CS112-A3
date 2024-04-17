@@ -297,11 +297,29 @@ void Photoshop_budget::on_Pixelate_btn_clicked()
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
     file_name = filePath;
 }
+int skew_degree = 0 ;
 
 void Photoshop_budget::on_skewed_btn_clicked()
 {
-
+    ui->dock_Widget_2->show();
+    ui->stackedWidget->setCurrentIndex(9);
 }
+
+void Photoshop_budget::on_skew_degree_val_valueChanged(int arg1)
+{
+    skew_degree = arg1;
+}
+
+void Photoshop_budget::on_apply_skew_clicked()
+{
+    Skewed(file_name.toStdString(),filePath.toStdString(),skew_degree);
+    QPixmap pix(filePath);
+    int w = ui->image->width();
+    int h = ui->image->height();
+    ui->image->setPixmap(pix.scaled(w, h));
+    file_name = filePath;
+}
+
 
 void Photoshop_budget::on_rsize_btn_clicked()
 {
@@ -527,7 +545,5 @@ void Photoshop_budget::on_Apply_crop_clicked()
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
     file_name = filePath;
 }
-
-
 
 
