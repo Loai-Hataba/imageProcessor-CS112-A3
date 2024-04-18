@@ -4,5 +4,32 @@
         <file>Assets/image-holder-icon-614x460.png</file>
         <file>Assets/Loading-PNG-Photo.png</file>
         <file>Assets/png-transparent-black-loading-ic.png</file>
+        <file>Assets/edges.png</file>
+        <file>Assets/black-and-white.png</file>
+        <file>Assets/crop.png</file>
+        <file>Assets/darken.png</file>
+        <file>Assets/flip.png</file>
+        <file>Assets/frame.png</file>
+        <file>Assets/infrared.png</file>
+        <file>Assets/invert-colors-button.png</file>
+        <file>Assets/lighten.png</file>
+        <file>Assets/merge.png</file>
+        <file>Assets/oil.png</file>
+        <file>Assets/paint-bucket.png</file>
+        <file>Assets/pixel.png</file>
+        <file>Assets/purple.png</file>
+        <file>Assets/resize.png</file>
+        <file>Assets/rotation.png</file>
+        <file>Assets/sepia.png</file>
+        <file>Assets/Photoshop_Budget.png</file>
+        <file>Assets/skew.png</file>
+        <file>Assets/sun.png</file>
+        <file>Assets/tv.png</file>
+        <file>Assets/blur.png</file>
+        <file>Assets/load.png</file>
+        <file>Assets/save.png</file>
+        <file>Assets/before.png</file>
+        <file>Assets/fliph.png</file>
+        <file>Assets/flipv.png</file>
     </qresource>
 </RCC>

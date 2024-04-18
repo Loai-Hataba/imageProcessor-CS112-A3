@@ -21,7 +21,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="rsc.qrc">
-    <normaloff>:/images/Assets/Logo.png</normaloff>:/images/Assets/Logo.png</iconset>
+    <normaloff>:/images/Assets/Photoshop_Budget.png</normaloff>:/images/Assets/Photoshop_Budget.png</iconset>
   </property>
   <property name="autoFillBackground">
    <bool>false</bool>
@@ -48,14 +48,16 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>120</y>
+      <x>270</x>
+      <y>100</y>
       <width>1211</width>
       <height>661</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(97, 97, 97);</string>
+     <string notr="true">background-color: rgb(64, 65, 66);
+border: 6px solid white;
+    border-radius: 30px;</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
@@ -89,539 +91,1415 @@
      </property>
     </widget>
    </widget>
-   <widget class="QPushButton" name="load_btn">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>900</y>
-      <width>211</width>
-      <height>70</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Lucida Fax</family>
-      <pointsize>20</pointsize>
-      <italic>false</italic>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(0, 0, 0, 255), stop:0.05 rgba(14, 8, 73, 255), stop:0.36 rgba(28, 17, 145, 255), stop:0.6 rgba(126, 14, 81, 255), stop:0.75 rgba(234, 11, 11, 255), stop:0.79 rgba(244, 70, 5, 255), stop:0.86 rgba(255, 136, 0, 255), stop:0.935 rgba(239, 236, 55, 255));</string>
-    </property>
-    <property name="text">
-     <string>Load</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="save_btn">
-    <property name="geometry">
-     <rect>
-      <x>220</x>
-      <y>900</y>
-      <width>211</width>
-      <height>70</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Lucida Fax</family>
-      <pointsize>20</pointsize>
-      <italic>false</italic>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(0, 0, 0, 255), stop:0.05 rgba(14, 8, 73, 255), stop:0.36 rgba(28, 17, 145, 255), stop:0.6 rgba(126, 14, 81, 255), stop:0.75 rgba(234, 11, 11, 255), stop:0.79 rgba(244, 70, 5, 255), stop:0.86 rgba(255, 136, 0, 255), stop:0.935 rgba(239, 236, 55, 255));</string>
-    </property>
-    <property name="text">
-     <string>Save</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="sunlight_btn">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>180</y>
-      <width>131</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Segoe UI</family>
-      <pointsize>20</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(85, 85, 255);</string>
-    </property>
-    <property name="text">
-     <string>Sunlight</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="IR_btn">
-    <property name="geometry">
-     <rect>
-      <x>160</x>
-      <y>120</y>
-      <width>131</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Segoe UI</family>
-      <pointsize>20</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(85, 85, 255);</string>
-    </property>
-    <property name="text">
-     <string>IR</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="edge_btn">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>120</y>
-      <width>131</width>
-      <height>51</height>
+      <x>30</x>
+      <y>100</y>
+      <width>60</width>
+      <height>60</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <family>Segoe UI</family>
+      <family>Britannic Bold</family>
       <pointsize>20</pointsize>
      </font>
     </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(85, 85, 255);</string>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
     </property>
-    <property name="text">
-     <string>Edges</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="sepia_btn">
-    <property name="geometry">
-     <rect>
-      <x>160</x>
-      <y>300</y>
-      <width>131</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Segoe UI</family>
-      <pointsize>20</pointsize>
-     </font>
+    <property name="toolTip">
+     <string>Edges Filter</string>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(85, 85, 255);</string>
+     <string notr="true">border: 2px solid white;
+    border-radius: 10px;
+background-color: rgb(18, 164, 186);</string>
     </property>
     <property name="text">
-     <string>Sepia</string>
+     <string/>
     </property>
-   </widget>
-   <widget class="QPushButton" name="frame_btn">
-    <property name="geometry">
-     <rect>
-      <x>160</x>
-      <y>420</y>
-      <width>131</width>
-      <height>51</height>
-     </rect>
+    <property name="icon">
+     <iconset resource="rsc.qrc">
+      <normaloff>:/images/Assets/edges.png</normaloff>:/images/Assets/edges.png</iconset>
     </property>
-    <property name="font">
-     <font>
-      <family>Segoe UI</family>
-      <pointsize>20</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(85, 85, 255);</string>
-    </property>
-    <property name="text">
-     <string>Frame</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="inverted_btn">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>240</y>
-      <width>131</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Segoe UI</family>
-      <pointsize>20</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(85, 85, 255);</string>
-    </property>
-    <property name="text">
-     <string>Inverted</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="TV_btn">
-    <property name="geometry">
-     <rect>
-      <x>160</x>
-      <y>180</y>
-      <width>131</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Segoe UI</family>
-      <pointsize>20</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(85, 85, 255);</string>
-    </property>
-    <property name="text">
-     <string>TV</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="oil_btn">
-    <property name="geometry">
-     <rect>
-      <x>160</x>
-      <y>360</y>
-      <width>131</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Segoe UI</family>
-      <pointsize>20</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(85, 85, 255);</string>
-    </property>
-    <property name="text">
-     <string>Oil</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="grayscale_btn">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>300</y>
-      <width>131</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Segoe UI</family>
-      <pointsize>20</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(85, 85, 255);</string>
-    </property>
-    <property name="text">
-     <string>Grayscale</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="bw_btn">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>360</y>
-      <width>131</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Sitka</family>
-      <pointsize>13</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(85, 85, 255);</string>
-    </property>
-    <property name="text">
-     <string>Black and White</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="purble_btn">
-    <property name="geometry">
-     <rect>
-      <x>160</x>
-      <y>240</y>
-      <width>131</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Segoe UI</family>
-      <pointsize>20</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(85, 85, 255);</string>
-    </property>
-    <property name="text">
-     <string>Purple</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="rotate_btn">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>420</y>
-      <width>131</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Segoe UI</family>
-      <pointsize>14</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(85, 85, 255);</string>
-    </property>
-    <property name="text">
-     <string>Rotate</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="blur_btn">
-    <property name="geometry">
-     <rect>
-      <x>160</x>
-      <y>480</y>
-      <width>131</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Segoe UI</family>
-      <pointsize>20</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(85, 85, 255);</string>
-    </property>
-    <property name="text">
-     <string>Blur</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="Pixelate_btn">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>480</y>
-      <width>131</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Lucida Fax</family>
-      <pointsize>20</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Pixelate</string>
+    <property name="iconSize">
+     <size>
+      <width>30</width>
+      <height>30</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="skewed_btn">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>540</y>
-      <width>131</width>
-      <height>51</height>
+      <x>30</x>
+      <y>580</y>
+      <width>60</width>
+      <height>60</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <family>Lucida Fax</family>
+      <family>Britannic Bold</family>
       <pointsize>20</pointsize>
      </font>
     </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="toolTip">
+     <string>Skewing Filter</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 2px solid white;
+    border-radius: 10px;background-color: rgb(18, 164, 186);</string>
+    </property>
     <property name="text">
-     <string>Skew</string>
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="rsc.qrc">
+      <normaloff>:/images/Assets/skew.png</normaloff>:/images/Assets/skew.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>30</width>
+      <height>30</height>
+     </size>
     </property>
    </widget>
-   <widget class="QPushButton" name="Crop_btn">
+   <widget class="QPushButton" name="sunlight_btn">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>540</y>
-      <width>131</width>
-      <height>51</height>
+      <x>30</x>
+      <y>180</y>
+      <width>60</width>
+      <height>60</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <family>Lucida Fax</family>
+      <family>Britannic Bold</family>
       <pointsize>20</pointsize>
      </font>
     </property>
-    <property name="text">
-     <string>Crop</string>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
     </property>
-   </widget>
-   <widget class="QPushButton" name="rsize_btn">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>600</y>
-      <width>131</width>
-      <height>51</height>
-     </rect>
+    <property name="toolTip">
+     <string>Sunlight Filter</string>
     </property>
-    <property name="font">
-     <font>
-      <family>Lucida Fax</family>
-      <pointsize>20</pointsize>
-     </font>
+    <property name="styleSheet">
+     <string notr="true">border: 2px solid white;
+    border-radius: 10px;background-color: rgb(18, 164, 186);</string>
     </property>
     <property name="text">
-     <string>Resize</string>
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="rsc.qrc">
+      <normaloff>:/images/Assets/sun.png</normaloff>:/images/Assets/sun.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>30</width>
+      <height>30</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="flip_btn">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>600</y>
-      <width>131</width>
-      <height>51</height>
+      <x>110</x>
+      <y>100</y>
+      <width>60</width>
+      <height>60</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <family>Lucida Fax</family>
+      <family>Britannic Bold</family>
       <pointsize>20</pointsize>
      </font>
     </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="toolTip">
+     <string>Flip Filter</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 2px solid white;
+    border-radius: 10px;
+background-color: rgb(18, 164, 186);</string>
+    </property>
     <property name="text">
-     <string>Flip</string>
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="rsc.qrc">
+      <normaloff>:/images/Assets/flip.png</normaloff>:/images/Assets/flip.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>30</width>
+      <height>30</height>
+     </size>
     </property>
    </widget>
-   <widget class="QPushButton" name="merge_btn">
+   <widget class="QPushButton" name="rotate_btn">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>660</y>
-      <width>131</width>
-      <height>51</height>
+      <x>30</x>
+      <y>420</y>
+      <width>60</width>
+      <height>60</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <family>Lucida Fax</family>
+      <family>Britannic Bold</family>
       <pointsize>20</pointsize>
      </font>
     </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="toolTip">
+     <string>Rotate Filter</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 2px solid white;
+    border-radius: 10px;background-color: rgb(18, 164, 186);</string>
+    </property>
     <property name="text">
-     <string>Merge</string>
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="rsc.qrc">
+      <normaloff>:/images/Assets/rotation.png</normaloff>:/images/Assets/rotation.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>40</width>
+      <height>40</height>
+     </size>
     </property>
    </widget>
-   <widget class="QPushButton" name="darken_btn">
+   <widget class="QPushButton" name="inverted_btn">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>660</y>
-      <width>131</width>
-      <height>51</height>
+      <x>30</x>
+      <y>260</y>
+      <width>60</width>
+      <height>60</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <family>Lucida Fax</family>
-      <pointsize>13</pointsize>
+      <family>Britannic Bold</family>
+      <pointsize>20</pointsize>
      </font>
     </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="toolTip">
+     <string>Inverted Filter</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 2px solid white;
+    border-radius: 10px;background-color: rgb(18, 164, 186);</string>
+    </property>
     <property name="text">
-     <string>Darken</string>
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="rsc.qrc">
+      <normaloff>:/images/Assets/invert-colors-button.png</normaloff>:/images/Assets/invert-colors-button.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>30</width>
+      <height>30</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Crop_btn">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>260</y>
+      <width>60</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>51</width>
+      <height>51</height>
+     </size>
+    </property>
+    <property name="font">
+     <font>
+      <family>Britannic Bold</family>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="toolTip">
+     <string>Crop Filter</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 2px solid white;
+    border-radius: 10px;background-color: rgb(18, 164, 186);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="rsc.qrc">
+      <normaloff>:/images/Assets/crop.png</normaloff>:/images/Assets/crop.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>25</width>
+      <height>25</height>
+     </size>
     </property>
    </widget>
    <widget class="QPushButton" name="lighten_btn">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>720</y>
-      <width>131</width>
-      <height>51</height>
+      <x>30</x>
+      <y>660</y>
+      <width>60</width>
+      <height>60</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <family>Lucida Fax</family>
-      <pointsize>13</pointsize>
+      <family>Britannic Bold</family>
+      <pointsize>20</pointsize>
      </font>
     </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="toolTip">
+     <string>Lighten Filter</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 2px solid white;
+    border-radius: 10px;background-color: rgb(18, 164, 186);</string>
+    </property>
     <property name="text">
-     <string>Lighten</string>
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="rsc.qrc">
+      <normaloff>:/images/Assets/lighten.png</normaloff>:/images/Assets/lighten.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>30</width>
+      <height>30</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="blur_btn">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>180</y>
+      <width>60</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Britannic Bold</family>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="toolTip">
+     <string>Blur Filter</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 2px solid white;
+    border-radius: 10px;background-color: rgb(18, 164, 186);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="rsc.qrc">
+      <normaloff>:/images/Assets/blur.png</normaloff>:/images/Assets/blur.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>30</width>
+      <height>30</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="darken_btn">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>820</y>
+      <width>60</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Britannic Bold</family>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="toolTip">
+     <string>Darken Filter</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 2px solid white;
+    border-radius: 10px;background-color: rgb(18, 164, 186);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="rsc.qrc">
+      <normaloff>:/images/Assets/darken.png</normaloff>:/images/Assets/darken.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>25</width>
+      <height>25</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="grayscale_btn">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>900</y>
+      <width>60</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Britannic Bold</family>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="toolTip">
+     <string>Grayscale Filter</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 2px solid white;
+    border-radius: 10px;background-color: rgb(18, 164, 186);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="rsc.qrc">
+      <normaloff>:/images/Assets/paint-bucket.png</normaloff>:/images/Assets/paint-bucket.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>30</width>
+      <height>30</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Pixelate_btn">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>500</y>
+      <width>60</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Britannic Bold</family>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="toolTip">
+     <string>Pixelate Filter</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 2px solid white;
+    border-radius: 10px;background-color: rgb(18, 164, 186);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="rsc.qrc">
+      <normaloff>:/images/Assets/pixel.png</normaloff>:/images/Assets/pixel.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>30</width>
+      <height>30</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="bw_btn">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>340</y>
+      <width>60</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Britannic Bold</family>
+      <pointsize>16</pointsize>
+      <kerning>true</kerning>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="toolTip">
+     <string>Black &amp; White Filter</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 2px solid white;
+    border-radius: 10px;background-color: rgb(18, 164, 186);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="rsc.qrc">
+      <normaloff>:/images/Assets/black-and-white.png</normaloff>:/images/Assets/black-and-white.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>30</width>
+      <height>30</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="sepia_btn">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>660</y>
+      <width>60</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Britannic Bold</family>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="toolTip">
+     <string>Sepia Filter</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 2px solid white;
+    border-radius: 10px;background-color: rgb(18, 164, 186);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="rsc.qrc">
+      <normaloff>:/images/Assets/sepia.png</normaloff>:/images/Assets/sepia.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>30</width>
+      <height>30</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="purble_btn">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>740</y>
+      <width>60</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Britannic Bold</family>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="toolTip">
+     <string>Purple Filter</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 2px solid white;
+    border-radius: 10px;background-color: rgb(18, 164, 186);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="rsc.qrc">
+      <normaloff>:/images/Assets/purple.png</normaloff>:/images/Assets/purple.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>30</width>
+      <height>30</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="TV_btn">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>580</y>
+      <width>60</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Britannic Bold</family>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="toolTip">
+     <string>TV Filter</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 2px solid white;
+    border-radius: 10px;background-color: rgb(18, 164, 186);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="rsc.qrc">
+      <normaloff>:/images/Assets/tv.png</normaloff>:/images/Assets/tv.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>30</width>
+      <height>30</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="IR_btn">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>500</y>
+      <width>60</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Britannic Bold</family>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="toolTip">
+     <string>Infrared Filter</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 2px solid white;
+    border-radius: 10px;background-color: rgb(18, 164, 186);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="rsc.qrc">
+      <normaloff>:/images/Assets/infrared.png</normaloff>:/images/Assets/infrared.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>25</width>
+      <height>25</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="frame_btn">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>740</y>
+      <width>60</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Britannic Bold</family>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="toolTip">
+     <string>Frame Filter</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 2px solid white;
+    border-radius: 10px;background-color: rgb(18, 164, 186);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="rsc.qrc">
+      <normaloff>:/images/Assets/frame.png</normaloff>:/images/Assets/frame.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>30</width>
+      <height>30</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="rsize_btn">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>340</y>
+      <width>60</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Britannic Bold</family>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="toolTip">
+     <string>Resize Filter</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 2px solid white;
+    border-radius: 10px;background-color: rgb(18, 164, 186);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="rsc.qrc">
+      <normaloff>:/images/Assets/resize.png</normaloff>:/images/Assets/resize.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>30</width>
+      <height>30</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="merge_btn">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>420</y>
+      <width>60</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Britannic Bold</family>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="toolTip">
+     <string>Merge Filter</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 2px solid white;
+    border-radius: 10px;background-color: rgb(18, 164, 186);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="rsc.qrc">
+      <normaloff>:/images/Assets/merge.png</normaloff>:/images/Assets/merge.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>30</width>
+      <height>30</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="oil_btn">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>820</y>
+      <width>60</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Britannic Bold</family>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="toolTip">
+     <string>Oil Painting Filter</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 2px solid white;
+    border-radius: 10px;background-color: rgb(18, 164, 186);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="rsc.qrc">
+      <normaloff>:/images/Assets/oil.png</normaloff>:/images/Assets/oil.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>30</width>
+      <height>30</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="original_image">
+    <property name="geometry">
+     <rect>
+      <x>760</x>
+      <y>790</y>
+      <width>60</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Britannic Bold</family>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="toolTip">
+     <string>Original Image</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 2px solid white;
+    border-radius: 10px;
+background-color: rgb(15, 98, 162);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="rsc.qrc">
+      <normaloff>:/images/Assets/before.png</normaloff>:/images/Assets/before.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>35</width>
+      <height>35</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="load_btn">
+    <property name="geometry">
+     <rect>
+      <x>850</x>
+      <y>790</y>
+      <width>60</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Britannic Bold</family>
+      <pointsize>20</pointsize>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="toolTip">
+     <string>Load Image</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 2px solid white;
+    border-radius: 10px;
+background-color: rgb(15, 98, 162);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="rsc.qrc">
+      <normaloff>:/images/Assets/load.png</normaloff>:/images/Assets/load.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>35</width>
+      <height>35</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="save_btn">
+    <property name="geometry">
+     <rect>
+      <x>940</x>
+      <y>790</y>
+      <width>60</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Britannic Bold</family>
+      <pointsize>20</pointsize>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="toolTip">
+     <string>Save Image</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 2px solid white;
+    border-radius: 10px;background-color: rgb(18, 164, 186);
+background-color: rgb(15, 98, 162);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="rsc.qrc">
+      <normaloff>:/images/Assets/save.png</normaloff>:/images/Assets/save.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>30</width>
+      <height>30</height>
+     </size>
     </property>
    </widget>
    <widget class="QLabel" name="logo">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>221</width>
-      <height>121</height>
+      <x>20</x>
+      <y>10</y>
+      <width>71</width>
+      <height>81</height>
      </rect>
     </property>
     <property name="text">
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>Assets/Logo.png</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
-    </property>
-    <property name="wordWrap">
-     <bool>true</bool>
-    </property>
-    <property name="openExternalLinks">
-     <bool>false</bool>
+     <pixmap resource="rsc.qrc">:/images/Assets/Photoshop_Budget.png</pixmap>
     </property>
    </widget>
-   <widget class="QPushButton" name="original_image">
+   <widget class="QWidget" name="shadow_btn" native="true">
     <property name="geometry">
      <rect>
-      <x>800</x>
-      <y>830</y>
-      <width>211</width>
-      <height>70</height>
+      <x>20</x>
+      <y>180</y>
+      <width>60</width>
+      <height>60</height>
      </rect>
     </property>
-    <property name="text">
-     <string>Original</string>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 0, 0);
+    border-radius: 10px;
+</string>
     </property>
    </widget>
+   <widget class="QWidget" name="shadow_btn_2" native="true">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>100</y>
+      <width>60</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 0, 0);
+    border-radius: 10px;
+</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="shadow_btn_4" native="true">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>100</y>
+      <width>60</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 0, 0);
+    border-radius: 10px;
+</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="shadow_btn_3" native="true">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>180</y>
+      <width>60</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 0, 0);
+    border-radius: 10px;
+</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="shadow_btn_8" native="true">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>260</y>
+      <width>60</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 0, 0);
+    border-radius: 10px;
+</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="shadow_btn_7" native="true">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>260</y>
+      <width>60</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 0, 0);
+    border-radius: 10px;
+</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="shadow_btn_6" native="true">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>340</y>
+      <width>60</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 0, 0);
+    border-radius: 10px;
+</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="shadow_btn_5" native="true">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>340</y>
+      <width>60</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 0, 0);
+    border-radius: 10px;
+</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="shadow_btn_9" native="true">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>500</y>
+      <width>60</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 0, 0);
+    border-radius: 10px;
+</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="shadow_btn_10" native="true">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>580</y>
+      <width>60</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 0, 0);
+    border-radius: 10px;
+</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="shadow_btn_11" native="true">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>500</y>
+      <width>60</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 0, 0);
+    border-radius: 10px;
+</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="shadow_btn_12" native="true">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>420</y>
+      <width>60</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 0, 0);
+    border-radius: 10px;
+</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="shadow_btn_13" native="true">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>420</y>
+      <width>60</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 0, 0);
+    border-radius: 10px;
+</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="shadow_btn_14" native="true">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>820</y>
+      <width>60</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 0, 0);
+    border-radius: 10px;
+</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="shadow_btn_15" native="true">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>660</y>
+      <width>60</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 0, 0);
+    border-radius: 10px;
+</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="shadow_btn_16" native="true">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>580</y>
+      <width>60</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 0, 0);
+    border-radius: 10px;
+</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="shadow_btn_17" native="true">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>740</y>
+      <width>60</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 0, 0);
+    border-radius: 10px;
+</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="shadow_btn_18" native="true">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>660</y>
+      <width>60</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 0, 0);
+    border-radius: 10px;
+</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="shadow_btn_19" native="true">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>740</y>
+      <width>60</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 0, 0);
+    border-radius: 10px;
+</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="shadow_btn_20" native="true">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>900</y>
+      <width>60</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 0, 0);
+    border-radius: 10px;
+</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="shadow_btn_21" native="true">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>820</y>
+      <width>60</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 0, 0);
+    border-radius: 10px;
+</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="shadow_btn_22" native="true">
+    <property name="geometry">
+     <rect>
+      <x>750</x>
+      <y>790</y>
+      <width>60</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 0, 0);
+    border-radius: 10px;
+</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="shadow_btn_23" native="true">
+    <property name="geometry">
+     <rect>
+      <x>840</x>
+      <y>790</y>
+      <width>60</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 0, 0);
+    border-radius: 10px;
+</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="shadow_btn_24" native="true">
+    <property name="geometry">
+     <rect>
+      <x>930</x>
+      <y>790</y>
+      <width>60</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(0, 0, 0);
+    border-radius: 10px;
+</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="shadow_2" native="true">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>100</y>
+      <width>100</width>
+      <height>661</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(3, 3, 3);
+    border-radius: 30px;</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="widget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>90</y>
+      <width>1230</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 1px solid;
+border-radius: 30px;
+background-color: rgb(0, 0, 0);</string>
+    </property>
+   </widget>
+   <zorder>widget</zorder>
+   <zorder>shadow_2</zorder>
+   <zorder>shadow_btn_22</zorder>
+   <zorder>shadow_btn_23</zorder>
+   <zorder>shadow_btn_24</zorder>
+   <zorder>shadow_btn_8</zorder>
+   <zorder>shadow_btn_5</zorder>
+   <zorder>shadow_btn_6</zorder>
+   <zorder>shadow_btn_4</zorder>
+   <zorder>shadow_btn_2</zorder>
+   <zorder>shadow_btn_3</zorder>
+   <zorder>shadow_btn_7</zorder>
+   <zorder>shadow_btn</zorder>
+   <zorder>shadow_btn_20</zorder>
+   <zorder>shadow_btn_13</zorder>
+   <zorder>shadow_btn_11</zorder>
+   <zorder>shadow_btn_19</zorder>
+   <zorder>shadow_btn_12</zorder>
+   <zorder>shadow_btn_21</zorder>
+   <zorder>shadow_btn_17</zorder>
+   <zorder>shadow_btn_9</zorder>
+   <zorder>shadow_btn_18</zorder>
+   <zorder>shadow_btn_10</zorder>
+   <zorder>shadow_btn_16</zorder>
+   <zorder>shadow_btn_15</zorder>
+   <zorder>shadow_btn_14</zorder>
+   <zorder>image_frame</zorder>
+   <zorder>edge_btn</zorder>
+   <zorder>skewed_btn</zorder>
+   <zorder>sunlight_btn</zorder>
+   <zorder>flip_btn</zorder>
+   <zorder>rotate_btn</zorder>
+   <zorder>inverted_btn</zorder>
+   <zorder>Crop_btn</zorder>
+   <zorder>lighten_btn</zorder>
+   <zorder>blur_btn</zorder>
+   <zorder>darken_btn</zorder>
+   <zorder>grayscale_btn</zorder>
+   <zorder>Pixelate_btn</zorder>
+   <zorder>bw_btn</zorder>
+   <zorder>sepia_btn</zorder>
+   <zorder>purble_btn</zorder>
+   <zorder>TV_btn</zorder>
+   <zorder>IR_btn</zorder>
+   <zorder>frame_btn</zorder>
+   <zorder>rsize_btn</zorder>
+   <zorder>merge_btn</zorder>
+   <zorder>oil_btn</zorder>
+   <zorder>original_image</zorder>
+   <zorder>load_btn</zorder>
+   <zorder>save_btn</zorder>
+   <zorder>logo</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="enabled">
@@ -650,9 +1528,6 @@
    <property name="autoFillBackground">
     <bool>false</bool>
    </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(255, 255, 255);</string>
-   </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">
      <string>File</string>
@@ -671,7 +1546,7 @@
     </size>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(97, 97, 97);</string>
+    <string notr="true">background-color: rgb(59, 60, 61);</string>
    </property>
    <property name="floating">
     <bool>false</bool>
@@ -690,7 +1565,7 @@
      </size>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(64, 65, 66);</string>
+     <string notr="true">background-color: rgb(63, 64, 65);</string>
     </property>
     <widget class="QStackedWidget" name="stackedWidget">
      <property name="geometry">
@@ -773,11 +1648,17 @@
          <x>40</x>
          <y>60</y>
          <width>191</width>
-         <height>41</height>
+         <height>31</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <family>Sitka Banner</family>
+         <pointsize>25</pointsize>
+        </font>
+       </property>
        <property name="text">
-        <string>The Starting Points</string>
+        <string>Start (x,y)</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_3">
@@ -811,26 +1692,6 @@
       </widget>
      </widget>
      <widget class="QWidget" name="dark_light_optn">
-      <widget class="QLabel" name="brightness_degree">
-       <property name="geometry">
-        <rect>
-         <x>90</x>
-         <y>190</y>
-         <width>61</width>
-         <height>61</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Lucida Fax</family>
-         <pointsize>24</pointsize>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>0</string>
-       </property>
-      </widget>
       <widget class="QSlider" name="brightness_degree_slider">
        <property name="geometry">
         <rect>
@@ -865,29 +1726,93 @@
       <widget class="QPushButton" name="apply_vertical">
        <property name="geometry">
         <rect>
-         <x>10</x>
-         <y>220</y>
-         <width>201</width>
-         <height>61</height>
+         <x>50</x>
+         <y>310</y>
+         <width>100</width>
+         <height>100</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">border: 2px solid white;
+    border-radius: 10px;background-color: rgb(18, 164, 186);
+background-color: rgb(132, 66, 170);</string>
+       </property>
        <property name="text">
-        <string>Vertical Flip</string>
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="rsc.qrc">
+         <normaloff>:/images/Assets/flipv.png</normaloff>:/images/Assets/flipv.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>50</width>
+         <height>50</height>
+        </size>
        </property>
       </widget>
       <widget class="QPushButton" name="apply_horizontal">
        <property name="geometry">
         <rect>
-         <x>10</x>
-         <y>350</y>
-         <width>211</width>
-         <height>61</height>
+         <x>50</x>
+         <y>490</y>
+         <width>100</width>
+         <height>100</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">border: 2px solid white;
+    border-radius: 10px;background-color: rgb(18, 164, 186);
+background-color: rgb(132, 66, 170);</string>
+       </property>
        <property name="text">
-        <string>Horizontal Flip </string>
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="rsc.qrc">
+         <normaloff>:/images/Assets/fliph.png</normaloff>:/images/Assets/fliph.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>50</width>
+         <height>50</height>
+        </size>
        </property>
       </widget>
+      <widget class="QWidget" name="widget_2" native="true">
+       <property name="geometry">
+        <rect>
+         <x>60</x>
+         <y>490</y>
+         <width>100</width>
+         <height>100</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border: 2px solid;
+    border-radius: 10px;
+background-color: rgb(0, 0, 0);</string>
+       </property>
+      </widget>
+      <widget class="QWidget" name="widget_3" native="true">
+       <property name="geometry">
+        <rect>
+         <x>60</x>
+         <y>310</y>
+         <width>100</width>
+         <height>100</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border: 2px solid;
+    border-radius: 10px;
+background-color: rgb(0, 0, 0);</string>
+       </property>
+      </widget>
+      <zorder>widget_2</zorder>
+      <zorder>widget_3</zorder>
+      <zorder>apply_vertical</zorder>
+      <zorder>apply_horizontal</zorder>
      </widget>
      <widget class="QWidget" name="frame_optn">
       <property name="styleSheet">
@@ -1312,11 +2237,19 @@ background-color: rgb(93, 111, 61);</string>
    </widget>
   </widget>
   <action name="actionLoad_Image">
+   <property name="icon">
+    <iconset resource="rsc.qrc">
+     <normaloff>:/images/Assets/load.png</normaloff>:/images/Assets/load.png</iconset>
+   </property>
    <property name="text">
     <string>Load Image</string>
    </property>
   </action>
   <action name="actionSave_Image">
+   <property name="icon">
+    <iconset resource="rsc.qrc">
+     <normaloff>:/images/Assets/save.png</normaloff>:/images/Assets/save.png</iconset>
+   </property>
    <property name="text">
     <string>Save Image</string>
    </property>

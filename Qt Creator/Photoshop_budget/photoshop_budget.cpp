@@ -55,21 +55,14 @@ connect(ui->horizontal, &QPushButton::clicked, this, &Photoshop_budget::on_horiz
     // connect(ui->frame_size_val, &QSpinBox::valueChanged, this, &Photoshop_budget::on_frame_size_val_valueChanged);
     connect(ui->frame_btn, &QPushButton::clicked, this, &Photoshop_budget::on_frame_btn_clicked);
     // connect(ui->apply_frame, &QPushButton::clicked, this, &Photoshop_budget::on_apply_frame_clicked);
-
     ui->dock_Widget_2->hide();
 
-    //logo
-    QPixmap pixmap(":/images/Assets/Logo.png");
-    int logo_w = ui->logo->width();
-    int logo_h = ui->logo->height();
-    ui->logo->setPixmap(pixmap.scaled(logo_w, logo_h, Qt::KeepAspectRatio));
 
     // Set the alignment of the image label to center
     ui->image->setAlignment(Qt::AlignCenter);
     QPixmap pix(":/images/Assets/image-holder-icon-614x460.png");
-    int w = ui->image->width();
-    int h = ui->image->height();
-
+    int w = 500;
+    int h = 500;
     // Set the pixmap to the label with scaled size
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
 
@@ -135,7 +128,7 @@ void Photoshop_budget::on_load_btn_clicked()
         int w = ui->image->width();
         int h = ui->image->height();
         ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
-        image = image_path(file_name.toStdString());
+        // image = image_path(file_name.toStdString());
     }
     else //file didn't open
     {
@@ -144,7 +137,6 @@ void Photoshop_budget::on_load_btn_clicked()
         msgError.setIcon(QMessageBox::Critical);
         msgError.setWindowTitle("File not opened");
         msgError.exec();
-        file_name = "";
     }
     original = file_name ;
 }
@@ -279,7 +271,6 @@ void Photoshop_budget::on_oil_btn_clicked()
 int degree = 0;
 void Photoshop_budget::on_brightness_degree_slider_valueChanged(int value)
 {
-    ui->brightness_degree->setText(QString::number(value));
     degree = value;
 }
 int cntrd = 0;
@@ -288,7 +279,7 @@ void Photoshop_budget::on_darken_btn_clicked()
 {
     ui->dock_Widget_2->show();
     ui->stackedWidget->setCurrentIndex(2);
-    degree = 0;
+    ui->brightness_degree_slider->setValue(0);
     cntrd = 1;
     cntrl = 0;
 }
@@ -296,7 +287,7 @@ void Photoshop_budget::on_lighten_btn_clicked()
 {
     ui->dock_Widget_2->show();
     ui->stackedWidget->setCurrentIndex(2);
-    degree = 0;
+    ui->brightness_degree_slider->setValue(0);
     cntrl = 1;
     cntrd = 0;
 }
@@ -346,7 +337,6 @@ void Photoshop_budget::on_skew_degree_val_valueChanged(int arg1)
 
 void Photoshop_budget::on_apply_skew_clicked()
 {
-    QMessageBox::information(this, "test",QString::number(skew_degree));
     Skewed(file_name.toStdString(),filePath.toStdString(),skew_degree);
     QPixmap pix(filePath);
     int w = ui->image->width();
@@ -529,8 +519,15 @@ void Photoshop_budget::on_resize_height_valueChanged(int height)
 
 
 void Photoshop_budget::on_apply_resize_clicked()
-{ //
-  cout << res_height<<" "<<res_width <<endl ;
+{
+    if (res_height != res_width) {
+        QMessageBox msgError;
+        msgError.setText("Please make the dimensions equal !! ");
+        msgError.setIcon(QMessageBox::Critical);
+        msgError.setWindowTitle("File not opened");
+        msgError.exec();
+        return ;
+    }
   resize_filter(file_name.toStdString(),filePath.toStdString(),res_width,res_height);
     QPixmap pix(filePath);
   int w = ui->image->width();
