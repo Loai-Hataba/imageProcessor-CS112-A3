@@ -17,7 +17,7 @@ int valid(string& input) ;
 void grayscale(string path ,string filePath);
 void black_white(string path ,string filePath);
 void inverted(string path,string filePath);
-void merge(string path,string filePath);
+void merge(string path,string filePath,int choice,string merge_path);
 void flip(string path,string filePath,string choice) ;
 void rotate(string path,string filePath, int angle);
 void darken(string path,string filePath,int degree);

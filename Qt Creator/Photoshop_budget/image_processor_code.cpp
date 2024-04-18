@@ -149,58 +149,41 @@ Image resizeMerge(Image image, int max_width, int max_height) { //straight up co
     }
     return resized_Img;
 }
-// void merge(Image image1) //Hossam (Done)
-// {
-//     string file_name;  //2nd image input
-//     cout << "Please enter 2nd image name (Default is .jpg): ";
-//     cin >> file_name;
-//     string check = file_check(file_name);
-//     while (check == "None") {
-//         cout << "Please enter 2nd image name (Default is .jpg): ";
-//         cin >> file_name;
-//         check = file_check(file_name);
-//     }
-//     string path = check;
-//     Image image(path);
-//     char choice;
-//     cout<<"1) Scale both images to the biggest height and width\n"
-//             "2) Merge common area of the smaller image\n"
-//             "Choice: ";
-//     cin >> choice;
-//     while (choice!='1' && choice!='2'){
-//         cout<<"Invalid choice,please choose from (1,2):";
-//         cin>>choice;
-//     }
-//     if (choice == '1') { //common area of smaller image
-//         //making another image that have them both merged and setting its dimensions to the smaller image
-//         Image image3(min(image1.width, image.width), min(image1.height, image.height));
-//         for (int i = 0; i < image3.width; ++i) {
-//             for (int j = 0; j < image3.height; ++j) {
-//                 for (int k = 0; k < 3; ++k) {
-//                     //merging them by adding the colors of evey pixel from both images to output image and dividing by 2
-//                     image3(i, j, k) = (image(i, j, k) + image1(i, j, k)) / 2;
-//                 }
-//             }
-//         }
-//         cout << "Filter Applied...\n";
+void merge(string path,string filePath,int choice,string merge_path) //Hossam (Done)
+{
+    Image image1(path);
+    Image image(merge_path);
+    if (choice == 1) { //common area of smaller image
+        //making another image that have them both merged and setting its dimensions to the smaller image
+        Image image3(min(image1.width, image.width), min(image1.height, image.height));
+        for (int i = 0; i < image3.width; ++i) {
+            for (int j = 0; j < image3.height; ++j) {
+                for (int k = 0; k < 3; ++k) {
+                    //merging them by adding the colors of evey pixel from both images to output image and dividing by 2
+                    image3(i, j, k) = (image(i, j, k) + image1(i, j, k)) / 2;
+                }
+            }
+        }
+        save(image3,0,filePath);
+        cout << "Filter Applied...\n";
 
-//     } else { //resized both images to the greatest height and width
-//         int m_width = max(image1.width, image.width);
-//         int m_height = max(image1.height, image.height);
-//         Image image3(m_width, m_height);
-//         Image resized_im1 = resizeMerge(image1,m_width,m_height);
-//         Image resized_im2 = resizeMerge(image,m_width,m_height);
-//         for (int i = 0; i < image3.width; ++i) {
-//             for (int j = 0; j < image3.height; ++j) {
-//                 for (int k = 0; k < 3; ++k) {
-//                     image3(i, j, k) = (resized_im1(i, j, k) + resized_im2(i, j, k)) / 2;
-//                 }
-//             }
-//         }
-//         save()
-//         cout << "Filter Applied...\n";
-//     }
-// }
+    } else { //resized both images to the greatest height and width
+        int m_width = max(image1.width, image.width);
+        int m_height = max(image1.height, image.height);
+        Image image3(m_width, m_height);
+        Image resized_im1 = resizeMerge(image1,m_width,m_height);
+        Image resized_im2 = resizeMerge(image,m_width,m_height);
+        for (int i = 0; i < image3.width; ++i) {
+            for (int j = 0; j < image3.height; ++j) {
+                for (int k = 0; k < 3; ++k) {
+                    image3(i, j, k) = (resized_im1(i, j, k) + resized_im2(i, j, k)) / 2;
+                }
+            }
+        }
+        save(image3,0,filePath);
+        cout << "Filter Applied...\n";
+    }
+}
 
 //!
 void flip(string path,string filePath,string choice) //Abdallah (Done)
@@ -279,13 +262,15 @@ void rotate(string path ,string filePath, int angle) //Loai (Done)
 
 void darken(string path , string filePath,int degree) //Hossam (Done)
 {  Image image(path);
+    degree = abs(100-degree);
     for (int i = 0; i < image.width; i++) {
         for (int j = 0; j < image.height; j++) {
             //getting color values
             int red = image(i, j, 0);
             int green = image(i, j, 1);
             int blue = image(i, j, 2);
-            red = red - red * degree /100;                //take the original value of the color and subtracting it from its determined fraction value thus darkening it
+            degree = min(70,degree);
+            red = red - red * degree / 100;                //take the original value of the color and subtracting it from its determined fraction value thus darkening it
             green = green - green * degree / 100;
             blue = blue - blue * degree / 100;
             image(i, j, 2) = blue;
@@ -293,26 +278,29 @@ void darken(string path , string filePath,int degree) //Hossam (Done)
             image(i, j, 0) = red;
         }
     }
-    save(image,0,filePath) ;
-    cout << "Filter Applied...\n";
+        save(image,0,filePath) ;
+        cout << "Filter Applied...\n";
 
-}
-void lighten(string path , string filePath,int degree){ //Hossam (Done){
-    Image image(path);
-    for (int i = 0; i < image.width; i++) {
-        for (int j = 0; j < image.height; j++) {
-            //getting color values
-            int red = image(i, j, 0);
-            int green = image(i, j, 1);
-            int blue = image(i, j, 2);
-            red = min(red + red * degree / 100,255);      // same as darkening but adding its determined fraction instead and taking the minimum of it and the color white in case the addition exceeds 255
-            green = min(green + green * degree / 100, 255);
-            blue = min(blue + blue * degree / 100, 255);
-            image(i, j, 2) = blue;
-            image(i, j, 1) = green;
-            image(i, j, 0) = red;
-        }
     }
+    void lighten(string path , string filePath,int degree){ //Hossam (Done){
+        Image image(path);
+        if(degree == 0){
+            save(image,0,filePath) ;
+        }
+        for (int i = 0; i < image.width; i++) {
+            for (int j = 0; j < image.height; j++) {
+                //getting color values
+                int red = image(i, j, 0);
+                int green = image(i, j, 1);
+                int blue = image(i, j, 2);
+                red = min(red + red * degree / 100,230);      // same as darkening but adding its determined fraction instead and taking the minimum of it and the color white in case the addition exceeds 255
+                green = min(green + green * degree / 100, 230);
+                blue = min(blue + blue * degree / 100, 230);
+                image(i, j, 2) = blue;
+                image(i, j, 1) = green;
+                image(i, j, 0) = red;
+            }
+        }
     save(image,0,filePath) ;
     cout << "Filter Applied...\n";
 }
@@ -544,7 +532,6 @@ void resize_filter(string path,string filePath ,int res_width,int res_height) //
             }
             save(resized_Img,0,filePath) ;
             cout << "Filter Applied...\n";
-
         }
 
     }
