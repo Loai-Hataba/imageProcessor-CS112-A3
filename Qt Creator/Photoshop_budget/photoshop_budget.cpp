@@ -302,16 +302,19 @@ void Photoshop_budget::on_lighten_btn_clicked()
 }
 void Photoshop_budget::on_apply_brightness_btn_clicked()
 {
-    if(cntrd == 1){
-        darken(file_name.toStdString(),filePath.toStdString(),degree);
+    int temp = degree;
+    if(temp < 50){
+        temp *= 2;
+        darken(file_name.toStdString(),filePath.toStdString(),temp);
         QPixmap pix(filePath);
         int w = ui->image->width();
         int h = ui->image->height();
         ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
         file_name = filePath;
     }
-    else if(cntrl == 1){
-        lighten(file_name.toStdString(),filePath.toStdString(),degree);
+    else if(temp >= 50){
+        temp = (temp-50) * 2;
+        lighten(file_name.toStdString(),filePath.toStdString(),temp);
         QPixmap pix(filePath);
         int w = ui->image->width();
         int h = ui->image->height();
