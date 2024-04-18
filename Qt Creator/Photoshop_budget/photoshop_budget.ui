@@ -2006,7 +2006,7 @@ background-color: rgb(15, 98, 162);</string>
       </rect>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="blur_optn">
       <widget class="QRadioButton" name="blur">
@@ -2651,7 +2651,7 @@ background-color: rgb(0,0,0);</string>
         </font>
        </property>
        <property name="text">
-        <string>Brigthness</string>
+        <string>Brightness</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_37">
