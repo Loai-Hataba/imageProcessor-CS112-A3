@@ -654,6 +654,16 @@ void Photoshop_budget::on_apply_resize_clicked()
         msgError.exec();
         return ;
     }
+{ //
+  cout << res_height<<" "<<res_width <<endl ;
+    if (res_height != res_width) {
+      QMessageBox msgError;
+      msgError.setText("Please make the dimensions equal !! ");
+      msgError.setIcon(QMessageBox::Critical);
+      msgError.setWindowTitle("File not opened");
+      msgError.exec();
+      return ;
+  }
   resize_filter(file_name.toStdString(),filePath.toStdString(),res_width,res_height);
     QPixmap pix(filePath);
   int w = ui->image->width();
