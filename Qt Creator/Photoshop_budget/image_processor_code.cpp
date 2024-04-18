@@ -532,7 +532,6 @@ void resize_filter(string path,string filePath ,int res_width,int res_height) //
             }
             save(resized_Img,0,filePath) ;
             cout << "Filter Applied...\n";
-
         }
 
     }

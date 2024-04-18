@@ -1121,7 +1121,7 @@ void resize(Image image) //Abdallah (Done)
     }
 }
 
-void blur(Image image) //Loai (Done)
+/*void blur(Image image) //Loai (Done)
 {
     int blur_size = 7;
 //    string temp;
@@ -1184,92 +1184,93 @@ void blur(Image image) //Loai (Done)
     }
     cout << "Filter Applied...\n";
     menu(blurred_image);
+}*/
+int safeAccess(const vector<vector<int>>& sat, int y, int x, int height, int width) {
+    if (y < 0 || x < 0 || y >= height || x >= width) {
+        return 0; // Return 0 if out-of-bounds
+    }
+    return sat[y][x];
+}
+void blur(Image image) {
+    int blur_size =  28 ;
+    int height = image.height;
+    int width = image.width;
+
+    // Create a new image that is larger than the original image by 2*blur_size in each dimension
+    Image padded_image(width + 2 * blur_size, height + 2 * blur_size);
+
+    // Copy the original image into the center of the new image
+    for (int i = 0; i < width; ++i) {
+        for (int j = 0; j < height; ++j) {
+            padded_image(i + blur_size, j + blur_size, 0) = image(i, j, 0);
+            padded_image(i + blur_size, j + blur_size, 1) = image(i, j, 1);
+            padded_image(i + blur_size, j + blur_size, 2) = image(i, j, 2);
+        }
+    }
+
+    // Create the summed area table
+    vector<vector<int>> satR(padded_image.height, vector<int>(padded_image.width));
+    vector<vector<int>> satG(padded_image.height, vector<int>(padded_image.width));
+    vector<vector<int>> satB(padded_image.height, vector<int>(padded_image.width));
+
+    // Compute the summed area table
+    for (int i = 0; i < padded_image.width; ++i) {
+        for (int j = 0; j < padded_image.height; ++j) {
+            satR[j][i] = padded_image(i, j, 0) +
+                         (i > 0 ? satR[j][i - 1] : 0) +
+                         (j > 0 ? satR[j - 1][i] : 0) -
+                         (i > 0 && j > 0 ? satR[j - 1][i - 1] : 0);
+            satG[j][i] = padded_image(i, j, 1) +
+                         (i > 0 ? satG[j][i - 1] : 0) +
+                         (j > 0 ? satG[j - 1][i] : 0) -
+                         (i > 0 && j > 0 ? satG[j - 1][i - 1] : 0);
+            satB[j][i] = padded_image(i, j, 2) +
+                         (i > 0 ? satB[j][i - 1] : 0) +
+                         (j > 0 ? satB[j - 1][i] : 0) -
+                         (i > 0 && j > 0 ? satB[j - 1][i - 1] : 0);
+        }
+    }
+
+    Image blurred_image(width, height);
+
+    // Apply the blur using the summed area table
+    for (int i = 0; i < width; ++i) {
+        for (int j = 0; j < height; ++j) {
+            // Dynamically adjust the blur size based on the pixel's distance from the edge
+            int dynamic_blur_size_x = min({blur_size, i, width - i - 1});
+            int dynamic_blur_size_y = min({blur_size, j, height - j - 1});
+            int dynamic_blur_size = min(dynamic_blur_size_x, dynamic_blur_size_y);
+
+            // Calculate the coordinates of the blur area, including the padded area
+            int x1 = max(i - dynamic_blur_size + blur_size, 0);
+            int x2 = min(i + dynamic_blur_size + blur_size, padded_image.width - 1);
+            int y1 = max(j - dynamic_blur_size + blur_size, 0);
+            int y2 = min(j + dynamic_blur_size + blur_size, padded_image.height - 1);
+
+            // Calculate the number of pixels in the blur area
+            int count = (x2 - x1 + 1) * (y2 - y1 + 1);
+
+            // Use the summed area table to compute the sum of pixel values in the blur area
+            int sumR = satR[y2][x2] - (x1 > 0 ? satR[y2][x1 - 1] : 0) - (y1 > 0 ? satR[y1 - 1][x2] : 0) +
+                       ((x1 > 0 && y1 > 0) ? satR[y1 - 1][x1 - 1] : 0);
+            int sumG = satG[y2][x2] - (x1 > 0 ? satG[y2][x1 - 1] : 0) - (y1 > 0 ? satG[y1 - 1][x2] : 0) +
+                       ((x1 > 0 && y1 > 0) ? satG[y1 - 1][x1 - 1] : 0);
+            int sumB = satB[y2][x2] - (x1 > 0 ? satB[y2][x1 - 1] : 0) - (y1 > 0 ? satB[y1 - 1][x2] : 0) +
+                       ((x1 > 0 && y1 > 0) ? satB[y1 - 1][x1 - 1] : 0);
+
+            // Compute the average pixel value in the blur area and clamp it to the valid range
+            blurred_image(i, j, 0) = clamp(sumR / count, 0, 255);
+            blurred_image(i, j, 1) = clamp(sumG / count, 0, 255);
+            blurred_image(i, j, 2) = clamp(sumB / count, 0, 255);
+        }
+    }
+
+    cout << "Filter Applied...\n";
+    // Assuming `menu` function displays or processes the blurred image
+    menu(blurred_image);
 }
 
-//// Clamping function
-//int clamp(int val, int min_val, int max_val) {
-//    return max(min_val, min(max_val, val));
-//}
-//
-//void blur(Image image)
-//{
-//    cout << "1\n";
-//    int blur_size = 10;
-//    int height = image.height;
-//    int width = image.width;
-//
-//    // Create a new image that is larger than the original image by 2*blur_size in each dimension
-//    Image padded_image(width + 2*blur_size, height + 2*blur_size);
-//
-//    // Copy the original image into the center of the new image
-//    for (int i = 0; i < width; ++i) {
-//        for (int j = 0; j < height; ++j) {
-//            padded_image(i + blur_size, j + blur_size, 0) = image(i, j, 0);
-//            padded_image(i + blur_size, j + blur_size, 1) = image(i, j, 1);
-//            padded_image(i + blur_size, j + blur_size, 2) = image(i, j, 2);
-//        }
-//    }
-//cout << "2\n";
-//    int count = 0;
-//    // Fill in the border of the new image with the nearest edge pixel from the original image
-//    for (int i = 0; i < padded_image.width; ++i) {
-//        for (int j = 0; j < blur_size; ++j) { // Top border
-//            int clamped_i = clamp(i - blur_size, 0, width - 1);  // Subtract blur_size from i before clamping
-//            padded_image(i, j, 0) = image(clamped_i, 0, 0);
-//            padded_image(i, j, 1) = image(clamped_i, 0, 1);
-//            padded_image(i, j, 2) = image(clamped_i, 0, 2);
-//        }
-//        for (int j = padded_image.height - blur_size; j < padded_image.height; ++j) { // Bottom border
-//            int clamped_i = clamp(i - blur_size, 0, width - 1);  // Subtract blur_size from i before clamping
-//            padded_image(i, j, 0) = image(clamped_i, height - 1, 0);
-//            padded_image(i, j, 1) = image(clamped_i, height - 1, 1);
-//            padded_image(i, j, 2) = image(clamped_i, height - 1, 2);
-//        }
-//        count++;
-//        cout << count << endl;
-//    }
-//
-//
-//    // Create the summed area table
-//    vector<vector<int>> satR(height, vector<int>(width));
-//    vector<vector<int>> satG(height, vector<int>(width));
-//    vector<vector<int>> satB(height, vector<int>(width));
-//    cout << "nos\n";
-//    // Compute the summed area table
-//    for (int i = 0; i < width; ++i) {
-//        for (int j = 0; j < height; ++j) {
-//            satR[i][j] = padded_image(i, j, 0) + (i > 0 ? satR[i-1][j] : 0) + (j > 0 ? satR[i][j-1] : 0) - (i > 0 && j > 0 ? satR[i-1][j-1] : 0);
-//            satG[i][j] = padded_image(i, j, 1) + (i > 0 ? satG[i-1][j] : 0) + (j > 0 ? satG[i][j-1] : 0) - (i > 0 && j > 0 ? satG[i-1][j-1] : 0);
-//            satB[i][j] = padded_image(i, j, 2) + (i > 0 ? satB[i-1][j] : 0) + (j > 0 ? satB[i][j-1] : 0) - (i > 0 && j > 0 ? satB[i-1][j-1] : 0);
-//        }
-//    }
-//    Image blurred_image(width, height);
-//    // Apply the blur using the summed area table
-//    for (int i = 0; i < width; ++i) {
-//        for (int j = 0; j < height; ++j) {
-//            // Dynamically adjust the blur size based on the pixel's distance from the edge
-//            int dynamic_blur_size = min({blur_size, i, j, width - i - 1, height - j - 1});
-//
-//            int x1 = j - dynamic_blur_size;
-//            int x2 = j + dynamic_blur_size;
-//            int y1 = i - dynamic_blur_size;
-//            int y2 = i + dynamic_blur_size;
-//
-//            int count = (x2 - x1 + 1) * (y2 - y1 + 1);
-//
-//            int sumR = satR[y2][x2] - (x1 > 0 ? satR[y2][x1-1] : 0) - (y1 > 0 ? satR[y1-1][x2] : 0) + (x1 > 0 && y1 > 0 ? satR[y1-1][x1-1] : 0);
-//            int sumG = satG[y2][x2] - (x1 > 0 ? satG[y2][x1-1] : 0) - (y1 > 0 ? satG[y1-1][x2] : 0) + (x1 > 0 && y1 > 0 ? satG[y1-1][x1-1] : 0);
-//            int sumB = satB[y2][x2] - (x1 > 0 ? satB[y2][x1-1] : 0) - (y1 > 0 ? satB[y1-1][x2] : 0) + (x1 > 0 && y1 > 0 ? satB[y1-1][x1-1] : 0);
-//
-//            // Clamp the color values to the valid range
-//            blurred_image(i, j, 0) = clamp(sumR / count, 0, 255);
-//            blurred_image(i, j, 1) = clamp(sumG / count, 0, 255);
-//            blurred_image(i, j, 2) = clamp(sumB / count, 0, 255);
-//        }
-//    }
-//    cout << "Filter Applied...\n";
-//    menu(blurred_image);
-//}
+
 
 
 
