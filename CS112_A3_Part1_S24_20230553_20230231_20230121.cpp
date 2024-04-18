@@ -573,7 +573,6 @@ int valid(string& input) {
         cout << "\nInvalid input! Please enter valid dimensions (digits only).\n";
         cin.clear();  // Clear the input buffer to avoid the infinite loop
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
-
         return -1;
     }
 }
@@ -1527,31 +1526,31 @@ void Skewed(Image image) {
     int deg1 = stoi(deg);
     bool flip = deg1 > 90;
     if (flip)deg1 -= 90;//if degree greater than 90 just skew it normally then flip
-    int margin_of_error = 0;
-    if (deg1 <= 20 && deg1>0){
+    int margin_of_error = 0;//margin of error adds space for low-degree skew
+    //degrees below 60 are hard to skew normally using cos so they are separated to 3 parts
+    if (deg1 <= 20 && deg1>0){ //from 0 to 20 is just a 20 degree skew
         deg1 = 20;
         margin_of_error = image.width * 2;
     }
-    if (deg1 <= 40 && deg1>20){
+    if (deg1 <= 40 && deg1>20){//from 20 to 40 is just a 40 degree skew
         deg1 = 40;
         margin_of_error = image.width * 3;
         margin_of_error/=2;
     }
-    if (deg1 <= 60 && deg1>40)deg1 = 60;
+    if (deg1 <= 60 && deg1>40)deg1 = 60;//from 40 to 60 is just a 60 degree skew
     double y = deg1 * 3.14159 / 180;//convert degree to radian so we can use cosine
-    int cnt = (double) image.height * cos(y);
-
-    Image white(abs((int) (image.width + cnt + margin_of_error)), image.height);
+    int cnt = (double) image.height * cos(y); //cnt is the added width to the original width so that we can operate the filter
+    Image white(abs((int) (image.width + cnt + margin_of_error)), image.height); //new image that has the full filter applied to it
     for (int i = 0; i < white.height; ++i) {
         for (int j = 0; j < white.width; ++j) {
             for (int k = 0; k < 3; ++k) {
-                white(j, i, k) = 255;
+                white(j, i, k) = 255; //make it a large white image
             }
         }
     }
-    cnt+=margin_of_error;
-    int denom = ceil(image.height / (double) cnt);
-    int diff = 1;
+    cnt += margin_of_error; //add margin of error to cnt for degrees lower than 40
+    int denom = ceil(image.height / (double) cnt); //denom is how much rows to be passed without skewing
+    int diff = 1; //diffrance between each row
     if (deg1 <= 20 && deg1>0)diff = 2;
     if (deg1 <= 40 && deg1>20){
         denom = 1;
@@ -1561,15 +1560,14 @@ void Skewed(Image image) {
         if (cnt <= 0)cnt = 0;
         for (int j = 0; j < image.width; ++j) {
             for (int k = 0; k < 3; ++k) {
-                white(j + cnt, i, k) = image(j, i, k);
+                white(j + cnt, i, k) = image(j, i, k); //then we add the image to the white one skewed
             }
         }
-        if (cnt <= 0)cnt = 0;
         if (i % denom == 0){
             cnt-=diff;
         }
     }
-    if (flip) {
+    if (flip) {  //flip horizontally if degree more than 90
         Image flipped_image(white.width, white.height);
         for (int i = white.width - 1; i >= 0; i--) {
             for (int j = 0; j < white.height; ++j) {
@@ -1602,11 +1600,9 @@ void Pixelate(Image image) {
                         int counter = 0;
                         for (int x = i; x < i + Pixel_Size && x < image.width; ++x) {
                             for (int y = j; y < j + Pixel_Size && y < image.height; ++y) {
-                                avgRed += image(x, y,
-                                                0); // assign it to equal the sum of each red channel                                avgGreen += image(x, y, 1);
+                                avgRed += image(x, y,0); // assign it to equal the sum of each red channel
                                 avgGreen += image(x, y, 1); // assign it to equal the sum of each green channel
                                 avgBlue += image(x, y, 2);// assign it to equal the sum of each blue channel
-
                                 counter++;
                             }
                         }
@@ -1636,7 +1632,6 @@ void Pixelate(Image image) {
         }
     }
 }
-
 /*
  *
  * The line `cin.ignore(numeric_limits<streamsize>::max(), '\n');` is a call to the `ignore` function from the `cin` object, which is used to clear the input buffer.
