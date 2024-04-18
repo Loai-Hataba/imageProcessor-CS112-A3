@@ -481,9 +481,12 @@ void Photoshop_budget::on_apply_rotation_clicked()
 //****************************************************************************************************************
 //frame filter
 int frame_size_num = 50;
-QColor color = Qt::white;
+QColor color;
+
+
 void Photoshop_budget::on_frame_btn_clicked()
 {
+    color.setRgb(132, 66, 170);
     ui->dock_Widget_2->show();
     ui->stackedWidget->setCurrentIndex(4);
 }
