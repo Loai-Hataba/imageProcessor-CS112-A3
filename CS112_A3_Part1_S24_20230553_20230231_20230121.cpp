@@ -207,6 +207,8 @@ void choose_filter(string ans, Image image) {
         cin >> ex;
         if (ex == "1") {
             save(image, 0);
+                 return;
+                 
         } else if (ex == "2") {
             cout << "\nGoodbye!!";
             return;
