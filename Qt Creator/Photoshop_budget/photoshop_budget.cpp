@@ -370,7 +370,7 @@ void Photoshop_budget::on_darken_btn_clicked()
 
     ui->dock_Widget_2->show();
     ui->stackedWidget->setCurrentIndex(2);
-    ui->brightness_degree_slider->setValue(0);
+    ui->brightness_degree_slider->setValue(50);
 }
 
 void Photoshop_budget::on_apply_brightness_btn_clicked()
@@ -679,7 +679,8 @@ void Photoshop_budget::on_apply_resize_clicked()
         msgError.exec();
         return ;
     }
-{ //
+
+
   cout << res_height<<" "<<res_width <<endl ;
     if (res_height != res_width) {
       QMessageBox msgError;
