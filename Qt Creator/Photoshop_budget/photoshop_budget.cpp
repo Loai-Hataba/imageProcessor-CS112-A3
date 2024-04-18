@@ -282,36 +282,34 @@ void Photoshop_budget::on_brightness_degree_slider_valueChanged(int value)
     ui->brightness_degree->setText(QString::number(value));
     degree = value;
 }
-int cntrd = 0;
-int cntrl = 0;
 void Photoshop_budget::on_darken_btn_clicked()
 {
     ui->dock_Widget_2->show();
     ui->stackedWidget->setCurrentIndex(2);
     degree = 0;
-    cntrd = 1;
-    cntrl = 0;
 }
 void Photoshop_budget::on_lighten_btn_clicked()
 {
     ui->dock_Widget_2->show();
     ui->stackedWidget->setCurrentIndex(2);
     degree = 0;
-    cntrl = 1;
-    cntrd = 0;
+
 }
 void Photoshop_budget::on_apply_brightness_btn_clicked()
 {
-    if(cntrd == 1){
-        darken(file_name.toStdString(),filePath.toStdString(),degree);
+    int temp = degree;
+    if(temp < 50){
+        temp *= 2;
+        darken(file_name.toStdString(),filePath.toStdString(),temp);
         QPixmap pix(filePath);
         int w = ui->image->width();
         int h = ui->image->height();
         ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
         file_name = filePath;
     }
-    else if(cntrl == 1){
-        lighten(file_name.toStdString(),filePath.toStdString(),degree);
+    else if(temp >= 50){
+        temp = (temp-50) * 2;
+        lighten(file_name.toStdString(),filePath.toStdString(),temp);
         QPixmap pix(filePath);
         int w = ui->image->width();
         int h = ui->image->height();

@@ -262,13 +262,15 @@ void rotate(string path ,string filePath, int angle) //Loai (Done)
 
 void darken(string path , string filePath,int degree) //Hossam (Done)
 {  Image image(path);
+    degree = abs(100-degree);
     for (int i = 0; i < image.width; i++) {
         for (int j = 0; j < image.height; j++) {
             //getting color values
             int red = image(i, j, 0);
             int green = image(i, j, 1);
             int blue = image(i, j, 2);
-            red = red - red * degree /100;                //take the original value of the color and subtracting it from its determined fraction value thus darkening it
+            degree = min(70,degree);
+            red = red - red * degree / 100;                //take the original value of the color and subtracting it from its determined fraction value thus darkening it
             green = green - green * degree / 100;
             blue = blue - blue * degree / 100;
             image(i, j, 2) = blue;
@@ -278,19 +280,21 @@ void darken(string path , string filePath,int degree) //Hossam (Done)
     }
     save(image,0,filePath) ;
     cout << "Filter Applied...\n";
-
 }
 void lighten(string path , string filePath,int degree){ //Hossam (Done){
     Image image(path);
+    if(degree == 50){
+        save(image,0,filePath) ;
+    }
     for (int i = 0; i < image.width; i++) {
         for (int j = 0; j < image.height; j++) {
             //getting color values
             int red = image(i, j, 0);
             int green = image(i, j, 1);
             int blue = image(i, j, 2);
-            red = min(red + red * degree / 100,255);      // same as darkening but adding its determined fraction instead and taking the minimum of it and the color white in case the addition exceeds 255
-            green = min(green + green * degree / 100, 255);
-            blue = min(blue + blue * degree / 100, 255);
+            red = min(red + red * degree / 100,230);      // same as darkening but adding its determined fraction instead and taking the minimum of it and the color white in case the addition exceeds 255
+            green = min(green + green * degree / 100, 230);
+            blue = min(blue + blue * degree / 100, 230);
             image(i, j, 2) = blue;
             image(i, j, 1) = green;
             image(i, j, 0) = red;
