@@ -93,6 +93,7 @@ void Pixelate(Image image);
 
 int main() {
     bool flag = true;
+    string ex;
     while (flag) {
         cout << "\n\n      Welcome to Photoshop on a budget! \n\n";
         string file_name;
@@ -207,15 +208,17 @@ void choose_filter(string ans, Image image) {
         cin >> ex;
         if (ex == "1") {
             save(image, 0);
-                 return;
-                 
+            cout << "\nGoodbye!!";
+            exit(0);
+
         } else if (ex == "2") {
             cout << "\nGoodbye!!";
-            return;
+            exit(0);
         } else {
             cout << "Invalid choice!\n";
         }
-    } else {
+    }
+    else {
         cout << "Invalid choice!\n";
         menu(image);
     }
