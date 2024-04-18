@@ -26,6 +26,7 @@ QString save_file_name;
 Image image;
 QString folderPath ;
 QString filePath ;
+QString file_temp;
 
 //for resize filter
 //resize width
@@ -39,13 +40,14 @@ int y_value = 1 ;
 int crop_width_value = 50 ;
 int height_crop = 50 ;
 int crop_height_value = 50 ;
+bool disable_filters = false;
 
 Photoshop_budget::Photoshop_budget(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::Photoshop_budget)
 {
     ui->setupUi(this);
-
+    ui->inverted_btn->setEnabled(false);
     connect(ui->apply_brightness_btn, &QPushButton::clicked, this, &Photoshop_budget::on_apply_brightness_btn_clicked);
     connect(ui->apply_merge, &QPushButton::clicked, this, &Photoshop_budget::on_apply_merge_clicked);
     // connect(ui->blur_slider, &QSlider::valueChanged, this, &Photoshop_budget::on_blur_slider_valueChanged);
@@ -132,10 +134,16 @@ void Photoshop_budget::on_load_btn_clicked()
         int w = ui->image->width();
         int h = ui->image->height();
         ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
+        ui->inverted_btn->setEnabled(true);
+        file_temp = file_name;
         // image = image_path(file_name.toStdString());
     }
     else //file didn't open
     {
+        QPixmap pix(file_temp);
+        int w = ui->image->width();
+        int h = ui->image->height();
+        ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
         QMessageBox msgError;
         msgError.setText("The File couldn't be opened!");
         msgError.setIcon(QMessageBox::Critical);
