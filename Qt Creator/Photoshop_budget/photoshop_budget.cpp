@@ -24,7 +24,7 @@ QString merge_name; //for sec image in merge filter
 QString original;
 QString save_file_name;
 Image image;
-
+QString folderPath ;
 QString filePath ;
 
 //for resize filter
@@ -83,7 +83,7 @@ connect(ui->horizontal, &QPushButton::clicked, this, &Photoshop_budget::on_horiz
     }
 
     // Construct the full path for the image folder
-    QString folderPath = QDir::toNativeSeparators(homePath + "/Desktop/temp");
+     folderPath = QDir::toNativeSeparators(homePath + "/Desktop/temp");
 
     // Create the folder
     QDir dir(folderPath);
@@ -122,7 +122,10 @@ connect(ui->horizontal, &QPushButton::clicked, this, &Photoshop_budget::on_horiz
 
 
 Photoshop_budget::~Photoshop_budget()
-{
+{ QDir dir(folderPath);
+    if (dir.exists()) {
+        dir.removeRecursively();
+    }
     delete ui;
 }
 //***************************************************************************************************************************
@@ -144,7 +147,6 @@ void Photoshop_budget::on_load_btn_clicked()
         msgError.setIcon(QMessageBox::Critical);
         msgError.setWindowTitle("File not opened");
         msgError.exec();
-        file_name = "";
     }
     original = file_name ;
 }

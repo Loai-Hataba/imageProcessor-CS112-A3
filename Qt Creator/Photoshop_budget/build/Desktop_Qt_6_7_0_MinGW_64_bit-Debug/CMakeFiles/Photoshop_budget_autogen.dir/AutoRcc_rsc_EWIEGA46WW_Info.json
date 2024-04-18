@@ -1,25 +1,25 @@
 {
-	"BUILD_DIR" : "D:/Hoss/github/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/Photoshop_budget_autogen",
-	"CMAKE_BINARY_DIR" : "D:/Hoss/github/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug",
-	"CMAKE_CURRENT_BINARY_DIR" : "D:/Hoss/github/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug",
-	"CMAKE_CURRENT_SOURCE_DIR" : "D:/Hoss/github/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget",
-	"CMAKE_SOURCE_DIR" : "D:/Hoss/github/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget",
-	"INCLUDE_DIR" : "D:/Hoss/github/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/Photoshop_budget_autogen/include",
+	"BUILD_DIR" : "C:/Users/Lenovo/Desktop/om el ramly/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/Photoshop_budget_autogen",
+	"CMAKE_BINARY_DIR" : "C:/Users/Lenovo/Desktop/om el ramly/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug",
+	"CMAKE_CURRENT_BINARY_DIR" : "C:/Users/Lenovo/Desktop/om el ramly/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug",
+	"CMAKE_CURRENT_SOURCE_DIR" : "C:/Users/Lenovo/Desktop/om el ramly/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget",
+	"CMAKE_SOURCE_DIR" : "C:/Users/Lenovo/Desktop/om el ramly/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget",
+	"INCLUDE_DIR" : "C:/Users/Lenovo/Desktop/om el ramly/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/Photoshop_budget_autogen/include",
 	"INPUTS" : 
 	[
-		"D:/Hoss/github/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/Assets/image-holder-icon-614x460.png",
-		"D:/Hoss/github/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/Assets/Loading-PNG-Photo.png",
-		"D:/Hoss/github/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/Assets/png-transparent-black-loading-ic.png",
-		"D:/Hoss/github/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/Assets/Logo.png"
+		"C:/Users/Lenovo/Desktop/om el ramly/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/Assets/image-holder-icon-614x460.png",
+		"C:/Users/Lenovo/Desktop/om el ramly/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/Assets/Loading-PNG-Photo.png",
+		"C:/Users/Lenovo/Desktop/om el ramly/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/Assets/png-transparent-black-loading-ic.png",
+		"C:/Users/Lenovo/Desktop/om el ramly/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/Assets/Logo.png"
 	],
-	"LOCK_FILE" : "D:/Hoss/github/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/Photoshop_budget_autogen.dir/AutoRcc_rsc_EWIEGA46WW_Lock.lock",
+	"LOCK_FILE" : "C:/Users/Lenovo/Desktop/om el ramly/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/Photoshop_budget_autogen.dir/AutoRcc_rsc_EWIEGA46WW_Lock.lock",
 	"MULTI_CONFIG" : false,
 	"OPTIONS" : [ "--no-zstd", "-name", "rsc" ],
 	"OUTPUT_CHECKSUM" : "EWIEGA46WW",
 	"OUTPUT_NAME" : "qrc_rsc.cpp",
-	"RCC_EXECUTABLE" : "D:/Qt/6.7.0/mingw_64/./bin/rcc.exe",
+	"RCC_EXECUTABLE" : "D:/Gui/6.7.0/mingw_64/./bin/rcc.exe",
 	"RCC_LIST_OPTIONS" : [ "--list" ],
-	"SETTINGS_FILE" : "D:/Hoss/github/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/Photoshop_budget_autogen.dir/AutoRcc_rsc_EWIEGA46WW_Used.txt",
-	"SOURCE" : "D:/Hoss/github/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/rsc.qrc",
+	"SETTINGS_FILE" : "C:/Users/Lenovo/Desktop/om el ramly/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/Photoshop_budget_autogen.dir/AutoRcc_rsc_EWIEGA46WW_Used.txt",
+	"SOURCE" : "C:/Users/Lenovo/Desktop/om el ramly/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/rsc.qrc",
 	"VERBOSITY" : 0
 }
