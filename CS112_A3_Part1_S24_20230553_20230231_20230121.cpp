@@ -207,7 +207,6 @@ void choose_filter(string ans, Image image) {
         cin >> ex;
         if (ex == "1") {
             save(image, 0);
-            return;
         } else if (ex == "2") {
             cout << "\nGoodbye!!";
             return;
@@ -532,7 +531,6 @@ void darken_lighten(Image image) //Hossam (Done)
             int green = image(i, j, 1);
             int blue = image(i, j, 2);
             if (choice == "1") { //darkening
-                degree = min(90,degree);
                 red = red - red * degree /
                             100;                //take the original value of the color and subtracting it from its determined fraction value thus darkening it
                 green = green - green * degree / 100;
