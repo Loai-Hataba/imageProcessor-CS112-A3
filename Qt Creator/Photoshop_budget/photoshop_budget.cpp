@@ -725,7 +725,7 @@ void Photoshop_budget::on_apply_resize_clicked()
     file_name = filePath;
     delete resizemessageBox;
      save_image_after_load = false ;
-}}
+}
 //***************************************************************************************************************************
 //crop
 void Photoshop_budget::on_Crop_btn_clicked()
