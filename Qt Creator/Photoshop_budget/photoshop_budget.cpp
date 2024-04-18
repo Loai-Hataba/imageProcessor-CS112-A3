@@ -149,6 +149,7 @@ void Photoshop_budget::on_load_btn_clicked()
         msgError.setIcon(QMessageBox::Critical);
         msgError.setWindowTitle("File not opened");
         msgError.exec();
+        file_name = filePath ;
     }
     original = file_name;
 }
