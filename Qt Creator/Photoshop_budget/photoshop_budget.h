@@ -44,8 +44,6 @@ private slots:
 
     void on_darken_btn_clicked();
 
-    void on_lighten_btn_clicked();
-
     void on_Pixelate_btn_clicked();
 
     void on_skewed_btn_clicked();
@@ -102,12 +100,13 @@ private slots:
 
     void on_apply_skew_clicked();
 
-
     void on_original_image_pressed();
 
-
-
     void on_apply_merge_clicked();
+
+    void on_blur_slider_valueChanged(int value);
+
+    void on_apply_blur_clicked();
 
 private:
     Ui::Photoshop_budget *ui;

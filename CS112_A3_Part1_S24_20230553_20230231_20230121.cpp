@@ -1185,14 +1185,10 @@ void resize(Image image) //Abdallah (Done)
     cout << "Filter Applied...\n";
     menu(blurred_image);
 }*/
-int safeAccess(const vector<vector<int>>& sat, int y, int x, int height, int width) {
-    if (y < 0 || x < 0 || y >= height || x >= width) {
-        return 0; // Return 0 if out-of-bounds
-    }
-    return sat[y][x];
-}
+
+
 void blur(Image image) {
-    int blur_size =  28 ;
+    int blur_size =  5 ;
     int height = image.height;
     int width = image.width;
 

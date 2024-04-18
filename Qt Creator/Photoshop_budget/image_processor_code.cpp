@@ -45,9 +45,7 @@ using namespace std;
 
 
 string file_path;
-
 Image temp ;
-
 Image image_path(const std::string& path)
 {
     file_path = path;
@@ -65,9 +63,7 @@ void save(Image image, int back, string path)
 //  ********************** Filters ****************************
 void grayscale(string path ,string filePath) //Hossam (Done)
 {
-    cout << "path: " << path << endl;
     Image image(path);
-    cout << "path2: " << path << endl;
     for (int i = 0; i < image.width; i++) {
         for (int j = 0; j < image.height; j++) {
             unsigned int avg = 0;
@@ -126,10 +122,8 @@ void inverted(string path,string filePath) //Loai (Done)
     }
     save(image,0,filePath) ;
     cout << "Filter Applied...\n";
-
 }
 
-//!!
 Image resizeMerge(Image image, int max_width, int max_height) { //straight up copied Abdallah's resized filter
     Image resized_Img(max_width, max_height);
     float s;
@@ -149,6 +143,7 @@ Image resizeMerge(Image image, int max_width, int max_height) { //straight up co
     }
     return resized_Img;
 }
+
 void merge(string path,string filePath,int choice,string merge_path) //Hossam (Done)
 {
     Image image1(path);
@@ -185,7 +180,6 @@ void merge(string path,string filePath,int choice,string merge_path) //Hossam (D
     }
 }
 
-//!
 void flip(string path,string filePath,string choice) //Abdallah (Done)
 {
     Image image(path);
@@ -342,8 +336,6 @@ void crop(string path,string filePath ,int x,int y, int w, int h ) {
         cout << "Filter Applied...\n";
     }
 
-
-//!!!
 void frame(string path ,string filePath, int frame_size, int ans, unsigned int Rcolor, unsigned int Gcolor, unsigned int Bcolor, int pattern) //Loai (Done)
 {
     Image image(path);
@@ -510,7 +502,6 @@ void edges(string path,string filePath) { //Hossam (Done)
 
 }
 
-//!!
 void resize_filter(string path,string filePath ,int res_width,int res_height) //Abdallah (Done)
 {  Image image(path);
         if (res_width > 0 && res_height > 0) {
@@ -536,41 +527,9 @@ void resize_filter(string path,string filePath ,int res_width,int res_height) //
 
     }
 
-//!
-void blur(string path,string filePath) //Loai (Done)
-{Image image(path);
-    int blur_size;
-    string temp;
-    bool test;
-    //    check input validation
-    do
-    {
-        test = true;
-        cout << "Choose Blur size (1-15)\n"
-                "1-->\"Less Blur, more efficient, Time: 5 Sec\"\n"
-                "15-->\"More Blur,less efficient, Time: 3 Min\"\n"
-                "Choice: ";
-        cin >> temp;
-        for (auto digit: temp)
-        {
-            if (not isdigit(digit))
-            {
-                test = false;
-            }
-        }
-        if (test)
-        {
-            if (blur_size < 1 || blur_size > 15)
-            {
-                cout << "Range (1-15)!!!\n";
-                test = false;
-            }
-        }
-    }
-    while (not test);
-    //    turn answer to proper int
-    blur_size = stoi(temp);
-
+void blur(string path,string filePath, int blur_size) //Loai (Done)
+{
+    Image image(path);
     int height = image.height;
     int width = image.width;
 
@@ -604,9 +563,83 @@ void blur(string path,string filePath) //Loai (Done)
             blurred_image(j, i, 2) = sumB / count;
         }
     }
-    save(image,0,filePath) ;
+    save(blurred_image,0,filePath) ;
     cout << "Filter Applied...\n";
 
+}
+
+void blur_2d(string path,string filePath, int blur_size) {
+    Image image(path);
+    int height = image.height;
+    int width = image.width;
+
+    // Create a new image that is larger than the original image by 2*blur_size in each dimension
+    Image padded_image(width + 2 * blur_size, height + 2 * blur_size);
+
+    // Copy the original image into the center of the new image
+    for (int i = 0; i < width; ++i) {
+        for (int j = 0; j < height; ++j) {
+            padded_image(i + blur_size, j + blur_size, 0) = image(i, j, 0);
+            padded_image(i + blur_size, j + blur_size, 1) = image(i, j, 1);
+            padded_image(i + blur_size, j + blur_size, 2) = image(i, j, 2);
+        }
+    }
+    // Create the summed area table
+    vector<vector<int>> satR(padded_image.height, vector<int>(padded_image.width));
+    vector<vector<int>> satG(padded_image.height, vector<int>(padded_image.width));
+    vector<vector<int>> satB(padded_image.height, vector<int>(padded_image.width));
+    // Compute the summed area table
+    for (int i = 0; i < padded_image.width; ++i) {
+        for (int j = 0; j < padded_image.height; ++j) {
+            satR[j][i] = padded_image(i, j, 0) +
+                         (i > 0 ? satR[j][i - 1] : 0) +
+                         (j > 0 ? satR[j - 1][i] : 0) -
+                         (i > 0 && j > 0 ? satR[j - 1][i - 1] : 0);
+            satG[j][i] = padded_image(i, j, 1) +
+                         (i > 0 ? satG[j][i - 1] : 0) +
+                         (j > 0 ? satG[j - 1][i] : 0) -
+                         (i > 0 && j > 0 ? satG[j - 1][i - 1] : 0);
+            satB[j][i] = padded_image(i, j, 2) +
+                         (i > 0 ? satB[j][i - 1] : 0) +
+                         (j > 0 ? satB[j - 1][i] : 0) -
+                         (i > 0 && j > 0 ? satB[j - 1][i - 1] : 0);
+        }
+    }
+    Image blurred_image(width, height);
+    // Apply the blur using the summed area table
+    for (int i = 0; i < width; ++i) {
+        for (int j = 0; j < height; ++j) {
+            // Dynamically adjust the blur size based on the pixel's distance from the edge
+            int dynamic_blur_size_x = min({blur_size, i, width - i - 1});
+            int dynamic_blur_size_y = min({blur_size, j, height - j - 1});
+            int dynamic_blur_size = min(dynamic_blur_size_x, dynamic_blur_size_y);
+
+            // Calculate the coordinates of the blur area, including the padded area
+            int x1 = max(i - dynamic_blur_size + blur_size, 0);
+            int x2 = min(i + dynamic_blur_size + blur_size, padded_image.width - 1);
+            int y1 = max(j - dynamic_blur_size + blur_size, 0);
+            int y2 = min(j + dynamic_blur_size + blur_size, padded_image.height - 1);
+
+            // Calculate the number of pixels in the blur area
+            int count = (x2 - x1 + 1) * (y2 - y1 + 1);
+
+            // Use the summed area table to compute the sum of pixel values in the blur area
+            int sumR = satR[y2][x2] - (x1 > 0 ? satR[y2][x1 - 1] : 0) - (y1 > 0 ? satR[y1 - 1][x2] : 0) +
+                       ((x1 > 0 && y1 > 0) ? satR[y1 - 1][x1 - 1] : 0);
+            int sumG = satG[y2][x2] - (x1 > 0 ? satG[y2][x1 - 1] : 0) - (y1 > 0 ? satG[y1 - 1][x2] : 0) +
+                       ((x1 > 0 && y1 > 0) ? satG[y1 - 1][x1 - 1] : 0);
+            int sumB = satB[y2][x2] - (x1 > 0 ? satB[y2][x1 - 1] : 0) - (y1 > 0 ? satB[y1 - 1][x2] : 0) +
+                       ((x1 > 0 && y1 > 0) ? satB[y1 - 1][x1 - 1] : 0);
+
+            // Compute the average pixel value in the blur area and clamp it to the valid range
+            blurred_image(i, j, 0) = clamp(sumR / count, 0, 255);
+            blurred_image(i, j, 1) = clamp(sumG / count, 0, 255);
+            blurred_image(i, j, 2) = clamp(sumB / count, 0, 255);
+        }
+    }
+
+    cout << "oFilter Applied...\n";
+    save(blurred_image, 0, filePath);
 }
 
 //  ********************** Bonus ****************************
@@ -894,7 +927,7 @@ void Skewed(string path,string filePath,int degree) {
 //!
 void Pixelate(string path,string filePath) {
     Image image(path);
-    int Pixel_Size = 9 ;  // This variable handles the size of each pixel
+    int Pixel_Size = 6 ;  // This variable handles the size of each pixel
     for (int i = 0; i < image.width; i += Pixel_Size) {
         // Set the new size of the width of each pixel
         for (int j = 0; j < image.height; j += Pixel_Size) {

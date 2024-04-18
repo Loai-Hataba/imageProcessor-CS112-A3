@@ -26,7 +26,8 @@ void crop(string path,string filePath ,int x,int y, int w, int h ) ;
 void frame(string path,string filePath, int frame_size, int ans, unsigned int Rcolor, unsigned int Gcolor, unsigned int Bcolor, int pattern = 1);
 void edges(string path,string filePath);
 void resize_filter(string path,string filePath ,int res_width,int res_height);
-void blur(string path,string filePath);
+void blur(string path,string filePath, int blur_size);
+void blur_2d(string path,string filePath, int blur_size);
 /*--------------------------------------------*/
 void Sunlight(string path,string filePath);
 void look_Purple(string path,string filePath);

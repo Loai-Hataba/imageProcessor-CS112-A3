@@ -48,6 +48,7 @@ Photoshop_budget::Photoshop_budget(QWidget *parent)
 
     connect(ui->apply_brightness_btn, &QPushButton::clicked, this, &Photoshop_budget::on_apply_brightness_btn_clicked);
     connect(ui->apply_merge, &QPushButton::clicked, this, &Photoshop_budget::on_apply_merge_clicked);
+    // connect(ui->blur_slider, &QSlider::valueChanged, this, &Photoshop_budget::on_blur_slider_valueChanged);
 /*connect(ui->vertical, &QPushButton::clicked, this, &Photoshop_budget::on_vertical_clicked);
 connect(ui->horizontal, &QPushButton::clicked, this, &Photoshop_budget::on_horizontal_clicked);*/
     //connect(ui->pushButton, &QPushButton::clicked, this, &Photoshop_budget::on_pushButton_clicked);
@@ -141,7 +142,7 @@ void Photoshop_budget::on_load_btn_clicked()
         msgError.setWindowTitle("File not opened");
         msgError.exec();
     }
-    original = file_name ;
+    original = file_name;
 }
 //***************************************************************************************************************************
 //save
@@ -221,12 +222,20 @@ void Photoshop_budget::on_IR_btn_clicked()
 //tv
 void Photoshop_budget::on_TV_btn_clicked()
 {
+    QMessageBox *tvmessageBox = new QMessageBox;
+    QPixmap pixmap(":/images/Assets/png-transparent-black-loading-ic.png");
+    pixmap = pixmap.scaled(20, 20, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    tvmessageBox->setIconPixmap(pixmap);
+    tvmessageBox->setText("Processing Image...");
+    tvmessageBox->show();
+    QApplication::processEvents();
     tv(file_name.toStdString(),filePath.toStdString());
       QPixmap pix(filePath);
     int w = ui->image->width();
     int h = ui->image->height();
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
      file_name = filePath;
+     delete tvmessageBox;
 }
 //***************************************************************************************************************************
 //purple
@@ -276,24 +285,13 @@ void Photoshop_budget::on_brightness_degree_slider_valueChanged(int value)
 {
     degree = value;
 }
-int cntrd = 0;
-int cntrl = 0;
 void Photoshop_budget::on_darken_btn_clicked()
 {
     ui->dock_Widget_2->show();
     ui->stackedWidget->setCurrentIndex(2);
     ui->brightness_degree_slider->setValue(0);
-    cntrd = 1;
-    cntrl = 0;
 }
-void Photoshop_budget::on_lighten_btn_clicked()
-{
-    ui->dock_Widget_2->show();
-    ui->stackedWidget->setCurrentIndex(2);
-    ui->brightness_degree_slider->setValue(0);
-    cntrl = 1;
-    cntrd = 0;
-}
+
 void Photoshop_budget::on_apply_brightness_btn_clicked()
 {
     int temp = degree;
@@ -335,35 +333,26 @@ void Photoshop_budget::on_skewed_btn_clicked()
     ui->dock_Widget_2->show();
     ui->stackedWidget->setCurrentIndex(9);
 }
-
 void Photoshop_budget::on_skew_degree_val_valueChanged(int arg1)
 {
     skew_degree = arg1;
 }
-
 void Photoshop_budget::on_apply_skew_clicked()
 {
+    QMessageBox *skewmessageBox = new QMessageBox;
+    QPixmap pixmap(":/images/Assets/png-transparent-black-loading-ic.png");
+    pixmap = pixmap.scaled(20, 20, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    skewmessageBox->setIconPixmap(pixmap);
+    skewmessageBox->setText("Processing Image...");
+    skewmessageBox->show();
+    QApplication::processEvents();
     Skewed(file_name.toStdString(),filePath.toStdString(),skew_degree);
     QPixmap pix(filePath);
     int w = ui->image->width();
     int h = ui->image->height();
     ui->image->setPixmap(pix.scaled(w, h ,Qt::KeepAspectRatio));
     file_name = filePath;
-}
-
-
-void Photoshop_budget::on_rsize_btn_clicked()
-{
-    // Show the QDockWidget and set the current widget of the QStackedWidget
-    ui->dock_Widget_2->show();
-    ui->stackedWidget->setCurrentIndex(7);
-}
-
-void Photoshop_budget::on_Crop_btn_clicked()
-{
-    ui->dock_Widget_2->show();
-    ui->stackedWidget->setCurrentIndex(1);
-
+    delete skewmessageBox;
 }
 //***************************************************************************************************************************
 //merge
@@ -386,6 +375,13 @@ void Photoshop_budget::on_merge_btn_clicked()
 }
 void Photoshop_budget::on_apply_merge_clicked()
 {
+    QMessageBox *mergemessageBox = new QMessageBox;
+    QPixmap pixmap(":/images/Assets/png-transparent-black-loading-ic.png");
+    pixmap = pixmap.scaled(20, 20, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    mergemessageBox->setIconPixmap(pixmap);
+    mergemessageBox->setText("Processing Image...");
+    mergemessageBox->show();
+    QApplication::processEvents();
     if (ui->common_area_merge->isChecked())
     {
         merge(file_name.toStdString(),filePath.toStdString(),1,merge_name.toStdString());
@@ -404,18 +400,46 @@ void Photoshop_budget::on_apply_merge_clicked()
         ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
         file_name = filePath;
     }
+    delete mergemessageBox;
 }
-
-
 //**********************************************************************************************************
 //blur
+int blur_size = 1;
 void Photoshop_budget::on_blur_btn_clicked()
 {
     // Show the QDockWidget and set the current widget of the QStackedWidget
     ui->dock_Widget_2->show();
     ui->stackedWidget->setCurrentIndex(0);
 }
-
+void Photoshop_budget::on_blur_slider_valueChanged(int value)
+{
+    blur_size = value;
+    qDebug() << "value: " + QString::number(value);
+}
+void Photoshop_budget::on_apply_blur_clicked()
+{
+    QMessageBox *blurmessageBox = new QMessageBox;
+    QPixmap pixmap(":/images/Assets/png-transparent-black-loading-ic.png");
+    pixmap = pixmap.scaled(20, 20, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    blurmessageBox->setIconPixmap(pixmap);
+    blurmessageBox->setText("Processing Image...");
+    blurmessageBox->show();
+    QApplication::processEvents();
+    if (ui->blur->isChecked())
+    {
+        blur(file_name.toStdString(),filePath.toStdString(), blur_size);
+    }
+    else if (ui->blur_2d->isChecked())
+    {
+        blur_2d(file_name.toStdString(),filePath.toStdString(), blur_size);
+    }
+    QPixmap pix(filePath);
+    int w = ui->image->width();
+    int h = ui->image->height();
+    ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
+    file_name = filePath;
+    delete blurmessageBox;
+}
 //************************************************************************************************************
 // rotate
 void Photoshop_budget::on_rotate_btn_clicked()
@@ -463,22 +487,19 @@ void Photoshop_budget::on_frame_btn_clicked()
     ui->dock_Widget_2->show();
     ui->stackedWidget->setCurrentIndex(4);
 }
-
 void Photoshop_budget::on_color_btn_clicked()
 {
     color = QColorDialog::getColor(Qt::white, this, "Frame Color");
     if (color.isValid())
     {
-        ui->color_btn->setStyleSheet("background-color: " + color.name() + ";");
+        ui->color_btn->setStyleSheet("background-color: " + color.name() + ";" + "border:2px solid white;");
     }
 
 }
-
 void Photoshop_budget::on_frame_size_val_valueChanged(int arg1)
 {
     frame_size_num = arg1;
 }
-
 void Photoshop_budget::on_apply_frame_clicked()
 {
     QMessageBox *framemessageBox = new QMessageBox;
@@ -531,7 +552,6 @@ void Photoshop_budget::on_apply_vertical_clicked()
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
     file_name = filePath;
 }
-
 void Photoshop_budget::on_apply_horizontal_clicked()
 {
     flip(file_name.toStdString(),filePath.toStdString(),"H");
@@ -543,20 +563,29 @@ void Photoshop_budget::on_apply_horizontal_clicked()
 }
 //***************************************************************************************************************************
 //resize
+void Photoshop_budget::on_rsize_btn_clicked()
+{
+    // Show the QDockWidget and set the current widget of the QStackedWidget
+    ui->dock_Widget_2->show();
+    ui->stackedWidget->setCurrentIndex(7);
+}
 void Photoshop_budget::on_resize_width_valueChanged(int width )
 {
     res_width = width ;
 }
-
-
 void Photoshop_budget::on_resize_height_valueChanged(int height)
 {
     res_height = height ;
 }
-
-
 void Photoshop_budget::on_apply_resize_clicked()
 {
+    QMessageBox *resizemessageBox = new QMessageBox;
+    QPixmap pixmap(":/images/Assets/png-transparent-black-loading-ic.png");
+    pixmap = pixmap.scaled(20, 20, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    resizemessageBox->setIconPixmap(pixmap);
+    resizemessageBox->setText("Processing Image...");
+    resizemessageBox->show();
+    QApplication::processEvents();
     if (res_height != res_width) {
         QMessageBox msgError;
         msgError.setText("Please make the dimensions equal !! ");
@@ -571,9 +600,16 @@ void Photoshop_budget::on_apply_resize_clicked()
   int h = ui->image->height();
   ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
     file_name = filePath;
+    delete resizemessageBox;
 }
 //***************************************************************************************************************************
 //crop
+void Photoshop_budget::on_Crop_btn_clicked()
+{
+    ui->dock_Widget_2->show();
+    ui->stackedWidget->setCurrentIndex(1);
+
+}
 void Photoshop_budget::on_crop_x_valueChanged(int arg1)
 {
     x_value = arg1 ;
@@ -596,8 +632,13 @@ void Photoshop_budget::on_crop_h_valueChanged(int arg1)
 }
 void Photoshop_budget::on_Apply_crop_clicked()
 {
-
-
+    QMessageBox *cropmessageBox = new QMessageBox;
+    QPixmap pixmap(":/images/Assets/png-transparent-black-loading-ic.png");
+    pixmap = pixmap.scaled(20, 20, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    cropmessageBox->setIconPixmap(pixmap);
+    cropmessageBox->setText("Processing Image...");
+    cropmessageBox->show();
+    QApplication::processEvents();
    Image image(file_name.toStdString()) ;
     if ((x_value +crop_width_value ) > image.width  ){
        QMessageBox msgError;
@@ -621,11 +662,9 @@ void Photoshop_budget::on_Apply_crop_clicked()
     int h = ui->image->height();
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
     file_name = filePath;
+    delete cropmessageBox;
 }
 //***************************************************************************************************************************
-
-
-
 /*
 void Photoshop_budget::on_original_image_clicked()
 {
@@ -636,8 +675,6 @@ void Photoshop_budget::on_original_image_clicked()
     image = image_path(file_name.toStdString());
 }
 */
-
-
 void Photoshop_budget::on_original_image_pressed()
 {
     QPixmap pix(original);
@@ -647,3 +684,12 @@ void Photoshop_budget::on_original_image_pressed()
     image = image_path(original.toStdString());
     file_name = original ;
 }
+
+
+
+
+
+
+
+
+

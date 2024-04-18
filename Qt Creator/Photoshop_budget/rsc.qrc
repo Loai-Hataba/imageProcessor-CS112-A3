@@ -31,5 +31,9 @@
         <file>Assets/before.png</file>
         <file>Assets/fliph.png</file>
         <file>Assets/flipv.png</file>
+        <file>Assets/Photoshop_Budgetss.png</file>
+        <file>Assets/day-and-night.png</file>
+        <file>Assets/down.png</file>
+        <file>Assets/up-arrow.png</file>
     </qresource>
 </RCC>
