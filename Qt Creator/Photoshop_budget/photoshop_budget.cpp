@@ -40,7 +40,6 @@ int y_value = 1 ;
 int crop_width_value = 50 ;
 int height_crop = 50 ;
 int crop_height_value = 50 ;
-bool disable_filters = false;
 
 Photoshop_budget::Photoshop_budget(QWidget *parent)
     : QMainWindow(parent)
@@ -48,6 +47,27 @@ Photoshop_budget::Photoshop_budget(QWidget *parent)
 {
     ui->setupUi(this);
     ui->inverted_btn->setEnabled(false);
+    ui->save_btn->setEnabled(false);
+    ui->grayscale_btn->setEnabled(false);
+    ui->bw_btn->setEnabled(false);
+    ui->sunlight_btn->setEnabled(false);
+    ui->edge_btn->setEnabled(false);
+    ui->IR_btn->setEnabled(false);
+    ui->TV_btn->setEnabled(false);
+    ui->purble_btn->setEnabled(false);
+    ui->sepia_btn->setEnabled(false);
+    ui->oil_btn->setEnabled(false);
+    ui->darken_btn->setEnabled(false);
+    ui->Pixelate_btn->setEnabled(false);
+    ui->skewed_btn->setEnabled(false);
+    ui->merge_btn->setEnabled(false);
+    ui->frame_btn->setEnabled(false);
+    ui->blur_btn->setEnabled(false);
+    ui->rotate_btn->setEnabled(false);
+    ui->flip_btn->setEnabled(false);
+    ui->rsize_btn->setEnabled(false);
+    ui->Crop_btn->setEnabled(false);
+    ui->original_image->setEnabled(false);
     connect(ui->apply_brightness_btn, &QPushButton::clicked, this, &Photoshop_budget::on_apply_brightness_btn_clicked);
     connect(ui->apply_merge, &QPushButton::clicked, this, &Photoshop_budget::on_apply_merge_clicked);
     // connect(ui->blur_slider, &QSlider::valueChanged, this, &Photoshop_budget::on_blur_slider_valueChanged);
@@ -68,7 +88,6 @@ connect(ui->horizontal, &QPushButton::clicked, this, &Photoshop_budget::on_horiz
     int h = 500;
     // Set the pixmap to the label with scaled size
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
-
 
 
 // Get the user's home directory path
@@ -126,6 +145,7 @@ Photoshop_budget::~Photoshop_budget()
 }
 //***************************************************************************************************************************
 //load
+int cntr_temp = 0;
 void Photoshop_budget::on_load_btn_clicked()
 {
     file_name = QFileDialog::getOpenFileName(this, "Load Image", "D:/imageProcessor-CS112-A3/cmake-build-debug/Samples");
@@ -135,21 +155,49 @@ void Photoshop_budget::on_load_btn_clicked()
         int h = ui->image->height();
         ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
         ui->inverted_btn->setEnabled(true);
-        file_temp = file_name;
+        ui->inverted_btn->setEnabled(true);
+        ui->save_btn->setEnabled(true);
+        ui->grayscale_btn->setEnabled(true);
+        ui->bw_btn->setEnabled(true);
+        ui->sunlight_btn->setEnabled(true);
+        ui->edge_btn->setEnabled(true);
+        ui->IR_btn->setEnabled(true);
+        ui->TV_btn->setEnabled(true);
+        ui->purble_btn->setEnabled(true);
+        ui->sepia_btn->setEnabled(true);
+        ui->oil_btn->setEnabled(true);
+        ui->darken_btn->setEnabled(true);
+        ui->Pixelate_btn->setEnabled(true);
+        ui->skewed_btn->setEnabled(true);
+        ui->merge_btn->setEnabled(true);
+        ui->frame_btn->setEnabled(true);
+        ui->blur_btn->setEnabled(true);
+        ui->rotate_btn->setEnabled(true);
+        ui->flip_btn->setEnabled(true);
+        ui->rsize_btn->setEnabled(true);
+        ui->Crop_btn->setEnabled(true);
+        ui->original_image->setEnabled(true);
+        file_temp = filePath;
         // image = image_path(file_name.toStdString());
     }
     else //file didn't open
     {
-        QPixmap pix(file_temp);
-        int w = ui->image->width();
-        int h = ui->image->height();
-        ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
-        QMessageBox msgError;
-        msgError.setText("The File couldn't be opened!");
-        msgError.setIcon(QMessageBox::Critical);
-        msgError.setWindowTitle("File not opened");
-        msgError.exec();
-        file_name = filePath ;
+        if (file_name.isEmpty() && cntr_temp == 0){
+            cntr_temp++;
+            QMessageBox msgError;
+            msgError.setText("The File couldn't be opened!");
+            msgError.setIcon(QMessageBox::Critical);
+            msgError.setWindowTitle("File not opened");
+            msgError.exec();
+        }
+        else{
+            QMessageBox msgError;
+            msgError.setText("The File couldn't be opened!");
+            msgError.setIcon(QMessageBox::Critical);
+            msgError.setWindowTitle("File not opened");
+            msgError.exec();
+            file_name = filePath ;
+        }
     }
     original = file_name;
 }
