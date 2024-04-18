@@ -156,6 +156,7 @@ void Photoshop_budget::on_save_btn_clicked()
 //inverted
 void Photoshop_budget::on_inverted_btn_clicked()
 {
+    ui->dock_Widget_2->hide();
     inverted(file_name.toStdString(),filePath.toStdString());//tmam
     QPixmap pix(filePath);
     int w = ui->image->width();
@@ -167,6 +168,7 @@ void Photoshop_budget::on_inverted_btn_clicked()
 //grayscale
 void Photoshop_budget::on_grayscale_btn_clicked()
 {
+    ui->dock_Widget_2->hide();
     grayscale(file_name.toStdString(),filePath.toStdString());
     QPixmap pix(filePath);
     int w = ui->image->width();
@@ -178,6 +180,7 @@ void Photoshop_budget::on_grayscale_btn_clicked()
 //black and white
 void Photoshop_budget::on_bw_btn_clicked()
 {
+    ui->dock_Widget_2->hide();
     black_white(file_name.toStdString(),filePath.toStdString());
       QPixmap pix(filePath);
     int w = ui->image->width();
@@ -189,6 +192,7 @@ void Photoshop_budget::on_bw_btn_clicked()
 //sunlight
 void Photoshop_budget::on_sunlight_btn_clicked()
 {
+    ui->dock_Widget_2->hide();
     Sunlight(file_name.toStdString(),filePath.toStdString());
       QPixmap pix(filePath);
     int w = ui->image->width();
@@ -200,6 +204,7 @@ void Photoshop_budget::on_sunlight_btn_clicked()
 //edges
 void Photoshop_budget::on_edge_btn_clicked()
 {
+    ui->dock_Widget_2->hide();
     edges(file_name.toStdString(),filePath.toStdString());
       QPixmap pix(filePath);
     int w = ui->image->width();
@@ -211,6 +216,7 @@ void Photoshop_budget::on_edge_btn_clicked()
 //IR
 void Photoshop_budget::on_IR_btn_clicked()
 {
+    ui->dock_Widget_2->hide();
     IR(file_name.toStdString(),filePath.toStdString());
       QPixmap pix(filePath);
     int w = ui->image->width();
@@ -222,6 +228,7 @@ void Photoshop_budget::on_IR_btn_clicked()
 //tv
 void Photoshop_budget::on_TV_btn_clicked()
 {
+    ui->dock_Widget_2->hide();
     QMessageBox *tvmessageBox = new QMessageBox;
     QPixmap pixmap(":/images/Assets/png-transparent-black-loading-ic.png");
     pixmap = pixmap.scaled(20, 20, Qt::KeepAspectRatio, Qt::SmoothTransformation);
@@ -241,6 +248,7 @@ void Photoshop_budget::on_TV_btn_clicked()
 //purple
 void Photoshop_budget::on_purble_btn_clicked()
 {
+    ui->dock_Widget_2->hide();
     look_Purple(file_name.toStdString(),filePath.toStdString());
       QPixmap pix(filePath);
     int w = ui->image->width();
@@ -252,6 +260,7 @@ void Photoshop_budget::on_purble_btn_clicked()
 //sepia
 void Photoshop_budget::on_sepia_btn_clicked()
 {
+    ui->dock_Widget_2->hide();
     sepia(file_name.toStdString(),filePath.toStdString());
       QPixmap pix(filePath);
     int w = ui->image->width();
@@ -263,6 +272,7 @@ void Photoshop_budget::on_sepia_btn_clicked()
 //oil
 void Photoshop_budget::on_oil_btn_clicked()
 {
+    ui->dock_Widget_2->hide();
     QMessageBox *oilmessageBox = new QMessageBox;
     QPixmap pixmap(":/images/Assets/png-transparent-black-loading-ic.png");
     pixmap = pixmap.scaled(20, 20, Qt::KeepAspectRatio, Qt::SmoothTransformation);
@@ -285,8 +295,22 @@ void Photoshop_budget::on_brightness_degree_slider_valueChanged(int value)
 {
     degree = value;
 }
+
+//style slider
 void Photoshop_budget::on_darken_btn_clicked()
 {
+    ui->brightness_degree_slider->setStyleSheet(R"(
+    QSlider::handle {
+        background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #b4b4b4, stop:1.0 #8f8f8f);
+        border: 1px solid #5c5c5c;
+        width: 18px;
+        margin: -2px 0;
+        border-radius: 3px;
+
+}
+)");
+
+
     ui->dock_Widget_2->show();
     ui->stackedWidget->setCurrentIndex(2);
     ui->brightness_degree_slider->setValue(0);
@@ -318,6 +342,7 @@ void Photoshop_budget::on_apply_brightness_btn_clicked()
 //pixelate
 void Photoshop_budget::on_Pixelate_btn_clicked()
 {
+    ui->dock_Widget_2->hide();
     Pixelate(file_name.toStdString(),filePath.toStdString());
     QPixmap pix(filePath);
     int w = ui->image->width();
