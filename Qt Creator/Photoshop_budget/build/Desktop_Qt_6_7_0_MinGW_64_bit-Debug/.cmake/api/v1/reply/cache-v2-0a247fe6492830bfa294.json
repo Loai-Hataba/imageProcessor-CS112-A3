@@ -1027,7 +1027,7 @@
 				}
 			],
 			"type" : "PATH",
-			"value" : "D:/Gui/6.7.0/mingw_64;D:/Qt/6.7.0/mingw_64"
+			"value" : "D:/Gui/6.7.0/mingw_64"
 		},
 		{
 			"name" : "CMAKE_PROJECT_DESCRIPTION",

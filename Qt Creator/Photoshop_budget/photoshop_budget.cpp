@@ -27,7 +27,7 @@ Image image;
 QString folderPath ;
 QString filePath ;
 QString file_temp;
-
+bool save_image_after_load = false ;
 //for resize filter
 //resize width
 int res_width = 50 ;
@@ -47,6 +47,7 @@ Photoshop_budget::Photoshop_budget(QWidget *parent)
 {
     ui->setupUi(this);
     ui->inverted_btn->setEnabled(false);
+    ui->clear_btn->setEnabled(false);
     ui->save_btn->setEnabled(false);
     ui->grayscale_btn->setEnabled(false);
     ui->bw_btn->setEnabled(false);
@@ -155,6 +156,7 @@ void Photoshop_budget::on_load_btn_clicked()
         int h = ui->image->height();
         ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
         ui->inverted_btn->setEnabled(true);
+         ui->clear_btn->setEnabled(true);
         ui->inverted_btn->setEnabled(true);
         ui->save_btn->setEnabled(true);
         ui->grayscale_btn->setEnabled(true);
@@ -178,7 +180,7 @@ void Photoshop_budget::on_load_btn_clicked()
         ui->Crop_btn->setEnabled(true);
         ui->original_image->setEnabled(true);
         file_temp = filePath;
-        // image = image_path(file_name.toStdString());
+        image = image_path(file_name.toStdString());
     }
     else //file didn't open
     {
@@ -206,8 +208,14 @@ void Photoshop_budget::on_load_btn_clicked()
 void Photoshop_budget::on_save_btn_clicked()
 {
     save_file_name = QFileDialog::getSaveFileName(this, "Save Image", "D:/imageProcessor-CS112-A3/cmake-build-debug/Samples", "JPEG (*.jpg);;PNG (*.png);;Bitmap (*.bmp);;Targa (*.tga)");
-    Image image(filePath.toStdString());
-    save(image, 0, save_file_name.toStdString());
+    if (save_image_after_load )
+    {Image image(filePath.toStdString());
+        save(image, 0, save_file_name.toStdString());}
+   else if ( !save_image_after_load ){
+        Image image(file_name.toStdString());
+        save(image, 0, save_file_name.toStdString());
+    }
+
 }
 //***************************************************************************************************************************
 //inverted
@@ -220,6 +228,7 @@ void Photoshop_budget::on_inverted_btn_clicked()
     int h = ui->image->height();
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
     file_name = filePath;
+     save_image_after_load = false ;
 }
 //***************************************************************************************************************************
 //grayscale
@@ -232,6 +241,7 @@ void Photoshop_budget::on_grayscale_btn_clicked()
     int h = ui->image->height();
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
     file_name = filePath;
+     save_image_after_load = false ;
 }
 //***************************************************************************************************************************
 //black and white
@@ -244,6 +254,7 @@ void Photoshop_budget::on_bw_btn_clicked()
     int h = ui->image->height();
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
      file_name = filePath;
+     save_image_after_load = false ;
 }
 //***************************************************************************************************************************
 //sunlight
@@ -256,6 +267,7 @@ void Photoshop_budget::on_sunlight_btn_clicked()
     int h = ui->image->height();
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
      file_name = filePath;
+     save_image_after_load = false ;
 }
 //***************************************************************************************************************************
 //edges
@@ -268,6 +280,7 @@ void Photoshop_budget::on_edge_btn_clicked()
     int h = ui->image->height();
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
      file_name = filePath;
+     save_image_after_load = false ;
 }
 //***************************************************************************************************************************
 //IR
@@ -280,6 +293,7 @@ void Photoshop_budget::on_IR_btn_clicked()
     int h = ui->image->height();
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
      file_name = filePath;
+     save_image_after_load = false ;
 }
 //***************************************************************************************************************************
 //tv
@@ -300,6 +314,7 @@ void Photoshop_budget::on_TV_btn_clicked()
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
      file_name = filePath;
      delete tvmessageBox;
+      save_image_after_load = false ;
 }
 //***************************************************************************************************************************
 //purple
@@ -312,6 +327,7 @@ void Photoshop_budget::on_purble_btn_clicked()
     int h = ui->image->height();
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
      file_name = filePath;
+     save_image_after_load = false ;
 }
 //***************************************************************************************************************************
 //sepia
@@ -324,6 +340,7 @@ void Photoshop_budget::on_sepia_btn_clicked()
     int h = ui->image->height();
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
      file_name = filePath;
+     save_image_after_load = false ;
 }
 //***************************************************************************************************************************
 //oil
@@ -344,6 +361,7 @@ void Photoshop_budget::on_oil_btn_clicked()
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
     file_name = filePath;
     delete oilmessageBox;
+     save_image_after_load = false ;
 }
 //***************************************************************************************************************************
 //lighten-darken
@@ -394,6 +412,7 @@ void Photoshop_budget::on_apply_brightness_btn_clicked()
         ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
         file_name = filePath;
     }
+     save_image_after_load = false ;
 }
 //***************************************************************************************************************************
 //pixelate
@@ -406,6 +425,7 @@ void Photoshop_budget::on_Pixelate_btn_clicked()
     int h = ui->image->height();
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
     file_name = filePath;
+     save_image_after_load = false ;
 }
 //***************************************************************************************************************************
 //skew
@@ -435,6 +455,7 @@ void Photoshop_budget::on_apply_skew_clicked()
     ui->image->setPixmap(pix.scaled(w, h ,Qt::KeepAspectRatio));
     file_name = filePath;
     delete skewmessageBox;
+     save_image_after_load = false ;
 }
 //***************************************************************************************************************************
 //merge
@@ -483,6 +504,7 @@ void Photoshop_budget::on_apply_merge_clicked()
         file_name = filePath;
     }
     delete mergemessageBox;
+     save_image_after_load = false ;
 }
 //**********************************************************************************************************
 //blur
@@ -521,6 +543,7 @@ void Photoshop_budget::on_apply_blur_clicked()
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
     file_name = filePath;
     delete blurmessageBox;
+     save_image_after_load = false ;
 }
 //************************************************************************************************************
 // rotate
@@ -559,6 +582,7 @@ void Photoshop_budget::on_apply_rotation_clicked()
         ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
         file_name = filePath;
     }
+     save_image_after_load = false ;
 }
 //****************************************************************************************************************
 //frame filter
@@ -620,6 +644,7 @@ void Photoshop_budget::on_apply_frame_clicked()
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
     file_name = filePath;
     delete framemessageBox;
+     save_image_after_load = false ;
 }
 //*************************************************************************************************************
 //flip
@@ -636,6 +661,7 @@ void Photoshop_budget::on_apply_vertical_clicked()
     int h = ui->image->height();
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
     file_name = filePath;
+     save_image_after_load = false ;
 }
 void Photoshop_budget::on_apply_horizontal_clicked()
 {
@@ -645,6 +671,7 @@ void Photoshop_budget::on_apply_horizontal_clicked()
     int h = ui->image->height();
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
     file_name = filePath;
+     save_image_after_load = false ;
 }
 //***************************************************************************************************************************
 //resize
@@ -696,7 +723,8 @@ void Photoshop_budget::on_apply_resize_clicked()
   ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
     file_name = filePath;
     delete resizemessageBox;
-}
+     save_image_after_load = false ;
+}}
 //***************************************************************************************************************************
 //crop
 void Photoshop_budget::on_Crop_btn_clicked()
@@ -758,6 +786,7 @@ void Photoshop_budget::on_Apply_crop_clicked()
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
     file_name = filePath;
     delete cropmessageBox;
+     save_image_after_load = false ;
 }
 //***************************************************************************************************************************
 /*
@@ -788,3 +817,37 @@ void Photoshop_budget::on_original_image_pressed()
 
 
 
+
+void Photoshop_budget::on_clear_btn_clicked()
+{
+
+    ui->image->setAlignment(Qt::AlignCenter);
+    QPixmap pix(":/images/Assets/image-holder-icon-614x460.png");
+    int w = 500;
+    int h = 500;
+    // Set the pixmap to the label with scaled size
+    ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
+    ui->inverted_btn->setEnabled(false);
+    ui->clear_btn->setEnabled(false);
+    ui->save_btn->setEnabled(false);
+    ui->grayscale_btn->setEnabled(false);
+    ui->bw_btn->setEnabled(false);
+    ui->sunlight_btn->setEnabled(false);
+    ui->edge_btn->setEnabled(false);
+    ui->IR_btn->setEnabled(false);
+    ui->TV_btn->setEnabled(false);
+    ui->purble_btn->setEnabled(false);
+    ui->sepia_btn->setEnabled(false);
+    ui->oil_btn->setEnabled(false);
+    ui->darken_btn->setEnabled(false);
+    ui->Pixelate_btn->setEnabled(false);
+    ui->skewed_btn->setEnabled(false);
+    ui->merge_btn->setEnabled(false);
+    ui->frame_btn->setEnabled(false);
+    ui->blur_btn->setEnabled(false);
+    ui->rotate_btn->setEnabled(false);
+    ui->flip_btn->setEnabled(false);
+    ui->rsize_btn->setEnabled(false);
+    ui->Crop_btn->setEnabled(false);
+    ui->original_image->setEnabled(false);
+}
