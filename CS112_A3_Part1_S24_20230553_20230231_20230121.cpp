@@ -1198,37 +1198,26 @@ void blur(Image image) {
     int width = image.width;
 
     // Create a new image that is larger than the original image by 2*blur_size in each dimension
-    Image padded_image(width + 2 * blur_size, height + 2 * blur_size);
-
+    Image padded_img(width + 2 * blur_size, height + 2 * blur_size);
     // Copy the original image into the center of the new image
     for (int i = 0; i < width; ++i) {
         for (int j = 0; j < height; ++j) {
-            padded_image(i + blur_size, j + blur_size, 0) = image(i, j, 0);
-            padded_image(i + blur_size, j + blur_size, 1) = image(i, j, 1);
-            padded_image(i + blur_size, j + blur_size, 2) = image(i, j, 2);
+            padded_img(i + blur_size, j + blur_size, 0) = image(i, j, 0);
+            padded_img(i + blur_size, j + blur_size, 1) = image(i, j, 1);
+            padded_img(i + blur_size, j + blur_size, 2) = image(i, j, 2);
         }
     }
-
     // Create the summed area table
-    vector<vector<int>> satR(padded_image.height, vector<int>(padded_image.width));
-    vector<vector<int>> satG(padded_image.height, vector<int>(padded_image.width));
-    vector<vector<int>> satB(padded_image.height, vector<int>(padded_image.width));
+    vector<vector<int>> satR( padded_img.height, vector<int>( padded_img.width));
+    vector<vector<int>> satG(  padded_img.height, vector<int>( padded_img.width));
+    vector<vector<int>> satB( padded_img.height, vector<int>( padded_img.width));
 
-    // Compute the summed area table
-    for (int i = 0; i < padded_image.width; ++i) {
-        for (int j = 0; j < padded_image.height; ++j) {
-            satR[j][i] = padded_image(i, j, 0) +
-                         (i > 0 ? satR[j][i - 1] : 0) +
-                         (j > 0 ? satR[j - 1][i] : 0) -
-                         (i > 0 && j > 0 ? satR[j - 1][i - 1] : 0);
-            satG[j][i] = padded_image(i, j, 1) +
-                         (i > 0 ? satG[j][i - 1] : 0) +
-                         (j > 0 ? satG[j - 1][i] : 0) -
-                         (i > 0 && j > 0 ? satG[j - 1][i - 1] : 0);
-            satB[j][i] = padded_image(i, j, 2) +
-                         (i > 0 ? satB[j][i - 1] : 0) +
-                         (j > 0 ? satB[j - 1][i] : 0) -
-                         (i > 0 && j > 0 ? satB[j - 1][i - 1] : 0);
+    // C the summed area table
+    for (int i = 0; i < padded_img.width; ++i) {
+        for (int j = 0; j < padded_img.height; ++j) {
+            satR[j][i] = padded_img(i, j, 0) +(i > 0 ? satR[j][i - 1] : 0) +(j > 0 ? satR[j - 1][i] : 0) -(i > 0 && j > 0 ? satR[j - 1][i - 1] : 0);
+            satG[j][i] = padded_img(i, j, 1) +(i > 0 ? satG[j][i - 1] : 0) +(j > 0 ? satG[j - 1][i] : 0) -(i > 0 && j > 0 ? satG[j - 1][i - 1] : 0);
+            satB[j][i] = padded_img(i, j, 2) +(i > 0 ? satB[j][i - 1] : 0) +(j > 0 ? satB[j - 1][i] : 0) -(i > 0 && j > 0 ? satB[j - 1][i - 1] : 0);
         }
     }
 
@@ -1244,22 +1233,19 @@ void blur(Image image) {
 
             // Calculate the coordinates of the blur area, including the padded area
             int x1 = max(i - dynamic_blur_size + blur_size, 0);
-            int x2 = min(i + dynamic_blur_size + blur_size, padded_image.width - 1);
+            int x2 = min(i + dynamic_blur_size + blur_size, padded_img.width - 1);
             int y1 = max(j - dynamic_blur_size + blur_size, 0);
-            int y2 = min(j + dynamic_blur_size + blur_size, padded_image.height - 1);
+            int y2 = min(j + dynamic_blur_size + blur_size, padded_img.height - 1);
 
             // Calculate the number of pixels in the blur area
             int count = (x2 - x1 + 1) * (y2 - y1 + 1);
 
             // Use the summed area table to compute the sum of pixel values in the blur area
-            int sumR = satR[y2][x2] - (x1 > 0 ? satR[y2][x1 - 1] : 0) - (y1 > 0 ? satR[y1 - 1][x2] : 0) +
-                       ((x1 > 0 && y1 > 0) ? satR[y1 - 1][x1 - 1] : 0);
-            int sumG = satG[y2][x2] - (x1 > 0 ? satG[y2][x1 - 1] : 0) - (y1 > 0 ? satG[y1 - 1][x2] : 0) +
-                       ((x1 > 0 && y1 > 0) ? satG[y1 - 1][x1 - 1] : 0);
-            int sumB = satB[y2][x2] - (x1 > 0 ? satB[y2][x1 - 1] : 0) - (y1 > 0 ? satB[y1 - 1][x2] : 0) +
-                       ((x1 > 0 && y1 > 0) ? satB[y1 - 1][x1 - 1] : 0);
+            int sumR = satR[y2][x2] - (x1 > 0 ? satR[y2][x1 - 1] : 0) - (y1 > 0 ? satR[y1 - 1][x2] : 0) + ((x1 > 0 && y1 > 0) ? satR[y1 - 1][x1 - 1] : 0);
+            int sumG = satG[y2][x2] - (x1 > 0 ? satG[y2][x1 - 1] : 0) - (y1 > 0 ? satG[y1 - 1][x2] : 0) +((x1 > 0 && y1 > 0) ? satG[y1 - 1][x1 - 1] : 0);
+            int sumB = satB[y2][x2] - (x1 > 0 ? satB[y2][x1 - 1] : 0) - (y1 > 0 ? satB[y1 - 1][x2] : 0) +((x1 > 0 && y1 > 0) ? satB[y1 - 1][x1 - 1] : 0);
 
-            // Compute the average pixel value in the blur area and clamp it to the valid range
+            //calculate the average pixel value in the blur image and clamp it to the valid range
             blurred_image(i, j, 0) = clamp(sumR / count, 0, 255);
             blurred_image(i, j, 1) = clamp(sumG / count, 0, 255);
             blurred_image(i, j, 2) = clamp(sumB / count, 0, 255);
@@ -1267,7 +1253,6 @@ void blur(Image image) {
     }
 
     cout << "Filter Applied...\n";
-    // Assuming `menu` function displays or processes the blurred image
     menu(blurred_image);
 }
 
@@ -1526,32 +1511,32 @@ void Skewed(Image image) {
     }
     int deg1 = stoi(deg);
     bool flip = deg1 > 90;
-    if (flip)deg1 -= 90;//if degree greater than 90 just skew it normally then flip
-    int margin_of_error = 0;
-    if (deg1 <= 20 && deg1>0){
+    if (flip)deg1 -= 90; //if degree greater than 90 just skew it normally then flip
+    int margin_of_error = 0; //margin of error adds space for low-degree skew
+    //degrees below 60 are hard to skew normally using cos so they are separated to 3 parts
+    if (deg1 <= 20 && deg1>0){ //from 0 to 20 is just a 20 degree skew
         deg1 = 20;
         margin_of_error = image.width * 2;
     }
-    if (deg1 <= 40 && deg1>20){
+    if (deg1 <= 40 && deg1>20){ //from 20 to 40 is just a 40 degree skew
         deg1 = 40;
         margin_of_error = image.width * 3;
         margin_of_error/=2;
     }
-    if (deg1 <= 60 && deg1>40)deg1 = 60;
-    double y = deg1 * 3.14159 / 180;//convert degree to radian so we can use cosine
-    int cnt = (double) image.height * cos(y);
-
-    Image white(abs((int) (image.width + cnt + margin_of_error)), image.height);
+    if (deg1 <= 60 && deg1>40)deg1 = 60; //from 40 to 60 is just a 60 degree skew
+    double y = deg1 * 3.14159 / 180; //convert degree to radian so we can use cosine
+    int cnt = (double) image.height * cos(y); //cnt is the added width to the original width so that we can operate the filter
+    Image white(abs((int) (image.width + cnt + margin_of_error)), image.height); //new image that has the full filter applied to it
     for (int i = 0; i < white.height; ++i) {
         for (int j = 0; j < white.width; ++j) {
             for (int k = 0; k < 3; ++k) {
-                white(j, i, k) = 255;
+                white(j, i, k) = 255; //make it a large white image
             }
         }
     }
-    cnt+=margin_of_error;
-    int denom = ceil(image.height / (double) cnt);
-    int diff = 1;
+    cnt += margin_of_error; //add margin of error to cnt for degrees lower than 40
+    int denom = ceil(image.height / (double) cnt); //denom is how much rows to be passed without skewing
+    int diff = 1; //diffrance between each row
     if (deg1 <= 20 && deg1>0)diff = 2;
     if (deg1 <= 40 && deg1>20){
         denom = 1;
@@ -1561,15 +1546,14 @@ void Skewed(Image image) {
         if (cnt <= 0)cnt = 0;
         for (int j = 0; j < image.width; ++j) {
             for (int k = 0; k < 3; ++k) {
-                white(j + cnt, i, k) = image(j, i, k);
+                white(j + cnt, i, k) = image(j, i, k); //then we add the image to the white one skewed
             }
         }
-        if (cnt <= 0)cnt = 0;
         if (i % denom == 0){
             cnt-=diff;
         }
     }
-    if (flip) {
+    if (flip) {  //flip horizontally if degree more than 90
         Image flipped_image(white.width, white.height);
         for (int i = white.width - 1; i >= 0; i--) {
             for (int j = 0; j < white.height; ++j) {
@@ -1602,11 +1586,9 @@ void Pixelate(Image image) {
                         int counter = 0;
                         for (int x = i; x < i + Pixel_Size && x < image.width; ++x) {
                             for (int y = j; y < j + Pixel_Size && y < image.height; ++y) {
-                                avgRed += image(x, y,
-                                                0); // assign it to equal the sum of each red channel                                avgGreen += image(x, y, 1);
+                                avgRed += image(x, y,0); // assign it to equal the sum of each red channel
                                 avgGreen += image(x, y, 1); // assign it to equal the sum of each green channel
                                 avgBlue += image(x, y, 2);// assign it to equal the sum of each blue channel
-
                                 counter++;
                             }
                         }
@@ -1637,40 +1619,3 @@ void Pixelate(Image image) {
     }
 }
 
-/*
- *
- * The line `cin.ignore(numeric_limits<streamsize>::max(), '\n');` is a call to the `ignore` function from the `cin` object, which is used to clear the input buffer.
-
-Here's a breakdown of the parameters:
-
-1. `numeric_limits<streamsize>::max()`: This part retrieves the maximum value that can be stored in a `streamsize` data type.
- `streamsize` is a data type used for stream buffer sizes. `numeric_limits` is a template class in the `<limits>` header
- , and its `max()` function returns the maximum value representable by the specified data type
- . In this case
- , it returns the maximum value representable by `streamsize`. This value is used to specify the maximum number of characters
- to extract and discard from the input stream.
-
-2. `'\n'`: This character specifies the delimiter until which the extraction will occur.
- In this case, it's the newline character (`'\n'`). It indicates that `cin` should ignore characters in the input buffer
- until it encounters a newline character. This is typically used to clear any remaining characters in the input buffer
- after reading a line of input.
-
-So, `cin.ignore(numeric_limits<streamsize>::max(), '\n');` essentially tells the program to ignore and discard all characters
- in the input buffer until it reaches a newline character (`'\n'`). This is commonly used after using `cin` to read input,
- especially when there might be extra characters left in the input buffer. It ensures that the input buffer is cleared before
- further input operations.
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- * */

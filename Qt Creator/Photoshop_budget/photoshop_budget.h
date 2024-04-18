@@ -108,6 +108,8 @@ private slots:
 
     void on_apply_blur_clicked();
 
+    void on_clear_btn_clicked();
+
 private:
     Ui::Photoshop_budget *ui;
 };
