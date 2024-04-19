@@ -131,13 +131,13 @@ void menu(Image image) {
             "10) Edges\n"
             "11) Resize \n"
             "12) Blur\n"
-            "13) Look Purple\n"
-            "14) Infrared Radiation (IR)\n"
+            "13) Sunlight\n"
+            "14) Oil Painting\n"
             "15) TV\n"
-            "16) Oil Painting\n"
-            "17) Sepia\n"
-            "18) Sunlight\n"
-            "19) Skewed\n"
+            "16) Look Purple\n"
+            "17) Infrared Radiation (IR)\n"
+            "18) Skewed\n"
+            "19) Sepia\n"
             "20) Pixelate \n"
             "21) Save Image\n"
             "22) Load Image\n"
@@ -174,19 +174,19 @@ void choose_filter(string ans, Image image) {
     } else if (ans == "12") {
         blur(image);
     } else if (ans == "13") {
-        look_Purple(image);
+        Sunlight(image);
     } else if (ans == "14") {
-        IR(image);
+        oil(image);
     } else if (ans == "15") {
         tv(image);
     } else if (ans == "16") {
-        oil(image);
+        look_Purple(image) ;
     } else if (ans == "17") {
-        sepia(image);
+        IR(image);
     } else if (ans == "18") {
-        Sunlight(image);
-    } else if (ans == "19") {
         Skewed(image);
+    } else if (ans == "19") {
+        sepia(image);
     } else if (ans == "20") {
         Pixelate(image);
     }
@@ -1542,30 +1542,45 @@ void Skewed(Image image) {
         denom = 1;
         diff = 1;
     }
+    int temp;
+    cout<<cnt;
     for (int i = 0; i < image.height; ++i) {
         if (cnt <= 0)cnt = 0;
         for (int j = 0; j < image.width; ++j) {
             for (int k = 0; k < 3; ++k) {
                 white(j + cnt, i, k) = image(j, i, k); //then we add the image to the white one skewed
+                temp = j + cnt;
+
             }
         }
-        if (i % denom == 0){
-            cnt-=diff;
+        if (i % denom == 0) {
+            cnt -= diff;
+        }
+    }
+    temp-= image.width ;
+    temp++;
+    cout<<temp<<endl;
+    Image cropped_image(white.width-temp,white.height);
+    for (int i = 0; i < white.height; ++i) {
+        for (int j = temp; j <white.width ; ++j) {
+            for (int k = 0; k < 3 ; ++k) {
+                cropped_image(j - temp,i,k) = white(j,i,k);
+            }
         }
     }
     if (flip) {  //flip horizontally if degree more than 90
-        Image flipped_image(white.width, white.height);
-        for (int i = white.width - 1; i >= 0; i--) {
-            for (int j = 0; j < white.height; ++j) {
+        Image flipped_image(cropped_image.width, cropped_image.height);
+        for (int i = cropped_image.width - 1; i >= 0; i--) {
+            for (int j = 0; j < cropped_image.height; ++j) {
                 for (int k = 0; k < 3; ++k) {
-                    flipped_image(white.width - 1 - i, j, k) = white(i, j, k);
+                    flipped_image(cropped_image.width - 1 - i, j, k) = cropped_image(i, j, k);
                 }
             }
         }
         menu(flipped_image);
         return;
     }
-    menu(white);
+    menu(cropped_image);
 }
 
 void Pixelate(Image image) {

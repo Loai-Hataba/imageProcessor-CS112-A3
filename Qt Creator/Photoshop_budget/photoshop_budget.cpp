@@ -757,8 +757,8 @@ void Photoshop_budget::on_crop_h_valueChanged(int arg1)
 void Photoshop_budget::on_Apply_crop_clicked()
 {
 
-    QApplication::processEvents();
-    Image image(file_name.toStdString()) ;
+ QApplication::processEvents();
+   Image image(file_name.toStdString()) ;
     if (x_value > image.width  ){
         QMessageBox msgError;
         msgError.setText("Invalid Starting Point on X-Axis !! ");
