@@ -131,13 +131,13 @@ void menu(Image image) {
             "10) Edges\n"
             "11) Resize \n"
             "12) Blur\n"
-            "13) Look Purple\n"
-            "14) Infrared Radiation (IR)\n"
+            "13) Sunlight\n"
+            "14) Oil Painting\n"
             "15) TV\n"
-            "16) Oil Painting\n"
-            "17) Sepia\n"
-            "18) Sunlight\n"
-            "19) Skewed\n"
+            "16) Look Purple\n"
+            "17) Infrared Radiation (IR)\n"
+            "18) Skewed\n"
+            "19) Sepia\n"
             "20) Pixelate \n"
             "21) Save Image\n"
             "22) Load Image\n"
@@ -174,19 +174,19 @@ void choose_filter(string ans, Image image) {
     } else if (ans == "12") {
         blur(image);
     } else if (ans == "13") {
-        look_Purple(image);
+        Sunlight(image);
     } else if (ans == "14") {
-        IR(image);
+        oil(image);
     } else if (ans == "15") {
         tv(image);
     } else if (ans == "16") {
-        oil(image);
+        look_Purple(image) ;
     } else if (ans == "17") {
-        sepia(image);
+        IR(image);
     } else if (ans == "18") {
-        Sunlight(image);
-    } else if (ans == "19") {
         Skewed(image);
+    } else if (ans == "19") {
+        sepia(image);
     } else if (ans == "20") {
         Pixelate(image);
     }
