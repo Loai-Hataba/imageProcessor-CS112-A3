@@ -1,0 +1,9 @@
+D:/imageProcessor-CS112-A3/build/CMakeFiles/Photoshop_budget.dir
+D:/imageProcessor-CS112-A3/build/CMakeFiles/edit_cache.dir
+D:/imageProcessor-CS112-A3/build/CMakeFiles/rebuild_cache.dir
+D:/imageProcessor-CS112-A3/build/CMakeFiles/list_install_components.dir
+D:/imageProcessor-CS112-A3/build/CMakeFiles/install.dir
+D:/imageProcessor-CS112-A3/build/CMakeFiles/install/local.dir
+D:/imageProcessor-CS112-A3/build/CMakeFiles/install/strip.dir
+D:/imageProcessor-CS112-A3/build/CMakeFiles/Photoshop_budget_autogen_timestamp_deps.dir
+D:/imageProcessor-CS112-A3/build/CMakeFiles/Photoshop_budget_autogen.dir

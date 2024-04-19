@@ -1998,8 +1998,8 @@ background-color: rgb(15, 98, 162);</string>
     <widget class="QStackedWidget" name="stackedWidget">
      <property name="geometry">
       <rect>
-       <x>-10</x>
-       <y>20</y>
+       <x>0</x>
+       <y>0</y>
        <width>271</width>
        <height>1061</height>
       </rect>
@@ -2008,7 +2008,7 @@ background-color: rgb(15, 98, 162);</string>
       <string notr="true">background-color: rgb(52, 53, 54);</string>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="blur_optn">
       <widget class="QRadioButton" name="blur">
@@ -2397,6 +2397,9 @@ border-radius: 7px;</string>
        <property name="maximum">
         <number>5000</number>
        </property>
+       <property name="singleStep">
+        <number>10</number>
+       </property>
       </widget>
       <widget class="QSpinBox" name="height_crop_apply">
        <property name="geometry">
@@ -2426,6 +2429,9 @@ border-radius: 7px;</string>
        </property>
        <property name="maximum">
         <number>5000</number>
+       </property>
+       <property name="singleStep">
+        <number>10</number>
        </property>
       </widget>
       <widget class="QLabel" name="label_39">

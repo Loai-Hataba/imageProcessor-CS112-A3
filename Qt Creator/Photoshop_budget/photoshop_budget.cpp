@@ -144,6 +144,7 @@ void Photoshop_budget::on_load_btn_clicked()
 {
     file_name = QFileDialog::getOpenFileName(this, "Load Image", "D:/imageProcessor-CS112-A3/cmake-build-debug/Samples");
     if (!file_name.isEmpty() && (file_name.endsWith(".jpg") || file_name.endsWith(".png") || file_name.endsWith(".bmp") || file_name.endsWith(".tga"))) {
+        cntr_temp ++;
         QPixmap pix(file_name);
         int w = ui->image->width();
         int h = ui->image->height();
@@ -215,29 +216,6 @@ void Photoshop_budget::on_load_btn_clicked()
             msgError.setWindowTitle("File not opened");
             msgError.exec();
             file_name = filePath ;
-            ui->inverted_btn->setEnabled(false);
-            ui->clear_btn->setEnabled(false);
-            ui->save_btn->setEnabled(false);
-            ui->grayscale_btn->setEnabled(false);
-            ui->bw_btn->setEnabled(false);
-            ui->sunlight_btn->setEnabled(false);
-            ui->edge_btn->setEnabled(false);
-            ui->IR_btn->setEnabled(false);
-            ui->TV_btn->setEnabled(false);
-            ui->purble_btn->setEnabled(false);
-            ui->sepia_btn->setEnabled(false);
-            ui->oil_btn->setEnabled(false);
-            ui->darken_btn->setEnabled(false);
-            ui->Pixelate_btn->setEnabled(false);
-            ui->skewed_btn->setEnabled(false);
-            ui->merge_btn->setEnabled(false);
-            ui->frame_btn->setEnabled(false);
-            ui->blur_btn->setEnabled(false);
-            ui->rotate_btn->setEnabled(false);
-            ui->flip_btn->setEnabled(false);
-            ui->rsize_btn->setEnabled(false);
-            ui->Crop_btn->setEnabled(false);
-            ui->original_image->setEnabled(false);
         }
     }
     original = file_name;
@@ -420,7 +398,6 @@ void Photoshop_budget::on_darken_btn_clicked()
         width: 18px;
         margin: -2px 0;
         border-radius: 3px;
-
 }
 )");
 
@@ -457,6 +434,13 @@ void Photoshop_budget::on_apply_brightness_btn_clicked()
 //pixelate
 void Photoshop_budget::on_Pixelate_btn_clicked()
 {
+    QMessageBox *pixelmessageBox = new QMessageBox;
+    QPixmap pixmap(":/images/Assets/png-transparent-black-loading-ic.png");
+    pixmap = pixmap.scaled(20, 20, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    pixelmessageBox->setIconPixmap(pixmap);
+    pixelmessageBox->setText("Processing Image...");
+    pixelmessageBox->show();
+    QApplication::processEvents();
     ui->dock_Widget_2->hide();
     Pixelate(file_name.toStdString(),filePath.toStdString());
     QPixmap pix(filePath);
@@ -465,6 +449,7 @@ void Photoshop_budget::on_Pixelate_btn_clicked()
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
     file_name = filePath;
      save_image_after_load = false ;
+    delete pixelmessageBox;
 }
 //***************************************************************************************************************************
 //skew
