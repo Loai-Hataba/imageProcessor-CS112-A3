@@ -8,5 +8,6 @@
  Abdallah Mohammed
 
 ⚠️How to Setup Program:
+
     1) Install the Setup Photshop on Budget.exe on your local machine
     2) Voila🎊
