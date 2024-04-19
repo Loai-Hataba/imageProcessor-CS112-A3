@@ -756,6 +756,41 @@ void Photoshop_budget::on_crop_h_valueChanged(int arg1)
 }
 void Photoshop_budget::on_Apply_crop_clicked()
 {
+
+    QApplication::processEvents();
+    Image image(file_name.toStdString()) ;
+    if (x_value > image.width  ){
+        QMessageBox msgError;
+        msgError.setText("Invalid Starting Point on X-Axis !! ");
+        msgError.setIcon(QMessageBox::Critical);
+        msgError.setWindowTitle("File not opened");
+        msgError.exec();
+        return ;
+    }
+    if (y_value > image.width  ){
+        QMessageBox msgError;
+        msgError.setText("Invalid Starting Point on Y-Axis !! ");
+        msgError.setIcon(QMessageBox::Critical);
+        msgError.setWindowTitle("File not opened");
+        msgError.exec();
+        return ;
+    }
+    if ((x_value +crop_width_value ) > image.width  ){
+        QMessageBox msgError;
+        msgError.setText("Out of Width bounds !! ");
+        msgError.setIcon(QMessageBox::Critical);
+        msgError.setWindowTitle("File not opened");
+        msgError.exec();
+        return ;
+    }
+    if ( (y_value + height_crop)  > image.height){
+        QMessageBox msgError;
+        msgError.setText("Out of Height bounds !! ");
+        msgError.setIcon(QMessageBox::Critical);
+        msgError.setWindowTitle("File not opened");
+        msgError.exec();
+        return ;
+    }
     QMessageBox *cropmessageBox = new QMessageBox;
     QPixmap pixmap(":/images/Assets/png-transparent-black-loading-ic.png");
     pixmap = pixmap.scaled(20, 20, Qt::KeepAspectRatio, Qt::SmoothTransformation);
@@ -763,23 +798,6 @@ void Photoshop_budget::on_Apply_crop_clicked()
     cropmessageBox->setText("Processing Image...");
     cropmessageBox->show();
     QApplication::processEvents();
-   Image image(file_name.toStdString()) ;
-    if ((x_value +crop_width_value ) > image.width  ){
-       QMessageBox msgError;
-       msgError.setText("Out of Width bounds !! ");
-       msgError.setIcon(QMessageBox::Critical);
-       msgError.setWindowTitle("File not opened");
-       msgError.exec();
-       return ;
-   }
-    if ( (y_value + height_crop)  > image.height){
-       QMessageBox msgError;
-       msgError.setText("Out of Height bounds !! ");
-       msgError.setIcon(QMessageBox::Critical);
-       msgError.setWindowTitle("File not opened");
-       msgError.exec();
-       return ;
-   }
     crop(file_name.toStdString(),filePath.toStdString(),x_value , y_value ,crop_width_value , height_crop);
     QPixmap pix(filePath);
     int w = ui->image->width();
@@ -787,7 +805,7 @@ void Photoshop_budget::on_Apply_crop_clicked()
     ui->image->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
     file_name = filePath;
     delete cropmessageBox;
-     save_image_after_load = false ;
+    save_image_after_load = false ;
 }
 //***************************************************************************************************************************
 /*

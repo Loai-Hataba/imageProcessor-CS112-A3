@@ -2033,7 +2033,7 @@ background-color: rgb(132, 66, 170);</string>
         <string>Box</string>
        </property>
        <property name="checked">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
       </widget>
       <widget class="QRadioButton" name="blur_2d">
@@ -2263,9 +2263,9 @@ background-color: rgb(132, 66, 170);</string>
       <widget class="QSpinBox" name="crop_x">
        <property name="geometry">
         <rect>
-         <x>60</x>
+         <x>50</x>
          <y>220</y>
-         <width>91</width>
+         <width>101</width>
          <height>61</height>
         </rect>
        </property>
@@ -2284,18 +2284,21 @@ border-radius: 7px;</string>
         <string>X: </string>
        </property>
        <property name="minimum">
-        <number>1</number>
+        <number>0</number>
        </property>
        <property name="maximum">
-        <number>10000</number>
+        <number>5000</number>
+       </property>
+       <property name="value">
+        <number>0</number>
        </property>
       </widget>
       <widget class="QSpinBox" name="crop_y">
        <property name="geometry">
         <rect>
-         <x>60</x>
+         <x>50</x>
          <y>350</y>
-         <width>91</width>
+         <width>101</width>
          <height>61</height>
         </rect>
        </property>
@@ -2314,18 +2317,21 @@ border-radius: 7px;</string>
         <string>Y: </string>
        </property>
        <property name="minimum">
-        <number>1</number>
+        <number>0</number>
        </property>
        <property name="maximum">
-        <number>10000</number>
+        <number>5000</number>
+       </property>
+       <property name="value">
+        <number>0</number>
        </property>
       </widget>
       <widget class="QSpinBox" name="crop_w">
        <property name="geometry">
         <rect>
-         <x>60</x>
+         <x>50</x>
          <y>530</y>
-         <width>91</width>
+         <width>101</width>
          <height>61</height>
         </rect>
        </property>
@@ -2344,7 +2350,7 @@ border-radius: 7px;</string>
         <number>50</number>
        </property>
        <property name="maximum">
-        <number>10000</number>
+        <number>5000</number>
        </property>
       </widget>
       <widget class="QLabel" name="label_2">
@@ -2369,9 +2375,9 @@ border-radius: 7px;</string>
       <widget class="QSpinBox" name="height_crop_apply">
        <property name="geometry">
         <rect>
-         <x>60</x>
+         <x>50</x>
          <y>670</y>
-         <width>91</width>
+         <width>101</width>
          <height>61</height>
         </rect>
        </property>
@@ -2390,7 +2396,7 @@ border-radius: 7px;</string>
         <number>50</number>
        </property>
        <property name="maximum">
-        <number>10000</number>
+        <number>5000</number>
        </property>
       </widget>
       <widget class="QLabel" name="label_39">
@@ -2487,9 +2493,9 @@ background-color: rgb(0,0,0);</string>
       <widget class="QWidget" name="widget_25" native="true">
        <property name="geometry">
         <rect>
-         <x>70</x>
+         <x>60</x>
          <y>670</y>
-         <width>91</width>
+         <width>101</width>
          <height>71</height>
         </rect>
        </property>
@@ -2502,9 +2508,9 @@ background-color: rgb(0,0,0);</string>
       <widget class="QWidget" name="widget_26" native="true">
        <property name="geometry">
         <rect>
-         <x>70</x>
+         <x>60</x>
          <y>530</y>
-         <width>91</width>
+         <width>101</width>
          <height>71</height>
         </rect>
        </property>
@@ -2517,9 +2523,9 @@ background-color: rgb(0,0,0);</string>
       <widget class="QWidget" name="widget_27" native="true">
        <property name="geometry">
         <rect>
-         <x>70</x>
+         <x>60</x>
          <y>350</y>
-         <width>91</width>
+         <width>101</width>
          <height>71</height>
         </rect>
        </property>
@@ -2532,9 +2538,9 @@ background-color: rgb(0,0,0);</string>
       <widget class="QWidget" name="widget_28" native="true">
        <property name="geometry">
         <rect>
-         <x>70</x>
+         <x>60</x>
          <y>220</y>
-         <width>91</width>
+         <width>101</width>
          <height>71</height>
         </rect>
        </property>
@@ -2995,10 +3001,10 @@ background-color: rgb(132, 66, 170);</string>
       <widget class="QSpinBox" name="frame_size_val">
        <property name="geometry">
         <rect>
-         <x>160</x>
+         <x>140</x>
          <y>210</y>
-         <width>71</width>
-         <height>41</height>
+         <width>91</width>
+         <height>51</height>
         </rect>
        </property>
        <property name="font">
@@ -3176,7 +3182,7 @@ background-color: rgb(0,0,0);</string>
          <x>170</x>
          <y>210</y>
          <width>71</width>
-         <height>43</height>
+         <height>51</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -3418,7 +3424,7 @@ border-radius: 7px;</string>
         <string> px</string>
        </property>
        <property name="minimum">
-        <number>1</number>
+        <number>10</number>
        </property>
        <property name="maximum">
         <number>10000</number>
@@ -3428,6 +3434,9 @@ border-radius: 7px;</string>
        </property>
        <property name="stepType">
         <enum>QAbstractSpinBox::DefaultStepType</enum>
+       </property>
+       <property name="value">
+        <number>10</number>
        </property>
       </widget>
       <widget class="QSpinBox" name="resize_height">
@@ -3454,7 +3463,7 @@ border-radius: 7px;</string>
         <string> px</string>
        </property>
        <property name="minimum">
-        <number>1</number>
+        <number>10</number>
        </property>
        <property name="maximum">
         <number>10000</number>
@@ -3830,7 +3839,7 @@ border-radius: 7px;</string>
         <string>°</string>
        </property>
        <property name="minimum">
-        <number>1</number>
+        <number>10</number>
        </property>
        <property name="maximum">
         <number>180</number>
@@ -3839,7 +3848,7 @@ border-radius: 7px;</string>
         <number>10</number>
        </property>
        <property name="value">
-        <number>1</number>
+        <number>10</number>
        </property>
       </widget>
       <widget class="QPushButton" name="apply_skew">

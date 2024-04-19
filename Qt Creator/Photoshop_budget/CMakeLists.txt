@@ -12,20 +12,20 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
+# Set the path to your icon file
+set(ICON_RESOURCE "D:/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/Assets/Photoshop_Budget.ico")
+
 set(PROJECT_SOURCES
         main.cpp
         photoshop_budget.cpp
         photoshop_budget.h
         photoshop_budget.ui
-
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(Photoshop_budget
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-
-
         image_processor_code.cpp
         Image_Class.h
         stb_image.h
@@ -33,22 +33,13 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         image_processor.h
         stb_implementation.cpp
         rsc.qrc
-
-
-
-
+        ${ICON_RESOURCE} # Include the icon resource
     )
-# Define target properties for Android with Qt 6 as:
-#    set_property(TARGET Photoshop_budget APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
-#                 ${CMAKE_CURRENT_SOURCE_DIR}/android)
-# For more information, see https://doc.qt.io/qt-6/qt-add-executable.html#target-creation
 else()
     if(ANDROID)
         add_library(Photoshop_budget SHARED
             ${PROJECT_SOURCES}
         )
-# Define properties for Android with Qt 5 after find_package() calls as:
-#    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
     else()
         add_executable(Photoshop_budget
             ${PROJECT_SOURCES}
@@ -58,12 +49,10 @@ endif()
 
 target_link_libraries(Photoshop_budget PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 
-# Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
-# If you are developing for iOS or macOS you should consider setting an
-# explicit, fixed bundle identifier manually though.
 if(${QT_VERSION} VERSION_LESS 6.1.0)
   set(BUNDLE_ID_OPTION MACOSX_BUNDLE_GUI_IDENTIFIER com.example.Photoshop_budget)
 endif()
+
 set_target_properties(Photoshop_budget PROPERTIES
     ${BUNDLE_ID_OPTION}
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
