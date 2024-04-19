@@ -1542,30 +1542,45 @@ void Skewed(Image image) {
         denom = 1;
         diff = 1;
     }
+    int temp;
+    cout<<cnt;
     for (int i = 0; i < image.height; ++i) {
         if (cnt <= 0)cnt = 0;
         for (int j = 0; j < image.width; ++j) {
             for (int k = 0; k < 3; ++k) {
                 white(j + cnt, i, k) = image(j, i, k); //then we add the image to the white one skewed
+                temp = j + cnt;
+
             }
         }
-        if (i % denom == 0){
-            cnt-=diff;
+        if (i % denom == 0) {
+            cnt -= diff;
+        }
+    }
+    temp-= image.width ;
+    temp++;
+    cout<<temp<<endl;
+    Image cropped_image(white.width-temp,white.height);
+    for (int i = 0; i < white.height; ++i) {
+        for (int j = temp; j <white.width ; ++j) {
+            for (int k = 0; k < 3 ; ++k) {
+                cropped_image(j - temp,i,k) = white(j,i,k);
+            }
         }
     }
     if (flip) {  //flip horizontally if degree more than 90
-        Image flipped_image(white.width, white.height);
-        for (int i = white.width - 1; i >= 0; i--) {
-            for (int j = 0; j < white.height; ++j) {
+        Image flipped_image(cropped_image.width, cropped_image.height);
+        for (int i = cropped_image.width - 1; i >= 0; i--) {
+            for (int j = 0; j < cropped_image.height; ++j) {
                 for (int k = 0; k < 3; ++k) {
-                    flipped_image(white.width - 1 - i, j, k) = white(i, j, k);
+                    flipped_image(cropped_image.width - 1 - i, j, k) = cropped_image(i, j, k);
                 }
             }
         }
         menu(flipped_image);
         return;
     }
-    menu(white);
+    menu(cropped_image);
 }
 
 void Pixelate(Image image) {
