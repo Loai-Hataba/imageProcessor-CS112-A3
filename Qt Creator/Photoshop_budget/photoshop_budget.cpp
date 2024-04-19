@@ -756,14 +756,25 @@ void Photoshop_budget::on_crop_h_valueChanged(int arg1)
 }
 void Photoshop_budget::on_Apply_crop_clicked()
 {
-    QMessageBox *cropmessageBox = new QMessageBox;
-    QPixmap pixmap(":/images/Assets/png-transparent-black-loading-ic.png");
-    pixmap = pixmap.scaled(20, 20, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-    cropmessageBox->setIconPixmap(pixmap);
-    cropmessageBox->setText("Processing Image...");
-    cropmessageBox->show();
-    QApplication::processEvents();
+
+ QApplication::processEvents();
    Image image(file_name.toStdString()) ;
+    if (x_value > image.width  ){
+        QMessageBox msgError;
+        msgError.setText("Invalid Starting Point on X-Axis !! ");
+        msgError.setIcon(QMessageBox::Critical);
+        msgError.setWindowTitle("File not opened");
+        msgError.exec();
+        return ;
+    }
+    if (y_value > image.width  ){
+        QMessageBox msgError;
+        msgError.setText("Invalid Starting Point on Y-Axis !! ");
+        msgError.setIcon(QMessageBox::Critical);
+        msgError.setWindowTitle("File not opened");
+        msgError.exec();
+        return ;
+    }
     if ((x_value +crop_width_value ) > image.width  ){
        QMessageBox msgError;
        msgError.setText("Out of Width bounds !! ");
@@ -780,6 +791,13 @@ void Photoshop_budget::on_Apply_crop_clicked()
        msgError.exec();
        return ;
    }
+    QMessageBox *cropmessageBox = new QMessageBox;
+    QPixmap pixmap(":/images/Assets/png-transparent-black-loading-ic.png");
+    pixmap = pixmap.scaled(20, 20, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    cropmessageBox->setIconPixmap(pixmap);
+    cropmessageBox->setText("Processing Image...");
+    cropmessageBox->show();
+     QApplication::processEvents();
     crop(file_name.toStdString(),filePath.toStdString(),x_value , y_value ,crop_width_value , height_crop);
     QPixmap pix(filePath);
     int w = ui->image->width();

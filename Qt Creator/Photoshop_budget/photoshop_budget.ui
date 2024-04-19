@@ -2651,7 +2651,7 @@ background-color: rgb(0,0,0);</string>
         </font>
        </property>
        <property name="text">
-        <string>Brigthness</string>
+        <string>Brightness</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_37">
