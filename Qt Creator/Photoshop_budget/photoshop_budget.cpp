@@ -71,14 +71,7 @@ Photoshop_budget::Photoshop_budget(QWidget *parent)
     ui->original_image->setEnabled(false);
     connect(ui->apply_brightness_btn, &QPushButton::clicked, this, &Photoshop_budget::on_apply_brightness_btn_clicked);
     connect(ui->apply_merge, &QPushButton::clicked, this, &Photoshop_budget::on_apply_merge_clicked);
-    // connect(ui->blur_slider, &QSlider::valueChanged, this, &Photoshop_budget::on_blur_slider_valueChanged);
-/*connect(ui->vertical, &QPushButton::clicked, this, &Photoshop_budget::on_vertical_clicked);
-connect(ui->horizontal, &QPushButton::clicked, this, &Photoshop_budget::on_horizontal_clicked);*/
-    //connect(ui->pushButton, &QPushButton::clicked, this, &Photoshop_budget::on_pushButton_clicked);
-    //connect(ui->pushButton_2, &QPushButton::clicked, this, &Photoshop_budget::on_pushButton_2_clicked);
-    // connect(ui->frame_size_val, &QSpinBox::valueChanged, this, &Photoshop_budget::on_frame_size_val_valueChanged);
     connect(ui->frame_btn, &QPushButton::clicked, this, &Photoshop_budget::on_frame_btn_clicked);
-    // connect(ui->apply_frame, &QPushButton::clicked, this, &Photoshop_budget::on_apply_frame_clicked);
     ui->dock_Widget_2->hide();
 
 
