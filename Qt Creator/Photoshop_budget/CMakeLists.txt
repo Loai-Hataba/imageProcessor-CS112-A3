@@ -12,8 +12,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
-# Set the path to your icon file
-set(ICON_RESOURCE "D:/imageProcessor-CS112-A3/Qt Creator/Photoshop_budget/Assets/Photoshop_Budget.ico")
 
 set(PROJECT_SOURCES
         main.cpp
@@ -33,7 +31,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         image_processor.h
         stb_implementation.cpp
         rsc.qrc
-        ${ICON_RESOURCE} # Include the icon resource
+
     )
 else()
     if(ANDROID)

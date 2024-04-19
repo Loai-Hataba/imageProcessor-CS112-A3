@@ -191,6 +191,29 @@ void Photoshop_budget::on_load_btn_clicked()
             msgError.setIcon(QMessageBox::Critical);
             msgError.setWindowTitle("File not opened");
             msgError.exec();
+            ui->inverted_btn->setEnabled(false);
+            ui->clear_btn->setEnabled(false);
+            ui->save_btn->setEnabled(false);
+            ui->grayscale_btn->setEnabled(false);
+            ui->bw_btn->setEnabled(false);
+            ui->sunlight_btn->setEnabled(false);
+            ui->edge_btn->setEnabled(false);
+            ui->IR_btn->setEnabled(false);
+            ui->TV_btn->setEnabled(false);
+            ui->purble_btn->setEnabled(false);
+            ui->sepia_btn->setEnabled(false);
+            ui->oil_btn->setEnabled(false);
+            ui->darken_btn->setEnabled(false);
+            ui->Pixelate_btn->setEnabled(false);
+            ui->skewed_btn->setEnabled(false);
+            ui->merge_btn->setEnabled(false);
+            ui->frame_btn->setEnabled(false);
+            ui->blur_btn->setEnabled(false);
+            ui->rotate_btn->setEnabled(false);
+            ui->flip_btn->setEnabled(false);
+            ui->rsize_btn->setEnabled(false);
+            ui->Crop_btn->setEnabled(false);
+            ui->original_image->setEnabled(false);
         }
         else{
             QMessageBox msgError;
@@ -199,6 +222,29 @@ void Photoshop_budget::on_load_btn_clicked()
             msgError.setWindowTitle("File not opened");
             msgError.exec();
             file_name = filePath ;
+            ui->inverted_btn->setEnabled(false);
+            ui->clear_btn->setEnabled(false);
+            ui->save_btn->setEnabled(false);
+            ui->grayscale_btn->setEnabled(false);
+            ui->bw_btn->setEnabled(false);
+            ui->sunlight_btn->setEnabled(false);
+            ui->edge_btn->setEnabled(false);
+            ui->IR_btn->setEnabled(false);
+            ui->TV_btn->setEnabled(false);
+            ui->purble_btn->setEnabled(false);
+            ui->sepia_btn->setEnabled(false);
+            ui->oil_btn->setEnabled(false);
+            ui->darken_btn->setEnabled(false);
+            ui->Pixelate_btn->setEnabled(false);
+            ui->skewed_btn->setEnabled(false);
+            ui->merge_btn->setEnabled(false);
+            ui->frame_btn->setEnabled(false);
+            ui->blur_btn->setEnabled(false);
+            ui->rotate_btn->setEnabled(false);
+            ui->flip_btn->setEnabled(false);
+            ui->rsize_btn->setEnabled(false);
+            ui->Crop_btn->setEnabled(false);
+            ui->original_image->setEnabled(false);
         }
     }
     original = file_name;
