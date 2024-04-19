@@ -36,5 +36,14 @@
         <file>Assets/down.png</file>
         <file>Assets/up-arrow.png</file>
         <file>Assets/clear.png</file>
+        <file>Assets/2d.png</file>
+        <file>Assets/box.png</file>
+        <file>Assets/checkers.png</file>
+        <file>Assets/diagonal.png</file>
+        <file>Assets/largest area.png</file>
+        <file>Assets/most common.png</file>
+        <file>Assets/simple frame.png</file>
+        <file>Assets/texture.png</file>
+        <file>Assets/scale.png</file>
     </qresource>
 </RCC>
