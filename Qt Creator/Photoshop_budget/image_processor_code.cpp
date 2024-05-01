@@ -21,29 +21,6 @@ Authors: Loai Hataba,       ID: 20230553, Section: S24, Email: Loaiwleed2005@gma
 using namespace std;
 
 
-
-/*To make:
-1- Endless program loop                             (Done)
-2- Safeguard unsigned colors                        (Done)
-3- Handle current image save and Load               (Done)
-4- add automatic naming for file name in main menu  (Done)
-5- add usage instructions                           (Done)
-6- safeguard all int input with chars               (Done)
-7- add color choosing and a fancier frame           (Done)
-8- add save to !!!current image or load a new image (Done)
-9- not quit after 21) save image                    (Done)
-10- continue or load menu adjust                    (Done)
-11- proper validation (blur-oil)                    (Done)
-12- Safeguard menu choices                          (Done)
-13- Flowchart diagram                               *
-14- Comments                                        *
-15- check file extension when quitting              (Done)
-16- Fix tv filter                                   (Done)
-17- Handle empty or wrong files when using filters  *
-*/
-
-
-
 string file_path;
 Image temp ;
 Image image_path(const std::string& path)
@@ -866,7 +843,7 @@ void Skewed(string path,string filePath,int deg1) {
     Image image(path);
     bool flag = true;
     bool flip = deg1 > 90;
-    if (flip)deg1 -= 90; //if degree greater than 90 just skew it normally then flip
+    if (flip)deg1 = 180-deg1; //if degree greater than 90 just skew it normally then flip
     int margin_of_error = 0; //margin of error adds space for low-degree skew
     //degrees below 60 are hard to skew normally using cos so they are separated to 3 parts
     if (deg1 <= 20 && deg1>0){ //from 0 to 20 is just a 20 degree skew

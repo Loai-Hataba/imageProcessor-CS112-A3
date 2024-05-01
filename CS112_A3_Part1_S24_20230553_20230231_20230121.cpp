@@ -142,11 +142,11 @@ void menu(Image image) {
             "21) Save Image\n"
             "22) Load Image\n"
             "23) Exit\n"
+            "24) About\n"
             "Choice: ";
     cin >> ans;
     choose_filter(ans, image);
 }
-
 
 void choose_filter(string ans, Image image) {
     if (ans == "1") {
@@ -217,6 +217,18 @@ void choose_filter(string ans, Image image) {
         } else {
             cout << "Invalid choice!\n";
         }
+    }
+    else if (ans == "24")
+    {
+        cout << "\nDeveloped for FCAI CU CS112 course\n"
+                "Under the supervision of Dr Mohammed ElRamly\n"
+                "V4.0\n\n"
+                "Developed by:\n"
+                "Loai Hataba\n"
+                "Abdallah Moahamed\n"
+                "Hossam Abdelaziz\n\n"
+                "Github Repo Link: https://github.com/Loai-Hataba/imageProcessor-CS112-A3";
+        menu(image);
     }
     else {
         cout << "Invalid choice!\n";
@@ -347,7 +359,8 @@ void inverted(Image &image) //Loai (Done)
     menu(image);
 }
 
-Image resizeMerge(Image image, int max_width, int max_height) { //straight up copied Abdallah's resized filter
+Image resizeMerge(Image image, int max_width, int max_height) //Hossam
+{ //straight up copied Abdallah's resized filter
     Image resized_Img(max_width, max_height);
     float s;
     float r;
@@ -419,7 +432,6 @@ void merge(Image image1) //Hossam (Done)
         menu(image3);
     }
 }
-
 
 void flip(Image image) //Abdallah (Done)
 {
@@ -555,7 +567,8 @@ void darken_lighten(Image image) //Hossam (Done)
     menu(image);
 }
 
-int valid(string& input) {
+int valid(string& input) //Abdullah
+{
     bool flag = true;
 
     for (int i = 0; i < input.size(); ++i) {
@@ -578,7 +591,8 @@ int valid(string& input) {
     }
 }
 
-void crop(Image image) {
+void crop(Image image) //Abdullah
+{
     string strX, strY, strW, strH;
     int x, y, w, h;
     // x and y reference  to the starting  point
@@ -872,9 +886,8 @@ void frame(Image image) //Loai (Done)
             }
         }
 //        best at 0.1
-        float frequency = 0.1; // Adjust this for texture frequency
+        float frequency = 0.15; // Adjust this for texture frequency
 //        best using one color
-
 //        Horizontal Frame
         for (int i = 0; i < image.width; i++) {
             for (int j = 0; j < frame_size; j++) {
@@ -1051,7 +1064,8 @@ void frame(Image image) //Loai (Done)
     menu(image);
 }
 
-void edges(Image image) { //Hossam (Done)
+void edges(Image image) //Hossam
+{ //Hossam (Done)
 
     for (int i = 0; i < image.width; i++) {     //black and white filter before we detect edges
         for (int j = 0; j < image.height; j++) {
@@ -1126,33 +1140,33 @@ void resize(Image image) //Abdallah (Done)
     }
 }
 
-/*void blur(Image image) //Loai (Done)
+void blur(Image image) //Loai (Done)
 {
     int blur_size = 7;
-//    string temp;
-//    bool test;
-////    check input validation
-//    do {
-//        test = true;
-//        cout << "Choose Blur size (1-15)\n"
-//                "1-->\"Less Blur, more efficient, Time: 5 Sec\"\n"
-//                "15-->\"More Blur,less efficient, Time: 3 Min\"\n"
-//                "Choice: ";
-//        cin >> temp;
-//        for (auto digit: temp) {
-//            if (not isdigit(digit)) {
-//                test = false;
-//            }
-//        }
-//        if (test) {
-//            if (blur_size < 1 || blur_size > 15) {
-//                cout << "Range (1-15)!!!\n";
-//                test = false;
-//            }
-//        }
-//    } while (not test);
+    string temp;
+    bool test;
+//    check input validation
+    do {
+        test = true;
+        cout << "Choose Blur size (1-15)\n"
+                "1-->\"Less Blur, more efficient, Time: 5 Sec\"\n"
+                "15-->\"More Blur,less efficient, Time: 3 Min\"\n"
+                "Choice: ";
+        cin >> temp;
+        for (auto digit: temp) {
+            if (not isdigit(digit)) {
+                test = false;
+            }
+        }
+        if (test) {
+            if (blur_size < 1 || blur_size > 15) {
+                cout << "Range (1-15)!!!\n";
+                test = false;
+            }
+        }
+    } while (not test);
 //    turn answer to proper int
-//    blur_size = stoi(temp);
+    blur_size = stoi(temp);
 
     int height = image.height;
     int width = image.width;
@@ -1189,82 +1203,76 @@ void resize(Image image) //Abdallah (Done)
     }
     cout << "Filter Applied...\n";
     menu(blurred_image);
-}*/
-
-
-void blur(Image image) {
-    int blur_size =  5 ;
-    int height = image.height;
-    int width = image.width;
-
-    // Create a new image that is larger than the original image by 2*blur_size in each dimension
-    Image padded_img(width + 2 * blur_size, height + 2 * blur_size);
-    // Copy the original image into the center of the new image
-    for (int i = 0; i < width; ++i) {
-        for (int j = 0; j < height; ++j) {
-            padded_img(i + blur_size, j + blur_size, 0) = image(i, j, 0);
-            padded_img(i + blur_size, j + blur_size, 1) = image(i, j, 1);
-            padded_img(i + blur_size, j + blur_size, 2) = image(i, j, 2);
-        }
-    }
-    // Create the summed area table
-    vector<vector<int>> satR( padded_img.height, vector<int>( padded_img.width));
-    vector<vector<int>> satG(  padded_img.height, vector<int>( padded_img.width));
-    vector<vector<int>> satB( padded_img.height, vector<int>( padded_img.width));
-
-    // C the summed area table
-    for (int i = 0; i < padded_img.width; ++i) {
-        for (int j = 0; j < padded_img.height; ++j) {
-            satR[j][i] = padded_img(i, j, 0) +(i > 0 ? satR[j][i - 1] : 0) +(j > 0 ? satR[j - 1][i] : 0) -(i > 0 && j > 0 ? satR[j - 1][i - 1] : 0);
-            satG[j][i] = padded_img(i, j, 1) +(i > 0 ? satG[j][i - 1] : 0) +(j > 0 ? satG[j - 1][i] : 0) -(i > 0 && j > 0 ? satG[j - 1][i - 1] : 0);
-            satB[j][i] = padded_img(i, j, 2) +(i > 0 ? satB[j][i - 1] : 0) +(j > 0 ? satB[j - 1][i] : 0) -(i > 0 && j > 0 ? satB[j - 1][i - 1] : 0);
-        }
-    }
-
-    Image blurred_image(width, height);
-
-    // Apply the blur using the summed area table
-    for (int i = 0; i < width; ++i) {
-        for (int j = 0; j < height; ++j) {
-            // Dynamically adjust the blur size based on the pixel's distance from the edge
-            int dynamic_blur_size_x = min({blur_size, i, width - i - 1});
-            int dynamic_blur_size_y = min({blur_size, j, height - j - 1});
-            int dynamic_blur_size = min(dynamic_blur_size_x, dynamic_blur_size_y);
-
-            // Calculate the coordinates of the blur area, including the padded area
-            int x1 = max(i - dynamic_blur_size + blur_size, 0);
-            int x2 = min(i + dynamic_blur_size + blur_size, padded_img.width - 1);
-            int y1 = max(j - dynamic_blur_size + blur_size, 0);
-            int y2 = min(j + dynamic_blur_size + blur_size, padded_img.height - 1);
-
-            // Calculate the number of pixels in the blur area
-            int count = (x2 - x1 + 1) * (y2 - y1 + 1);
-
-            // Use the summed area table to compute the sum of pixel values in the blur area
-            int sumR = satR[y2][x2] - (x1 > 0 ? satR[y2][x1 - 1] : 0) - (y1 > 0 ? satR[y1 - 1][x2] : 0) + ((x1 > 0 && y1 > 0) ? satR[y1 - 1][x1 - 1] : 0);
-            int sumG = satG[y2][x2] - (x1 > 0 ? satG[y2][x1 - 1] : 0) - (y1 > 0 ? satG[y1 - 1][x2] : 0) +((x1 > 0 && y1 > 0) ? satG[y1 - 1][x1 - 1] : 0);
-            int sumB = satB[y2][x2] - (x1 > 0 ? satB[y2][x1 - 1] : 0) - (y1 > 0 ? satB[y1 - 1][x2] : 0) +((x1 > 0 && y1 > 0) ? satB[y1 - 1][x1 - 1] : 0);
-
-            //calculate the average pixel value in the blur image and clamp it to the valid range
-            blurred_image(i, j, 0) = clamp(sumR / count, 0, 255);
-            blurred_image(i, j, 1) = clamp(sumG / count, 0, 255);
-            blurred_image(i, j, 2) = clamp(sumB / count, 0, 255);
-        }
-    }
-
-    cout << "Filter Applied...\n";
-    menu(blurred_image);
 }
 
-
-
-
-
-
-
-
+/*
+//void blur(Image image) {
+//    int blur_size =  5 ;
+//    int height = image.height;
+//    int width = image.width;
+//
+//    // Create a new image that is larger than the original image by 2*blur_size in each dimension
+//    Image padded_img(width + 2 * blur_size, height + 2 * blur_size);
+//    // Copy the original image into the center of the new image
+//    for (int i = 0; i < width; ++i) {
+//        for (int j = 0; j < height; ++j) {
+//            padded_img(i + blur_size, j + blur_size, 0) = image(i, j, 0);
+//            padded_img(i + blur_size, j + blur_size, 1) = image(i, j, 1);
+//            padded_img(i + blur_size, j + blur_size, 2) = image(i, j, 2);
+//        }
+//    }
+//    // Create the summed area table
+//    vector<vector<int>> satR( padded_img.height, vector<int>( padded_img.width));
+//    vector<vector<int>> satG(  padded_img.height, vector<int>( padded_img.width));
+//    vector<vector<int>> satB( padded_img.height, vector<int>( padded_img.width));
+//
+//    // C the summed area table
+//    for (int i = 0; i < padded_img.width; ++i) {
+//        for (int j = 0; j < padded_img.height; ++j) {
+//            satR[j][i] = padded_img(i, j, 0) +(i > 0 ? satR[j][i - 1] : 0) +(j > 0 ? satR[j - 1][i] : 0) -(i > 0 && j > 0 ? satR[j - 1][i - 1] : 0);
+//            satG[j][i] = padded_img(i, j, 1) +(i > 0 ? satG[j][i - 1] : 0) +(j > 0 ? satG[j - 1][i] : 0) -(i > 0 && j > 0 ? satG[j - 1][i - 1] : 0);
+//            satB[j][i] = padded_img(i, j, 2) +(i > 0 ? satB[j][i - 1] : 0) +(j > 0 ? satB[j - 1][i] : 0) -(i > 0 && j > 0 ? satB[j - 1][i - 1] : 0);
+//        }
+//    }
+//
+//    Image blurred_image(width, height);
+//
+//    // Apply the blur using the summed area table
+//    for (int i = 0; i < width; ++i) {
+//        for (int j = 0; j < height; ++j) {
+//            // Dynamically adjust the blur size based on the pixel's distance from the edge
+//            int dynamic_blur_size_x = min({blur_size, i, width - i - 1});
+//            int dynamic_blur_size_y = min({blur_size, j, height - j - 1});
+//            int dynamic_blur_size = min(dynamic_blur_size_x, dynamic_blur_size_y);
+//
+//            // Calculate the coordinates of the blur area, including the padded area
+//            int x1 = max(i - dynamic_blur_size + blur_size, 0);
+//            int x2 = min(i + dynamic_blur_size + blur_size, padded_img.width - 1);
+//            int y1 = max(j - dynamic_blur_size + blur_size, 0);
+//            int y2 = min(j + dynamic_blur_size + blur_size, padded_img.height - 1);
+//
+//            // Calculate the number of pixels in the blur area
+//            int count = (x2 - x1 + 1) * (y2 - y1 + 1);
+//
+//            // Use the summed area table to compute the sum of pixel values in the blur area
+//            int sumR = satR[y2][x2] - (x1 > 0 ? satR[y2][x1 - 1] : 0) - (y1 > 0 ? satR[y1 - 1][x2] : 0) + ((x1 > 0 && y1 > 0) ? satR[y1 - 1][x1 - 1] : 0);
+//            int sumG = satG[y2][x2] - (x1 > 0 ? satG[y2][x1 - 1] : 0) - (y1 > 0 ? satG[y1 - 1][x2] : 0) +((x1 > 0 && y1 > 0) ? satG[y1 - 1][x1 - 1] : 0);
+//            int sumB = satB[y2][x2] - (x1 > 0 ? satB[y2][x1 - 1] : 0) - (y1 > 0 ? satB[y1 - 1][x2] : 0) +((x1 > 0 && y1 > 0) ? satB[y1 - 1][x1 - 1] : 0);
+//
+//            //calculate the average pixel value in the blur image and clamp it to the valid range
+//            blurred_image(i, j, 0) = clamp(sumR / count, 0, 255);
+//            blurred_image(i, j, 1) = clamp(sumG / count, 0, 255);
+//            blurred_image(i, j, 2) = clamp(sumB / count, 0, 255);
+//        }
+//    }
+//
+//    cout << "Filter Applied...\n";
+//    menu(blurred_image);
+//}
+ */
 //  ********************** Bonus ****************************
-void Sunlight(Image image) {
+void Sunlight(Image image) //Hossam
+{
     for (int i = 0; i < image.width; i++) {
         for (int j = 0; j < image.height; j++) {
             int red = image(i, j, 0);
@@ -1279,7 +1287,6 @@ void Sunlight(Image image) {
     menu(image);
 
 }
-
 
 void look_Purple(Image image) //Abdallah (Done)
 {
@@ -1340,8 +1347,6 @@ void tv(Image image) //Loai (Done)
     int width = image.width;
     int height = image.height;
 
-//    cout << "Image width: " << width << ", height: " << height << endl;
-
     // Generate random numbers outside the loop
     vector<int> randomValues(width * height * 3);
     for (int i = 0; i < width * height * 3; ++i) {
@@ -1356,20 +1361,12 @@ void tv(Image image) //Loai (Done)
             unsigned int green = image.getPixel(i, j, 1);
             unsigned int blue = image.getPixel(i, j, 2);
 
-//            cout << "Pixel at (" << i << ", " << j << "): ";
-//            cout << "Red: " << red << ", Green: " << green << ", Blue: " << blue << endl;
-
             // Add noise to each channel, skipping if the color value is below a threshold
             const int threshold = 5; // Adjust as needed
-            unsigned int noiseRed = (red < threshold) ? 0 : randomValues[count] %
-                                                            static_cast<int>(red * noiseIntensity);
-            unsigned int noiseGreen = (green < threshold) ? 0 : randomValues[count + 1] %
-                                                                static_cast<int>(green * noiseIntensity);
-            unsigned int noiseBlue = (blue < threshold) ? 0 : randomValues[count + 2] %
-                                                              static_cast<int>(blue * noiseIntensity);
+            unsigned int noiseRed = (red < threshold) ? 0 : randomValues[count] % static_cast<int>(red * noiseIntensity);
+            unsigned int noiseGreen = (green < threshold) ? 0 : randomValues[count + 1] % static_cast<int>(green * noiseIntensity);
+            unsigned int noiseBlue = (blue < threshold) ? 0 : randomValues[count + 2] % static_cast<int>(blue * noiseIntensity);
 
-            // Debugging noise values
-//            cout << "Noise - Red: " << noiseRed << ", Green: " << noiseGreen << ", Blue: " << noiseBlue << endl;
 
             // Add noise to the original pixel values
             unsigned int newRed = min(red + noiseRed, 255u);
@@ -1498,7 +1495,8 @@ void oil(Image image) //Loai (Done)
     menu(oil_image);
 }
 
-void Skewed(Image image) {
+void Skewed(Image image) //Hossam
+{
     cout << "Enter the degree of skewness: (1-180):";
     string deg;
     cin >> deg;
@@ -1511,7 +1509,7 @@ void Skewed(Image image) {
     }
     int deg1 = stoi(deg);
     bool flip = deg1 > 90;
-    if (flip)deg1 -= 90; //if degree greater than 90 just skew it normally then flip
+    if (flip)deg1 = 180-deg1; //if degree greater than 90 just skew it normally then flip
     int margin_of_error = 0; //margin of error adds space for low-degree skew
     //degrees below 60 are hard to skew normally using cos so they are separated to 3 parts
     if (deg1 <= 20 && deg1>0){ //from 0 to 20 is just a 20 degree skew
@@ -1536,14 +1534,14 @@ void Skewed(Image image) {
     }
     cnt += margin_of_error; //add margin of error to cnt for degrees lower than 40
     int denom = ceil(image.height / (double) cnt); //denom is how much rows to be passed without skewing
-    int diff = 1; //diffrance between each row
+    cout << denom << endl;
+    int diff = 1; //difference between each row
     if (deg1 <= 20 && deg1>0)diff = 2;
     if (deg1 <= 40 && deg1>20){
         denom = 1;
         diff = 1;
     }
     int temp;
-    cout<<cnt;
     for (int i = 0; i < image.height; ++i) {
         if (cnt <= 0)cnt = 0;
         for (int j = 0; j < image.width; ++j) {
@@ -1559,7 +1557,6 @@ void Skewed(Image image) {
     }
     temp-= image.width ;
     temp++;
-    cout<<temp<<endl;
     Image cropped_image(white.width-temp,white.height);
     for (int i = 0; i < white.height; ++i) {
         for (int j = temp; j <white.width ; ++j) {
@@ -1583,7 +1580,8 @@ void Skewed(Image image) {
     menu(cropped_image);
 }
 
-void Pixelate(Image image) {
+void Pixelate(Image image) //Abdullah
+{
     int Pixel_Size = 0;  // This variable handles the size of each pixel
     while (true) {
         try {
